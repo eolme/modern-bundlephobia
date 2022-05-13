@@ -1,0 +1,46 @@
+{
+  "name": "bundlephobia",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "@vkontakte/icons": "^1.159.0",
+    "@vkontakte/vk-bridge": "^2.6.1",
+    "@vkontakte/vkjs": "^0.22.2",
+    "@vkontakte/vkui": "^4.30.0",
+    "@vkontakte/vkui-tokens": "^4.9.1",
+    "ahks": "^0.0.0",
+    "badge-maker": "^3.3.1",
+    "clsx": "^1.1.1",
+    "dayjs": "^1.11.2",
+    "fast-zlib": "^2.0.1",
+    "mobile-detect": "^1.4.5",
+    "next": "12.1.6",
+    "next-sw": "^1.2.0",
+    "next-themes": "^0.2.0",
+    "pretty-bytes": "^6.0.0",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-popper": "^2.3.0",
+    "swr": "2.0.0-beta.1",
+    "undici": "^5.2.0",
+    "validate-npm-package-name": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.32",
+    "@types/react": "^17.0.45",
+    "@types/react-dom": "^17.0.16",
+    "@types/validate-npm-package-name": "^3.0.3",
+    "@types/webpack": "^5.28.0",
+    "eslint": "8.15.0",
+    "eslint-config-next": "12.1.6",
+    "module-alias": "^2.2.2",
+    "typescript": "4.6.4"
+  }
+}
