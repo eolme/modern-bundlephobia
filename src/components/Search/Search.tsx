@@ -2,17 +2,20 @@ import type { FC, ChangeEvent } from 'react';
 
 import {
   CustomSelect,
-  CustomSelectOption,
-  Text,
-  Subhead
-} from '@vkontakte/vkui';
+  CustomSelectOption
+} from '@mntm/vkui';
 
-import { useState } from 'react';
-import { default as useSWR } from 'swr';
+import {
+  Icon28SearchStarsOutline
+} from '@vkontakte/icons';
+
+import {
+  SearchContent
+} from 'src/contexts';
+
+import { useContext } from 'react';
 import { useRouter } from 'next/router';
-
-import { npm } from 'src/api/npm';
-import { label } from 'src/utils/label';
+import { useHandler, useStableHandler } from 'ahks';
 
 import styles from './Search.module.css';
 
@@ -24,28 +27,25 @@ type SearchProps = {
 
 export const Search: FC<SearchProps> = ({ value = EMPTY }) => {
   const router = useRouter();
-  const [search, setSearch] = useState(value);
-  const { isValidating, data } = useSWR(search, npm);
+  const context = useContext(SearchContent);
 
-  const options = data ? data.map(label) : [];
-
-  const handleInput = (event: ChangeEvent<Element>) => {
+  const handleInput = useHandler((event: ChangeEvent<Element>) => {
     const input = event.target as HTMLInputElement;
 
-    setSearch(input.value);
-  };
+    context.setSearch(input.value);
+  });
 
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = useStableHandler((event: ChangeEvent<HTMLSelectElement>) => {
     const select = event.target;
 
-    const selected = options.find((option) => option.value === select.value);
+    const selected = context.results.find((option) => option.value === select.value);
 
     if (selected) {
       router.replace('/[...name]', `/${selected.npm.package.name}@${selected.npm.package.version}`, {
         shallow: true
       });
     }
-  };
+  });
 
   return (
     <CustomSelect
@@ -53,8 +53,8 @@ export const Search: FC<SearchProps> = ({ value = EMPTY }) => {
       placeholder="find package"
       emptyText="nothing found"
       searchable={true}
-      fetching={isValidating}
-      options={options}
+      fetching={context.loading}
+      options={context.results}
       onInputChange={handleInput}
       onChange={handleChange}
       defaultValue={value}
@@ -69,6 +69,13 @@ export const Search: FC<SearchProps> = ({ value = EMPTY }) => {
             <span className={styles.version}>{props.option!.npm.package.version}</span>
           </div>
         </CustomSelectOption>
+      )}
+      icon={(
+        <Icon28SearchStarsOutline
+          fill="currenColor"
+          width={24}
+          height={24}
+        />
       )}
     />
   );

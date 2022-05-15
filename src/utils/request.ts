@@ -1,4 +1,4 @@
-import { fetch } from 'undici';
+import { default as createFetch } from '@vercel/fetch';
 
 import { ModuleError } from './error';
 
@@ -8,8 +8,11 @@ const requestModuleOptions = {
   }
 };
 
+const nativeFetch: any = Object.assign(fetch, { Headers });
+const vercel = createFetch(nativeFetch);
+
 export const requestModule = async (url: string) => {
-  const response = await fetch(url, requestModuleOptions);
+  const response = await vercel(url, requestModuleOptions);
 
   if (!response.ok) {
     throw new ModuleError('ERR_CONNECTION_REFUSED', url, 400);

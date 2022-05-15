@@ -8,7 +8,7 @@ import { createBadge, createErrorBadge } from 'src/utils/badge';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const size = await calc(req.query.name);
-    sendSVG(res, 200, createBadge('minified', size.raw));
+    sendSVG(res, 200, createBadge('minified', size.bytes));
   } catch (ex) {
     console.error(ex);
     sendSVG(res, 400, createErrorBadge(400));

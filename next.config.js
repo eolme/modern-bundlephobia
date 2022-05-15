@@ -43,18 +43,21 @@ module.exports = sw({
   },
   reactStrictMode: false,
   experimental: {
-    runtime: 'edge',
+    runtime: 'nodejs',
+    reactRoot: true,
     serverComponents: false,
 
     esmExternals: 'loose',
-    fullySpecified: false,
-
-    reactMode: 'concurrent',
-    reactRoot: true
+    fullySpecified: false
   },
-  webpack(config) {
+  webpack(config, context) {
     config.resolve.alias = Object.assign(stubModules, config.resolve.alias);
     config.resolve.mainFields = mainFields;
+
+    if (!context.isServer) {
+      const fallback = config.resolve.fallback = config.resolve.fallback || {};
+      fallback.fs = require.resolve('suman-browser-polyfills/modules/fs');
+    }
 
     return config;
   }

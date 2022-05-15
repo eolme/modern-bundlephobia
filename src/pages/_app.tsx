@@ -1,15 +1,35 @@
 import type { FC } from 'react';
 import type { AppProps, AppContext, AppInitialProps } from 'next/app';
 
-import { default as Next } from 'next/app';
-import { ThemeProvider } from 'next-themes';
-import { SWRConfig } from 'swr';
+import 'src/styles/index.css';
+
+import {
+  default as Next
+} from 'next/app';
+
+import {
+  DefaultSeo
+} from 'next-seo';
+
+import {
+  ThemeProvider
+} from 'next-themes';
+
+import {
+  SWRConfig
+} from 'swr';
+
+import {
+  SearchProvider
+} from 'src/contexts';
 
 import {
   Layout
 } from 'src/components';
 
-import 'src/styles/index.css';
+import {
+  default as SEO
+} from '../../next-seo.config';
 
 type NextApp = FC<AppProps> & {
   getInitialProps: (context: AppContext) => Promise<AppInitialProps>; 
@@ -17,17 +37,22 @@ type NextApp = FC<AppProps> & {
 
 const App: NextApp = ({ Component, pageProps }) => {
   return (
-    <SWRConfig>
-      <ThemeProvider
-        enableSystem={true}
-        enableColorScheme={true}
-        attribute="scheme"
-      >
-        <Layout touch={pageProps.touch}>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
-    </SWRConfig>
+    <>
+      <DefaultSeo {...SEO} />
+      <SWRConfig>
+        <ThemeProvider
+          enableSystem={true}
+          enableColorScheme={true}
+          attribute="scheme"
+        >
+          <Layout touch={pageProps.touch}>
+            <SearchProvider>
+              <Component {...pageProps} />
+            </SearchProvider>
+          </Layout>
+        </ThemeProvider>
+      </SWRConfig>
+    </>
   );
 };
 

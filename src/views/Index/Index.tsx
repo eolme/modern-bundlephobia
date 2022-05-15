@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import {
   Subhead,
   Title
-} from '@vkontakte/vkui';
+} from '@mntm/vkui';
 
 import {
   Search

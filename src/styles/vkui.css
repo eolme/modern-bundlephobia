@@ -1,8 +1,7 @@
-@import "@vkontakte/vkui/dist/cssm/styles/constants.css";
-@import "@vkontakte/vkui/dist/cssm/styles/animations.css";
-@import "@vkontakte/vkui/dist/cssm/styles/vkcom_light.css";
-@import "@vkontakte/vkui/dist/cssm/styles/vkcom_dark.css";
+@import "@mntm/vkui/dist/styles/constants.css";
+@import "@mntm/vkui/dist/styles/animations.css";
+@import "@mntm/vkui/dist/styles/vkcom_light.css";
+@import "@mntm/vkui/dist/styles/vkcom_dark.css";
 @import "@vkontakte/vkui-tokens/themes/vkCom/cssVars/declarations/onlyVariablesLocal.css";
 @import "@vkontakte/vkui-tokens/themes/vkComDark/cssVars/declarations/onlyVariablesLocal.css";
-@import "@vkontakte/vkui/dist/cssm/styles/components.css";
-@import "@vkontakte/vkui/dist/cssm/styles/common.css";
+@import "@mntm/vkui/dist/styles/common.css";

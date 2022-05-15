@@ -1,18 +1,29 @@
 import { default as validate } from 'validate-npm-package-name';
+import { default as semver } from 'semver';
 
-const regex = /"(.+?)"/;
+const regexLink = /"(.+?)"/;
+const regexTag = /\w+/;
 
 export const matchModuleLink = (content: string) => {
-  const deep = regex.exec(content);
+  const deep = regexLink.exec(content);
   return (deep && deep[1]) || null;
 };
 
-const toModule = (arr: string | string[]) => Array.isArray(arr) ? arr.join('/') : arr;
+export const toModuleQuery = (params: string | string[]) => Array.isArray(params) ? params.join('/') : params;
 
-const toVersion = (name: string) => name.lastIndexOf('@') <= 0 ? `${name}@latest` : name;
+export const toModuleFullQuery = (query: string) => query.lastIndexOf('@') <= 0 ? `${query}@latest` : query;
 
-export const toModuleVersion = (arr: string | string[]) => toVersion(toModule(arr));
+export const toModuleVersion = (query: string) => {
+  const version = query.slice(query.lastIndexOf('@') + 1);
+  return isValidModuleTag(version) ? version : (semver.clean(version, true) || version);
+};
 
-export const toModuleName = (name: string) => name.slice(0, name.lastIndexOf('@'));
+export const toModuleName = (query: string) => query.slice(0, query.lastIndexOf('@'));
 
 export const isValidModuleName = (name: string) => validate(name).validForNewPackages;
+
+export const isValidModuleTag = (tag: string) => regexTag.test(tag);
+
+export const isValidModuleVersion = (version: string) => isValidModuleTag(version) || !!semver.valid(version, true);
+
+export const fromPath = (path: string) => toModuleName(toModuleFullQuery(path.slice(1)));

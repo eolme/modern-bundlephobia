@@ -1,6 +1,5 @@
 import type { FC } from 'src/types/react';
-import type { ReactNode } from 'react';
-import type { Appearance } from '@vkontakte/vkui';
+import type { Appearance } from '@mntm/vkui';
 
 import {
   ConfigProvider,
@@ -14,7 +13,7 @@ import {
   SplitLayout,
   SplitCol,
   Panel
-} from '@vkontakte/vkui';
+} from '@mntm/vkui';
 
 import { useTheme } from 'next-themes';
 
@@ -39,10 +38,10 @@ export const Layout: FC<LayoutProps> = ({ children, touch }) => {
       webviewType={WebviewType.INTERNAL}
     >
       <AdaptivityProvider
-        sizeX={SizeType.REGULAR}
+        sizeX={SizeType.COMPACT}
         sizeY={SizeType.REGULAR}
         viewHeight={ViewHeight.MEDIUM}
-        viewWidth={ViewWidth.MOBILE}
+        viewWidth={ViewWidth.DESKTOP}
         hasMouse={!touch}
         deviceHasHover={!touch}
       >

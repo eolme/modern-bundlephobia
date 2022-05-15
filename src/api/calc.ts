@@ -2,7 +2,10 @@ import {
   matchModuleLink,
   toModuleName,
   toModuleVersion,
-  isValidModuleName
+  isValidModuleName,
+  isValidModuleVersion,
+  toModuleQuery,
+  toModuleFullQuery
 } from 'src/utils/module';
 
 import {
@@ -31,22 +34,34 @@ const load = async (name: string) => {
   return requestModule(deepLink);
 };
 
-export const calc = async (name: string | string[]) => {
-  const who = toModuleVersion(name);
-  const as = toModuleName(who);
+export const calc = async (params: string | string[]) => {
+  const raw = toModuleQuery(params);
+  let query = toModuleFullQuery(raw);
 
-  if (!isValidModuleName(as)) {
-    throw new ModuleError('ERR_NAME_INVALID', as, 400);
+  const name = toModuleName(query);
+
+  if (!isValidModuleName(name)) {
+    throw new ModuleError('ERR_NAME_INVALID', name, 400);
   }
 
-  const content = await load(who);
+  const version = toModuleVersion(query);
 
-  const bytes = Buffer.byteLength(content);
+  if (!isValidModuleVersion(version)) {
+    throw new ModuleError('ERR_VERSION_INVALID', version, 400);
+  }
+
+  query = `${name}@${version}`;
+
+  const content = await load(query);
+
+  const bytes = Buffer.byteLength(content, 'utf8');
 
   return {
-    name: as,
-    query: who,
-    raw: bytes,
+    raw,
+    name,
+    query,
+    version,
+    bytes,
     gzip: gzip(content, bytes),
     brotli: brotli(content, bytes)
   } as const;

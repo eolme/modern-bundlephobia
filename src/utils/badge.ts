@@ -1,4 +1,4 @@
-import { makeBadge, Format } from 'badge-maker';
+import { makeBadge } from 'badge-maker';
 import { default as bytes } from 'pretty-bytes';
 
 export const createBadge = (name: string, size: number) => {
