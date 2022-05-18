@@ -2,6 +2,11 @@
   "name": "bundlephobia",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "yarn@3.2.1",
+  "engines": {
+    "node": "18",
+    "yarn": "3"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,11 +14,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mntm/vkui": "^4.30.0-fix.0",
-    "@next/bundle-analyzer": "^12.1.6",
+    "@mntm/vkui": "^4.31.0",
+    "@next/bundle-analyzer": "12.1.7-canary.7",
     "@popperjs/core": "^2.11.5",
     "@vercel/fetch": "^6.2.0",
-    "@vkontakte/icons": "^1.161.1",
+    "@vkontakte/icons": "^1.162.0",
     "@vkontakte/vk-bridge": "^2.6.1",
     "@vkontakte/vkjs": "^0.22.2",
     "@vkontakte/vkui-tokens": "^4.10.0",
@@ -22,7 +27,7 @@
     "dayjs": "^1.11.2",
     "fast-zlib": "^2.0.1",
     "mobile-detect": "^1.4.5",
-    "next": "12.1.6",
+    "next": "12.1.7-canary.7",
     "next-seo": "^5.4.0",
     "next-sw": "^1.2.0",
     "next-themes": "^0.2.0",
@@ -32,10 +37,15 @@
     "react-dom": "18.1.0",
     "react-popper": "^2.3.0",
     "swr": "^2.0.0-beta.3",
-    "undici": "^5.2.0",
     "validate-npm-package-name": "^4.0.0"
   },
   "devDependencies": {
+    "@next/swc-darwin-arm64": "12.1.7-canary.7",
+    "@next/swc-darwin-x64": "12.1.7-canary.7",
+    "@next/swc-linux-arm64-gnu": "12.1.7-canary.7",
+    "@next/swc-linux-arm64-musl": "12.1.7-canary.7",
+    "@next/swc-linux-x64-gnu": "12.1.7-canary.7",
+    "@next/swc-linux-x64-musl": "12.1.7-canary.7",
     "@types/node": "^17.0.34",
     "@types/node-fetch": "^2.6.1",
     "@types/react": "^17.0.45",
