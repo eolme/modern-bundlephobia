@@ -9,31 +9,36 @@ import {
   SizeType,
   ViewHeight,
   ViewWidth,
-  AppRoot,
-  SplitLayout,
-  SplitCol,
-  Panel
+  AppRoot
 } from '@mntm/vkui';
 
+import { useState } from 'react';
 import { useTheme } from 'next-themes';
+import { useLayoutMount } from 'ahks';
 
-const WIDTH = '100%';
+import { hasHover, hasMouse } from '@vkontakte/vkjs';
 
-type LayoutProps = {
-  touch: boolean;
-};
+import { default as clsx } from 'clsx';
 
-export const Layout: FC<LayoutProps> = ({ children, touch }) => {
+import styles from './Layout.module.css';
+
+export const Layout: FC = ({ children }) => {
   const { resolvedTheme } = useTheme();
 
   const appearance = (resolvedTheme || 'light') as Appearance;
 
+  const [mouse, setMouse] = useState(false);
+
+  useLayoutMount(() => {
+    setMouse(hasHover && hasMouse);
+  });
+
   return (
     <ConfigProvider
-      appearance={appearance}
-      isWebView={true}
-      platform={Platform.VKCOM}
+      isWebView={false}
       hasNewTokens={true}
+      appearance={appearance}
+      platform={Platform.VKCOM}
       transitionMotionEnabled={false}
       webviewType={WebviewType.INTERNAL}
     >
@@ -42,35 +47,17 @@ export const Layout: FC<LayoutProps> = ({ children, touch }) => {
         sizeY={SizeType.REGULAR}
         viewHeight={ViewHeight.MEDIUM}
         viewWidth={ViewWidth.DESKTOP}
-        hasMouse={!touch}
-        deviceHasHover={!touch}
+        hasMouse={mouse}
+        deviceHasHover={mouse}
       >
         <AppRoot
           mode="full"
           noLegacyClasses={true}
           scroll="global"
         >
-          <SplitLayout
-            modal={null}
-            popout={null}
-            header={null}
-          >
-            <SplitCol
-              animate={false}
-              width={WIDTH}
-              minWidth={WIDTH}
-              maxWidth={WIDTH}
-              spaced={false}
-              fixed={false}
-            >
-              <Panel
-                id="layout"
-                centered={false}
-              >
-                {children}
-              </Panel>
-            </SplitCol>
-          </SplitLayout>
+          <div className={styles.container}>
+            {children}
+          </div>
         </AppRoot>
       </AdaptivityProvider>
     </ConfigProvider>

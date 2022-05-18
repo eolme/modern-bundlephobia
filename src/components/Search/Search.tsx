@@ -1,11 +1,15 @@
-import type { FC, ChangeEvent } from 'react';
+import type { FC, ChangeEvent, MouseEvent } from 'react';
+import type { NPMSearch } from 'src/types/npm';
 
 import {
-  CustomSelect,
-  CustomSelectOption
+  Input,
+  Popper,
+  Spinner,
+  SimpleCell
 } from '@mntm/vkui';
 
 import {
+  Icon16Done,
   Icon28SearchStarsOutline
 } from '@vkontakte/icons';
 
@@ -13,70 +17,113 @@ import {
   SearchContent
 } from 'src/contexts';
 
-import { useContext } from 'react';
+import { useContext, useRef, useState, memo } from 'react';
 import { useRouter } from 'next/router';
-import { useHandler, useStableHandler } from 'ahks';
+import { useHandler, useStableHandler, useCreation, useRefToCallback } from 'ahks';
 
 import styles from './Search.module.css';
 
+const SearchComponentIcon = (
+  <Icon28SearchStarsOutline
+    fill="currentColor"
+    width={24}
+    height={24}
+  />
+);
+
+const SearchComponentSpinner = (
+  <Spinner size="small" />
+);
+
+const SearchComponentChecked = (
+  <Icon16Done
+    fill="currentColor"
+    width={16}
+    height={16}
+  />
+)
+
 const EMPTY = '';
 
-type SearchProps = {
-  value?: string;
-};
-
-export const Search: FC<SearchProps> = ({ value = EMPTY }) => {
+const SearchComponent: FC = () => {
   const router = useRouter();
   const context = useContext(SearchContent);
 
-  const handleInput = useHandler((event: ChangeEvent<Element>) => {
-    const input = event.target as HTMLInputElement;
+  const targetRef = useRef<HTMLElement>(null);
+  const targetRefCallback = useRefToCallback(targetRef);
 
-    context.setSearch(input.value);
+  const handleChange = useHandler((event: ChangeEvent<HTMLInputElement>) => {
+    context.setSearch(event.currentTarget.value);
   });
 
-  const handleChange = useStableHandler((event: ChangeEvent<HTMLSelectElement>) => {
-    const select = event.target;
+  const [focused, setFocused] = useState(false);
+  const handleFocus = useHandler(() => setFocused(true));
+  const handleBlur = useHandler(() => setFocused(false));
 
-    const selected = context.results.find((option) => option.value === select.value);
-
-    if (selected) {
-      router.replace('/[...name]', `/${selected.npm.package.name}@${selected.npm.package.version}`, {
-        shallow: true
-      });
-    }
+  const [selected, setSelected] = useState(EMPTY);
+  const handleSelect = useHandler((event: MouseEvent<HTMLElement>) => {
+    setSelected(event.currentTarget.getAttribute('data-value')!);
   });
+
+  const nothing = context.results.length === 0;
+  const renderResults = context.results.map((option) => (
+    <SimpleCell
+      key={option.value}
+      Component="span"
+      className={styles.option}
+      tabIndex={0}
+      role="option"
+      data-value={option.value}
+      aria-selected={option.value === selected}
+      onClick={handleSelect}
+      description={option.npm.package.description}
+      after={(
+        option.value === selected ? SearchComponentChecked : null
+      )}
+    >
+      <span className={styles.name}>{option.npm.package.name}</span>
+      <span className={styles.version}>{option.npm.package.version}</span>
+    </SimpleCell>
+  ));
 
   return (
-    <CustomSelect
-      className={styles.search}
-      placeholder="find package"
-      emptyText="nothing found"
-      searchable={true}
-      fetching={context.loading}
-      options={context.results}
-      onInputChange={handleInput}
-      onChange={handleChange}
-      defaultValue={value}
-      renderOption={(props) => (
-        <CustomSelectOption
-          {...props}
-          key={props.option!.value}
-          description={props.option!.npm.package.description}
-        >
-          <div className={styles.option}>
-            <span className={styles.name}>{props.option!.npm.package.name}</span>
-            <span className={styles.version}>{props.option!.npm.package.version}</span>
-          </div>
-        </CustomSelectOption>
-      )}
-      icon={(
-        <Icon28SearchStarsOutline
-          fill="currenColor"
-          width={24}
-          height={24}
-        />
-      )}
-    />
+    <>
+      <Input
+        getRootRef={targetRefCallback}
+        placeholder="find package"
+        lang="en"
+        spellCheck="false"
+        autoCorrect="off"
+        autoComplete="off"
+        autoCapitalize="off"
+        autoFocus={true}
+        value={context.search}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        after={(
+          context.loading ? SearchComponentSpinner : SearchComponentIcon
+        )}
+        id="search"
+        name="search"
+        type="search"
+        inputMode="search"
+        aria-haspopup={focused ? 'listbox' : 'false'}
+        aria-controls="listbox"
+      />
+      {
+        focused || true ? (
+          <Popper
+            targetRef={targetRef}
+            id="listbox"
+            role="listbox"
+          >
+            {nothing ? 'nothing found' : renderResults}
+          </Popper>
+        ) : null
+      }
+    </>
   );
 };
+
+export const Search = memo(SearchComponent, () => true);

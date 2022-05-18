@@ -11,7 +11,7 @@ const Document: NextPage = () => {
   return (
     <Html className="vkui">
       <Head />
-      <body className="vkui__root">
+      <body>
         <Main />
         <NextScript />
       </body>

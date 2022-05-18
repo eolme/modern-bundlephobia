@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  max-width: 574px;
+
+  margin: auto;
+  padding: 12px;
+
+  box-sizing: border-box;
+}

@@ -7,17 +7,11 @@
 /* Search */
 @import "@mntm/vkui/dist/components/FormField/FormField.css";
 @import "@mntm/vkui/dist/components/Input/Input.css";
-@import "@mntm/vkui/dist/components/Select/Select.css";
-@import "@mntm/vkui/dist/components/SelectMimicry/SelectMimicry.css";
-@import "@mntm/vkui/dist/components/CustomSelect/CustomSelect.css";
-@import "@mntm/vkui/dist/components/CustomSelectOption/CustomSelectOption.css";
 @import "@mntm/vkui/dist/components/Popper/Popper.css";
-@import "@mntm/vkui/dist/components/CustomSelectDropdown/CustomSelectDropdown.css";
-@import "@mntm/vkui/dist/components/CustomScrollView/CustomScrollView.css";
 @import "@mntm/vkui/dist/components/Spinner/Spinner.css";
+@import "@mntm/vkui/dist/components/SimpleCell/SimpleCell.css";
 @import "@mntm/vkui/dist/components/Typography/Text/Text.css";
-@import "@mntm/vkui/dist/components/Typography/Caption/Caption.css";
-@import "@mntm/vkui/dist/components/Typography/Paragraph/Paragraph.css";
+@import "@mntm/vkui/dist/components/Typography/Headline/Headline.css";
 
 /* IndexPage */
 @import "@mntm/vkui/dist/components/Typography/Title/Title.css";

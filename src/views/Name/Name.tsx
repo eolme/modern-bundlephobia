@@ -14,10 +14,8 @@ import {
   SearchContent
 } from 'src/contexts';
 
-import { useContext } from 'react';
+import { useContext, Fragment } from 'react';
 import { useRouter } from 'next/router';
-
-import { fromPath } from 'src/utils/module';
 
 import styles from './Name.module.css';
 
@@ -29,46 +27,40 @@ export const Name: NextPage<NameProps> = ({ size }) => {
   const router = useRouter();
   const context = useContext(SearchContent);
 
-  const name = router.isFallback ? context.search || fromPath(router.asPath) : size.name;
+  const name = router.isFallback ? context.initial : size.name;
   const selected = context.results.find((option) => option.value === name);
 
-  if (context.search !== name) {
-    context.setSearch(name);
-  }
-
   return (
-    <>
+    <Fragment key="page">
       <NextSeo
         title={name}
         description={selected ? selected.npm.package.description : ''}
       />
-      <div className={styles.container}>
-        <Search value={name} />
-        <div className={styles.badges}>
-          {
-            router.isFallback || !router.isReady ? (
-              <>
-                loading
-              </>
-            ) : (
-              <>
-                <Badge
-                  name="minified"
-                  size={size.bytes}
-                />
-                <Badge
-                  name="gzip"
-                  size={size.gzip}
-                />
-                <Badge
-                  name="brotli"
-                  size={size.brotli}
-                />
-              </>
-            )
-          }
-        </div>
+      <Search />
+      <div className={styles.badges}>
+        {
+          router.isFallback ? (
+            <>
+              loading
+            </>
+          ) : (
+            <>
+              <Badge
+                name="minified"
+                size={size.bytes}
+              />
+              <Badge
+                name="gzip"
+                size={size.gzip}
+              />
+              <Badge
+                name="brotli"
+                size={size.brotli}
+              />
+            </>
+          )
+        }
       </div>
-    </>
+    </Fragment>
   )
 };

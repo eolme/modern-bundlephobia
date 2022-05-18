@@ -8,17 +8,8 @@
   font-size: 0.8em;
 }
 
-.option {
+.option :global(.vkuiSimpleCell__children) {
   display: flex;
   align-items: center;
   gap: 4px;
-}
-
-.search {
-  text-align: left;
-}
-
-.search :global(.vkuiSelect__container),
-.search :global(.vkuiInput) {
-  font-size: 16px;
 }

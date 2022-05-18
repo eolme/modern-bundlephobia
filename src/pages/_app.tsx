@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { AppProps, AppContext, AppInitialProps } from 'next/app';
+import type { AppProps } from 'next/app';
 
 import 'src/styles/index.css';
 
@@ -31,11 +31,7 @@ import {
   default as SEO
 } from '../../next-seo.config';
 
-type NextApp = FC<AppProps> & {
-  getInitialProps: (context: AppContext) => Promise<AppInitialProps>; 
-};
-
-const App: NextApp = ({ Component, pageProps }) => {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <DefaultSeo {...SEO} />
@@ -44,8 +40,9 @@ const App: NextApp = ({ Component, pageProps }) => {
           enableSystem={true}
           enableColorScheme={true}
           attribute="scheme"
+          defaultTheme="system"
         >
-          <Layout touch={pageProps.touch}>
+          <Layout>
             <SearchProvider>
               <Component {...pageProps} />
             </SearchProvider>
@@ -54,31 +51,6 @@ const App: NextApp = ({ Component, pageProps }) => {
       </SWRConfig>
     </>
   );
-};
-
-App.getInitialProps = async (context) => {
-  const props = await Next.getInitialProps(context);
-
-  let touch = false;
-
-  if (context.ctx.req) {
-    const Detect = (await import('mobile-detect')).default;
-
-    const user = context.ctx.req.headers['user-agent'] || '';
-    const instance = Reflect.construct(Detect, [user]);
-
-    touch = instance.phone() !== null;
-  } else {
-    const utils = await import('@vkontakte/vkjs');
-
-    touch = utils.hasMouse;
-  }
-
-  Object.assign(props.pageProps, {
-    touch
-  });
-
-  return props;
 };
 
 export default App;

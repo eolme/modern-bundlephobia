@@ -1,43 +1,26 @@
 const path = require('path');
 const alias = require('module-alias');
 const sw = require('next-sw').default;
+const analyze = require('@next/bundle-analyzer');
 
-const stub = (name) => path.resolve('src/stub', name + '.js');
+const stub = (name) => path.resolve(__dirname, 'src/stub', name);
+const npm = (name) => path.resolve(__dirname, 'node_modules', name);
 const stubModules = {
   '@vkontakte/vk-bridge': stub('bridge'),
-  'mitt': stub('mitt')
+  'mitt': stub('mitt'),
+  'semver': stub('semver'),
+  'use-sync-external-store/shim': npm('use-sync-external-store'),
+  'use-sync-external-store': npm('use-sync-external-store')
 };
 
 alias.addAliases(stubModules);
 
-const mainFields = [
-  // Non-standard esm
-  'modern',
-  'esm',
-  'esnext',
+const mainFields = ['modern', 'esm', 'esnext', 'jsnext:main', 'jsnext', 'es2015', 'esm2015', 'fesm2015', 'module', 'esm5', 'fesm5', 'main', 'browser'];
+const empty = [];
 
-  // Previous de-facto standard
-  'jsnext:main',
-  'jsnext',
-
-  // These are generally shipped as a higher ES language level than `module`
-  'es2015',
-  'esm2015',
-  'fesm2015',
-
-  // Current leading de-facto standard
-  'module',
-
-  // Lower ES level
-  'esm5',
-  'fesm5',
-
-  // Standard
-  'main',
-  'browser'
-];
-
-module.exports = sw({
+module.exports = analyze({
+  enabled: process.env.ANALYZE === '1'
+})(sw({
   serviceWorker: {
     entry: 'src/sw/index.ts'
   },
@@ -50,15 +33,29 @@ module.exports = sw({
     esmExternals: 'loose',
     fullySpecified: false
   },
-  webpack(config, context) {
-    config.resolve.alias = Object.assign(stubModules, config.resolve.alias);
-    config.resolve.mainFields = mainFields;
+  webpack(config) {
+    // Force new
+    config = Object.assign({}, config);
 
-    if (!context.isServer) {
-      const fallback = config.resolve.fallback = config.resolve.fallback || {};
-      fallback.fs = require.resolve('suman-browser-polyfills/modules/fs');
-    }
+    config.resolve.alias = Object.assign({}, config.resolve.alias || {}, stubModules);
+
+    // Force esm
+    config.resolve.mainFields = mainFields;
+    config.resolve.aliasFields = mainFields;
+
+    // Disable condition resolve
+    config.resolve.importsFields = empty;
+    config.resolve.exportsFields = empty;
+    config.resolve.conditionNames = empty;
+
+    config.module.rules.unshift({
+      test: /\.svg$/,
+      type: 'asset/source',
+      dependency: {
+        not: ['url']
+      }
+    });
 
     return config;
   }
-});
+}));
