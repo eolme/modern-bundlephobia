@@ -1,3 +1,13 @@
-.vkuiSelect__title {
-  user-select: none;
+.vkuiAppRoot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vkuiFormField:not(.vkuiFormField--disabled) .vkuiFormField__border--hover {
+  background-color: var(--field_background);
+}
+
+.vkuiFormField {
+  border-radius: 4px;
 }

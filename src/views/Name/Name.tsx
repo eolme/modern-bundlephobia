@@ -17,6 +17,8 @@ import {
 import { useContext, Fragment } from 'react';
 import { useRouter } from 'next/router';
 
+import { SizeType } from 'src/utils/const';
+
 import styles from './Name.module.css';
 
 type NameProps = {
@@ -28,13 +30,13 @@ export const Name: NextPage<NameProps> = ({ size }) => {
   const context = useContext(SearchContent);
 
   const name = router.isFallback ? context.initial : size.name;
-  const selected = context.results.find((option) => option.value === name);
+  const selected = context.results.find((option) => option.package.name === name);
 
   return (
     <Fragment key="page">
       <NextSeo
         title={name}
-        description={selected ? selected.npm.package.description : ''}
+        description={selected ? selected.package.description : ''}
       />
       <Search />
       <div className={styles.badges}>
@@ -46,15 +48,15 @@ export const Name: NextPage<NameProps> = ({ size }) => {
           ) : (
             <>
               <Badge
-                name="minified"
+                type={SizeType.BYTES}
                 size={size.bytes}
               />
               <Badge
-                name="gzip"
+                type={SizeType.GZIP}
                 size={size.gzip}
               />
               <Badge
-                name="brotli"
+                type={SizeType.BROTLI}
                 size={size.brotli}
               />
             </>

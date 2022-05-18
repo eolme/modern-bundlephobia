@@ -1,3 +1,7 @@
+import type { SizeType } from 'src/utils/const';
+
+import { SizeName } from './const';
+
 import { default as bytes } from 'pretty-bytes';
 
 import { default as verdana } from './verdana.json';
@@ -50,9 +54,9 @@ const makeBadge = (format: Format) => {
   return (BadgeTemplate as string).trim().replace(/{(\w+)}/g, (_, $1: string) => templates[$1]);
 };
 
-export const createBadge = (name: string, size: number) => {
+export const createBadge = (type: SizeType, size: number) => {
   return makeBadge({
-    label: name,
+    label: SizeName[type],
     message: bytes(size, {
       locale: false
     }),
@@ -66,4 +70,8 @@ export const createErrorBadge = (status: number) => {
     message: status.toString(),
     color: 'critical'
   });
+};
+
+export const createBadgeCDN = (type: SizeType, query: string) => {
+  return `https://cdn.statically.io/img/${process.env.VERCEL_URL}/api/badge/${type}/${query}`;
 };

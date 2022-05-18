@@ -1,11 +1,11 @@
-import type { FC, ChangeEvent, MouseEvent } from 'react';
-import type { NPMSearch } from 'src/types/npm';
+import type { FC, ChangeEvent, MouseEvent, ReactNode } from 'react';
 
 import {
   Input,
   Popper,
-  Spinner,
-  SimpleCell
+  PanelSpinner,
+  SimpleCell,
+  Headline
 } from '@mntm/vkui';
 
 import {
@@ -17,14 +17,17 @@ import {
   SearchContent
 } from 'src/contexts';
 
-import { useContext, useRef, useState, memo } from 'react';
+import { useContext, useRef, memo } from 'react';
 import { useRouter } from 'next/router';
-import { useHandler, useStableHandler, useCreation, useRefToCallback } from 'ahks';
+import { useHandler, useStableHandler, useRefToCallback } from 'ahks';
+
+import { default as clsx } from 'clsx';
 
 import styles from './Search.module.css';
 
 const SearchComponentIcon = (
   <Icon28SearchStarsOutline
+    role="presentation"
     fill="currentColor"
     width={24}
     height={24}
@@ -32,16 +35,35 @@ const SearchComponentIcon = (
 );
 
 const SearchComponentSpinner = (
-  <Spinner size="small" />
+  <PanelSpinner
+    aria-busy="true"
+    aria-live="polite"
+    role="presentation"
+    size="small"
+  />
 );
 
 const SearchComponentChecked = (
   <Icon16Done
+    role="presentation"
     fill="currentColor"
     width={16}
     height={16}
   />
-)
+);
+
+const SearchComponentEmpty = (
+  <SimpleCell
+    key="nothing"
+    Component="span"
+    className={styles.option}
+    tabIndex={-1}
+    role="contentinfo"
+    disabled={true}
+  >
+    <Headline weight="regular">nothing found</Headline>
+  </SimpleCell>
+);
 
 const EMPTY = '';
 
@@ -56,51 +78,63 @@ const SearchComponent: FC = () => {
     context.setSearch(event.currentTarget.value);
   });
 
-  const [focused, setFocused] = useState(false);
-  const handleFocus = useHandler(() => setFocused(true));
-  const handleBlur = useHandler(() => setFocused(false));
+  const handleSelect = useStableHandler((event: MouseEvent<HTMLElement>) => {
+    const selected = +event.currentTarget.dataset.value!;
 
-  const [selected, setSelected] = useState(EMPTY);
-  const handleSelect = useHandler((event: MouseEvent<HTMLElement>) => {
-    setSelected(event.currentTarget.getAttribute('data-value')!);
+    if (selected in context.results) {
+      const npm = context.results[selected];
+      context.setSearch(npm.package.name);
+      router.replace('/[...name]', `${npm.package.name}@${npm.package.version}`);
+    }
   });
 
   const nothing = context.results.length === 0;
-  const renderResults = context.results.map((option) => (
-    <SimpleCell
-      key={option.value}
-      Component="span"
-      className={styles.option}
-      tabIndex={0}
-      role="option"
-      data-value={option.value}
-      aria-selected={option.value === selected}
-      onClick={handleSelect}
-      description={option.npm.package.description}
-      after={(
-        option.value === selected ? SearchComponentChecked : null
-      )}
-    >
-      <span className={styles.name}>{option.npm.package.name}</span>
-      <span className={styles.version}>{option.npm.package.version}</span>
-    </SimpleCell>
-  ));
+  const fallback = context.search !== EMPTY && !context.loading && context.results.length === 0;
+  const open = !nothing || fallback;
+
+  let render: ReactNode;
+
+  if (!open) {
+    render = null;
+  } else if (fallback) {
+    render = SearchComponentEmpty;
+  } else {
+    render = context.results.map((option, value) => (
+      <SimpleCell
+        key={option.package.name}
+        Component="span"
+        className={styles.option}
+        tabIndex={0}
+        role="option"
+        data-value={value}
+        aria-selected={option.package.name === context.initial}
+        onClick={handleSelect}
+        description={option.package.description}
+        after={(
+          option.package.name === context.initial ? SearchComponentChecked : null
+        )}
+      >
+        <span className={styles.name}>{option.package.name}</span>
+        <span className={styles.version}>{option.package.version}</span>
+      </SimpleCell>
+    ));
+  }
 
   return (
-    <>
+    <label
+      ref={targetRefCallback}
+      className={styles.label}
+    >
       <Input
-        getRootRef={targetRefCallback}
+        className={clsx(styles.input, open && styles.open)}
         placeholder="find package"
         lang="en"
         spellCheck="false"
         autoCorrect="off"
         autoComplete="off"
         autoCapitalize="off"
-        autoFocus={true}
         value={context.search}
         onChange={handleChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
         after={(
           context.loading ? SearchComponentSpinner : SearchComponentIcon
         )}
@@ -108,21 +142,27 @@ const SearchComponent: FC = () => {
         name="search"
         type="search"
         inputMode="search"
-        aria-haspopup={focused ? 'listbox' : 'false'}
+        aria-haspopup={open ? 'listbox' : 'false'}
         aria-controls="listbox"
       />
       {
-        focused || true ? (
+        open ? (
           <Popper
             targetRef={targetRef}
             id="listbox"
             role="listbox"
+            placement="bottom"
+            sameWidth={true}
+            arrow={false}
+            offsetDistance={0}
+            offsetSkidding={0}
+            className={styles.list}
           >
-            {nothing ? 'nothing found' : renderResults}
+            {render}
           </Popper>
         ) : null
       }
-    </>
+    </label>
   );
 };
 

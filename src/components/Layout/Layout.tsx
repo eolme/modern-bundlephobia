@@ -18,8 +18,6 @@ import { useLayoutMount } from 'ahks';
 
 import { hasHover, hasMouse } from '@vkontakte/vkjs';
 
-import { default as clsx } from 'clsx';
-
 import styles from './Layout.module.css';
 
 export const Layout: FC = ({ children }) => {

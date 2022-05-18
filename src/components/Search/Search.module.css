@@ -8,8 +8,47 @@
   font-size: 0.8em;
 }
 
+.option {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.option[disabled] {
+  cursor: default;
+}
+
 .option :global(.vkuiSimpleCell__children) {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.input input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.input input::-ms-clear {
+  display: none;
+}
+
+.open {
+  border-radius: 4px 4px 0 0;
+}
+
+.list {
+  width: 100%;
+  box-sizing: border-box;
+
+  border-radius: 0 0 4px 4px;
+
+  border: var(--thin-border) solid var(--field_border);
+  border-top: 0;
+
+  background-color: var(--modal_card_background);
+}
+
+.label {
+  cursor: text;
 }

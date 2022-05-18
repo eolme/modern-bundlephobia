@@ -31,7 +31,9 @@ module.exports = analyze({
     serverComponents: false,
 
     esmExternals: 'loose',
-    fullySpecified: false
+    fullySpecified: false,
+
+    legacyBrowsers: false
   },
   webpack(config) {
     // Force new

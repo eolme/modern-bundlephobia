@@ -24,7 +24,7 @@ import {
 import { Buffer } from 'node:buffer';
 
 const load = async (name: string) => {
-  const entry = await requestModule(`https://esm.sh/${name}?no-check&target=esnext`);
+  const entry = await requestModule(`https://esm.sh/${name}?no-check&target=es2022`);
 
   const deepLink = matchModuleLink(entry);
   if (deepLink === null) {

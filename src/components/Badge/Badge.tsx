@@ -1,17 +1,18 @@
 import type { FC } from 'react';
+import type { SizeType } from 'src/utils/const';
 
 import { memo } from 'react';
 import { createBadge } from 'src/utils/badge';
 
 type BadgeProps = {
-  name: string;
+  type: SizeType;
   size: number;
 };
 
-const BadgeComponent: FC<BadgeProps> = ({ name, size }) => {
+const BadgeComponent: FC<BadgeProps> = ({ type, size }) => {
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: createBadge(name, size) }}
+      dangerouslySetInnerHTML={{ __html: createBadge(type, size) }}
     />
   );
 };

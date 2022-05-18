@@ -4,7 +4,7 @@ const scope = (a: NPMSearch, b: NPMSearch) => b.searchScore - a.searchScore;
 
 const options: RequestInit = {
   method: 'GET',
-  cache: 'no-store',
+  cache: 'force-cache',
   credentials: 'omit',
   keepalive: true,
   referrerPolicy: 'no-referrer',
@@ -13,7 +13,8 @@ const options: RequestInit = {
   }
 };
 
-const url = (name: string) => `https://registry.npmjs.org/-/v1/search?size=3&quality=0.0&maintenance=0.0&popularity=1.0&text=${name}`;
+const time = Date.now().toString();
+const url = (name: string) => `https://registry.npmjs.org/-/v1/search?size=3&quality=0.0&maintenance=0.0&popularity=1.0&text=${name}&t=${time}`;
 
 export const npm = async (name: string): Promise<NPMSearch[]> => {
   const response = await fetch(url(name), options);
