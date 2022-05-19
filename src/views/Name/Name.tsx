@@ -11,7 +11,7 @@ import {
 } from 'src/components';
 
 import {
-  SearchContent
+  SearchContext
 } from 'src/contexts';
 
 import { useContext, Fragment } from 'react';
@@ -27,9 +27,9 @@ type NameProps = {
 
 export const Name: NextPage<NameProps> = ({ size }) => {
   const router = useRouter();
-  const context = useContext(SearchContent);
+  const context = useContext(SearchContext);
 
-  const name = router.isFallback ? context.initial : size.name;
+  const name = router.isFallback ? context.search : size.name;
   const selected = context.results.find((option) => option.package.name === name);
 
   return (
@@ -39,30 +39,40 @@ export const Name: NextPage<NameProps> = ({ size }) => {
         description={selected ? selected.package.description : ''}
       />
       <Search />
-      <div className={styles.badges}>
-        {
-          router.isFallback ? (
-            <>
-              loading
-            </>
-          ) : (
-            <>
+      {
+        router.isFallback || !router.isReady ? (
+          'loading'
+        ) : (
+          <Fragment key="info">
+            <div className={styles.description}>
+              {
+                selected ? (
+                  selected.package.description
+                ) : (
+                  'loading'
+                )
+              }
+            </div>
+            <div className={styles.badges}>
               <Badge
                 type={SizeType.BYTES}
+                name={size.name}
                 size={size.bytes}
               />
               <Badge
                 type={SizeType.GZIP}
+                name={size.name}
                 size={size.gzip}
               />
               <Badge
                 type={SizeType.BROTLI}
+                name={size.name}
                 size={size.brotli}
               />
-            </>
-          )
-        }
-      </div>
+              </div>
+          </Fragment>
+        )
+      }
     </Fragment>
   )
 };

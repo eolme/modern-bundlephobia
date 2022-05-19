@@ -1,4 +1,4 @@
 export {
-  SearchContent,
+  SearchContext,
   SearchProvider
 } from './SearchContext';

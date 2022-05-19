@@ -14,7 +14,7 @@ import {
 } from '@vkontakte/icons';
 
 import {
-  SearchContent
+  SearchContext
 } from 'src/contexts';
 
 import { useContext, useRef, memo } from 'react';
@@ -69,7 +69,7 @@ const EMPTY = '';
 
 const SearchComponent: FC = () => {
   const router = useRouter();
-  const context = useContext(SearchContent);
+  const context = useContext(SearchContext);
 
   const targetRef = useRef<HTMLElement>(null);
   const targetRefCallback = useRefToCallback(targetRef);
@@ -107,11 +107,11 @@ const SearchComponent: FC = () => {
         tabIndex={0}
         role="option"
         data-value={value}
-        aria-selected={option.package.name === context.initial}
+        aria-selected={option.package.name === EMPTY}
         onClick={handleSelect}
         description={option.package.description}
         after={(
-          option.package.name === context.initial ? SearchComponentChecked : null
+          option.package.name === EMPTY ? SearchComponentChecked : null
         )}
       >
         <span className={styles.name}>{option.package.name}</span>

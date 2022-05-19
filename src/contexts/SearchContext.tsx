@@ -4,13 +4,11 @@ import type { NPMSearch } from 'src/types/npm';
 import { createContext, useState } from 'react';
 import { default as useSWR } from 'swr';
 import { useRouter } from 'next/router';
-import { useCreation } from 'ahks';
 
 import { npm } from 'src/api/npm';
 import { fromPath } from 'src/utils/module';
 
 type SearchValue = Readonly<{
-  initial: string;
   search: string;
   setSearch: (search: string) => void;
   loading: boolean;
@@ -20,8 +18,7 @@ type SearchValue = Readonly<{
 const EMPTY = '';
 const NOOP = () => { /* Noop */ };
 
-export const SearchContent = createContext<SearchValue>({
-  initial: EMPTY,
+export const SearchContext = createContext<SearchValue>({
   search: EMPTY,
   setSearch: NOOP,
   loading: true,
@@ -30,21 +27,19 @@ export const SearchContent = createContext<SearchValue>({
 
 export const SearchProvider: FC = ({ children }) => {
   const router = useRouter();
-  const initial = useCreation(() => router.isFallback ? fromPath(router.asPath) : EMPTY);
-  const [search, setSearch] = useState(initial);
+  const [search, setSearch] = useState(() => router.isFallback ? fromPath(router.asPath) : EMPTY);
   const { isLoading, data } = useSWR(search, npm);
 
   const results = Array.isArray(data) ? data : [];
 
   return (
-    <SearchContent.Provider value={{
-      initial,
+    <SearchContext.Provider value={{
       search,
       setSearch,
       loading: isLoading,
       results
     }}>
       {children}
-    </SearchContent.Provider>
+    </SearchContext.Provider>
   )
 };
