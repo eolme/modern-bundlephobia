@@ -6,15 +6,19 @@ import { createBadge } from 'src/utils/badge';
 
 type BadgeProps = {
   type: SizeType;
+  name: string;
   size: number;
 };
 
-const BadgeComponent: FC<BadgeProps> = ({ type, size }) => {
+const BadgeComponent: FC<BadgeProps> = ({ type, name, size }) => {
   return (
-    <div
+    <a
+      href={`/api/badge/${type}/${name}`}
+      target="_blank"
+      rel="noreferrer"
       dangerouslySetInnerHTML={{ __html: createBadge(type, size) }}
     />
   );
 };
 
-export const Badge = memo(BadgeComponent, (prev, next) => prev.size === next.size);
+export const Badge = memo(BadgeComponent, (prev, next) => prev.name === next.name && prev.size === next.size);
