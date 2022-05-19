@@ -10,13 +10,13 @@ import { default as BadgeTemplate } from 'src/assets/badge.svg';
 type Format = {
   label: string;
   message: string;
-  color: 'success' | 'critical'
+  color: 'info' | 'critical'
 };
 
 const color = {
-  success: '#32bb00', // #4c1
+  info: '#007ec6',
   critical: '#e05d44'
-};
+} as const;
 
 const textWidth = (text: string) => {
   let total = 0;
@@ -60,7 +60,7 @@ export const createBadge = (type: SizeType, size: number) => {
     message: bytes(size, {
       locale: false
     }),
-    color: 'success'
+    color: 'info'
   });
 };
 
@@ -70,8 +70,4 @@ export const createErrorBadge = (status: number) => {
     message: status.toString(),
     color: 'critical'
   });
-};
-
-export const createBadgeCDN = (type: SizeType, query: string) => {
-  return `https://cdn.statically.io/img/${process.env.VERCEL_URL}/api/badge/${type}/${query}`;
 };
