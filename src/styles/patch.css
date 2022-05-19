@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  background-color: var(--background_content);
 }
 
 .vkuiFormField:not(.vkuiFormField--disabled) .vkuiFormField__border--hover {
