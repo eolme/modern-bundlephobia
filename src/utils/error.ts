@@ -10,7 +10,6 @@ export class ModuleError extends Error {
     this.status = status;
 
     this.stack = undefined;
-    this.cause = undefined;
   }
 
   toJSON() {
