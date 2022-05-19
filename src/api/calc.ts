@@ -5,7 +5,8 @@ import {
   isValidModuleName,
   isValidModuleVersion,
   toModuleQuery,
-  toModuleFullQuery
+  toModuleFullQuery,
+  fromModuleLink
 } from 'src/utils/module';
 
 import {
@@ -23,19 +24,26 @@ import {
 
 import { Buffer } from 'node:buffer';
 
-const load = async (name: string) => {
-  const entry = await requestModule(`https://esm.sh/${name}?no-check&target=es2022`);
+const load = async (name: string, query: string) => {
+  const entry = await requestModule(`https://esm.sh/${query}?no-check&target=es2022`);
 
   const deepLink = matchModuleLink(entry);
   if (deepLink === null) {
-    throw new ModuleError('ERR_EMPTY_RESPONSE', name, 400);
+    throw new ModuleError('ERR_EMPTY_RESPONSE', query, 400);
   }
 
-  return requestModule(deepLink);
+  const deep = await requestModule(deepLink);
+
+  return {
+    content: deep,
+    version: fromModuleLink(name, deepLink)
+  };
 };
 
 export const calc = async (params: string | string[]) => {
   const raw = toModuleQuery(params);
+
+  // with fallback
   let query = toModuleFullQuery(raw);
 
   const name = toModuleName(query);
@@ -50,19 +58,23 @@ export const calc = async (params: string | string[]) => {
     throw new ModuleError('ERR_VERSION_INVALID', version, 400);
   }
 
+  // with valid version or tag
   query = `${name}@${version}`;
 
-  const content = await load(query);
+  const result = await load(name, query);
 
-  const bytes = Buffer.byteLength(content, 'utf8');
+  // with matched version
+  query = `${name}@${result.version}`;
+
+  const bytes = Buffer.byteLength(result.content, 'utf8');
 
   return {
     raw,
     name,
     query,
-    version,
+    version: result.version,
     bytes,
-    gzip: gzip(content, bytes),
-    brotli: brotli(content, bytes)
+    gzip: gzip(result.content, bytes),
+    brotli: brotli(result.content, bytes)
   } as const;
 };

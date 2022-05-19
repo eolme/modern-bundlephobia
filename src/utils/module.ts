@@ -1,7 +1,12 @@
 import { default as validate } from 'validate-npm-package-name';
 
-const regexLink = /"(.+?)"/;
+// deep import/export
+const regexLink = /from\s*"(.+?)"/;
+
+// TODO: valid tag
 const regexTag = /\w+/;
+
+// official semver
 const regexSemver = /^(?:(0|[1-9]\d*)\.){2}(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/;
 
 const semverValid = (version: string) => regexSemver.test(version);
@@ -9,6 +14,12 @@ const semverValid = (version: string) => regexSemver.test(version);
 export const matchModuleLink = (content: string) => {
   const deep = regexLink.exec(content);
   return (deep && deep[1]) || null;
+};
+
+export const fromModuleLink = (name: string, link: string) => {
+  const start = link.indexOf(name);
+  const end = link.indexOf('/', start);
+  return link.slice(start + name.length + 1, end);
 };
 
 export const toModuleQuery = (params: string | string[]) => Array.isArray(params) ? params.join('/') : params;
