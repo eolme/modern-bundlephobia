@@ -16,6 +16,7 @@ import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 
 import { SizeType } from 'src/utils/const';
+import { formatPath } from 'src/utils/format';
 
 import styles from './Name.module.css';
 
@@ -32,7 +33,7 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
   const hasPkg = router.isReady && typeof pkg !== 'undefined';
   const hasSize = router.isReady && typeof size !== 'undefined';
 
-  const image = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og${router.asPath}`;
+  const image = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og${formatPath(router.asPath)}`;
 
   return (
     <Fragment key="page">
