@@ -18,6 +18,9 @@ alias.addAliases(stubModules);
 const mainFields = ['modern', 'esm', 'esnext', 'jsnext:main', 'jsnext', 'es2015', 'esm2015', 'fesm2015', 'module', 'esm5', 'fesm5', 'main', 'browser'];
 const empty = [];
 
+console.log('top');
+console.dir(process.env);
+
 module.exports = analyze({
   enabled: process.env.ANALYZE === '1'
 })(sw({
@@ -57,6 +60,9 @@ module.exports = analyze({
         not: ['url']
       }
     });
+
+    console.log('webpack');
+    console.dir(process.env);
 
     return config;
   }
