@@ -1,29 +1,25 @@
 import type { NPMSearch } from 'src/types/npm';
 
-const scope = (a: NPMSearch, b: NPMSearch) => b.searchScore - a.searchScore;
+import { requestSearch } from 'src/module/request/client';
 
-const options: RequestInit = {
-  method: 'GET',
-  cache: 'force-cache',
-  credentials: 'omit',
-  keepalive: true,
-  referrerPolicy: 'no-referrer',
-  headers: {
-    Accept: 'application/json'   
+import { searchURL } from 'src/utils/url';
+import { NOTHING } from 'src/utils/const';
+
+const isContentful = (search: NPMSearch) => !(
+  search.package.name.startsWith('@types/') ||
+  search.package.name.endsWith('/types')
+);
+
+const sortScore = (searchLeft: NPMSearch, searchRight: NPMSearch) => searchRight.searchScore - searchLeft.searchScore;
+
+export const searchNPM = async (name: string) => {
+  try {
+    const json = await requestSearch(searchURL(name));
+
+    return (json.objects as NPMSearch[]).filter(isContentful).slice(0, 4).sort(sortScore);
+  } catch (ex: unknown) {
+    console.error(ex);
+
+    return NOTHING as NPMSearch[];
   }
-};
-
-const time = Date.now().toString();
-const url = (name: string) => `https://registry.npmjs.org/-/v1/search?size=3&quality=0.0&maintenance=0.0&popularity=1.0&text=${name}&t=${time}`;
-
-export const npm = async (name: string): Promise<NPMSearch[]> => {
-  const response = await fetch(url(name), options);
-
-  if (!response.ok) {
-    return [];
-  }
-
-  const json = await response.json();
-
-  return json.objects.sort(scope);
 };

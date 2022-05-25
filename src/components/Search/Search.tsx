@@ -1,11 +1,11 @@
-import type { FC, ChangeEvent, MouseEvent, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import {
+  Headline,
   Input,
-  Popper,
   PanelSpinner,
-  SimpleCell,
-  Headline
+  Popper,
+  SimpleCell
 } from '@mntm/vkui';
 
 import {
@@ -13,13 +13,12 @@ import {
   Icon28SearchStarsOutline
 } from '@vkontakte/icons';
 
-import {
-  SearchContext
-} from 'src/contexts';
+import { SearchContext } from 'src/contexts/search';
 
-import { useContext, useRef, memo } from 'react';
-import { useRouter } from 'next/router';
-import { useHandler, useStableHandler, useRefToCallback } from 'ahks';
+import { memo, useContext, useRef, useState } from 'react';
+import { useHandler, useRefToCallback } from 'ahks';
+
+import { VOID } from 'src/utils/const';
 
 import { default as clsx } from 'clsx';
 
@@ -36,9 +35,10 @@ const SearchComponentIcon = (
 
 const SearchComponentSpinner = (
   <PanelSpinner
+    aria-label="loading"
     aria-busy="true"
     aria-live="polite"
-    role="presentation"
+    role="status"
     size="small"
   />
 );
@@ -65,40 +65,32 @@ const SearchComponentEmpty = (
   </SimpleCell>
 );
 
-const EMPTY = '';
-
 const SearchComponent: FC = () => {
-  const router = useRouter();
   const context = useContext(SearchContext);
+
+  console.log(context.loading);
+
+  const [focus, setFocus] = useState(false);
+  const handleFocus = useHandler(() => setFocus(true));
+  const handleBlur = useHandler(() => setFocus(false));
+
+  const open = context.content && focus;
 
   const targetRef = useRef<HTMLElement>(null);
   const targetRefCallback = useRefToCallback(targetRef);
-
-  const handleChange = useHandler((event: ChangeEvent<HTMLInputElement>) => {
-    context.setSearch(event.currentTarget.value);
-  });
-
-  const handleSelect = useStableHandler((event: MouseEvent<HTMLElement>) => {
-    const selected = +event.currentTarget.dataset.value!;
-
-    if (selected in context.results) {
-      const npm = context.results[selected];
-      context.setSearch(npm.package.name);
-      router.replace('/[...name]', `${npm.package.name}@${npm.package.version}`);
-    }
-  });
-
-  const nothing = context.results.length === 0;
-  const fallback = context.search !== EMPTY && !context.loading && context.results.length === 0;
-  const open = !nothing || fallback;
 
   let render: ReactNode;
 
   if (!open) {
     render = null;
-  } else if (fallback) {
+  } else if (context.fallback) {
     render = SearchComponentEmpty;
   } else {
+    const isSelected =
+      typeof context.selected === 'undefined' ?
+        () => false :
+        (name: string) => context.selected!.package.name === name;
+
     render = context.results.map((option, value) => (
       <SimpleCell
         key={option.package.name}
@@ -107,11 +99,13 @@ const SearchComponent: FC = () => {
         tabIndex={0}
         role="option"
         data-value={value}
-        aria-selected={option.package.name === EMPTY}
-        onClick={handleSelect}
+        aria-selected={isSelected(option.package.name)}
+        stopPropagation={false}
+        onTouchEndCapture={context.handleSelect}
+        onMouseDownCapture={context.handleSelect}
         description={option.package.description}
         after={(
-          option.package.name === EMPTY ? SearchComponentChecked : null
+          isSelected(option.package.name) ? SearchComponentChecked : null
         )}
       >
         <span className={styles.name}>{option.package.name}</span>
@@ -134,7 +128,9 @@ const SearchComponent: FC = () => {
         autoComplete="off"
         autoCapitalize="off"
         value={context.search}
-        onChange={handleChange}
+        onChange={context.handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         after={(
           context.loading ? SearchComponentSpinner : SearchComponentIcon
         )}
@@ -143,24 +139,27 @@ const SearchComponent: FC = () => {
         type="search"
         inputMode="search"
         aria-haspopup={open ? 'listbox' : 'false'}
-        aria-controls="listbox"
+        aria-controls={open ? 'listbox' : VOID}
       />
       {
-        open ? (
-          <Popper
-            targetRef={targetRef}
-            id="listbox"
-            role="listbox"
-            placement="bottom"
-            sameWidth={true}
-            arrow={false}
-            offsetDistance={0}
-            offsetSkidding={0}
-            className={styles.list}
-          >
-            {render}
-          </Popper>
-        ) : null
+        open ?
+          (
+            <Popper
+              targetRef={targetRef}
+              forcePortal={true}
+              id="listbox"
+              role="listbox"
+              placement="bottom"
+              sameWidth={true}
+              arrow={false}
+              offsetDistance={0}
+              offsetSkidding={0}
+              className={styles.list}
+            >
+              {render}
+            </Popper>
+          ) :
+          null
       }
     </label>
   );

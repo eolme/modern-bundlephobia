@@ -1,8 +1,5 @@
 /* Layout */
 @import "@mntm/vkui/dist/components/AppRoot/AppRoot.css";
-@import "@mntm/vkui/dist/components/SplitLayout/SplitLayout.css";
-@import "@mntm/vkui/dist/components/SplitCol/SplitCol.css";
-@import "@mntm/vkui/dist/components/Panel/Panel.css";
 
 /* Search */
 @import "@mntm/vkui/dist/components/FormField/FormField.css";
@@ -10,6 +7,7 @@
 @import "@mntm/vkui/dist/components/Popper/Popper.css";
 @import "@mntm/vkui/dist/components/Spinner/Spinner.css";
 @import "@mntm/vkui/dist/components/SimpleCell/SimpleCell.css";
+@import "@mntm/vkui/dist/components/Tappable/Tappable.css";
 @import "@mntm/vkui/dist/components/Typography/Text/Text.css";
 @import "@mntm/vkui/dist/components/Typography/Headline/Headline.css";
 @import "@mntm/vkui/dist/components/Typography/Caption/Caption.css";

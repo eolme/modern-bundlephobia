@@ -16,16 +16,20 @@ import {
 } from 'swr';
 
 import {
-  SearchProvider
-} from 'src/contexts';
-
-import {
   Layout
 } from 'src/components';
 
 import {
+  SearchProvider
+} from 'src/contexts/search';
+
+import {
   default as SEO
 } from '../../next-seo.config';
+
+import {
+  searchNPM
+} from 'src/api/npm';
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -37,16 +41,19 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         attribute="scheme"
         defaultTheme="system"
       >
-      <Layout>
-        <SWRConfig value={{
-          suspense: false,
-          keepPreviousData: true  
-        }}>
+        <SWRConfig
+          value={{
+            fetcher: searchNPM,
+            suspense: false,
+            keepPreviousData: true
+          }}
+        >
           <SearchProvider>
-            <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </SearchProvider>
-          </SWRConfig>
-        </Layout>
+        </SWRConfig>
       </ThemeProvider>
     </>
   );

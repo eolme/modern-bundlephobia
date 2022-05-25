@@ -1,16 +1,25 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { calc } from 'src/api/calc';
+import { ModuleError, ModuleErrorType, getErrorStatus } from 'src/module/error';
+
+import { calcInfo, calcSize } from 'src/api/calc';
 
 import { sendJSON } from 'src/utils/send';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const size = await calc(req.query.name);
+    if (!req.query.name) {
+      throw new ModuleError(ModuleErrorType.REQUEST, req.query.name, 400);
+    }
+
+    const info = await calcInfo(req.query.name);
+    const size = await calcSize(info);
+
     sendJSON(res, 200, size);
-  } catch (ex) {
+  } catch (ex: unknown) {
     console.error(ex);
-    sendJSON(res, 400, Object(ex));
+
+    sendJSON(res, getErrorStatus(ex), Object.assign({}, ex));
   }
 };
 

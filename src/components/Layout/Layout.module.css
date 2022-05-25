@@ -2,8 +2,18 @@
   width: 100%;
   max-width: 574px;
 
-  margin: auto;
-  padding: 12px;
+  margin: 0 auto auto auto;
+  padding: calc(50vh - 55px) 12px 12px 12px;
 
   box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.subhead {
+  text-align: center;
+  margin-bottom: 12px;
 }

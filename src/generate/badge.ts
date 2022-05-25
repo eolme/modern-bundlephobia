@@ -1,16 +1,15 @@
 import type { SizeType } from 'src/utils/const';
 
-import { SizeName } from './const';
+import { SizeName } from 'src/utils/const';
+import { formatSize } from 'src/utils/format';
 
-import { default as bytes } from 'pretty-bytes';
-
-import { default as verdana } from './verdana.json';
-import { default as BadgeTemplate } from 'src/assets/badge.svg';
+import { default as verdana } from 'src/assets/template/verdana.json';
+import { default as BadgeTemplate } from 'src/assets/template/badge.svg';
 
 type Format = {
   label: string;
   message: string;
-  color: 'info' | 'critical'
+  color: 'info' | 'critical';
 };
 
 const color = {
@@ -20,13 +19,15 @@ const color = {
 
 const textWidth = (text: string) => {
   let total = 0;
+
   text.split('').forEach((letter) => {
     total += 1 + (verdana[letter.charCodeAt(0)] || 0);
   });
+
   return total;
 };
 
-const makeBadge = (format: Format) => {
+const generateBadge = (format: Format) => {
   const leftTextWidth = textWidth(format.label);
   const rightTextWidth = textWidth(format.message);
 
@@ -34,7 +35,7 @@ const makeBadge = (format: Format) => {
   const rightWidth = rightTextWidth + 10;
 
   const leftX = leftWidth * 5;
-  const rightX = leftWidth * 10 + rightWidth * 5;
+  const rightX = (leftWidth * 10) + (rightWidth * 5);
 
   const width = leftWidth + rightWidth;
 
@@ -55,17 +56,15 @@ const makeBadge = (format: Format) => {
 };
 
 export const createBadge = (type: SizeType, size: number) => {
-  return makeBadge({
+  return generateBadge({
     label: SizeName[type],
-    message: bytes(size, {
-      locale: false
-    }),
+    message: formatSize(size),
     color: 'info'
   });
 };
 
 export const createErrorBadge = (status: number) => {
-  return makeBadge({
+  return generateBadge({
     label: 'fail',
     message: status.toString(),
     color: 'critical'

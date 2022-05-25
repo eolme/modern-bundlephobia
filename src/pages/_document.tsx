@@ -1,17 +1,26 @@
 import type { NextPage } from 'next';
 
 import {
-  Html,
   Head,
+  Html,
   Main,
   NextScript
 } from 'next/document';
 
+import { EMPTY } from 'src/utils/const';
+
 const Document: NextPage = () => {
   return (
-    <Html className="vkui">
+    <Html
+      className="vkui"
+      scheme={EMPTY}
+      style={{ colorScheme: 'normal' }}
+    >
       <Head />
-      <body>
+      <body
+        className={EMPTY}
+        scheme={EMPTY}
+      >
         <Main />
         <NextScript />
       </body>

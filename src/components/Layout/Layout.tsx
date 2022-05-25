@@ -2,15 +2,20 @@ import type { FC } from 'src/types/react';
 import type { Appearance } from '@mntm/vkui';
 
 import {
-  ConfigProvider,
   AdaptivityProvider,
+  AppRoot,
+  ConfigProvider,
   Platform,
-  WebviewType,
   SizeType,
+  Subhead,
+  Title,
   ViewHeight,
-  ViewWidth,
-  AppRoot
+  ViewWidth, WebviewType
 } from '@mntm/vkui';
+
+import {
+  Search
+} from 'src/components';
 
 import { useState } from 'react';
 import { useTheme } from 'next-themes';
@@ -36,7 +41,7 @@ export const Layout: FC = ({ children }) => {
       isWebView={false}
       hasNewTokens={true}
       appearance={appearance}
-      platform={Platform.VKCOM}
+      platform={Platform.ANDROID}
       transitionMotionEnabled={false}
       webviewType={WebviewType.INTERNAL}
     >
@@ -54,6 +59,21 @@ export const Layout: FC = ({ children }) => {
           scroll="global"
         >
           <div className={styles.container}>
+            <Title
+              Component="h1"
+              level="1"
+              className={styles.title}
+            >
+              Modern Bundlephobia
+            </Title>
+            <Subhead
+              Component="h2"
+              weight="3"
+              className={styles.subhead}
+            >
+              find the cost of adding a npm package to your bundle
+            </Subhead>
+            <Search />
             {children}
           </div>
         </AppRoot>

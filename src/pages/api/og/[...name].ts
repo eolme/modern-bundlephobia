@@ -2,11 +2,10 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { ModuleError, ModuleErrorType, getErrorStatus } from 'src/module/error';
 
-import { calcSizeBrotli } from 'src/api/calc';
+import { calcInfo, calcSize } from 'src/api/calc';
 
-import { sendSVG } from 'src/utils/send';
-import { createBadge, createErrorBadge } from 'src/generate/badge';
-import { SizeType } from 'src/utils/const';
+import { sendNothing, sendPNG } from 'src/utils/send';
+import { generateImage } from 'src/generate/og';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -14,13 +13,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       throw new ModuleError(ModuleErrorType.REQUEST, req.query.name, 400);
     }
 
-    const size = await calcSizeBrotli(req.query.name);
+    const info = await calcInfo(req.query.name);
+    const size = await calcSize(info);
+    const image = await generateImage(size);
 
-    sendSVG(res, 200, createBadge(SizeType.BROTLI, size));
+    sendPNG(res, 200, image);
   } catch (ex: unknown) {
     console.error(ex);
 
-    sendSVG(res, 200, createErrorBadge(getErrorStatus(ex)));
+    sendNothing(res, getErrorStatus(ex));
   }
 };
 

@@ -1,78 +1,91 @@
 import type { NextPage } from 'next';
-import type { calc } from 'src/api/calc';
+import type { AnyFunction } from '@vkontakte/vkjs';
+import type { calcSize, loadInfo } from 'src/api/calc';
 
 import {
-  NextSeo
-} from 'next-seo';
+  Text
+} from '@mntm/vkui';
 
 import {
-  Search,
   Badge
 } from 'src/components';
 
-import {
-  SearchContext
-} from 'src/contexts';
+import { NextSeo } from 'next-seo';
 
-import { useContext, Fragment } from 'react';
+import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 
 import { SizeType } from 'src/utils/const';
 
 import styles from './Name.module.css';
 
+type NamePropsValue<T extends AnyFunction> = Awaited<ReturnType<T>> | undefined;
+
 type NameProps = {
-  size: Awaited<ReturnType<typeof calc>>;
+  pkg: NamePropsValue<typeof loadInfo>;
+  size: NamePropsValue<typeof calcSize>;
 };
 
-export const Name: NextPage<NameProps> = ({ size }) => {
+export const Name: NextPage<NameProps> = ({ pkg, size }) => {
   const router = useRouter();
-  const context = useContext(SearchContext);
 
-  const name = router.isFallback ? context.search : size.name;
-  const selected = context.results.find((option) => option.package.name === name);
+  const hasPkg = router.isReady && typeof pkg !== 'undefined';
+  const hasSize = router.isReady && typeof size !== 'undefined';
 
   return (
     <Fragment key="page">
       <NextSeo
-        title={name}
-        description={selected ? selected.package.description : ''}
+        title={pkg?.name}
+        description={pkg?.description}
+        openGraph={{
+          images: [{
+            url: `/api/og/${size?.query}`,
+            alt: pkg?.name,
+            width: 1074,
+            height: 480
+          }]
+        }}
       />
-      <Search />
-      {
-        router.isFallback || !router.isReady ? (
-          'loading'
-        ) : (
-          <Fragment key="info">
-            <div className={styles.description}>
-              {
-                selected ? (
-                  selected.package.description
-                ) : (
-                  'loading'
-                )
-              }
-            </div>
-            <div className={styles.badges}>
-              <Badge
-                type={SizeType.BYTES}
-                name={size.name}
-                size={size.bytes}
-              />
-              <Badge
-                type={SizeType.GZIP}
-                name={size.name}
-                size={size.gzip}
-              />
-              <Badge
-                type={SizeType.BROTLI}
-                name={size.name}
-                size={size.brotli}
-              />
-              </div>
-          </Fragment>
-        )
-      }
+      <div className={styles.badges}>
+        {
+          hasSize ?
+            (
+              <>
+                <Badge
+                  type={SizeType.BYTES}
+                  name={size.name}
+                  size={size.bytes}
+                />
+                <Badge
+                  type={SizeType.GZIP}
+                  name={size.name}
+                  size={size.gzip}
+                />
+                <Badge
+                  type={SizeType.BROTLI}
+                  name={size.name}
+                  size={size.brotli}
+                />
+              </>
+            ) :
+            (
+              <span />
+            )
+        }
+      </div>
+      <p className={styles.description}>
+        {
+          hasPkg ?
+            (
+              <Text weight="regular">
+                {pkg.description}
+              </Text>
+            ) :
+            (
+              <span />
+            )
+        }
+      </p>
     </Fragment>
-  )
+  );
 };

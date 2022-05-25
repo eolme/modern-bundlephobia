@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import type { SizeType } from 'src/utils/const';
 
 import { memo } from 'react';
-import { createBadge } from 'src/utils/badge';
+import { createBadge } from 'src/generate/badge';
 
 type BadgeProps = {
   type: SizeType;

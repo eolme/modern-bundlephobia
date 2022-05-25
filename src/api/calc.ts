@@ -1,80 +1,121 @@
 import {
-  matchModuleLink,
-  toModuleName,
-  toModuleVersion,
-  isValidModuleName,
-  isValidModuleVersion,
-  toModuleQuery,
-  toModuleFullQuery,
-  fromModuleLink
-} from 'src/utils/module';
+  deepEntry,
+  fullQueryToName,
+  fullQueryToVersion,
+  isValidName,
+  isValidVersion,
+  linkToVersion,
+  paramsToQuery,
+  queryToFullQuery
+} from 'src/module/bundle';
 
 import {
-  gzip,
-  brotli
-} from 'src/utils/compress';
- 
-import {
-  requestModule
-} from 'src/utils/request';
+  fastBrotli,
+  fastGzip
+} from 'src/module/compress';
 
 import {
-  ModuleError
-} from 'src/utils/error';
+  ModuleError,
+  ModuleErrorType
+} from 'src/module/error';
 
-import { Buffer } from 'node:buffer';
+import {
+  requestBuffer,
+  requestContent,
+  requestPackage
+} from 'src/module/request/server';
 
-const load = async (name: string, query: string) => {
-  const entry = await requestModule(`https://esm.sh/${query}?no-check&target=es2022`);
+import {
+  bundleURL, installURL
+} from 'src/utils/url';
 
-  const deepLink = matchModuleLink(entry);
-  if (deepLink === null) {
-    throw new ModuleError('ERR_EMPTY_RESPONSE', query, 400);
-  }
-
-  const deep = await requestModule(deepLink);
-
-  return {
-    content: deep,
-    version: fromModuleLink(name, deepLink)
-  };
+export const loadInfo = async (name: string, version: string) => {
+  return requestPackage(installURL(name, version));
 };
 
-export const calc = async (params: string | string[]) => {
-  const raw = toModuleQuery(params);
+const load = async (name: string, query: string) => {
+  const content = await requestContent(bundleURL(query));
 
-  // with fallback
-  let query = toModuleFullQuery(raw);
+  const deepLink = deepEntry(content);
 
-  const name = toModuleName(query);
-
-  if (!isValidModuleName(name)) {
-    throw new ModuleError('ERR_NAME_INVALID', name, 400);
+  if (deepLink === null) {
+    throw new ModuleError(ModuleErrorType.EMPTY, query, 422);
   }
 
-  const version = toModuleVersion(query);
+  const version = linkToVersion(name, deepLink);
 
-  if (!isValidModuleVersion(version)) {
-    throw new ModuleError('ERR_VERSION_INVALID', version, 400);
+  if (!isValidVersion(version)) {
+    throw new ModuleError(ModuleErrorType.VERSION, version, 422);
   }
 
-  // with valid version or tag
-  query = `${name}@${version}`;
-
-  const result = await load(name, query);
-
-  // with matched version
-  query = `${name}@${result.version}`;
-
-  const bytes = Buffer.byteLength(result.content, 'utf8');
+  const buffer = await requestBuffer(deepLink);
 
   return {
-    raw,
-    name,
-    query,
-    version: result.version,
-    bytes,
-    gzip: gzip(result.content, bytes),
-    brotli: brotli(result.content, bytes)
+    buffer,
+    version
   } as const;
+};
+
+export const calcInfo = async (params: string | string[]) => {
+  const query = paramsToQuery(params);
+  const fullQuery = queryToFullQuery(query);
+
+  const name = fullQueryToName(fullQuery);
+
+  if (!isValidName(name)) {
+    throw new ModuleError(ModuleErrorType.NAME, name, 422);
+  }
+
+  const version = fullQueryToVersion(fullQuery);
+
+  if (!isValidVersion(version)) {
+    throw new ModuleError(ModuleErrorType.VERSION, version, 422);
+  }
+
+  const loaded = await load(name, fullQuery);
+
+  return {
+    name,
+    version,
+    query: fullQuery,
+    loaded
+  } as const;
+};
+
+export const calcSize = async (info: Awaited<ReturnType<typeof calcInfo>>) => {
+  const [gzip, brotli] = await Promise.all([
+    fastGzip(info.loaded.buffer),
+    fastBrotli(info.loaded.buffer)
+  ]);
+
+  // With matched version
+  const query = `${info.name}@${info.loaded.version}`;
+
+  return {
+    raw: info.query,
+    name: info.name,
+    query,
+    version: info.loaded.version,
+    bytes: info.loaded.buffer.byteLength,
+    gzip,
+    brotli
+  } as const;
+};
+
+export const calcSizeBytes = async (params: string | string[]) => {
+  const info = await calcInfo(params);
+
+  return info.loaded.buffer.byteLength;
+};
+
+export const calcSizeGzip = async (params: string | string[]) => {
+  const info = await calcInfo(params);
+
+  return fastGzip(info.loaded.buffer);
+};
+
+export const calcSizeBrotli = async (params: string | string[]) => {
+  const info = await calcInfo(params);
+
+  return fastBrotli(info.loaded.buffer);
 };

@@ -1,6 +1,6 @@
 @import "@mntm/vkui/dist/styles/constants.css";
 @import "@mntm/vkui/dist/styles/animations.css";
-@import "@mntm/vkui/dist/styles/vkcom_light.css";
-@import "@mntm/vkui/dist/styles/vkcom_dark.css";
-@import "@vkontakte/vkui-tokens/themes/vkCom/cssVars/declarations/noColors.css";
+@import "@mntm/vkui/dist/styles/bright_light.css";
+@import "@mntm/vkui/dist/styles/space_gray.css";
+@import "@vkontakte/vkui-tokens/themes/vkBase/cssVars/declarations/noColors.css";
 @import "@mntm/vkui/dist/styles/common.css";
