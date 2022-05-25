@@ -15,7 +15,7 @@ import { NextSeo } from 'next-seo';
 import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 
-import { SizeType, VOID } from 'src/utils/const';
+import { SizeType } from 'src/utils/const';
 
 import styles from './Name.module.css';
 
@@ -32,23 +32,33 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
   const hasPkg = router.isReady && typeof pkg !== 'undefined';
   const hasSize = router.isReady && typeof size !== 'undefined';
 
+  const image = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og${router.asPath}`;
+
   return (
     <Fragment key="page">
       <NextSeo
         title={pkg?.name}
         description={pkg?.description}
-        openGraph={(
-          hasPkg && hasSize ?
-            {
-              images: [{
-                url: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og/${size?.query}`,
-                alt: pkg.name,
-                width: 1074,
-                height: 480
-              }]
-            } :
-            VOID
-        )}
+        twitter={{
+          cardType: 'summary_large_image'
+        }}
+        additionalMetaTags={[{
+          name: 'image',
+          content: image
+        }]}
+        additionalLinkTags={[{
+          rel: 'image_src',
+          type: 'image/png',
+          href: image
+        }]}
+        openGraph={{
+          images: [{
+            url: image,
+            type: 'image/png',
+            width: 1074,
+            height: 480
+          }]
+        }}
       />
       <div className={styles.badges}>
         {
