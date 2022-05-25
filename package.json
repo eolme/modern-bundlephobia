@@ -16,6 +16,7 @@
   "dependencies": {
     "@mntm/eslint-config": "^1.1.2",
     "@mntm/vkui": "^4.31.0",
+    "@napi-rs/canvas": "0.1.21",
     "@next/bundle-analyzer": "12.1.7-canary.16",
     "@popperjs/core": "^2.11.5",
     "@vercel/fetch": "^6.2.0",
@@ -41,11 +42,9 @@
     "validate-npm-package-name": "^4.0.0"
   },
   "devDependencies": {
-    "@next/swc-darwin-arm64": "12.1.7-canary.16",
+    "@napi-rs/canvas-darwin-x64": "0.1.21",
+    "@napi-rs/canvas-linux-x64-musl": "0.1.21",
     "@next/swc-darwin-x64": "12.1.7-canary.16",
-    "@next/swc-linux-arm64-gnu": "12.1.7-canary.16",
-    "@next/swc-linux-arm64-musl": "12.1.7-canary.16",
-    "@next/swc-linux-x64-gnu": "12.1.7-canary.11",
     "@next/swc-linux-x64-musl": "12.1.7-canary.16",
     "@types/node": "^17.0.35",
     "@types/node-fetch": "^2.6.1",

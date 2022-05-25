@@ -150,6 +150,107 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@napi-rs/canvas-android-arm64@npm:0.1.21":
+  version: 0.1.21
+  resolution: "@napi-rs/canvas-android-arm64@npm:0.1.21"
+  conditions: os=android & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-darwin-arm64@npm:0.1.21":
+  version: 0.1.21
+  resolution: "@napi-rs/canvas-darwin-arm64@npm:0.1.21"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-darwin-x64@npm:0.1.21":
+  version: 0.1.21
+  resolution: "@napi-rs/canvas-darwin-x64@npm:0.1.21"
+  checksum: ad117ad757c0c407dc6e551472bbca0ce4ad996ea0bd044bbeb31cf1b7cb0e2c324cd4aa46ca83e751ebf1b4684754ff4f78dd1b017fe6b934e15ad757e0deb4
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-linux-arm-gnueabihf@npm:0.1.21":
+  version: 0.1.21
+  resolution: "@napi-rs/canvas-linux-arm-gnueabihf@npm:0.1.21"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-linux-arm64-gnu@npm:0.1.21":
+  version: 0.1.21
+  resolution: "@napi-rs/canvas-linux-arm64-gnu@npm:0.1.21"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-linux-arm64-musl@npm:0.1.21":
+  version: 0.1.21
+  resolution: "@napi-rs/canvas-linux-arm64-musl@npm:0.1.21"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-linux-x64-gnu@npm:0.1.21":
+  version: 0.1.21
+  resolution: "@napi-rs/canvas-linux-x64-gnu@npm:0.1.21"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-linux-x64-musl@npm:0.1.21":
+  version: 0.1.21
+  resolution: "@napi-rs/canvas-linux-x64-musl@npm:0.1.21"
+  checksum: 6a2bb4cecd94f92eb513cbd99d575ca2bd818ae6a082a77ee6fc0f17726a3f6accdd546205d2c50a20547557ef37d1a6e92427b6ee38d0c7b5fce930a75c3607
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas-win32-x64-msvc@npm:0.1.21":
+  version: 0.1.21
+  resolution: "@napi-rs/canvas-win32-x64-msvc@npm:0.1.21"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@napi-rs/canvas@npm:0.1.21":
+  version: 0.1.21
+  resolution: "@napi-rs/canvas@npm:0.1.21"
+  dependencies:
+    "@napi-rs/canvas-android-arm64": 0.1.21
+    "@napi-rs/canvas-darwin-arm64": 0.1.21
+    "@napi-rs/canvas-darwin-x64": 0.1.21
+    "@napi-rs/canvas-linux-arm-gnueabihf": 0.1.21
+    "@napi-rs/canvas-linux-arm64-gnu": 0.1.21
+    "@napi-rs/canvas-linux-arm64-musl": 0.1.21
+    "@napi-rs/canvas-linux-x64-gnu": 0.1.21
+    "@napi-rs/canvas-linux-x64-musl": 0.1.21
+    "@napi-rs/canvas-win32-x64-msvc": 0.1.21
+  dependenciesMeta:
+    "@napi-rs/canvas-android-arm64":
+      optional: true
+    "@napi-rs/canvas-darwin-arm64":
+      optional: true
+    "@napi-rs/canvas-darwin-x64":
+      optional: true
+    "@napi-rs/canvas-linux-arm-gnueabihf":
+      optional: true
+    "@napi-rs/canvas-linux-arm64-gnu":
+      optional: true
+    "@napi-rs/canvas-linux-arm64-musl":
+      optional: true
+    "@napi-rs/canvas-linux-x64-gnu":
+      optional: true
+    "@napi-rs/canvas-linux-x64-musl":
+      optional: true
+    "@napi-rs/canvas-win32-x64-msvc":
+      optional: true
+  checksum: 0ea06942864be35b145d58ebbb3b15fa1c80b0c9838f8cbed3c1708c0d7094d05f2c3e937075e801c71a70652854474b78d747aaccc431819941e36548d6a9e2
+  languageName: node
+  linkType: hard
+
 "@next/bundle-analyzer@npm:12.1.7-canary.16":
   version: 12.1.7-canary.16
   resolution: "@next/bundle-analyzer@npm:12.1.7-canary.16"
@@ -192,7 +293,6 @@ __metadata:
 "@next/swc-darwin-arm64@npm:12.1.7-canary.16":
   version: 12.1.7-canary.16
   resolution: "@next/swc-darwin-arm64@npm:12.1.7-canary.16"
-  checksum: 05e56a83f9a98d6133e98051ffd19298ffa1503544376e58c4bcffe8c270beadea63222fa5ba7dd85b7f5f4d9bb4894ce3416246705d418656b65ed43e4515d9
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -222,7 +322,6 @@ __metadata:
 "@next/swc-linux-arm64-gnu@npm:12.1.7-canary.16":
   version: 12.1.7-canary.16
   resolution: "@next/swc-linux-arm64-gnu@npm:12.1.7-canary.16"
-  checksum: 7212409cae2508130551ccd1ad05f2df92ef2611c5faa6acc0d74566f9c72ed71eeb99d33dcd98603304221698473b93836cb5e4152280277c5b87f8610c6499
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
@@ -230,16 +329,7 @@ __metadata:
 "@next/swc-linux-arm64-musl@npm:12.1.7-canary.16":
   version: 12.1.7-canary.16
   resolution: "@next/swc-linux-arm64-musl@npm:12.1.7-canary.16"
-  checksum: 13ddfa58122b49a8312bff38fba764cfb796bb7dda74a44e2c5380ff4981937158b0506621be69d1a145e0c2f396bde61a0f42f79c10d74abdb99365652a81d9
   conditions: os=linux & cpu=arm64 & libc=musl
-  languageName: node
-  linkType: hard
-
-"@next/swc-linux-x64-gnu@npm:12.1.7-canary.11":
-  version: 12.1.7-canary.11
-  resolution: "@next/swc-linux-x64-gnu@npm:12.1.7-canary.11"
-  checksum: 61978014d106acf2483bc348f303759f5d3a6ccf8a046237711cda2647b5128942cfbf1411ed4f3e18f9e9bbafbc978ab492a7cfbf8c640ac2bda6a98ddf88cb
-  conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
@@ -511,7 +601,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.17.0":
+"@typescript-eslint/parser@npm:^5.17.0, @typescript-eslint/parser@npm:^5.21.0":
   version: 5.26.0
   resolution: "@typescript-eslint/parser@npm:5.26.0"
   dependencies:
@@ -525,33 +615,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 3c13a989d1c5aa3d9050203ca53fa28642fe49b9f09b668b7c424f13bfc8352e0a57d2ae16c55cd9b4f9fb98d730a440b0270a94c827938579df8097f90bdfac
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/parser@npm:^5.21.0":
-  version: 5.23.0
-  resolution: "@typescript-eslint/parser@npm:5.23.0"
-  dependencies:
-    "@typescript-eslint/scope-manager": 5.23.0
-    "@typescript-eslint/types": 5.23.0
-    "@typescript-eslint/typescript-estree": 5.23.0
-    debug: ^4.3.2
-  peerDependencies:
-    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: b65a732b0be06ac9e4b13df78c466517e33fd382985c5d85b6d51cfa295cdf3351594cc2f95dda41d57abb6115e3b8df815fbbb7793aa0c4eddbac11077b90a8
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/scope-manager@npm:5.23.0":
-  version: 5.23.0
-  resolution: "@typescript-eslint/scope-manager@npm:5.23.0"
-  dependencies:
-    "@typescript-eslint/types": 5.23.0
-    "@typescript-eslint/visitor-keys": 5.23.0
-  checksum: cd3dda0b18d6730e34784fc63135fc9fe31673898d3e0868cd765ad78855351f285fe577297193cf179b3ce918c3d44453de85159a925f5c02d12a5626e787d8
   languageName: node
   linkType: hard
 
@@ -581,35 +644,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/types@npm:5.23.0":
-  version: 5.23.0
-  resolution: "@typescript-eslint/types@npm:5.23.0"
-  checksum: 96ae3e80cfae7b34f2846db692c31fb1804bf9651bce1d29f2eb8ae4c763d22f3283adc02dedeebd7cf70e4d8be54ec7f6ca593e03cdca26c791207e7556c2c1
-  languageName: node
-  linkType: hard
-
 "@typescript-eslint/types@npm:5.26.0":
   version: 5.26.0
   resolution: "@typescript-eslint/types@npm:5.26.0"
   checksum: 98798616d832da8e5ef61f050e4e72ed921a162cb4ce2b2dfe0a317c66998157e832f449aeab21a1fdfd806e7134091bc1a9446b1089f4687786b646ad8738e7
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/typescript-estree@npm:5.23.0":
-  version: 5.23.0
-  resolution: "@typescript-eslint/typescript-estree@npm:5.23.0"
-  dependencies:
-    "@typescript-eslint/types": 5.23.0
-    "@typescript-eslint/visitor-keys": 5.23.0
-    debug: ^4.3.2
-    globby: ^11.0.4
-    is-glob: ^4.0.3
-    semver: ^7.3.5
-    tsutils: ^3.21.0
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 8d85bb1cd777e93cc7322ae8fea25f9b924def02494cdb8395c1d5d17b5fd3ac9bc969418a1d20a5dc28c2cdd85da20e13527e28b595c06ff6f84cd22a78d73f
   languageName: node
   linkType: hard
 
@@ -644,16 +682,6 @@ __metadata:
   peerDependencies:
     eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
   checksum: c16828ba6bfbe3b0b6e9dadeece1cfd2345141bcd13824f99fe210c76e5ddb11f6f79e61705cafa421c549657da12d1700a1316d24c2eeaee6179b08f512b5fb
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/visitor-keys@npm:5.23.0":
-  version: 5.23.0
-  resolution: "@typescript-eslint/visitor-keys@npm:5.23.0"
-  dependencies:
-    "@typescript-eslint/types": 5.23.0
-    eslint-visitor-keys: ^3.0.0
-  checksum: 322e10d52a985e8a90d3612bb9d09a87dc64fc4cb1248484f1a9a7a98f65d3ef65a465ce868773a4939e35fa3b726ad609dac5a168efd7eaca4b06df33e965e3
   languageName: node
   linkType: hard
 
@@ -1315,12 +1343,11 @@ __metadata:
   dependencies:
     "@mntm/eslint-config": ^1.1.2
     "@mntm/vkui": ^4.31.0
+    "@napi-rs/canvas": 0.1.21
+    "@napi-rs/canvas-darwin-x64": 0.1.21
+    "@napi-rs/canvas-linux-x64-musl": 0.1.21
     "@next/bundle-analyzer": 12.1.7-canary.16
-    "@next/swc-darwin-arm64": 12.1.7-canary.16
     "@next/swc-darwin-x64": 12.1.7-canary.16
-    "@next/swc-linux-arm64-gnu": 12.1.7-canary.16
-    "@next/swc-linux-arm64-musl": 12.1.7-canary.16
-    "@next/swc-linux-x64-gnu": 12.1.7-canary.11
     "@next/swc-linux-x64-musl": 12.1.7-canary.16
     "@popperjs/core": ^2.11.5
     "@types/node": ^17.0.35
@@ -2186,7 +2213,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-visitor-keys@npm:^3.0.0, eslint-visitor-keys@npm:^3.3.0":
+"eslint-visitor-keys@npm:^3.3.0":
   version: 3.3.0
   resolution: "eslint-visitor-keys@npm:3.3.0"
   checksum: d59e68a7c5a6d0146526b0eec16ce87fbf97fe46b8281e0d41384224375c4e52f5ffb9e16d48f4ea50785cde93f766b0c898e31ab89978d88b0e1720fbfb7808
@@ -2630,7 +2657,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globby@npm:^11.0.4, globby@npm:^11.1.0":
+"globby@npm:^11.1.0":
   version: 11.1.0
   resolution: "globby@npm:11.1.0"
   dependencies:
