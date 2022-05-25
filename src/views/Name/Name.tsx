@@ -15,7 +15,7 @@ import { NextSeo } from 'next-seo';
 import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 
-import { SizeType } from 'src/utils/const';
+import { SizeType, VOID } from 'src/utils/const';
 
 import styles from './Name.module.css';
 
@@ -37,14 +37,18 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
       <NextSeo
         title={pkg?.name}
         description={pkg?.description}
-        openGraph={{
-          images: [{
-            url: `https://${process.env.VERCEL_URL}/api/og/${size?.query}`,
-            alt: pkg?.name,
-            width: 1074,
-            height: 480
-          }]
-        }}
+        openGraph={(
+          hasPkg && hasSize ?
+            {
+              images: [{
+                url: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og/${size?.query}`,
+                alt: pkg.name,
+                width: 1074,
+                height: 480
+              }]
+            } :
+            VOID
+        )}
       />
       <div className={styles.badges}>
         {
