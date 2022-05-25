@@ -26,6 +26,9 @@ export const generateImage = async (size: Awaited<ReturnType<typeof calcSize>>) 
     colorSpace: 'srgb'
   });
 
+  ctx.fillStyle = '#000000';
+  ctx.strokeStyle = '#000000';
+
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
 
@@ -45,11 +48,15 @@ export const generateImage = async (size: Awaited<ReturnType<typeof calcSize>>) 
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
 
+  ctx.save();
+
   ctx.translate(1074 - (0.5 * 72), 0.5 * 480);
   ctx.rotate(-0.5 * Math.PI);
 
   ctx.font = 'normal normal 600 40px/72px w600';
   ctx.fillText('modern bundlephobia', 0, 0);
+
+  ctx.restore();
 
   return canvas.encode('png');
 };
