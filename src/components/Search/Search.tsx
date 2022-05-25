@@ -68,8 +68,6 @@ const SearchComponentEmpty = (
 const SearchComponent: FC = () => {
   const context = useContext(SearchContext);
 
-  console.log(context.loading);
-
   const [focus, setFocus] = useState(false);
   const handleFocus = useHandler(() => setFocus(true));
   const handleBlur = useHandler(() => setFocus(false));
