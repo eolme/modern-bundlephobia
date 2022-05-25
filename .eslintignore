@@ -1,4 +1,5 @@
 node_modules/
+bin/
 public/
 src/stub/
 next-seo.config.js

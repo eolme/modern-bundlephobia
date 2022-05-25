@@ -39,7 +39,7 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
         description={pkg?.description}
         openGraph={{
           images: [{
-            url: `/api/og/${size?.query}`,
+            url: `https://${process.env.VERCEL_URL}/api/og/${size?.query}`,
             alt: pkg?.name,
             width: 1074,
             height: 480

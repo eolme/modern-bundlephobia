@@ -1,7 +1,6 @@
 import type { calcSize } from 'src/api/calc';
 
-import { default as path } from 'node:path';
-import { promises as fs } from 'node:fs';
+import { Buffer } from 'node:buffer';
 
 import { GlobalFonts, createCanvas } from '@napi-rs/canvas';
 
@@ -9,18 +8,16 @@ import { once } from 'src/utils/fn';
 import { formatSize } from 'src/utils/format';
 import { SizeName, SizeType } from 'src/utils/const';
 
-const load = once(async () => {
-  const [w400, w600] = await Promise.all([
-    fs.readFile(path.resolve('./src/assets/fonts/NotoSans400.woff2')),
-    fs.readFile(path.resolve('./src/assets/fonts/NotoSans600.woff2'))
-  ]);
+import { default as w400 } from 'src/assets/fonts/NotoSans400.json';
+import { default as w600 } from 'src/assets/fonts/NotoSans600.json';
 
-  GlobalFonts.register(w400, 'w400');
-  GlobalFonts.register(w600, 'w600');
+const registerFonts = once(() => {
+  GlobalFonts.register(Buffer.from(w400), 'w400');
+  GlobalFonts.register(Buffer.from(w600), 'w600');
 });
 
 export const generateImage = async (size: Awaited<ReturnType<typeof calcSize>>) => {
-  await load();
+  registerFonts();
 
   const canvas = createCanvas(1074, 480);
 
