@@ -26,9 +26,9 @@ type SearchContextValue = {
 };
 
 export const SearchContext = createContext<SearchContextValue>({
-  search: '',
+  search: EMPTY,
   selected: VOID,
-  results: [],
+  results: NOTHING,
 
   handleChange: noop,
   handleSelect: noop,
