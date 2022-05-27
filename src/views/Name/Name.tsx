@@ -16,7 +16,7 @@ import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 
 import { SizeType } from 'src/utils/const';
-import { formatPath } from 'src/utils/format';
+import { formatPagePath } from 'src/utils/format';
 
 import styles from './Name.module.css';
 
@@ -33,7 +33,9 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
   const hasPkg = router.isReady && typeof pkg !== 'undefined';
   const hasSize = router.isReady && typeof size !== 'undefined';
 
-  const image = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og${formatPath(router.asPath)}`;
+  const path = formatPagePath(router.asPath);
+  const image = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og/${path}`;
+  const canonical = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/p/${path}`;
 
   return (
     <Fragment key="page">
@@ -51,6 +53,9 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
           rel: 'image_src',
           type: 'image/png',
           href: image
+        }, {
+          rel: 'canonical',
+          href: canonical
         }]}
         openGraph={{
           images: [{

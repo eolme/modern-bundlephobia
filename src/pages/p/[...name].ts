@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         revalidate: true,
         redirect: {
           statusCode: 302,
-          destination: `/${info.name}@${info.loaded.version}`
+          destination: `/p/${info.name}@${info.loaded.version}`
         }
       };
     }

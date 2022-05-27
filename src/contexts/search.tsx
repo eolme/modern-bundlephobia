@@ -75,7 +75,7 @@ export const SearchProvider: FC = ({ children }) => {
       setSearch(npm.package.name);
       setSelected(npm);
 
-      router.replace('/[...name]', `${npm.package.name}@${npm.package.version}`);
+      router.replace('/p/[...name]', `/p/${npm.package.name}@${npm.package.version}`);
     }
   });
 
