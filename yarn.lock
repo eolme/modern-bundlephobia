@@ -1366,6 +1366,7 @@ __metadata:
     builtins: ^5.0.1
     clsx: ^1.1.1
     dayjs: ^1.11.2
+    detect-libc: ^2.0.1
     eslint: ^8.16.0
     eslint-config-next: 12.1.7-canary.16
     mobile-detect: ^1.4.5
@@ -1764,6 +1765,13 @@ __metadata:
   version: 2.0.2
   resolution: "dequal@npm:2.0.2"
   checksum: 86c7a2c59f7b0797ed397c74b5fcdb744e48fc19440b70ad6ac59f57550a96b0faef3f1cfd5760ec5e6d3f7cb101f634f1f80db4e727b1dc8389bf62d977c0a0
+  languageName: node
+  linkType: hard
+
+"detect-libc@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "detect-libc@npm:2.0.1"
+  checksum: ccb05fcabbb555beb544d48080179c18523a343face9ee4e1a86605a8715b4169f94d663c21a03c310ac824592f2ba9a5270218819bb411ad7be578a527593d7
   languageName: node
   linkType: hard
 
