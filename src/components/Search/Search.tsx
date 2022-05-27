@@ -16,7 +16,7 @@ import {
 import { SearchContext } from 'src/contexts/search';
 
 import { memo, useContext, useRef, useState } from 'react';
-import { useHandler, useRefToCallback } from 'ahks';
+import { useHandler } from 'ahks';
 
 import { VOID } from 'src/utils/const';
 
@@ -74,8 +74,7 @@ const SearchComponent: FC = () => {
 
   const open = context.content && focus;
 
-  const targetRef = useRef<HTMLElement>(null);
-  const targetRefCallback = useRefToCallback(targetRef);
+  const targetRef = useRef<HTMLLabelElement | null>(null);
 
   let render: ReactNode;
 
@@ -114,7 +113,7 @@ const SearchComponent: FC = () => {
 
   return (
     <label
-      ref={targetRefCallback}
+      ref={targetRef}
       className={styles.label}
     >
       <Input
