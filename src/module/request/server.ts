@@ -59,5 +59,11 @@ export const requestPackage = async (url: string) => {
     throw new ModuleError(ModuleErrorType.CONNECTION, url, 503);
   }
 
-  return response.json() as Promise<NPM>;
+  const info = await response.json() as NPM;
+
+  return {
+    name: info.name,
+    description: info.description,
+    version: info.version
+  };
 };
