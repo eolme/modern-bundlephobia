@@ -4,7 +4,7 @@ import { ModuleError, ModuleErrorType, getErrorStatus } from 'src/module/error';
 
 import { calcInfo, calcSize } from 'src/api/calc';
 
-import { sendNothing, sendPNG } from 'src/utils/send';
+import { sendJPEG, sendNothing } from 'src/utils/send';
 import { generateImage } from 'src/generate/og';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -17,7 +17,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const size = await calcSize(info);
     const image = await generateImage(size);
 
-    sendPNG(res, 200, image);
+    sendJPEG(res, 200, image);
   } catch (ex: unknown) {
     console.error(ex);
 

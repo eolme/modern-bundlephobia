@@ -51,7 +51,7 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
         }]}
         additionalLinkTags={[{
           rel: 'image_src',
-          type: 'image/png',
+          type: 'image/jpeg',
           href: image
         }, {
           keyOverride: 'canonical',
@@ -61,7 +61,7 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
         openGraph={{
           images: [{
             url: image,
-            type: 'image/png',
+            type: 'image/jpeg',
             width: 1074,
             height: 480
           }]

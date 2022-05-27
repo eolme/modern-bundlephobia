@@ -17,13 +17,13 @@ export const sendSVG = (res: NextApiResponse, status: number, svg: string) => {
     send(svg);
 };
 
-export const sendPNG = (res: NextApiResponse, status: number, png: Buffer) => {
+export const sendJPEG = (res: NextApiResponse, status: number, jpeg: Buffer) => {
   res.
     status(status).
-    setHeader('Content-Type', 'image/png').
-    setHeader('Content-Length', png.byteLength).
+    setHeader('Content-Type', 'image/jpeg').
+    setHeader('Content-Length', jpeg.byteLength).
     setHeader('Cache-Control', 'max-age=43200, immutable').
-    send(png);
+    send(jpeg);
 };
 
 export const sendNothing = (res: NextApiResponse, status: number) => {
