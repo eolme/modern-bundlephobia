@@ -35,7 +35,8 @@ module.exports = analyze({
     fullySpecified: false,
 
     legacyBrowsers: false,
-    browsersListForSwc: false
+    browsersListForSwc: false,
+    disablePostcssPresetEnv: true
   },
   webpack(config) {
     // Force new
