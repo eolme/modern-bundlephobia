@@ -1,3 +1,23 @@
+.vkui__root.vkui__root {
+  --font-common: -apple-system,
+    BlinkMacSystemFont,
+    'Product Sans',
+    'Google Sans',
+    'Noto Sans',
+    'Open Sans',
+    system-ui,
+    Roboto,
+    RobotoDraft,
+    'Helvetica Neue',
+    Geneva,
+    'Segoe Pro',
+    'Segoe UI',
+    sans-serif;
+  --font-display: var(--font-common);
+  --font-tt: var(--font-common);
+  font-family: var(--font-common);
+}
+
 .vkuiAppRoot {
   display: flex;
   flex-direction: column;
