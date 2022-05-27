@@ -34,6 +34,8 @@ export const Layout: FC = ({ children }) => {
 
   useLayoutMount(() => {
     setMouse(hasHover && hasMouse);
+
+    document.documentElement.style.setProperty('--vh', `${0.01 * window.innerHeight}px`);
   });
 
   return (

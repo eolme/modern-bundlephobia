@@ -3,7 +3,7 @@
   max-width: 574px;
 
   margin: 0 auto auto auto;
-  padding: calc(50vh - 55px) 12px 12px 12px;
+  padding: calc(var(--vh, 1vh) * 50 - 88px) 12px 12px 12px;
 
   box-sizing: border-box;
 }
