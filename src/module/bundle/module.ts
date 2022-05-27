@@ -11,8 +11,9 @@ export const queryToFullQuery = (query: string) => query.lastIndexOf('@') <= 0 ?
 export const pathToName = (path: string) => fullQueryToName(queryToFullQuery(formatPath(path.slice(1))));
 
 export const linkToVersion = (name: string, link: string) => {
-  const start = link.indexOf(name);
-  const end = link.indexOf('/', start);
+  const indexName = link.indexOf(name);
+  const indexStart = indexName + name.length + 1;
+  const indexEnd = link.indexOf('/', indexStart);
 
-  return link.slice(start + name.length + 1, end);
+  return link.slice(indexStart, indexEnd);
 };
