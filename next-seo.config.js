@@ -39,6 +39,7 @@ const seo = {
     href: '/open-search-description.xml',
     title: 'Modern Bundlephobia'
   }, {
+    keyOverride: 'canonical',
     rel: 'canonical',
     href: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   }]

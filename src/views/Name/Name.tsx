@@ -54,6 +54,7 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
           type: 'image/png',
           href: image
         }, {
+          keyOverride: 'canonical',
           rel: 'canonical',
           href: canonical
         }]}
