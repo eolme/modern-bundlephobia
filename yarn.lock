@@ -251,12 +251,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/bundle-analyzer@npm:12.1.7-canary.16":
-  version: 12.1.7-canary.16
-  resolution: "@next/bundle-analyzer@npm:12.1.7-canary.16"
+"@next/bundle-analyzer@npm:12.1.7-canary.19":
+  version: 12.1.7-canary.19
+  resolution: "@next/bundle-analyzer@npm:12.1.7-canary.19"
   dependencies:
     webpack-bundle-analyzer: 4.3.0
-  checksum: 0ac79b28dd7b415dcfc4117895c4437d43e337792776e20797b8481ccc83a42f91e00f01cd31d99bdf188c66f6279cce41c3de72b6c43552388304f7a46592ba
+  checksum: aefc4ad3716e0204cc8e88e44f7dd7bfcb082ed60b1f5e30d2d7ca52108427e2fda0573a0da0d7820387fcbda4bd4a5e361361333874f2164a3db5c689bc3f03
   languageName: node
   linkType: hard
 
@@ -267,12 +267,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:12.1.7-canary.16":
-  version: 12.1.7-canary.16
-  resolution: "@next/eslint-plugin-next@npm:12.1.7-canary.16"
+"@next/eslint-plugin-next@npm:12.1.7-canary.19":
+  version: 12.1.7-canary.19
+  resolution: "@next/eslint-plugin-next@npm:12.1.7-canary.19"
   dependencies:
     glob: 7.1.7
-  checksum: 13470bc7984af6caadf10b3455813c536e34fe54a95f9724bf50859621eca6af96643cfde4cffe950e05dbf60b3a6c14dd83331a2bca76348f19a66d14922ae3
+  checksum: 7e9d687b6054950a724cce2e47e62978974fcb89539b73438f45bd2faafae99be12e55616326253ac9d48fb83f05dc84b3cf45a5758d545e01c0ab1a9ca0e93b
   languageName: node
   linkType: hard
 
@@ -300,7 +300,14 @@ __metadata:
 "@next/swc-darwin-x64@npm:12.1.7-canary.16":
   version: 12.1.7-canary.16
   resolution: "@next/swc-darwin-x64@npm:12.1.7-canary.16"
-  checksum: 27bf1b4dca30d3eaec075c4cb347033ac7f4e06c813009a7c7b117a5d2e859de7f88cd1886b552b9e677d761ffcbdfff70a785c588fd16197b4d7a4625dcd7a2
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@next/swc-darwin-x64@npm:12.1.7-canary.19":
+  version: 12.1.7-canary.19
+  resolution: "@next/swc-darwin-x64@npm:12.1.7-canary.19"
+  checksum: 43e27440544f27cb6b6d47cc5db11f85014997d560d2efcaaa607d5e0408251c7e9c5ca4046d3e50cf21327c8b6ebc95e938cad84293035adc054efde307fd03
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -336,7 +343,14 @@ __metadata:
 "@next/swc-linux-x64-gnu@npm:12.1.7-canary.16":
   version: 12.1.7-canary.16
   resolution: "@next/swc-linux-x64-gnu@npm:12.1.7-canary.16"
-  checksum: b58712a48387f8fad18eb1c78cb1f3a7a1efb819fef8e4b7ae7d2262114f873647454322f237d5d990a6d92fba4b7f90a5977534200fef4a8ea76d2623d63ed9
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@next/swc-linux-x64-gnu@npm:12.1.7-canary.19":
+  version: 12.1.7-canary.19
+  resolution: "@next/swc-linux-x64-gnu@npm:12.1.7-canary.19"
+  checksum: 2b37d178bacfa04d13e4df8f7980f642c08246e056632cb872db57c8734efe0902541bd7554e9f3c98692465878ca0a424383ba976e1917c87a150e0b3f995fb
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
@@ -735,15 +749,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vkontakte/icons@npm:^1.163.0":
-  version: 1.163.0
-  resolution: "@vkontakte/icons@npm:1.163.0"
+"@vkontakte/icons@npm:^1.164.0":
+  version: 1.164.0
+  resolution: "@vkontakte/icons@npm:1.164.0"
   dependencies:
     svg-baker-runtime: 1.4.7
   peerDependencies:
     "@types/react": ^16.9.34 || ^17.0.0
     react: ^16.9.0 || ^17.0.0
-  checksum: 932b986e9eaada6dc097e5b3299bd71e0cb92c3967e1391c966c65d76452f1cc2d6fdaddfe5e9f5fe4b1a2b6eb118cd9817dea0c62c0c1c1c6adb7007a028ce0
+  checksum: 715c0cfd3c5c85a5eafebaa6b55cebe26629e616adcb85627e0d537dcdcf791123fc553836a6a9671a7e1aa7451c76403f5c8a19296c6a8cfe456976027805fa
   languageName: node
   linkType: hard
 
@@ -1346,9 +1360,9 @@ __metadata:
     "@napi-rs/canvas": 0.1.21
     "@napi-rs/canvas-darwin-x64": 0.1.21
     "@napi-rs/canvas-linux-x64-gnu": 0.1.21
-    "@next/bundle-analyzer": 12.1.7-canary.16
-    "@next/swc-darwin-x64": 12.1.7-canary.16
-    "@next/swc-linux-x64-gnu": 12.1.7-canary.16
+    "@next/bundle-analyzer": 12.1.7-canary.19
+    "@next/swc-darwin-x64": 12.1.7-canary.19
+    "@next/swc-linux-x64-gnu": 12.1.7-canary.19
     "@popperjs/core": ^2.11.5
     "@types/node": ^17.0.35
     "@types/node-fetch": ^2.6.1
@@ -1358,7 +1372,7 @@ __metadata:
     "@types/validate-npm-package-name": ^3.0.3
     "@types/webpack": ^5.28.0
     "@vercel/fetch": ^6.2.0
-    "@vkontakte/icons": ^1.163.0
+    "@vkontakte/icons": ^1.164.0
     "@vkontakte/vk-bridge": ^2.6.1
     "@vkontakte/vkjs": ^0.22.2
     "@vkontakte/vkui-tokens": ^4.11.0
@@ -1367,8 +1381,7 @@ __metadata:
     clsx: ^1.1.1
     dayjs: ^1.11.2
     eslint: ^8.16.0
-    eslint-config-next: 12.1.7-canary.16
-    mobile-detect: ^1.4.5
+    eslint-config-next: 12.1.7-canary.19
     module-alias: ^2.2.2
     next: 12.1.7-canary.16
     next-seo: ^5.4.0
@@ -1977,11 +1990,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:12.1.7-canary.16":
-  version: 12.1.7-canary.16
-  resolution: "eslint-config-next@npm:12.1.7-canary.16"
+"eslint-config-next@npm:12.1.7-canary.19":
+  version: 12.1.7-canary.19
+  resolution: "eslint-config-next@npm:12.1.7-canary.19"
   dependencies:
-    "@next/eslint-plugin-next": 12.1.7-canary.16
+    "@next/eslint-plugin-next": 12.1.7-canary.19
     "@rushstack/eslint-patch": ^1.1.3
     "@typescript-eslint/parser": ^5.21.0
     eslint-import-resolver-node: ^0.3.6
@@ -1997,7 +2010,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: f85a885aeaa981d3ef3f99d76dadd619254d2aa433f495036c29beaab1e07e81e635b981f9f808b0d4772756d34f7f0ca2efd5dcddf0a06385eecdcaef68661f
+  checksum: f89766f94dc8d8bc75e634f80462a469e5af5752d917962b946b966c99694038eafa2c433bafc03f87efb0e6803900929fbe5365ed5967cbed0aa88ef9f0b273
   languageName: node
   linkType: hard
 
@@ -3552,13 +3565,6 @@ __metadata:
     for-in: ^1.0.2
     is-extendable: ^1.0.1
   checksum: 820d5a51fcb7479f2926b97f2c3bb223546bc915e6b3a3eb5d906dda871bba569863595424a76682f2b15718252954644f3891437cb7e3f220949bed54b1750d
-  languageName: node
-  linkType: hard
-
-"mobile-detect@npm:^1.4.5":
-  version: 1.4.5
-  resolution: "mobile-detect@npm:1.4.5"
-  checksum: 317d170f3bc27c3e36c3f4ab7809c33d20e81914147cdc74a8551f0ecad2c5ec067bd59dd1a240caf66c1df7fd793021a36677c3a6ed8bdf027d4715dc3f0973
   languageName: node
   linkType: hard
 

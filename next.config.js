@@ -25,6 +25,7 @@ module.exports = analyze({
     entry: 'src/sw/index.ts'
   },
   reactStrictMode: false,
+  swcMinify: true,
   experimental: {
     runtime: 'nodejs',
     reactRoot: true,
@@ -33,7 +34,8 @@ module.exports = analyze({
     esmExternals: 'loose',
     fullySpecified: false,
 
-    legacyBrowsers: false
+    legacyBrowsers: false,
+    browsersListForSwc: false
   },
   webpack(config) {
     // Force new
