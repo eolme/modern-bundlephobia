@@ -55,7 +55,7 @@
 .markdown ul:not(:last-child),
 .markdown ol:not(:last-child),
 .markdown li:not(:last-child),
-.markdown code {
+.markdown pre>code {
   margin-bottom: 8px;
 }
 
@@ -98,6 +98,9 @@
   display: block;
   padding: 16px;
   border-radius: 8px;
+
+  overflow-x: auto;
+  overflow-x: overlay;
 }
 
 .markdown a {
