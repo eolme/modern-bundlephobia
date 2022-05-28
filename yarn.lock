@@ -1368,11 +1368,11 @@ __metadata:
     dayjs: ^1.11.2
     eslint: ^8.16.0
     eslint-config-next: 12.1.7-canary.19
+    markdown-wasm: ^1.2.0
     module-alias: ^2.2.2
     next: 12.1.7-canary.19
     next-seo: ^5.4.0
     next-sw: ^1.2.0
-    next-themes: ^0.2.0
     node-fetch: ^3.2.4
     pretty-bytes: ^6.0.0
     react: 18.1.0
@@ -3444,6 +3444,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"markdown-wasm@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "markdown-wasm@npm:1.2.0"
+  checksum: c1f5fee6f1cb24b05bccab8261cbfdf16f0f523cb0a24d3eddc374b5a3cbd5ab70b0bcf0c84c4453f17a68f95c63ecb190989d15e9ef05b1b5c5b613b625adb5
+  languageName: node
+  linkType: hard
+
 "merge-options@npm:1.0.1":
   version: 1.0.1
   resolution: "merge-options@npm:1.0.1"
@@ -3651,17 +3658,6 @@ __metadata:
     next:
       optional: false
   checksum: 8393913c8f6b7b3a1985b6747d2368d263eee6c9ede0f1e7a9d9c6182fa046bb3ae3458e9e4e6ef35007ce0b4e356f13dd4847f37f1c2abf3f20790c94c472aa
-  languageName: node
-  linkType: hard
-
-"next-themes@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "next-themes@npm:0.2.0"
-  peerDependencies:
-    next: "*"
-    react: "*"
-    react-dom: "*"
-  checksum: cee02db16bee471856557db9572ffa041b1d77254798e345fad09e1bd8b878e937cdacc73bb73c598eb3b042f20fff0201bd73d2de42e2061fa818585415e857
   languageName: node
   linkType: hard
 

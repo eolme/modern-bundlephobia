@@ -7,6 +7,10 @@ import {
   NextScript
 } from 'next/document';
 
+import {
+  Theme
+} from 'src/components';
+
 import { EMPTY } from 'src/utils/const';
 
 const Document: NextPage = () => {
@@ -16,10 +20,7 @@ const Document: NextPage = () => {
       translate="no"
       x-ms-format-detection="none"
       className="vkui"
-      scheme={EMPTY}
       style={{
-        'colorScheme': 'auto',
-
         // @ts-expect-error mistype
         '--vh': '1vh'
       }}
@@ -29,6 +30,7 @@ const Document: NextPage = () => {
         className={EMPTY}
         scheme={EMPTY}
       >
+        <Theme />
         <Main />
         <NextScript />
       </body>

@@ -15,6 +15,10 @@ import {
 } from 'src/module/compress';
 
 import {
+  markdown
+} from 'src/module/markdown';
+
+import {
   ModuleError,
   ModuleErrorType
 } from 'src/module/error';
@@ -26,11 +30,42 @@ import {
 } from 'src/module/request/server';
 
 import {
-  bundleURL, installURL
+  bundleURL,
+  homepageURL,
+  packageURL
 } from 'src/utils/url';
 
-export const loadInfo = async (name: string, version: string) => {
-  return requestPackage(installURL(name, version));
+export const loadInfo = async (name: string) => {
+  const info = await requestPackage(packageURL(name));
+
+  if (!info.description) {
+    info.description = '';
+  }
+
+  if (info.readme) {
+    try {
+      info.readme = markdown(info.readme);
+    } catch {
+      info.readme = info.description;
+    }
+  } else {
+    info.readme = info.description;
+  }
+
+  if (!info.homepage) {
+    if (info.repository && info.repository.url) {
+      info.homepage = info.repository.url;
+    } else {
+      info.homepage = homepageURL(name);
+    }
+  }
+
+  return {
+    time: info.time.modified,
+    description: info.description,
+    readme: info.readme,
+    homepage: info.homepage
+  };
 };
 
 const load = async (name: string, query: string) => {

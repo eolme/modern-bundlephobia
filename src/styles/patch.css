@@ -19,11 +19,62 @@
 }
 
 .vkuiAppRoot {
+  height: auto;
+  min-height: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
 
-  background-color: var(--background_content);
+body {
+  overflow-y: scroll;
+  overflow-y: overlay;
+
+  scrollbar-width: thin;
+}
+
+body::-webkit-scrollbar,
+body::-webkit-scrollbar-track {
+  width: 8px;
+  height: 8px;
+
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+
+.vkui--vkBase--light {
+  scrollbar-color: #d3d9de transparent;
+}
+
+.vkui--vkBase--dark {
+  scrollbar-color: #828282 transparent;
+}
+
+.vkui--vkBase--light::-webkit-scrollbar-thumb {
+  background-color: #d3d9de;
+}
+
+.vkui--vkBase--dark::-webkit-scrollbar-thumb {
+  background-color: #828282;
+}
+
+html,
+body,
+.vkuiAppRoot {
+  background-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  html,
+  body,
+  .vkuiAppRoot {
+    background-color: #19191a;
+  }
 }
 
 .vkuiFormField:not(.vkuiFormField--disabled) .vkuiFormField__border--hover {

@@ -8,10 +8,6 @@ import {
 } from 'next-seo';
 
 import {
-  ThemeProvider
-} from 'next-themes';
-
-import {
   SWRConfig
 } from 'swr';
 
@@ -35,26 +31,19 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <DefaultSeo {...SEO} />
-      <ThemeProvider
-        enableSystem={true}
-        enableColorScheme={true}
-        attribute="scheme"
-        defaultTheme="system"
+      <SWRConfig
+        value={{
+          fetcher: searchNPM,
+          suspense: false,
+          keepPreviousData: true
+        }}
       >
-        <SWRConfig
-          value={{
-            fetcher: searchNPM,
-            suspense: false,
-            keepPreviousData: true
-          }}
-        >
-          <SearchProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </SearchProvider>
-        </SWRConfig>
-      </ThemeProvider>
+        <SearchProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </SearchProvider>
+      </SWRConfig>
     </>
   );
 };

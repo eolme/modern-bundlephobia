@@ -9,8 +9,7 @@ const stubModules = {
   '@vkontakte/vk-bridge': stub('bridge'),
   'mitt': stub('mitt'),
   'semver': stub('semver'),
-  'use-sync-external-store/shim': npm('use-sync-external-store'),
-  'use-sync-external-store': npm('use-sync-external-store')
+  'markdown-wasm': npm('markdown-wasm/dist/markdown.node')
 };
 
 alias.addAliases(stubModules);

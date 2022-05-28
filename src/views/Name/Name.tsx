@@ -3,11 +3,8 @@ import type { AnyFunction } from '@vkontakte/vkjs';
 import type { calcSize, loadInfo } from 'src/api/calc';
 
 import {
-  Text
-} from '@mntm/vkui';
-
-import {
-  Badge
+  Badge,
+  Markdown
 } from 'src/components';
 
 import { NextSeo } from 'next-seo';
@@ -40,7 +37,7 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
   return (
     <Fragment key="page">
       <NextSeo
-        title={pkg?.name}
+        title={path}
         description={pkg?.description}
         twitter={{
           cardType: 'summary_large_image'
@@ -67,11 +64,11 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
           }]
         }}
       />
-      <div className={styles.badges}>
+      <div>
         {
           hasSize ?
             (
-              <>
+              <section className={styles.badges}>
                 <Badge
                   type={SizeType.BYTES}
                   name={size.name}
@@ -87,26 +84,24 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
                   name={size.name}
                   size={size.brotli}
                 />
-              </>
+              </section>
             ) :
             (
-              <span />
+              <div />
             )
         }
       </div>
-      <p className={styles.description}>
+      <div className={styles.block}>
         {
           hasPkg ?
             (
-              <Text weight="regular">
-                {pkg.description}
-              </Text>
+              <Markdown html={pkg.readme} />
             ) :
             (
-              <span />
+              <div />
             )
         }
-      </p>
+      </div>
     </Fragment>
   );
 };

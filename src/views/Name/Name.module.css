@@ -1,11 +1,12 @@
 .badges {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 4px;
 
   margin-top: 12px;
 }
 
-.description {
-  margin: 16px 0 8px;
+.block {
+  margin: 64px 0 8px;
 }

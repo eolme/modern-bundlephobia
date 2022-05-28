@@ -1,5 +1,4 @@
 import type { FC } from 'src/types/react';
-import type { Appearance } from '@mntm/vkui';
 
 import {
   AdaptivityProvider,
@@ -18,19 +17,18 @@ import {
 } from 'src/components';
 
 import { useState } from 'react';
-import { useTheme } from 'next-themes';
 import { useLayoutMount } from 'ahks';
+import { useAppearance, useScheme } from 'src/hooks';
 
 import { hasHover, hasMouse } from '@vkontakte/vkjs';
 
 import styles from './Layout.module.css';
 
 export const Layout: FC = ({ children }) => {
-  const { resolvedTheme } = useTheme();
-
-  const appearance = (resolvedTheme || 'light') as Appearance;
-
   const [mouse, setMouse] = useState(false);
+
+  const scheme = useScheme();
+  const appearance = useAppearance();
 
   useLayoutMount(() => {
     setMouse(hasHover && hasMouse);
@@ -42,6 +40,7 @@ export const Layout: FC = ({ children }) => {
     <ConfigProvider
       isWebView={false}
       hasNewTokens={true}
+      scheme={scheme}
       appearance={appearance}
       platform={Platform.ANDROID}
       transitionMotionEnabled={false}
@@ -60,7 +59,7 @@ export const Layout: FC = ({ children }) => {
           noLegacyClasses={true}
           scroll="global"
         >
-          <div className={styles.container}>
+          <main className={styles.container}>
             <Title
               Component="h1"
               level="1"
@@ -77,7 +76,7 @@ export const Layout: FC = ({ children }) => {
             </Subhead>
             <Search />
             {children}
-          </div>
+          </main>
         </AppRoot>
       </AdaptivityProvider>
     </ConfigProvider>

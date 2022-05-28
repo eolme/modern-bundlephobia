@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  max-width: 574px;
+  max-width: 924px;
 
   margin: 0 auto auto auto;
   padding: calc(var(--vh, 1vh) * 50 - 88px) 12px 12px 12px;

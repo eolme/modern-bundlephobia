@@ -28,8 +28,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       };
     }
 
-    const size = await calcSize(info);
-    const pkg = await loadInfo(size.name, size.version);
+    const [size, pkg] = await Promise.all([
+      calcSize(info),
+      loadInfo(info.name)
+    ]);
 
     return {
       revalidate: false,
