@@ -35,30 +35,37 @@ body {
 }
 
 body::-webkit-scrollbar,
-body::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track,
+code::-webkit-scrollbar,
+code::-webkit-scrollbar-track {
   width: 8px;
   height: 8px;
 
   background-color: transparent;
 }
 
-body::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb,
+code::-webkit-scrollbar-thumb {
   border-radius: 4px;
 }
 
-.vkui--vkBase--light {
+.vkui--vkBase--light,
+.vkui--vkBase--light code {
   scrollbar-color: #d3d9de transparent;
 }
 
-.vkui--vkBase--dark {
+.vkui--vkBase--dark,
+.vkui--vkBase--dark code {
   scrollbar-color: #828282 transparent;
 }
 
-.vkui--vkBase--light::-webkit-scrollbar-thumb {
+.vkui--vkBase--light::-webkit-scrollbar-thumb,
+.vkui--vkBase--light code::-webkit-scrollbar-thumb {
   background-color: #d3d9de;
 }
 
-.vkui--vkBase--dark::-webkit-scrollbar-thumb {
+.vkui--vkBase--dark::-webkit-scrollbar-thumb,
+.vkui--vkBase--dark code::-webkit-scrollbar-thumb {
   background-color: #828282;
 }
 
