@@ -20,4 +20,5 @@ export type NPMPackage = {
     type: string;
     url: string;
   };
+  versions: Record<string, NPMPackage>;
 };

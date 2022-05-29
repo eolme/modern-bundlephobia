@@ -1,3 +1,6 @@
+import type { NPMSPackage } from 'src/types/npms';
+import type { NPMPackage } from 'src/types/npm';
+
 import {
   deepEntry,
   fullQueryToName,
@@ -30,13 +33,18 @@ import {
 } from 'src/module/request/server';
 
 import {
+  semverFind
+} from 'src/module/semver';
+
+import {
   bundleURL,
   homepageURL,
+  packageFullURL,
   packageURL
 } from 'src/utils/url';
 
-export const loadInfo = async (name: string) => {
-  const info = await requestPackage(packageURL(name));
+export const loadInfo = async (name: string, version: string) => {
+  const info = await requestPackage<NPMSPackage>(packageURL(name));
 
   const collected = {
     description: '',
@@ -53,20 +61,35 @@ export const loadInfo = async (name: string) => {
       collected.readme = markdown(info.collected.metadata.readme);
     } catch (ex: unknown) {
       console.error(ex);
-
-      collected.readme = markdown(collected.description);
-    } finally {
-      if (!collected.readme) {
-        collected.readme = collected.description;
-      }
     }
   } else {
+    const fullInfo = await requestPackage<NPMPackage>(packageFullURL(name));
+
+    if (fullInfo.readme) {
+      try {
+        collected.readme = markdown(fullInfo.readme);
+      } catch (ex: unknown) {
+        console.error(ex);
+      }
+    } else {
+      const semver = semverFind(fullInfo.versions, version, (npm) => 'readme' in npm && npm.readme !== '');
+
+      if (semver !== null) {
+        try {
+          collected.readme = markdown(semver.readme!);
+        } catch (ex: unknown) {
+          console.error(ex);
+        }
+      }
+    }
+  }
+
+  if (!collected.readme) {
     collected.readme = collected.description;
   }
 
   if (info.collected.metadata.links) {
     collected.homepage =
-      info.collected.metadata.links.homepage ||
       info.collected.metadata.links.repository ||
       info.collected.metadata.links.npm;
   }

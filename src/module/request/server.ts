@@ -1,5 +1,3 @@
-import type { NPMSPackage } from 'src/types/npms';
-
 import { default as createFetch } from '@vercel/fetch';
 
 import {
@@ -17,8 +15,6 @@ const contentfulOptions = {
     Accept: 'application/javascript'
   }
 } as const;
-
-const packageOptions = {} as const;
 
 export const requestContent = async (url: string) => {
   const response = await cachedFetch(url, contentfulOptions);
@@ -52,12 +48,12 @@ export const requestBuffer = async (url: string) => {
   return buffer;
 };
 
-export const requestPackage = async (url: string) => {
-  const response = await cachedFetch(url, packageOptions);
+export const requestPackage = async <T>(url: string) => {
+  const response = await cachedFetch(url);
 
   if (!response.ok) {
     throw new ModuleError(ModuleErrorType.CONNECTION, url, 503);
   }
 
-  return response.json() as Promise<NPMSPackage>;
+  return response.json() as Promise<T>;
 };

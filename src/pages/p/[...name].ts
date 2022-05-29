@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const [size, pkg] = await Promise.all([
       calcSize(info),
-      loadInfo(info.name)
+      loadInfo(info.name, info.loaded.version)
     ]);
 
     return {
