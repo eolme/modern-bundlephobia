@@ -38,34 +38,44 @@ import {
 export const loadInfo = async (name: string) => {
   const info = await requestPackage(packageURL(name));
 
-  if (!info.description) {
-    info.description = '';
+  const collected = {
+    description: '',
+    readme: '',
+    homepage: ''
+  };
+
+  if (info.collected.metadata.description) {
+    collected.description = info.collected.metadata.description;
   }
 
-  if (info.readme) {
+  if (info.collected.metadata.readme) {
     try {
-      info.readme = markdown(info.readme);
-    } catch {
-      info.readme = info.description;
+      collected.readme = markdown(info.collected.metadata.readme);
+    } catch (ex: unknown) {
+      console.error(ex);
+
+      collected.readme = markdown(collected.description);
+    } finally {
+      if (!collected.readme) {
+        collected.readme = collected.description;
+      }
     }
   } else {
-    info.readme = info.description;
+    collected.readme = collected.description;
   }
 
-  if (!info.homepage) {
-    if (info.repository && info.repository.url) {
-      info.homepage = info.repository.url;
-    } else {
-      info.homepage = homepageURL(name);
-    }
+  if (info.collected.metadata.links) {
+    collected.homepage =
+      info.collected.metadata.links.homepage ||
+      info.collected.metadata.links.repository ||
+      info.collected.metadata.links.npm;
   }
 
-  return {
-    time: info.time.modified,
-    description: info.description,
-    readme: info.readme,
-    homepage: info.homepage
-  };
+  if (!collected.homepage) {
+    collected.homepage = homepageURL(name);
+  }
+
+  return collected;
 };
 
 const load = async (name: string, query: string) => {

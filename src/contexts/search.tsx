@@ -1,7 +1,7 @@
 import type { ChangeEvent, MouseEvent } from 'react';
 import type { AnyFunction } from '@vkontakte/vkjs';
 import type { FC } from 'src/types/react';
-import type { NPMSearch } from 'src/types/npm';
+import type { NPMSSearch } from 'src/types/npms';
 
 import { createContext, useRef, useState } from 'react';
 import { useCreation, useHandler, useStableHandler } from 'ahks';
@@ -14,8 +14,8 @@ import { pathToName } from 'src/module/bundle';
 
 type SearchContextValue = {
   search: string;
-  selected: NPMSearch | undefined;
-  results: NPMSearch[];
+  selected: NPMSSearch | undefined;
+  results: NPMSSearch[];
 
   handleChange: AnyFunction;
   handleSelect: AnyFunction;
@@ -43,13 +43,13 @@ export const SearchProvider: FC = ({ children }) => {
 
   const defaultValue = useCreation(() => pathToName(router.asPath));
   const [search, setSearch] = useState(defaultValue);
-  const [selected, setSelected] = useState<NPMSearch | undefined>(VOID);
-  const { isValidating, data } = useSWR<NPMSearch[]>(() => DOM ? search : null);
+  const [selected, setSelected] = useState<NPMSSearch | undefined>(VOID);
+  const { isValidating, data } = useSWR<NPMSSearch[]>(() => DOM ? search : null);
 
   const loading = isValidating || router.isFallback;
   const content = typeof data !== 'undefined';
   const fallback = content && data.length === 0;
-  const results: NPMSearch[] = content ? data : NOTHING;
+  const results: NPMSSearch[] = content ? data : NOTHING;
 
   const defaultFound = useRef(false);
 

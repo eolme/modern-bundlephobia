@@ -1,4 +1,4 @@
-import type { NPMPackage } from 'src/types/npm';
+import type { NPMSPackage } from 'src/types/npms';
 
 import { default as createFetch } from '@vercel/fetch';
 
@@ -59,5 +59,5 @@ export const requestPackage = async (url: string) => {
     throw new ModuleError(ModuleErrorType.CONNECTION, url, 503);
   }
 
-  return response.json() as Promise<NPMPackage>;
+  return response.json() as Promise<NPMSPackage>;
 };
