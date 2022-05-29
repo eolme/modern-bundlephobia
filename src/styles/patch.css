@@ -1,4 +1,5 @@
-.vkui__root.vkui__root {
+.vkui .vkui__root,
+.vkui .vkui__portal-root {
   --font-common: -apple-system,
     BlinkMacSystemFont,
     'Product Sans',
