@@ -553,13 +553,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:^7.3.9":
-  version: 7.3.9
-  resolution: "@types/semver@npm:7.3.9"
-  checksum: 60bfcfdfa7f937be2c6f4b37ddb6714fb0f27b05fe4cbdfdd596a97d35ed95d13ee410efdd88e72a66449d0384220bf20055ab7d6b5df10de4990fbd20e5cbe0
-  languageName: node
-  linkType: hard
-
 "@types/validate-npm-package-name@npm:^3.0.3":
   version: 3.0.3
   resolution: "@types/validate-npm-package-name@npm:3.0.3"
@@ -1354,7 +1347,6 @@ __metadata:
     "@types/node-fetch": ^2.6.1
     "@types/react": ^17.0.45
     "@types/react-dom": ^17.0.17
-    "@types/semver": ^7.3.9
     "@types/validate-npm-package-name": ^3.0.3
     "@types/webpack": ^5.28.0
     "@vercel/fetch": ^6.2.0
