@@ -1,6 +1,3 @@
-import type { NPMSPackage } from 'src/types/npms';
-import type { NPMPackage } from 'src/types/npm';
-
 import {
   deepEntry,
   fullQueryToName,
@@ -18,88 +15,18 @@ import {
 } from 'src/module/compress';
 
 import {
-  markdown
-} from 'src/module/markdown';
-
-import {
   ModuleError,
   ModuleErrorType
 } from 'src/module/error';
 
 import {
   requestBuffer,
-  requestContent,
-  requestPackage
+  requestContent
 } from 'src/module/request/server';
 
 import {
-  semverFind
-} from 'src/module/semver';
-
-import {
-  bundleURL,
-  homepageURL,
-  packageFullURL,
-  packageURL
+  bundleURL
 } from 'src/utils/url';
-
-export const loadInfo = async (name: string, version: string) => {
-  const info = await requestPackage<NPMSPackage>(packageURL(name));
-
-  const collected = {
-    description: '',
-    readme: '',
-    homepage: ''
-  };
-
-  if (info.collected.metadata.description) {
-    collected.description = info.collected.metadata.description;
-  }
-
-  if (info.collected.metadata.readme) {
-    try {
-      collected.readme = markdown(info.collected.metadata.readme);
-    } catch (ex: unknown) {
-      console.error(ex);
-    }
-  } else {
-    const fullInfo = await requestPackage<NPMPackage>(packageFullURL(name));
-
-    if (fullInfo.readme) {
-      try {
-        collected.readme = markdown(fullInfo.readme);
-      } catch (ex: unknown) {
-        console.error(ex);
-      }
-    } else {
-      const semver = semverFind(fullInfo.versions, version, (npm) => 'readme' in npm && npm.readme !== '');
-
-      if (semver !== null) {
-        try {
-          collected.readme = markdown(semver.readme!);
-        } catch (ex: unknown) {
-          console.error(ex);
-        }
-      }
-    }
-  }
-
-  if (!collected.readme) {
-    collected.readme = collected.description;
-  }
-
-  if (info.collected.metadata.links) {
-    collected.homepage =
-      info.collected.metadata.links.repository ||
-      info.collected.metadata.links.npm;
-  }
-
-  if (!collected.homepage) {
-    collected.homepage = homepageURL(name);
-  }
-
-  return collected;
-};
 
 const load = async (name: string, query: string) => {
   const content = await requestContent(bundleURL(query));

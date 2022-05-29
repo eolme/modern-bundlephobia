@@ -1,6 +1,8 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
-import { calcInfo, calcSize, loadInfo } from 'src/api/calc';
+import { calcInfo, calcSize } from 'src/api/calc';
+import { loadInfo } from 'src/api/info';
+
 import { ModuleError, ModuleErrorType } from 'src/module/error';
 
 export const getStaticPaths: GetStaticPaths = async () => {

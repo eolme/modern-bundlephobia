@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import type { AnyFunction } from '@vkontakte/vkjs';
-import type { calcSize, loadInfo } from 'src/api/calc';
+import type { calcSize } from 'src/api/calc';
+import type { loadInfo } from 'src/api/info';
 
 import {
   Badge,
