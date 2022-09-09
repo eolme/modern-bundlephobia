@@ -2,12 +2,12 @@ import { default as validate } from 'validate-npm-package-name';
 
 export const isValidName = (name: string) => validate(name).validForNewPackages;
 
-// official semver
-const regexSemver = /^(?:(0|[1-9]\d*)\.){2}(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/;
+// Official semver
+const regexSemver = /^(?:(0|[1-9]\d*)\.){2}(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[A-Za-z-][\dA-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][\dA-Za-z-]*))*))?(?:\+([\dA-Za-z-]+(?:\.[\dA-Za-z-]+)*))?$/;
 
 const isValidSemver = (version: string) => regexSemver.test(version);
 
-// dist-tag
+// Dist-tag
 const regexTag = /\w+/;
 
 export const isValidTag = (tag: string) => regexTag.test(tag);

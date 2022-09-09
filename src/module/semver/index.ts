@@ -27,13 +27,13 @@ export const semverFind = (
   let minor = 0;
   let patch = 0;
 
-  const matched = findable.
-    map((ver) => ({
+  const matched = findable
+    .map((ver) => ({
       version: ver,
       semver: toSemver(version)
-    })).
-    filter((constraint) => constraint.semver[0] <= match[0]).
-    sort((left, right) => {
+    }))
+    .filter((constraint) => constraint.semver[0] <= match[0])
+    .sort((left, right) => {
       major = right.semver[0] - left.semver[0];
 
       if (major === 0) {

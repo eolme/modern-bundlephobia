@@ -6,10 +6,13 @@ export const enum ModuleErrorType {
   REQUEST = 'ERR_REQUEST_INVALID'
 }
 
-export const getErrorStatus = (ex: unknown) => Object(ex).status || 500;
+// eslint-disable-next-line no-new-object
+export const getErrorStatus = (ex: unknown) => new Object(ex).status || 500;
 
+// eslint-disable-next-line functional/no-class
 export class ModuleError extends Error {
-  declare description: string; 
+  declare description: string;
+
   declare status: number;
 
   constructor(type: ModuleErrorType, description = '', status = 500) {
@@ -19,6 +22,7 @@ export class ModuleError extends Error {
     this.description = description;
     this.status = status;
 
+    // eslint-disable-next-line no-undefined
     this.stack = undefined;
   }
 
@@ -29,4 +33,4 @@ export class ModuleError extends Error {
       status: this.status
     };
   }
-};
+}

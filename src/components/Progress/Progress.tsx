@@ -9,7 +9,7 @@ export const Progress: FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    progress.configure({})
+    progress.configure({});
 
     let timer = 0;
 
@@ -40,7 +40,7 @@ export const Progress: FC = () => {
 
       router.events.off('hashChangeStart', start);
       router.events.off('hashChangeComplete', done);
-    }
+    };
   }, []);
 
   return null;
