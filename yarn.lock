@@ -535,6 +535,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/nprogress@npm:^0":
+  version: 0.2.0
+  resolution: "@types/nprogress@npm:0.2.0"
+  checksum: 561384775008ae58111f038f8f9468b3de8987cd753feef9bf6d07af0e1343390d492a078bb08a7b53ac7370208e31e06ac069cb852c435d49f5fe218e9769c4
+  languageName: node
+  linkType: hard
+
 "@types/prismjs@npm:^1.26.0":
   version: 1.26.0
   resolution: "@types/prismjs@npm:1.26.0"
@@ -1375,6 +1382,7 @@ __metadata:
     "@popperjs/core": ^2.11.6
     "@types/node": ^18.7.16
     "@types/node-fetch": ^2.6.2
+    "@types/nprogress": ^0
     "@types/prismjs": ^1.26.0
     "@types/react": ^18.0.18
     "@types/react-dom": ^18.0.6
@@ -1398,6 +1406,7 @@ __metadata:
     next-seo: ^5.5.0
     next-sw: ^2.1.2
     node-fetch: ^3.2.10
+    nprogress: ^0.2.0
     pretty-bytes: ^6.0.0
     prismjs: ^1.29.0
     react: 18.2.0
@@ -3824,6 +3833,13 @@ __metadata:
     semver: 2 || 3 || 4 || 5
     validate-npm-package-license: ^3.0.1
   checksum: 7999112efc35a6259bc22db460540cae06564aa65d0271e3bdfa86876d08b0e578b7b5b0028ee61b23f1cae9fc0e7847e4edc0948d3068a39a2a82853efc8499
+  languageName: node
+  linkType: hard
+
+"nprogress@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "nprogress@npm:0.2.0"
+  checksum: 66b7bec5d563ecf2d1c3d2815e6d5eb74ed815eee8563e0afa63d3f185ab1b9cf2ddd97e1ded263b9995c5019d26d600320e849e50f3747984daa033744619dc
   languageName: node
   linkType: hard
 

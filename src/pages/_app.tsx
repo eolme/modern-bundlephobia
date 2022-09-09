@@ -12,7 +12,8 @@ import {
 } from 'swr';
 
 import {
-  Layout
+  Layout,
+  Progress
 } from 'src/components';
 
 import {
@@ -40,6 +41,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       >
         <SearchProvider>
           <Layout>
+            <Progress />
             <Component {...pageProps} />
           </Layout>
         </SearchProvider>
