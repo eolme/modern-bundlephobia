@@ -30,7 +30,7 @@
     "node_modules",
     "bin",
     "public",
-    "src/stub",
+    "packages",
     "next-seo.config.js",
     "next.config.js"
   ]

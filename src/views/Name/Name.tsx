@@ -96,7 +96,10 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
         {
           hasPkg ?
             (
-              <Markdown html={pkg.readme} />
+              <Markdown
+                key={path}
+                html={pkg.readme}
+              />
             ) :
             (
               <div />

@@ -1,10 +1,10 @@
 .name {
-  color: var(--text_primary);
+  color: var(--vkui--color_text_primary);
   font-weight: 500;
 }
 
 .version {
-  color: var(--text_secondary);
+  color: var(--vkui--color_text_secondary);
   font-size: 0.8em;
 }
 
@@ -43,10 +43,10 @@
 
   border-radius: 0 0 4px 4px;
 
-  border: var(--thin-border) solid var(--field_border);
+  border: var(--thin-border) solid var(--vkui--color_field_border_alpha);
   border-top: 0;
 
-  background-color: var(--modal_card_background);
+  background-color: var(--vkui--color_background_modal);
 }
 
 .label {

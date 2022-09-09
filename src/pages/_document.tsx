@@ -7,10 +7,6 @@ import {
   NextScript
 } from 'next/document';
 
-import {
-  Theme
-} from 'src/components';
-
 import { EMPTY } from 'src/utils/const';
 
 const Document: NextPage = () => {
@@ -26,11 +22,11 @@ const Document: NextPage = () => {
       }}
     >
       <Head />
-      <body
-        className={EMPTY}
-        scheme={EMPTY}
-      >
-        <Theme />
+      <body className={EMPTY}>
+        <script
+          nonce="theme"
+          dangerouslySetInnerHTML={{ __html: `if("function"==typeof matchMedia){let e=document.body,c=matchMedia("(prefers-color-scheme: dark)"),a=()=>{e.className=c.matches?"vkui--vkBase--dark":"vkui--vkBase--light",document.documentElement.style.colorScheme=c.matches?"dark":"light"};c.onchange=a,a()}` }}
+        />
         <Main />
         <NextScript />
       </body>

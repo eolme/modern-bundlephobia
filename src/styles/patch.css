@@ -1,6 +1,6 @@
 .vkui .vkui__root,
 .vkui .vkui__portal-root {
-  --font-common: -apple-system,
+  --palette-vk-font: -apple-system,
     BlinkMacSystemFont,
     'Product Sans',
     'Google Sans',
@@ -13,10 +13,14 @@
     Geneva,
     'Segoe Pro',
     'Segoe UI',
-    sans-serif;
-  --font-display: var(--font-common);
-  --font-tt: var(--font-common);
-  font-family: var(--font-common);
+    sans-serif,
+    'Apple Color Emoji',
+    'Noto Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  --font-common: var(--palette-vk-font);
+  --font-display: var(--palette-vk-font);
+  --font-tt: var(--palette-vk-font);
 }
 
 .vkuiAppRoot {
@@ -62,12 +66,16 @@ code::-webkit-scrollbar-thumb {
 
 .vkui--vkBase--light::-webkit-scrollbar-thumb,
 .vkui--vkBase--light code::-webkit-scrollbar-thumb {
-  background-color: #d3d9de;
+  border: 1px solid transparent;
+  background: #d3d9de;
+  background-clip: content-box;
 }
 
 .vkui--vkBase--dark::-webkit-scrollbar-thumb,
 .vkui--vkBase--dark code::-webkit-scrollbar-thumb {
-  background-color: #828282;
+  border: 1px solid transparent;
+  background: #828282;
+  background-clip: content-box;
 }
 
 html,
@@ -77,7 +85,6 @@ body,
 }
 
 @media (prefers-color-scheme: dark) {
-
   html,
   body,
   .vkuiAppRoot {

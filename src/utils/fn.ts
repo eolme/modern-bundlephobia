@@ -13,3 +13,11 @@ export const once = <T extends AnyFunction>(fn: T) => {
     return result;
   } as T;
 };
+
+export const idle = (fn: () => void) => {
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(fn, { timeout: 300 });
+  } else {
+    setTimeout(fn, 300);
+  }
+};

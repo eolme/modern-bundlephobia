@@ -40,6 +40,7 @@ const SearchComponentSpinner = (
     aria-live="polite"
     role="status"
     size="small"
+    height={24}
   />
 );
 
