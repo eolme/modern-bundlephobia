@@ -6,8 +6,8 @@ export const enum ModuleErrorType {
   REQUEST = 'ERR_REQUEST_INVALID'
 }
 
-// eslint-disable-next-line no-new-object
-export const getErrorStatus = (ex: unknown) => new Object(ex).status || 500;
+// eslint-disable-next-line no-new-object, unicorn/new-for-builtins
+export const getErrorStatus = (ex: unknown) => Object(ex).status || 500;
 
 // eslint-disable-next-line functional/no-class
 export class ModuleError extends Error {
