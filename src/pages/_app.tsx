@@ -1,84 +1,59 @@
 import type { FC } from 'react';
-import type { AppProps, AppContext, AppInitialProps } from 'next/app';
+import type { AppProps } from 'next/app';
 
 import 'src/styles/index.css';
-
-import {
-  default as Next
-} from 'next/app';
 
 import {
   DefaultSeo
 } from 'next-seo';
 
 import {
-  ThemeProvider
-} from 'next-themes';
-
-import {
   SWRConfig
 } from 'swr';
 
 import {
-  SearchProvider
-} from 'src/contexts';
+  Layout,
+  Progress
+} from 'src/components';
 
 import {
-  Layout
-} from 'src/components';
+  SearchProvider
+} from 'src/contexts/search';
+
+import {
+  SnackbarProvider
+} from 'src/contexts/snackbar';
 
 import {
   default as SEO
 } from '../../next-seo.config';
 
-type NextApp = FC<AppProps> & {
-  getInitialProps: (context: AppContext) => Promise<AppInitialProps>; 
-};
+import {
+  searchNPM
+} from 'src/api/npm';
 
-const App: NextApp = ({ Component, pageProps }) => {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <DefaultSeo {...SEO} />
-      <SWRConfig>
-        <ThemeProvider
-          enableSystem={true}
-          enableColorScheme={true}
-          attribute="scheme"
-        >
-          <Layout touch={pageProps.touch}>
-            <SearchProvider>
+      <SWRConfig
+        value={{
+          fetcher: searchNPM,
+          suspense: false,
+          keepPreviousData: true
+        }}
+      >
+        <SearchProvider>
+          <Layout>
+            <Progress />
+            <SnackbarProvider>
               <Component {...pageProps} />
-            </SearchProvider>
+            </SnackbarProvider>
           </Layout>
-        </ThemeProvider>
+        </SearchProvider>
       </SWRConfig>
     </>
   );
-};
-
-App.getInitialProps = async (context) => {
-  const props = await Next.getInitialProps(context);
-
-  let touch = false;
-
-  if (context.ctx.req) {
-    const Detect = (await import('mobile-detect')).default;
-
-    const user = context.ctx.req.headers['user-agent'] || '';
-    const instance = Reflect.construct(Detect, [user]);
-
-    touch = instance.phone() !== null;
-  } else {
-    const utils = await import('@vkontakte/vkjs');
-
-    touch = utils.hasMouse;
-  }
-
-  Object.assign(props.pageProps, {
-    touch
-  });
-
-  return props;
 };
 
 export default App;

@@ -1,24 +1,56 @@
 .name {
-  color: var(--text_primary);
+  color: var(--vkui--color_text_primary);
   font-weight: 500;
 }
 
 .version {
-  color: var(--text_secondary);
+  color: var(--vkui--color_text_secondary);
   font-size: 0.8em;
 }
 
 .option {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.option[disabled] {
+  cursor: default;
+}
+
+.option :global(.vkuiSimpleCell__children) {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.search {
-  text-align: left;
+.input input::-webkit-search-cancel-button {
+  display: none;
 }
 
-.search :global(.vkuiSelect__container),
-.search :global(.vkuiInput) {
-  font-size: 16px;
+.input input::-ms-clear {
+  display: none;
+}
+
+.open :global(.vkuiFormField__border) {
+  border-radius: 4px 4px 0 0;
+}
+
+.list {
+  width: 100%;
+  box-sizing: border-box;
+
+  border-radius: 0 0 4px 4px;
+
+  border: var(--thin-border) solid var(--vkui--color_field_border_alpha);
+  border-top: 0;
+
+  background-color: var(--vkui--color_background_modal);
+}
+
+.label {
+  display: block;
+  margin: 0 auto;
+  max-width: 550px;
 }

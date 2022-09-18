@@ -1,74 +1,112 @@
 import type { NextPage } from 'next';
-import type { calc } from 'src/api/calc';
+import type { AnyFunction } from '@vkontakte/vkjs';
+import type { calcSize } from 'src/api/calc';
+import type { loadInfo } from 'src/api/info';
 
 import {
-  NextSeo
-} from 'next-seo';
-
-import {
-  Search,
-  Badge
+  Badge,
+  Markdown,
+  Skeleton
 } from 'src/components';
 
-import {
-  SearchContent
-} from 'src/contexts';
+import { NextSeo } from 'next-seo';
 
-import { useContext } from 'react';
+import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 
-import { fromPath } from 'src/utils/module';
+import { SizeType } from 'src/utils/const';
+import { formatPagePath } from 'src/utils/format';
 
 import styles from './Name.module.css';
 
+type NamePropsValue<T extends AnyFunction> = Awaited<ReturnType<T>> | undefined;
+
 type NameProps = {
-  size: Awaited<ReturnType<typeof calc>>;
+  pkg: NamePropsValue<typeof loadInfo>;
+  size: NamePropsValue<typeof calcSize>;
 };
 
-export const Name: NextPage<NameProps> = ({ size }) => {
+export const Name: NextPage<NameProps> = ({ pkg, size }) => {
   const router = useRouter();
-  const context = useContext(SearchContent);
 
-  const name = router.isFallback ? context.search || fromPath(router.asPath) : size.name;
-  const selected = context.results.find((option) => option.value === name);
+  const hasPkg = router.isReady && typeof pkg !== 'undefined';
+  const hasSize = router.isReady && typeof size !== 'undefined';
 
-  if (context.search !== name) {
-    context.setSearch(name);
-  }
+  const path = formatPagePath(router.asPath);
+  const image = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og/${path}`;
+  const canonical = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/p/${path}`;
 
   return (
-    <>
+    <Fragment key="page">
       <NextSeo
-        title={name}
-        description={selected ? selected.npm.package.description : ''}
+        title={path}
+        description={pkg?.description}
+        twitter={{
+          cardType: 'summary_large_image'
+        }}
+        additionalMetaTags={[{
+          name: 'image',
+          content: image
+        }]}
+        additionalLinkTags={[{
+          rel: 'image_src',
+          type: 'image/jpeg',
+          href: image
+        }, {
+          keyOverride: 'canonical',
+          rel: 'canonical',
+          href: canonical
+        }]}
+        openGraph={{
+          images: [{
+            url: image,
+            type: 'image/jpeg',
+            width: 1074,
+            height: 480
+          }]
+        }}
       />
-      <div className={styles.container}>
-        <Search value={name} />
-        <div className={styles.badges}>
-          {
-            router.isFallback || !router.isReady ? (
-              <>
-                loading
-              </>
-            ) : (
+      <section className={styles.badges}>
+        {
+          hasSize ?
+            (
               <>
                 <Badge
-                  name="minified"
+                  type={SizeType.BYTES}
+                  name={size.name}
                   size={size.bytes}
                 />
                 <Badge
-                  name="gzip"
+                  type={SizeType.GZIP}
+                  name={size.name}
                   size={size.gzip}
                 />
                 <Badge
-                  name="brotli"
+                  type={SizeType.BROTLI}
+                  name={size.name}
                   size={size.brotli}
                 />
               </>
+            ) :
+            (
+              <Skeleton mode="badge" />
             )
-          }
-        </div>
+        }
+      </section>
+      <div className={styles.block}>
+        {
+          hasPkg ?
+            (
+              <Markdown
+                key={path}
+                html={pkg.readme}
+              />
+            ) :
+            (
+              <Skeleton mode="text" />
+            )
+        }
       </div>
-    </>
-  )
+    </Fragment>
+  );
 };

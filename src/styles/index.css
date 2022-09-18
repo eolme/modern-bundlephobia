@@ -1,3 +1,4 @@
-@import "./vkui.css";
 @import "./components.css";
 @import "./patch.css";
+@import "./highlight.css";
+@import "./progress.css";

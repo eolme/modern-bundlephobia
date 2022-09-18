@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  max-width: 924px;
+
+  margin: 0 auto auto auto;
+  padding: calc(var(--vh, 1vh) * 50 - 88px) 12px 12px 12px;
+
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 8px;
+  color: var(--vkui--color_text_primary);
+}
+
+.subhead {
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--vkui--color_text_primary);
+}

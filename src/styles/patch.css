@@ -1,3 +1,113 @@
-.vkuiSelect__title {
-  user-select: none;
+.vkui .vkui__root,
+.vkui .vkui__portal-root {
+  --palette-vk-font: -apple-system,
+    BlinkMacSystemFont,
+    'Product Sans',
+    'Google Sans',
+    'Noto Sans',
+    'Open Sans',
+    system-ui,
+    Roboto,
+    RobotoDraft,
+    'Helvetica Neue',
+    Geneva,
+    'Segoe Pro',
+    'Segoe UI',
+    sans-serif,
+    'Apple Color Emoji',
+    'Noto Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  --font-common: var(--palette-vk-font);
+  --font-display: var(--palette-vk-font);
+  --font-tt: var(--palette-vk-font);
+
+  --skeleton-start: var(--vkui--color_background_content--hover);
+  --skeleton-stop: var(--vkui--color_background_content--active);
+}
+
+.vkuiAppRoot {
+  height: auto;
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+body {
+  overflow-y: scroll;
+  overflow-y: overlay;
+
+  scrollbar-width: thin;
+
+  app-region: no-drag;
+  user-drag: none;
+}
+
+body::-webkit-scrollbar,
+body::-webkit-scrollbar-track,
+code::-webkit-scrollbar,
+code::-webkit-scrollbar-track {
+  width: 8px;
+  height: 8px;
+
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb,
+code::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+
+.vkui--vkBase--light,
+.vkui--vkBase--light code {
+  scrollbar-color: #d3d9de transparent;
+}
+
+.vkui--vkBase--dark,
+.vkui--vkBase--dark code {
+  scrollbar-color: #828282 transparent;
+}
+
+.vkui--vkBase--light::-webkit-scrollbar-thumb,
+.vkui--vkBase--light code::-webkit-scrollbar-thumb {
+  border: 1px solid transparent;
+  background: #d3d9de;
+  background-clip: content-box;
+}
+
+.vkui--vkBase--dark::-webkit-scrollbar-thumb,
+.vkui--vkBase--dark code::-webkit-scrollbar-thumb {
+  border: 1px solid transparent;
+  background: #828282;
+  background-clip: content-box;
+}
+
+html,
+body,
+.vkuiAppRoot {
+  background-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body,
+  .vkuiAppRoot {
+    background-color: #19191a;
+  }
+}
+
+.vkuiFormField:not(.vkuiFormField--disabled) .vkuiFormField__border--hover {
+  background-color: var(--field_background);
+}
+
+.vkuiFormField {
+  border-radius: 4px;
+}
+
+.vkuiSnackbar--desktop {
+  max-width: none;
+  min-width: 0;
+  width: auto;
 }

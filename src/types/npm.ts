@@ -1,16 +1,24 @@
-export type NPM = {
+export type NPMSearchPackage = {
   name: string;
   description: string;
   version: string;
 };
 
 export type NPMSearch = {
-  package: NPM;
+  package: NPMSearchPackage;
   searchScore: number;
 };
 
-export type NPMSearchOption = {
-  label: string;
-  value: string;
-  npm: NPMSearch;
-}
+export type NPMPackage = {
+  time: {
+    modified: string;
+  };
+  description?: string;
+  readme?: string;
+  homepage?: string;
+  repository?: {
+    type: string;
+    url: string;
+  };
+  versions: Record<string, NPMPackage>;
+};

@@ -1,63 +1,44 @@
-const path = require('path');
-const alias = require('module-alias');
 const sw = require('next-sw').default;
 
-const stub = (name) => path.resolve('src/stub', name + '.js');
-const stubModules = {
-  '@vkontakte/vk-bridge': stub('bridge'),
-  'mitt': stub('mitt')
-};
-
-alias.addAliases(stubModules);
-
-const mainFields = [
-  // Non-standard esm
-  'modern',
-  'esm',
-  'esnext',
-
-  // Previous de-facto standard
-  'jsnext:main',
-  'jsnext',
-
-  // These are generally shipped as a higher ES language level than `module`
-  'es2015',
-  'esm2015',
-  'fesm2015',
-
-  // Current leading de-facto standard
-  'module',
-
-  // Lower ES level
-  'esm5',
-  'fesm5',
-
-  // Standard
-  'main',
-  'browser'
-];
+const mainFields = ['modern', 'esm', 'esnext', 'jsnext:main', 'jsnext', 'es2015', 'esm2015', 'fesm2015', 'module', 'esm5', 'fesm5', 'main', 'browser'];
+const empty = [];
 
 module.exports = sw({
-  serviceWorker: {
-    entry: 'src/sw/index.ts'
-  },
+  entry: 'src/sw/index.ts'
+})({
   reactStrictMode: false,
+  swcMinify: true,
   experimental: {
-    runtime: 'nodejs',
-    reactRoot: true,
-    serverComponents: false,
-
     esmExternals: 'loose',
-    fullySpecified: false
-  },
-  webpack(config, context) {
-    config.resolve.alias = Object.assign(stubModules, config.resolve.alias);
-    config.resolve.mainFields = mainFields;
+    fullySpecified: false,
 
-    if (!context.isServer) {
-      const fallback = config.resolve.fallback = config.resolve.fallback || {};
-      fallback.fs = require.resolve('suman-browser-polyfills/modules/fs');
-    }
+    legacyBrowsers: false,
+    browsersListForSwc: false,
+    disablePostcssPresetEnv: true
+  },
+  webpack(config) {
+    // Force new
+    config = Object.assign({}, config);
+
+    // Force esm
+    config.resolve.mainFields = mainFields;
+    config.resolve.aliasFields = mainFields;
+
+    // Disable condition resolve
+    config.resolve.importsFields = empty;
+    config.resolve.exportsFields = empty;
+    config.resolve.conditionNames = empty;
+
+    config.module.rules.unshift({
+      test: /\.svg$/,
+      type: 'asset/source',
+      issuer: {
+        not: /\.(css|scss|sass)$/
+      },
+      dependency: {
+        not: ['url']
+      }
+    });
 
     return config;
   }

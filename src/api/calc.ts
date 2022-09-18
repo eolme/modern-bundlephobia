@@ -1,68 +1,116 @@
 import {
-  matchModuleLink,
-  toModuleName,
-  toModuleVersion,
-  isValidModuleName,
-  isValidModuleVersion,
-  toModuleQuery,
-  toModuleFullQuery
-} from 'src/utils/module';
+  deepEntry,
+  fullQueryToName,
+  fullQueryToVersion,
+  isValidName,
+  isValidVersion,
+  linkToVersion,
+  paramsToQuery,
+  queryToFullQuery
+} from 'src/module/bundle';
 
 import {
-  gzip,
-  brotli
-} from 'src/utils/compress';
- 
-import {
-  requestModule
-} from 'src/utils/request';
+  fastBrotli,
+  fastGzip
+} from 'src/module/compress';
 
 import {
-  ModuleError
-} from 'src/utils/error';
+  ModuleError,
+  ModuleErrorType
+} from 'src/module/error';
 
-import { Buffer } from 'node:buffer';
+import {
+  requestBuffer,
+  requestContent
+} from 'src/module/request/server';
 
-const load = async (name: string) => {
-  const entry = await requestModule(`https://esm.sh/${name}?no-check&target=esnext`);
+import {
+  bundleURL
+} from 'src/utils/url';
 
-  const deepLink = matchModuleLink(entry);
+const load = async (name: string, query: string) => {
+  const content = await requestContent(bundleURL(query));
+
+  const deepLink = deepEntry(content);
+
   if (deepLink === null) {
-    throw new ModuleError('ERR_EMPTY_RESPONSE', name, 400);
+    throw new ModuleError(ModuleErrorType.EMPTY, query, 422);
   }
 
-  return requestModule(deepLink);
-};
+  const version = linkToVersion(name, deepLink);
 
-export const calc = async (params: string | string[]) => {
-  const raw = toModuleQuery(params);
-  let query = toModuleFullQuery(raw);
-
-  const name = toModuleName(query);
-
-  if (!isValidModuleName(name)) {
-    throw new ModuleError('ERR_NAME_INVALID', name, 400);
+  if (!isValidVersion(version)) {
+    throw new ModuleError(ModuleErrorType.VERSION, version, 422);
   }
 
-  const version = toModuleVersion(query);
-
-  if (!isValidModuleVersion(version)) {
-    throw new ModuleError('ERR_VERSION_INVALID', version, 400);
-  }
-
-  query = `${name}@${version}`;
-
-  const content = await load(query);
-
-  const bytes = Buffer.byteLength(content, 'utf8');
+  const buffer = await requestBuffer(deepLink);
 
   return {
-    raw,
-    name,
-    query,
-    version,
-    bytes,
-    gzip: gzip(content, bytes),
-    brotli: brotli(content, bytes)
+    buffer,
+    version
   } as const;
+};
+
+export const calcInfo = async (params: string | string[]) => {
+  const query = paramsToQuery(params);
+  const fullQuery = queryToFullQuery(query);
+
+  const name = fullQueryToName(fullQuery);
+
+  if (!isValidName(name)) {
+    throw new ModuleError(ModuleErrorType.NAME, name, 422);
+  }
+
+  const version = fullQueryToVersion(fullQuery);
+
+  if (!isValidVersion(version)) {
+    throw new ModuleError(ModuleErrorType.VERSION, version, 422);
+  }
+
+  const loaded = await load(name, fullQuery);
+
+  return {
+    name,
+    version,
+    query: fullQuery,
+    loaded
+  } as const;
+};
+
+export const calcSize = async (info: Awaited<ReturnType<typeof calcInfo>>) => {
+  const [gzip, brotli] = await Promise.all([
+    fastGzip(info.loaded.buffer),
+    fastBrotli(info.loaded.buffer)
+  ]);
+
+  // With matched version
+  const query = `${info.name}@${info.loaded.version}`;
+
+  return {
+    raw: info.query,
+    name: info.name,
+    query,
+    version: info.loaded.version,
+    bytes: info.loaded.buffer.byteLength,
+    gzip,
+    brotli
+  } as const;
+};
+
+export const calcSizeBytes = async (params: string | string[]) => {
+  const info = await calcInfo(params);
+
+  return info.loaded.buffer.byteLength;
+};
+
+export const calcSizeGzip = async (params: string | string[]) => {
+  const info = await calcInfo(params);
+
+  return fastGzip(info.loaded.buffer);
+};
+
+export const calcSizeBrotli = async (params: string | string[]) => {
+  const info = await calcInfo(params);
+
+  return fastBrotli(info.loaded.buffer);
 };

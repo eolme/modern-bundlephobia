@@ -1,39 +1,48 @@
 import type { FC } from 'src/types/react';
-import type { Appearance } from '@mntm/vkui';
 
 import {
-  ConfigProvider,
   AdaptivityProvider,
-  Platform,
-  WebviewType,
-  SizeType,
-  ViewHeight,
-  ViewWidth,
   AppRoot,
-  SplitLayout,
-  SplitCol,
-  Panel
+  ConfigProvider,
+  Platform,
+  SizeType,
+  Subhead,
+  Title,
+  ViewHeight,
+  ViewWidth, WebviewType
 } from '@mntm/vkui';
 
-import { useTheme } from 'next-themes';
+import {
+  Search
+} from 'src/components';
 
-const WIDTH = '100%';
+import { useState } from 'react';
+import { useLayoutMount } from 'ahks';
+import { useAppearance, useScheme } from 'src/hooks';
 
-type LayoutProps = {
-  touch: boolean;
-};
+import { hasHover, hasMouse } from '@vkontakte/vkjs';
 
-export const Layout: FC<LayoutProps> = ({ children, touch }) => {
-  const { resolvedTheme } = useTheme();
+import styles from './Layout.module.css';
 
-  const appearance = (resolvedTheme || 'light') as Appearance;
+export const Layout: FC = ({ children }) => {
+  const [mouse, setMouse] = useState(false);
+
+  const scheme = useScheme();
+  const appearance = useAppearance();
+
+  useLayoutMount(() => {
+    setMouse(hasHover && hasMouse);
+
+    document.documentElement.style.setProperty('--vh', `${0.01 * window.innerHeight}px`);
+  });
 
   return (
     <ConfigProvider
-      appearance={appearance}
-      isWebView={true}
-      platform={Platform.VKCOM}
+      isWebView={false}
       hasNewTokens={true}
+      scheme={scheme}
+      appearance={appearance}
+      platform={Platform.ANDROID}
       transitionMotionEnabled={false}
       webviewType={WebviewType.INTERNAL}
     >
@@ -42,35 +51,32 @@ export const Layout: FC<LayoutProps> = ({ children, touch }) => {
         sizeY={SizeType.REGULAR}
         viewHeight={ViewHeight.MEDIUM}
         viewWidth={ViewWidth.DESKTOP}
-        hasMouse={!touch}
-        deviceHasHover={!touch}
+        hasMouse={mouse}
+        deviceHasHover={mouse}
       >
         <AppRoot
           mode="full"
           noLegacyClasses={true}
           scroll="global"
         >
-          <SplitLayout
-            modal={null}
-            popout={null}
-            header={null}
-          >
-            <SplitCol
-              animate={false}
-              width={WIDTH}
-              minWidth={WIDTH}
-              maxWidth={WIDTH}
-              spaced={false}
-              fixed={false}
+          <main className={styles.container}>
+            <Title
+              Component="h1"
+              level="1"
+              className={styles.title}
             >
-              <Panel
-                id="layout"
-                centered={false}
-              >
-                {children}
-              </Panel>
-            </SplitCol>
-          </SplitLayout>
+              Modern Bundlephobia
+            </Title>
+            <Subhead
+              Component="h2"
+              weight="3"
+              className={styles.subhead}
+            >
+              find the cost of adding a npm package to your bundle
+            </Subhead>
+            <Search />
+            {children}
+          </main>
         </AppRoot>
       </AdaptivityProvider>
     </ConfigProvider>

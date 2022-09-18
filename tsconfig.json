@@ -22,10 +22,16 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    "next-dom.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "bin",
+    "public",
+    "packages",
+    "next-seo.config.js",
+    "next.config.js"
   ]
 }

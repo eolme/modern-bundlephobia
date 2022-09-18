@@ -1,15 +1,25 @@
-import type { NPMSearch } from 'src/types/npm';
+import type { NPMSSearch } from 'src/types/npms';
 
-const scope = (a: NPMSearch, b: NPMSearch) => b.searchScore - a.searchScore;
+import { requestSearch } from 'src/module/request/client';
 
-export const npm = async (name: string): Promise<NPMSearch[]> => {
-  const response = await fetch(`https://registry.npmjs.org/-/v1/search?size=8&quality=0.0&maintenance=0.0&popularity=1.0&text=${name}`);
+import { searchURL } from 'src/utils/url';
+import { NOTHING } from 'src/utils/const';
 
-  if (!response.ok) {
-    return [];
+const isContentful = (search: NPMSSearch) => !(
+  search.package.name.startsWith('@types/') ||
+  search.package.name.endsWith('/types')
+);
+
+const sortScore = (searchLeft: NPMSSearch, searchRight: NPMSSearch) => searchRight.searchScore - searchLeft.searchScore;
+
+export const searchNPM = async (name: string) => {
+  try {
+    const json = await requestSearch(searchURL(name));
+
+    return (json as NPMSSearch[]).filter(isContentful).slice(0, 4).sort(sortScore);
+  } catch (ex: unknown) {
+    console.error(ex);
+
+    return NOTHING as NPMSSearch[];
   }
-
-  const json = await response.json();
-
-  return json.objects.sort(scope);
 };

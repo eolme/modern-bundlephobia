@@ -1,14 +1,15 @@
-.container {
-  width: 100%;
-  max-width: 550px;
-
-  margin: auto;
-}
-
 .badges {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 4px;
 
   margin-top: 12px;
+}
+
+.block {
+  margin: 64px 0 8px;
+
+  display: flex;
+  flex-direction: column;
 }

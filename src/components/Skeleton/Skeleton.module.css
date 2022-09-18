@@ -1,0 +1,93 @@
+.skeleton {
+  background-image: linear-gradient(to right, var(--skeleton-start) 20%, var(--skeleton-start), var(--skeleton-stop) 80%);
+  background-position: 0 0;
+  background-size: 200% 100%;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+@keyframes skeleton-text {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: -200%;
+  }
+}
+
+@keyframes skeleton-badge-1 {
+  0% {
+    background-position: 0;
+  }
+  40% {
+    background-position: -200%;
+  }
+  100% {
+    background-position: -200%;
+  }
+}
+
+@keyframes skeleton-badge-2 {
+  0% {
+    background-position: 0;
+  }
+  20% {
+    background-position: 0;
+  }
+  60% {
+    background-position: -200%;
+  }
+  100% {
+    background-position: -200%;
+  }
+}
+
+@keyframes skeleton-badge-3 {
+  0% {
+    background-position: 0;
+  }
+  40% {
+    background-position: 0;
+  }
+  100% {
+    background-position: -200%;
+  }
+}
+
+.badge {
+  width: 100px;
+  height: 20px;
+}
+
+.badge:nth-of-type(1) {
+  animation: skeleton-badge-1 1s linear 0s infinite forwards;
+}
+
+.badge:nth-of-type(2) {
+  animation: skeleton-badge-2 1s linear 0s infinite forwards;
+}
+
+.badge:nth-of-type(3) {
+  animation: skeleton-badge-3 1s linear 0s infinite forwards;
+}
+
+.text {
+  margin: var(--margin) auto var(--margin) 0;
+  height: var(--height);
+
+  animation: skeleton-text 2s linear 0s infinite forwards;
+}
+
+.text:nth-of-type(1) {
+  width: 100%;
+
+  --height: calc(0.8 * var(--vkui--font_title1--font_size--regular));
+  --margin: calc(0.5 * (var(--vkui--font_title1--line_height--regular) - var(--height)));
+}
+
+.text:nth-of-type(n + 2) {
+  width: 100%;
+
+  --height: calc(0.8 * var(--vkui--font_text--font_size--regular));
+  --margin: calc(0.5 * (var(--vkui--font_text--line_height--regular) - var(--height)));
+}
