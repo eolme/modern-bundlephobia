@@ -105,3 +105,9 @@ body,
 .vkuiFormField {
   border-radius: 4px;
 }
+
+.vkuiSnackbar--desktop {
+  max-width: none;
+  min-width: 0;
+  width: auto;
+}
