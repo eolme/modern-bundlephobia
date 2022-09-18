@@ -19,4 +19,7 @@
 @import "@mntm/vkui/dist/components/Typography/Subhead/Subhead.css";
 
 /* Snackbar */
+@import "@mntm/vkui/dist/components/Typography/Paragraph/Paragraph.css";
+@import "@mntm/vkui/dist/components/Tappable/Tappable.css";
+@import "@mntm/vkui/dist/components/Button/Button.css";
 @import "@mntm/vkui/dist/components/Snackbar/Snackbar.css";
