@@ -33,7 +33,7 @@
   display: none;
 }
 
-.open {
+.open :global(.vkuiFormField__border) {
   border-radius: 4px 4px 0 0;
 }
 

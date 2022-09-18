@@ -21,6 +21,9 @@
   --font-common: var(--palette-vk-font);
   --font-display: var(--palette-vk-font);
   --font-tt: var(--palette-vk-font);
+
+  --skeleton-start: var(--vkui--color_background_content--hover);
+  --skeleton-stop: var(--vkui--color_background_content--active);
 }
 
 .vkuiAppRoot {
@@ -37,6 +40,9 @@ body {
   overflow-y: overlay;
 
   scrollbar-width: thin;
+
+  app-region: no-drag;
+  user-drag: none;
 }
 
 body::-webkit-scrollbar,

@@ -1,21 +1,14 @@
 const sw = require('next-sw').default;
-const analyze = require('@next/bundle-analyzer');
 
 const mainFields = ['modern', 'esm', 'esnext', 'jsnext:main', 'jsnext', 'es2015', 'esm2015', 'fesm2015', 'module', 'esm5', 'fesm5', 'main', 'browser'];
 const empty = [];
 
-module.exports = analyze({
-  enabled: process.env.ANALYZE === '1'
-})(sw({
+module.exports = sw({
   entry: 'src/sw/index.ts'
 })({
   reactStrictMode: false,
   swcMinify: true,
   experimental: {
-    runtime: 'nodejs',
-    reactRoot: true,
-    serverComponents: false,
-
     esmExternals: 'loose',
     fullySpecified: false,
 
@@ -49,4 +42,4 @@ module.exports = analyze({
 
     return config;
   }
-}));
+});

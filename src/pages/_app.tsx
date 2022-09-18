@@ -21,6 +21,10 @@ import {
 } from 'src/contexts/search';
 
 import {
+  SnackbarProvider
+} from 'src/contexts/snackbar';
+
+import {
   default as SEO
 } from '../../next-seo.config';
 
@@ -42,7 +46,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         <SearchProvider>
           <Layout>
             <Progress />
-            <Component {...pageProps} />
+            <SnackbarProvider>
+              <Component {...pageProps} />
+            </SnackbarProvider>
           </Layout>
         </SearchProvider>
       </SWRConfig>

@@ -17,3 +17,6 @@
 /* IndexPage */
 @import "@mntm/vkui/dist/components/Typography/Title/Title.css";
 @import "@mntm/vkui/dist/components/Typography/Subhead/Subhead.css";
+
+/* Snackbar */
+@import "@mntm/vkui/dist/components/Snackbar/Snackbar.css";

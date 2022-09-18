@@ -19,4 +19,5 @@ const bridge = {
 };
 
 module.exports = bridge;
+module.exports.bridge = bridge;
 module.exports.default = bridge;

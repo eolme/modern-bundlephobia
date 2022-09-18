@@ -9,7 +9,7 @@
   color: var(--vkui--color_text_primary);
 
   font-size: var(--vkui--font_text--font_size--regular);
-  line-height: var(--vkui--font_text--line_height-regular);
+  line-height: var(--vkui--font_text--line_height--regular);
   font-weight: var(--vkui--font_text--font_weight--regular);
 }
 

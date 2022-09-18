@@ -5,7 +5,8 @@ import type { loadInfo } from 'src/api/info';
 
 import {
   Badge,
-  Markdown
+  Markdown,
+  Skeleton
 } from 'src/components';
 
 import { NextSeo } from 'next-seo';
@@ -65,11 +66,11 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
           }]
         }}
       />
-      <div>
+      <section className={styles.badges}>
         {
           hasSize ?
             (
-              <section className={styles.badges}>
+              <>
                 <Badge
                   type={SizeType.BYTES}
                   name={size.name}
@@ -85,13 +86,13 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
                   name={size.name}
                   size={size.brotli}
                 />
-              </section>
+              </>
             ) :
             (
-              <div />
+              <Skeleton mode="badge" />
             )
         }
-      </div>
+      </section>
       <div className={styles.block}>
         {
           hasPkg ?
@@ -102,7 +103,7 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
               />
             ) :
             (
-              <div />
+              <Skeleton mode="text" />
             )
         }
       </div>

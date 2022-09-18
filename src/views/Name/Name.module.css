@@ -9,4 +9,7 @@
 
 .block {
   margin: 64px 0 8px;
+
+  display: flex;
+  flex-direction: column;
 }
