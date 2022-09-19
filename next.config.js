@@ -1,6 +1,6 @@
 const sw = require('next-sw').default;
 
-const mainFields = ['modern', 'esm', 'esnext', 'jsnext:main', 'jsnext', 'es2015', 'esm2015', 'fesm2015', 'module', 'esm5', 'fesm5', 'main', 'browser'];
+const mainFields = ['modern', 'esmodule', 'esm', 'esnext', 'jsnext:main', 'jsnext', 'es2015', 'esm2015', 'fesm2015', 'module', 'esm5', 'fesm5', 'main', 'browser'];
 const empty = [];
 
 module.exports = sw({
@@ -28,6 +28,16 @@ module.exports = sw({
     config.resolve.importsFields = empty;
     config.resolve.exportsFields = empty;
     config.resolve.conditionNames = empty;
+
+    // Hack resolution
+    config.resolve.extensions =
+      config.resolve.extensions.flatMap((ext) =>
+        /\.m?(t|j)sx?/.test(ext) ? [
+          `.modern${ext}`,
+          `.module${ext}`,
+          ext
+        ] : ext
+      );
 
     config.module.rules.unshift({
       test: /\.svg$/,
