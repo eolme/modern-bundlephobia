@@ -1,23 +1,17 @@
+pre,
+code {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Google Sans', 'Product Sans', 'Noto Sans', Roboto, 'Segoe Pro', 'Segoe UI', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", emoji;
+}
+
 .vkui .vkui__root,
 .vkui .vkui__portal-root {
-  --palette-vk-font: -apple-system,
-    BlinkMacSystemFont,
-    'Product Sans',
-    'Google Sans',
-    'Noto Sans',
-    'Open Sans',
-    system-ui,
-    Roboto,
-    RobotoDraft,
-    'Helvetica Neue',
-    Geneva,
-    'Segoe Pro',
-    'Segoe UI',
-    sans-serif,
-    'Apple Color Emoji',
-    'Noto Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol';
+  --palette-vk-font: -apple-system, BlinkMacSystemFont, 'Google Sans', 'Product Sans', 'Noto Sans', Roboto, 'Segoe Pro', 'Segoe UI', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", emoji;
+
   --font-common: var(--palette-vk-font);
   --font-display: var(--palette-vk-font);
   --font-tt: var(--palette-vk-font);

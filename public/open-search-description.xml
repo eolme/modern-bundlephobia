@@ -6,12 +6,12 @@
     <InputEncoding>UTF-8</InputEncoding>
     <OutputEncoding>UTF-8</OutputEncoding>
     <Language>en-us</Language>
-    <Image width="32" height="32" type="image/png">https://phobia.vercel.app/favicon-32x32.png</Image>
+    <Image width="32" height="32" type="image/png">https://phobia.vercel.app/favicon.png</Image>
     <Tags>bundlephobia</Tags>
     <Url type="application/opensearchdescription+xml"
          rel="self"
          template="https://phobia.vercel.app/open-search-description.xml" />
     <Url type="text/html"
-         template="https://phobia.vercel.app/{searchTerms}"/>
+         template="https://phobia.vercel.app/p/{searchTerms}"/>
     <moz:SearchForm>https://phobia.vercel.app</moz:SearchForm>
 </OpenSearchDescription>

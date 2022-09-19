@@ -1,8 +1,6 @@
 .markdown pre,
 .markdown code {
   margin: 0;
-
-  font-family: 'Menlo', 'Consolas', 'Noto Sans Mono', 'Roboto Mono', 'Droid Sans Mono', 'Helvetica Mono', 'Segoe UI Mono', 'Segoe Mono Boot', 'Segoe Mono', 'Inconsolata', 'Courier New', 'Monaco', ui-monospace, monospace;
 }
 
 .markdown {
@@ -28,8 +26,8 @@
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  margin-top: 12px;
-  margin-bottom: 8px;
+  margin-top: 24px;
+  margin-bottom: 16px;
 }
 
 .markdown p,
@@ -38,8 +36,6 @@
 }
 
 .markdown blockquote {
-  font-style: italic;
-
   padding: 16px;
   background-color: var(--vkui--color_background_content--hover);
   border-radius: 8px;
@@ -50,12 +46,13 @@
 .markdown blockquote > p:not(:last-child),
 .markdown ul:not(:last-child),
 .markdown ol:not(:last-child),
-.markdown pre > code {
-  margin-bottom: 8px;
+.markdown pre > code,
+.markdown table:not(:last-child) {
+  margin-bottom: 16px;
 }
 
 .markdown li:not(:last-child) {
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .markdown h1 {

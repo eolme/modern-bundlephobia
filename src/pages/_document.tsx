@@ -21,7 +21,25 @@ const Document: NextPage = () => {
         '--vh': '1vh'
       }}
     >
-      <Head />
+      <Head>
+        <link
+          key="ico"
+          rel="icon"
+          href="/favicon.ico"
+          sizes="any"
+        />
+        <link
+          key="svg"
+          rel="icon"
+          href="/favicon.svg"
+          type="image/svg+xml"
+        />
+        <link
+          rel="manifest"
+          href="/manifest.json"
+          type="application/manifest+json"
+        />
+      </Head>
       <body className={EMPTY} draggable={false}>
         <script
           nonce="theme"
