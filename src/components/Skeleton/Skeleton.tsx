@@ -8,7 +8,7 @@ import styles from './Skeleton.module.css';
 const SIZE = Array.from({ length: 3 }, (_, index) => index);
 
 type SkeletonProps = {
-  mode: 'badge' | 'text';
+  mode: 'badge' | 'text' | 'icon';
 };
 
 export const Skeleton: FC<SkeletonProps> = ({ mode }) => {

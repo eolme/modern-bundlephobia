@@ -1,16 +1,14 @@
 import type { FC } from 'react';
 import type { SizeType } from 'src/utils/const';
 
-import {
-  SnackbarContext
-} from 'src/contexts/snackbar';
+import { memo } from 'react';
 
-import { memo, useContext } from 'react';
+import { useCopy } from 'src/hooks';
 import { useStableHandler } from 'ahks';
 
-import { createBadge } from 'src/generate/badge';
+import { SizeName } from 'src/utils/const';
 
-import { default as copy } from 'copy-to-clipboard';
+import { createBadge } from 'src/generate/badge';
 
 import styles from './Badge.module.css';
 
@@ -21,25 +19,14 @@ type BadgeProps = {
 };
 
 const BadgeComponent: FC<BadgeProps> = ({ type, name, size }) => {
-  const showSnackbar = useContext(SnackbarContext);
+  const copy = useCopy();
 
   const handleClick = useStableHandler(() => {
     const url = `${location.origin}/p/${name}`;
     const image = `${location.origin}/api/badge/${type}/${name}`;
+    const text = `[![${SizeName[type]} bundle size](${image})](${url})`;
 
-    copy(`[![${type} bundle size](${image})](${url})`, {
-      onCopy() {
-        showSnackbar({
-          children: 'Copied to clipboard',
-          action: typeof navigator.share === 'function' ? 'Share' : null,
-          onActionClick() {
-            navigator.share({
-              url
-            });
-          }
-        });
-      }
-    });
+    copy(text, url);
   });
 
   return (

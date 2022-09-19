@@ -5,6 +5,7 @@ import type { loadInfo } from 'src/api/info';
 
 import {
   Badge,
+  BadgeCopy,
   Markdown,
   Skeleton
 } from 'src/components';
@@ -16,6 +17,9 @@ import { useRouter } from 'next/router';
 
 import { SizeType } from 'src/utils/const';
 import { formatPagePath } from 'src/utils/format';
+import { ICON } from 'src/utils/icons';
+import { npmURL } from 'src/utils/url';
+import { pathToName } from 'src/module/bundle';
 
 import styles from './Name.module.css';
 
@@ -33,13 +37,15 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
   const hasSize = router.isReady && typeof size !== 'undefined';
 
   const path = formatPagePath(router.asPath);
+  const name = pathToName(router.asPath);
+
   const image = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og/${path}`;
   const canonical = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/p/${path}`;
 
   return (
     <Fragment key="page">
       <NextSeo
-        title={path}
+        title={name}
         description={pkg?.description}
         twitter={{
           cardType: 'summary_large_image'
@@ -73,17 +79,17 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
               <>
                 <Badge
                   type={SizeType.BYTES}
-                  name={size.name}
+                  name={name}
                   size={size.bytes}
                 />
                 <Badge
                   type={SizeType.GZIP}
-                  name={size.name}
+                  name={name}
                   size={size.gzip}
                 />
                 <Badge
                   type={SizeType.BROTLI}
-                  name={size.name}
+                  name={name}
                   size={size.brotli}
                 />
               </>
@@ -92,7 +98,43 @@ export const Name: NextPage<NameProps> = ({ pkg, size }) => {
               <Skeleton mode="badge" />
             )
         }
+        <BadgeCopy name={name} />
       </section>
+      <div className={styles.links}>
+        <a
+          className={styles.link}
+          href={npmURL(name)}
+          target="_blank"
+          rel="noopener noreferrer"
+          dangerouslySetInnerHTML={{ __html: ICON.npm }}
+        />
+        {
+          hasPkg && pkg.repository !== null ?
+            (
+              <a
+                className={styles.link}
+                href={pkg.repository.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                dangerouslySetInnerHTML={{ __html: ICON[pkg.repository.type] }}
+              />
+            ) :
+            null
+        }
+        {
+          hasPkg && pkg.homepage !== null ?
+            (
+              <a
+                className={styles.link}
+                href={pkg.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                dangerouslySetInnerHTML={{ __html: ICON.browser }}
+              />
+            ) :
+            null
+        }
+      </div>
       <div className={styles.block}>
         {
           hasPkg ?

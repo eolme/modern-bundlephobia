@@ -1,8 +1,6 @@
-.badge {
+.copy {
   cursor: pointer;
   user-select: none;
-}
 
-.badge svg {
-  display: block;
+  margin-right: -24px;
 }

@@ -3,13 +3,16 @@ import type { FC } from 'src/types/react';
 import type { SnackbarProps } from '@mntm/vkui';
 
 import {
-  Snackbar
+  AdaptivityProvider,
+  Snackbar,
+  ViewWidth
 } from '@mntm/vkui';
 
 import { createContext, useState } from 'react';
 import { useHandler } from 'ahks';
 
 import { noop } from '@vkontakte/vkjs';
+import { useMedia } from 'src/hooks';
 
 type SnackbarContextProps = Omit<SnackbarProps, 'onClose'>;
 type SnackbarContextValue = (props: SnackbarContextProps) => void;
@@ -18,6 +21,7 @@ export const SnackbarContext = createContext<SnackbarContextValue>(noop);
 
 export const SnackbarProvider: FC = ({ children }) => {
   const [snackbar, setSnackbar] = useState<ReactNode>(null);
+  const media = useMedia('(max-width: 767px)');
 
   const handleClose = useHandler(() => {
     setSnackbar(null);
@@ -35,7 +39,9 @@ export const SnackbarProvider: FC = ({ children }) => {
   return (
     <SnackbarContext.Provider value={showSnackbar}>
       {children}
-      {snackbar}
+      <AdaptivityProvider viewWidth={media ? ViewWidth.MOBILE : ViewWidth.DESKTOP}>
+        {snackbar}
+      </AdaptivityProvider>
     </SnackbarContext.Provider>
   );
 };

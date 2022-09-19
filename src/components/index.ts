@@ -1,6 +1,7 @@
 export { Layout } from './Layout/Layout';
 export { Search } from './Search/Search';
 export { Badge } from './Badge/Badge';
+export { BadgeCopy } from './BadgeCopy/BadgeCopy';
 export { Markdown } from './Markdown/Markdown';
 export { Progress } from './Progress/Progress';
 export { Skeleton } from './Skeleton/Skeleton';

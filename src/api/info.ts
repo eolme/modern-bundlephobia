@@ -1,5 +1,6 @@
 import type { NPMSPackage } from 'src/types/npms';
 import type { NPMPackage } from 'src/types/npm';
+import type { Repository } from 'src/utils/const';
 
 import {
   markdown
@@ -14,20 +15,34 @@ import {
 } from 'src/module/semver';
 
 import {
-  homepageURL,
   packageFullURL,
   packageURL
 } from 'src/utils/url';
+
+import { repo } from 'src/utils/repo';
+
+type Collected = {
+  description: string;
+  readme: string;
+
+  homepage: string | null;
+  repository: {
+    type: Repository;
+    link: string;
+  } | null;
+};
 
 export const loadInfo = async (name: string, version: string) => {
   const info = await requestPackage<NPMSPackage>(packageURL(name));
   const fullInfoPromise = requestPackage<NPMPackage>(packageFullURL(name));
 
-  const collected = {
+  let repository = '';
+
+  const collected: Collected = {
     description: '',
     readme: '',
-    homepage: '',
-    repository: ''
+    homepage: null,
+    repository: null
   };
 
   if (info.collected.metadata.description) {
@@ -74,7 +89,7 @@ export const loadInfo = async (name: string, version: string) => {
 
   if (info.collected.metadata.links) {
     if (info.collected.metadata.links.repository) {
-      collected.repository = info.collected.metadata.links.repository;
+      repository = info.collected.metadata.links.repository;
     }
 
     if (info.collected.metadata.links.homepage) {
@@ -89,12 +104,12 @@ export const loadInfo = async (name: string, version: string) => {
       fullInfo.repository &&
       fullInfo.repository.url
     ) {
-      collected.repository = fullInfo.repository.url;
+      repository = fullInfo.repository.url;
     }
   }
 
-  if (!collected.homepage) {
-    collected.homepage = homepageURL(name);
+  if (repository) {
+    collected.repository = repo(repository);
   }
 
   return collected;
