@@ -17,7 +17,9 @@ export const BadgeCopy: FC<BadgeCopyProps> = ({ name }) => {
   const copy = useCopy();
 
   const role = useHandler((el: HTMLDivElement) => {
-    el.setAttribute('role', 'button');
+    if (el) {
+      el.setAttribute('role', 'button');
+    }
   });
 
   const handleClick = useStableHandler(() => {
