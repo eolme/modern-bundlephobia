@@ -1,11 +1,11 @@
 import type { ChangeEvent, MouseEvent } from 'react';
+import type { NextRouter } from 'next/router';
 import type { AnyFunction } from '@vkontakte/vkjs';
 import type { FC } from 'src/types/react';
 import type { NPMSSearch } from 'src/types/npms';
 
 import { createContext, useRef, useState } from 'react';
 import { useCreation, useHandler, useStableHandler } from 'ahks';
-import { useRouter } from 'next/router';
 import { default as useSWR } from 'swr';
 
 import { noop } from '@vkontakte/vkjs';
@@ -38,9 +38,11 @@ export const SearchContext = createContext<SearchContextValue>({
   fallback: false
 });
 
-export const SearchProvider: FC = ({ children }) => {
-  const router = useRouter();
+type SearchProviderProps = {
+  router: NextRouter;
+};
 
+export const SearchProvider: FC<SearchProviderProps> = ({ router, children }) => {
   const defaultValue = useCreation(() => pathToName(router.asPath));
   const [search, setSearch] = useState(defaultValue);
   const [selected, setSelected] = useState<NPMSSearch | undefined>(VOID);

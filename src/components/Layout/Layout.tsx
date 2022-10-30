@@ -18,7 +18,7 @@ import {
 
 import { useState } from 'react';
 import { useLayoutMount } from 'ahks';
-import { useAppearance, useScheme } from 'src/hooks';
+import { useAppearance } from 'src/hooks';
 
 import { hasHover, hasMouse } from '@vkontakte/vkjs';
 
@@ -27,7 +27,6 @@ import styles from './Layout.module.css';
 export const Layout: FC = ({ children }) => {
   const [mouse, setMouse] = useState(false);
 
-  const scheme = useScheme();
   const appearance = useAppearance();
 
   useLayoutMount(() => {
@@ -40,7 +39,6 @@ export const Layout: FC = ({ children }) => {
     <ConfigProvider
       isWebView={false}
       hasNewTokens={true}
-      scheme={scheme}
       appearance={appearance}
       platform={Platform.ANDROID}
       transitionMotionEnabled={false}
@@ -56,7 +54,6 @@ export const Layout: FC = ({ children }) => {
       >
         <AppRoot
           mode="full"
-          noLegacyClasses={true}
           scroll="global"
         >
           <main className={styles.container}>

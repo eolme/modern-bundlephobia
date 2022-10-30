@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import type { NextRouter } from 'next/router';
 import type { AnyFunction } from '@vkontakte/vkjs';
 import type { calcSize } from 'src/api/calc';
 import type { loadInfo } from 'src/api/info';
@@ -13,7 +14,6 @@ import {
 import { NextSeo } from 'next-seo';
 
 import { Fragment } from 'react';
-import { useRouter } from 'next/router';
 
 import { SizeType } from 'src/utils/const';
 import { formatPagePath } from 'src/utils/format';
@@ -26,13 +26,13 @@ import styles from './Name.module.css';
 type NamePropsValue<T extends AnyFunction> = Awaited<ReturnType<T>> | undefined;
 
 type NameProps = {
+  router: NextRouter;
+
   pkg: NamePropsValue<typeof loadInfo>;
   size: NamePropsValue<typeof calcSize>;
 };
 
-export const Name: NextPage<NameProps> = ({ pkg, size }) => {
-  const router = useRouter();
-
+export const Name: NextPage<NameProps> = ({ router, pkg, size }) => {
   const hasPkg = router.isReady && typeof pkg !== 'undefined';
   const hasSize = router.isReady && typeof size !== 'undefined';
 

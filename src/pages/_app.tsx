@@ -32,7 +32,7 @@ import {
   searchNPM
 } from 'src/api/npm';
 
-const App: FC<AppProps> = ({ Component, pageProps }) => {
+const App: FC<AppProps> = ({ Component, router, pageProps }) => {
   return (
     <>
       <DefaultSeo {...SEO} />
@@ -43,11 +43,11 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           keepPreviousData: true
         }}
       >
-        <SearchProvider>
+        <SearchProvider router={router}>
           <Layout>
             <Progress />
             <SnackbarProvider>
-              <Component {...pageProps} />
+              <Component {...Object.assign({ router }, pageProps)} />
             </SnackbarProvider>
           </Layout>
         </SearchProvider>

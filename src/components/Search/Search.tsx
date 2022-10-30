@@ -62,7 +62,7 @@ const SearchComponentEmpty = (
     role="contentinfo"
     disabled={true}
   >
-    <Headline weight="regular">nothing found</Headline>
+    <Headline weight="1">nothing found</Headline>
   </SimpleCell>
 );
 
@@ -101,7 +101,7 @@ const SearchComponent: FC = () => {
         stopPropagation={false}
         onTouchEndCapture={context.handleSelect}
         onMouseDownCapture={context.handleSelect}
-        description={option.package.description}
+        subtitle={option.package.description}
         after={(
           isSelected(option.package.name) ? SearchComponentChecked : null
         )}

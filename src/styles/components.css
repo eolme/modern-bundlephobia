@@ -1,3 +1,6 @@
+@import "@vkontakte/vkui-tokens/themes/vkBase/cssVars/declarations/onlyVariablesLocal.css";
+@import "@vkontakte/vkui-tokens/themes/vkBaseDark/cssVars/declarations/onlyVariablesLocal.css";
+
 @import "@mntm/vkui/dist/vkui.css";
 
 /* Layout */

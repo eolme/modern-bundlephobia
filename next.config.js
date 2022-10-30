@@ -6,17 +6,21 @@ const empty = [];
 module.exports = sw({
   entry: 'src/sw/index.ts'
 })({
+  typescript: {
+    ignoreBuildErrors: true
+  },
   reactStrictMode: false,
   swcMinify: true,
   experimental: {
+    runtime: 'experimental-edge',
+
     esmExternals: 'loose',
     fullySpecified: false,
 
     legacyBrowsers: false,
-    browsersListForSwc: false,
     disablePostcssPresetEnv: true
   },
-  webpack(config) {
+  webpack(config, options) {
     // Force new
     config = Object.assign({}, config);
 
@@ -38,7 +42,7 @@ module.exports = sw({
           ext
         ] : ext
       );
-
+    
     config.module.rules.unshift({
       test: /\.svg$/,
       type: 'asset/source',
