@@ -60,7 +60,7 @@
     "@types/validate-npm-package-name": "^4.0.0",
     "@types/webpack": "^5.28.0",
     "eslint": "^8.26.0",
-    "eslint-config-next": "^13.0.0",
+    "eslint-config-next": "^13.0.1-canary.2",
     "fast-glob": "^3.2.12",
     "next-sw": "^2.1.2",
     "npm-run-all": "^4.1.5",
