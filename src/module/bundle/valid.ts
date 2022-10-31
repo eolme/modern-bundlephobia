@@ -1,6 +1,6 @@
-import { default as validate } from 'validate-npm-package-name';
+import { default as builtins } from 'builtin-modules/static';
 
-export const isValidName = (name: string) => validate(name).validForNewPackages;
+export const isValidName = (name: string) => !builtins.includes(name);
 
 // Official semver
 const regexSemver = /^(?:(0|[1-9]\d*)\.){2}(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[A-Za-z-][\dA-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][\dA-Za-z-]*))*))?(?:\+([\dA-Za-z-]+(?:\.[\dA-Za-z-]+)*))?$/;

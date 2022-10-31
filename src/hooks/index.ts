@@ -1,6 +1,5 @@
 export {
-  useAppearance,
-  useScheme
+  useAppearance
 } from './use-theme';
 
 export {

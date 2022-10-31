@@ -1,32 +1,9 @@
-import { brotliCompress, constants, gzip as gzipCompress } from 'node:zlib';
-import { promisify } from 'node:util';
+import { brotli, gzip } from 'compress';
 
-type Compress = (source: ArrayBuffer) => Promise<number>;
+type Compress = (buffer: ArrayBuffer) => Promise<number>;
 
-const asyncGzipCompress = promisify(gzipCompress);
+const toArray = (buffer: ArrayBuffer) => new Uint8Array(buffer, 0, buffer.byteLength);
 
-export const fastGzip: Compress = async (buffer) => {
-  const result = await asyncGzipCompress(buffer, {
-    maxOutputLength: buffer.byteLength,
-    level: constants.Z_BEST_SPEED,
-    strategy: constants.Z_RLE
-  });
+export const fastGzip: Compress = async (buffer) => gzip(toArray(buffer));
 
-  return result.byteLength;
-};
-
-const asyncBrotliCompress = promisify(brotliCompress);
-
-export const fastBrotli: Compress = async (buffer) => {
-  const result = await asyncBrotliCompress(buffer, {
-    maxOutputLength: buffer.byteLength,
-    params: {
-      [constants.BROTLI_PARAM_MODE]: constants.BROTLI_MODE_TEXT,
-      [constants.BROTLI_PARAM_QUALITY]: constants.BROTLI_MIN_QUALITY,
-      [constants.BROTLI_PARAM_DISABLE_LITERAL_CONTEXT_MODELING]: true,
-      [constants.BROTLI_PARAM_SIZE_HINT]: buffer.byteLength
-    }
-  });
-
-  return result.length;
-};
+export const fastBrotli: Compress = async (buffer) => brotli(toArray(buffer));

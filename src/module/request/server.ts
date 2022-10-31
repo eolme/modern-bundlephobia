@@ -1,12 +1,7 @@
-import { default as createFetch } from '@vercel/fetch';
-
 import {
   ModuleError,
   ModuleErrorType
 } from 'src/module/error';
-
-const nativeFetch: any = Object.assign(fetch, { Headers });
-const cachedFetch = createFetch(nativeFetch);
 
 const contentfulOptions = {
   method: 'GET',
@@ -17,7 +12,7 @@ const contentfulOptions = {
 } as const;
 
 export const requestContent = async (url: string) => {
-  const response = await cachedFetch(url, contentfulOptions);
+  const response = await fetch(url, contentfulOptions);
 
   if (!response.ok) {
     throw new ModuleError(ModuleErrorType.CONNECTION, url, 503);
@@ -33,7 +28,7 @@ export const requestContent = async (url: string) => {
 };
 
 export const requestBuffer = async (url: string) => {
-  const response = await cachedFetch(url, contentfulOptions);
+  const response = await fetch(url, contentfulOptions);
 
   if (!response.ok) {
     throw new ModuleError(ModuleErrorType.CONNECTION, url, 503);
@@ -49,7 +44,7 @@ export const requestBuffer = async (url: string) => {
 };
 
 export const requestPackage = async <T>(url: string) => {
-  const response = await cachedFetch(url);
+  const response = await fetch(url);
 
   if (!response.ok) {
     throw new ModuleError(ModuleErrorType.CONNECTION, url, 503);

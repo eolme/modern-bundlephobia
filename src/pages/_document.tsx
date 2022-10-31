@@ -5,9 +5,7 @@ import {
   Html,
   Main,
   NextScript
-
-  // @ts-expect-error imports
-} from 'next/dist/esm/pages/_document';
+} from 'next/document';
 
 import { EMPTY } from 'src/utils/const';
 
@@ -19,6 +17,7 @@ const Document: NextPage = () => {
       x-ms-format-detection="none"
       className="vkui"
       style={{
+        // @ts-expect-error types
         '--vh': '1vh'
       }}
     >

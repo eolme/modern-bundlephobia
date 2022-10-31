@@ -1,26 +1,32 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextRequest } from 'next/server';
 
 import { ModuleError, ModuleErrorType, getErrorStatus } from 'src/module/error';
 
 import { calcInfo, calcSize } from 'src/api/calc';
 
-import { sendJSON } from 'src/utils/send';
+import { paramAll, respondJSON } from 'src/utils/edge';
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextRequest) => {
   try {
-    if (!req.query.name) {
-      throw new ModuleError(ModuleErrorType.REQUEST, req.query.name, 400);
+    const name = paramAll(req, 'name');
+
+    if (name === null || name.length === 0) {
+      throw new ModuleError(ModuleErrorType.REQUEST, '<empty>', 400);
     }
 
-    const info = await calcInfo(req.query.name);
+    const info = await calcInfo(name);
     const size = await calcSize(info);
 
-    sendJSON(res, 200, size);
+    return respondJSON(200, size);
   } catch (ex: unknown) {
     console.error(ex);
 
-    sendJSON(res, getErrorStatus(ex), Object.assign({}, ex));
+    return respondJSON(getErrorStatus(ex), Object.assign({}, ex));
   }
+};
+
+export const config = {
+  runtime: 'experimental-edge'
 };
 
 export {

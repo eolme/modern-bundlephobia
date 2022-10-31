@@ -30,6 +30,7 @@
     "bin",
     "public",
     "packages",
+    "wasm",
     "next-seo.config.js",
     "next.config.js"
   ]

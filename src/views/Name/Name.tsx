@@ -39,8 +39,8 @@ export const Name: NextPage<NameProps> = ({ router, pkg, size }) => {
   const path = formatPagePath(router.asPath);
   const name = pathToName(router.asPath);
 
-  const image = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og/${path}`;
-  const canonical = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/p/${path}`;
+  const image = `https://${process.env.NEXT_PUBLIC_HOST}/api/og/${path}`;
+  const canonical = `https://${process.env.NEXT_PUBLIC_HOST}/p/${path}`;
 
   return (
     <Fragment key="page">

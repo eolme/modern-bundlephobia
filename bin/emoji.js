@@ -3,7 +3,7 @@
 const path = require('node:path');
 const fs = require('node:fs').promises;
 const process = require('node:process');
-const fetch = require('next/dist/compiled/node-fetch');
+const { fetch } = require('next/dist/compiled/undici');
 
 (async () => {
   const emojis = await (await fetch('https://api.github.com/emojis')).json();
