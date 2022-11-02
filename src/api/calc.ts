@@ -10,8 +10,8 @@ import {
 } from 'src/module/bundle';
 
 import {
-  fastBrotli,
-  fastGzip
+  brotliSize,
+  gzipSize
 } from 'src/module/compress';
 
 import {
@@ -78,11 +78,6 @@ export const calcInfo = async (params: string | string[]) => {
 };
 
 export const calcSize = async (info: Awaited<ReturnType<typeof calcInfo>>) => {
-  const [gzip, brotli] = await Promise.all([
-    fastGzip(info.loaded.buffer),
-    fastBrotli(info.loaded.buffer)
-  ]);
-
   // With matched version
   const query = `${info.name}@${info.loaded.version}`;
 
@@ -92,8 +87,8 @@ export const calcSize = async (info: Awaited<ReturnType<typeof calcInfo>>) => {
     query,
     version: info.loaded.version,
     bytes: info.loaded.buffer.byteLength,
-    gzip,
-    brotli
+    gzip: gzipSize(info.loaded.buffer),
+    brotli: brotliSize(info.loaded.buffer)
   } as const;
 };
 
@@ -106,11 +101,11 @@ export const calcSizeBytes = async (params: string | string[]) => {
 export const calcSizeGzip = async (params: string | string[]) => {
   const info = await calcInfo(params);
 
-  return fastGzip(info.loaded.buffer);
+  return gzipSize(info.loaded.buffer);
 };
 
 export const calcSizeBrotli = async (params: string | string[]) => {
   const info = await calcInfo(params);
 
-  return fastBrotli(info.loaded.buffer);
+  return brotliSize(info.loaded.buffer);
 };

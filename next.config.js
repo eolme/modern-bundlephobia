@@ -1,3 +1,5 @@
+const analyze = require('@next/bundle-analyzer');
+
 const mainFields = [
   'modern',
   'esmodule',
@@ -21,9 +23,6 @@ const empty = [];
  * @type {import('next').NextConfig}
  */
 const next = {
-  typescript: {
-    ignoreBuildErrors: true
-  },
   reactStrictMode: false,
   swcMinify: true,
   experimental: {
@@ -56,6 +55,7 @@ const next = {
       config.resolve.extensions.flatMap((ext) =>
         /\.m?(t|j)sx?/.test(ext) ? [
           `.modern${ext}`,
+          `.esm${ext}`,
           `.module${ext}`,
           ext
         ] : ext
@@ -91,4 +91,6 @@ const next = {
   }
 };
 
-module.exports = next;
+module.exports = analyze({
+  enabled: false
+})(next);

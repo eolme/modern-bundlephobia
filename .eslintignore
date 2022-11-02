@@ -1,6 +1,6 @@
 node_modules/
 bin/
 public/
-wasm/
+packages/brotlijs/
 next-seo.config.js
 next.config.js

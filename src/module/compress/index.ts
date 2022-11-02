@@ -1,6 +1,8 @@
 // @ts-expect-error types
 import { gzipSync as gzip } from 'fflate/esm/browser';
-import { default as brotli } from 'brotli/compress';
+
+// @ts-expect-error types
+import { default as brotli } from 'brotlijs/compress';
 
 type Compress = (arrayBuffer: ArrayBuffer) => number;
 
