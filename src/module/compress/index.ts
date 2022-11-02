@@ -1,9 +1,23 @@
-import { brotli, gzip } from 'compress';
+// @ts-expect-error types
+import { gzipSync as gzip } from 'fflate/esm/browser';
+import { default as brotli } from 'brotli/compress';
 
-type Compress = (buffer: ArrayBuffer) => Promise<number>;
+type Compress = (arrayBuffer: ArrayBuffer) => number;
 
-const toArray = (buffer: ArrayBuffer) => new Uint8Array(buffer, 0, buffer.byteLength);
+const toBuffer = (arrayBuffer: ArrayBuffer) => new Uint8Array(arrayBuffer, 0, arrayBuffer.byteLength) as Buffer;
 
-export const fastGzip: Compress = async (buffer) => gzip(toArray(buffer));
+export const gzipSize: Compress = (arrayBuffer) => gzip(toBuffer(arrayBuffer), {
+  // De-facto default level
+  level: 6
+}).buffer.byteLength;
 
-export const fastBrotli: Compress = async (buffer) => brotli(toArray(buffer));
+export const brotliSize: Compress = (arrayBuffer) => brotli(toBuffer(arrayBuffer), {
+  // Hint text
+  mode: 1,
+
+  // Reduce window size for memory efficiency
+  lgwin: 16,
+
+  // Compression efficiency at quality 3 correlates with level 6
+  quality: 3
+}).buffer.byteLength;
