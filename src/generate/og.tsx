@@ -1,19 +1,39 @@
+import type { DetailedHTMLProps, HTMLAttributes, ReactElement } from 'react';
 import type { calcSize } from 'src/api/calc';
 
 import { formatSize } from 'src/utils/format';
 import { SizeName, SizeType } from 'src/utils/const';
 
 import { ImageResponse } from '@vercel/og';
-import type { DetailedHTMLProps, HTMLAttributes, ReactElement } from 'react';
+import { once } from 'src/utils/fn';
+
+const fontLoader = (url: URL) => once(async () => (await fetch(url)).arrayBuffer());
+
+const NotoSansRegular = fontLoader(new URL('../assets/fonts/noto-sans-regular.ttf', import.meta.url));
+const NotoSansSemiBold = fontLoader(new URL('../assets/fonts/noto-sans-semibold.ttf', import.meta.url));
 
 const px = (value: number) => `${value}px`;
 
 const jsx = (type: string, props: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>) => ({
   type,
-  props
+  props: Object.assign(props, {
+    style: Object.assign({
+      display: 'flex',
+      flexDirection: 'column',
+      flexShrink: 0,
+      flexGrow: 0
+    }, props.style)
+  })
 }) as ReactElement<any, any>;
 
-export const generateImageResponse = (size: Awaited<ReturnType<typeof calcSize>>) => {
+export const generateImageResponse = async (size: Awaited<ReturnType<typeof calcSize>>) => {
+  const [regular, semibold] = await Promise.all([
+    NotoSansRegular(),
+    NotoSansSemiBold()
+  ]);
+
+  const long = size.name.length > 15;
+
   return new ImageResponse(
     jsx('div', {
       style: {
@@ -23,24 +43,32 @@ export const generateImageResponse = (size: Awaited<ReturnType<typeof calcSize>>
         color: '#000',
         background: '#fff',
         fontSize: px(56),
+        fontFamily: 'noto',
         lineHeight: px(72)
       },
       children: [
         jsx('div', {
           style: {
             position: 'absolute',
-            transform: 'rotate(90deg)',
-            transformOrigin: `${580 - 72}px 0`,
-            width: px(580),
+            top: px(240 - 36),
+            right: px(36 - 240),
+            transform: 'rotate(-90deg)',
+            width: px(480),
             height: px(72),
-            fontSize: px(40)
+            fontSize: px(40),
+            fontWeight: 600,
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center'
           },
           children: 'modern bundlephobia'
         }),
         jsx('div', {
           style: {
             height: px(72),
-            fontSize: px(72)
+            fontSize: long ? px(48) : px(72),
+            lineHeight: long ? px(48) : px(72),
+            width: px(1074 - (72 * 3))
           },
           children: size.name
         }),
@@ -53,6 +81,7 @@ export const generateImageResponse = (size: Awaited<ReturnType<typeof calcSize>>
           children: [
             jsx('div', {
               style: {
+                flexDirection: 'row',
                 marginTop: px(8),
                 height: px(72)
               },
@@ -73,6 +102,7 @@ export const generateImageResponse = (size: Awaited<ReturnType<typeof calcSize>>
             }),
             jsx('div', {
               style: {
+                flexDirection: 'row',
                 marginTop: px(8),
                 height: px(72)
               },
@@ -93,6 +123,7 @@ export const generateImageResponse = (size: Awaited<ReturnType<typeof calcSize>>
             }),
             jsx('div', {
               style: {
+                flexDirection: 'row',
                 marginTop: px(8),
                 height: px(72)
               },
@@ -117,9 +148,20 @@ export const generateImageResponse = (size: Awaited<ReturnType<typeof calcSize>>
     }),
     {
       emoji: 'noto',
+      fonts: [{
+        name: 'noto',
+        data: regular,
+        style: 'normal',
+        weight: 400
+      }, {
+        name: 'noto',
+        data: semibold,
+        style: 'normal',
+        weight: 600
+      }],
       width: 1074,
       height: 480,
-      debug: true
+      debug: false
     }
   );
 };

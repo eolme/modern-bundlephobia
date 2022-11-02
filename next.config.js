@@ -35,7 +35,10 @@ const next = {
     disablePostcssPresetEnv: true
   },
   env: {
-    NEXT_PUBLIC_HOST: process.env.NEXT_PUBLIC_VERCEL_URL || 'localhost:3000'
+    NEXT_PUBLIC_HOST:
+      process.env.NEXT_PUBLIC_VERCEL_URL ?
+        `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` :
+        'http://localhost:3000'
   },
   webpack(config, options) {
     // Force new

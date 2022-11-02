@@ -18,7 +18,7 @@ import { Fragment } from 'react';
 import { SizeType } from 'src/utils/const';
 import { formatPagePath } from 'src/utils/format';
 import { ICON } from 'src/utils/icons';
-import { npmURL } from 'src/utils/url';
+import { npmURL, selfURL } from 'src/utils/url';
 import { pathToName } from 'src/module/bundle';
 
 import styles from './Name.module.css';
@@ -33,14 +33,16 @@ type NameProps = {
 };
 
 export const Name: NextPage<NameProps> = ({ router, pkg, size }) => {
-  const hasPkg = router.isReady && typeof pkg !== 'undefined';
-  const hasSize = router.isReady && typeof size !== 'undefined';
+  const ready =
+    router.isReady &&
+    typeof pkg !== 'undefined' &&
+    typeof size !== 'undefined';
 
-  const path = formatPagePath(router.asPath);
-  const name = pathToName(router.asPath);
+  const path = router.isFallback ? '' : formatPagePath(router.asPath);
+  const name = router.isFallback ? '' : pathToName(router.asPath);
 
-  const image = `https://${process.env.NEXT_PUBLIC_HOST}/api/og/${path}`;
-  const canonical = `https://${process.env.NEXT_PUBLIC_HOST}/p/${path}`;
+  const image = selfURL(`/api/og/${path}`);
+  const canonical = selfURL(`/p/${path}`);
 
   return (
     <Fragment key="page">
@@ -74,7 +76,7 @@ export const Name: NextPage<NameProps> = ({ router, pkg, size }) => {
       />
       <section className={styles.badges}>
         {
-          hasSize ?
+          ready ?
             (
               <>
                 <Badge
@@ -92,52 +94,60 @@ export const Name: NextPage<NameProps> = ({ router, pkg, size }) => {
                   name={name}
                   size={size.brotli}
                 />
+                <BadgeCopy name={name} />
               </>
             ) :
             (
               <Skeleton mode="badge" />
             )
         }
-        <BadgeCopy name={name} />
       </section>
       <div className={styles.links}>
-        <a
-          className={styles.link}
-          href={npmURL(name)}
-          target="_blank"
-          rel="noopener noreferrer"
-          dangerouslySetInnerHTML={{ __html: ICON.npm }}
-        />
         {
-          hasPkg && pkg.repository !== null ?
+          ready ?
             (
-              <a
-                className={styles.link}
-                href={pkg.repository.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                dangerouslySetInnerHTML={{ __html: ICON[pkg.repository.type] }}
-              />
-            ) :
-            null
-        }
-        {
-          hasPkg && pkg.homepage !== null ?
-            (
-              <a
-                className={styles.link}
-                href={pkg.homepage}
-                target="_blank"
-                rel="noopener noreferrer"
-                dangerouslySetInnerHTML={{ __html: ICON.browser }}
-              />
+              <>
+                <a
+                  className={styles.link}
+                  href={npmURL(name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  dangerouslySetInnerHTML={{ __html: ICON.npm }}
+                />
+                {
+                  pkg.repository !== null ?
+                    (
+                      <a
+                        className={styles.link}
+                        href={pkg.repository.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        dangerouslySetInnerHTML={{ __html: ICON[pkg.repository.type] }}
+                      />
+                    ) :
+                    null
+                }
+                {
+                  pkg.homepage !== null ?
+                    (
+                      <a
+                        className={styles.link}
+                        href={pkg.homepage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        dangerouslySetInnerHTML={{ __html: ICON.browser }}
+                      />
+                    ) :
+                    null
+                }
+              </>
             ) :
             null
         }
       </div>
       <div className={styles.block}>
         {
-          hasPkg ?
+          ready ?
             (
               <Markdown
                 key={path}

@@ -41,7 +41,7 @@ const seo = {
   }, {
     keyOverride: 'canonical',
     rel: 'canonical',
-    href: `https://${process.env.NEXT_PUBLIC_HOST}`
+    href: process.env.NEXT_PUBLIC_HOST
   }]
 };
 
