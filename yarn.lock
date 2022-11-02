@@ -673,11 +673,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vkontakte/vk-bridge@portal:./packages/bridge::locator=bundlephobia%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@vkontakte/vk-bridge@portal:./packages/bridge::locator=bundlephobia%40workspace%3A."
+"@vkontakte/vk-bridge@file:./packages/bridge::locator=bundlephobia%40workspace%3A.":
+  version: 0.0.0
+  resolution: "@vkontakte/vk-bridge@file:./packages/bridge#./packages/bridge::hash=b7860b&locator=bundlephobia%40workspace%3A."
+  checksum: 971b9d59e89d78e509d0fc03c24c99b58199fab6de6a9fe53a9245c984568dc4cb375943457752b4e1f54c3161266e63ccf470416da4f7caf6fb93aa63d7e1c4
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "@vkontakte/vkjs@npm:^0.27.0":
   version: 0.27.0
@@ -1157,13 +1158,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"brotlijs@portal:./packages/brotlijs::locator=bundlephobia%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "brotlijs@portal:./packages/brotlijs::locator=bundlephobia%40workspace%3A."
+"brotlijs@file:./packages/brotlijs::locator=bundlephobia%40workspace%3A.":
+  version: 1.3.3
+  resolution: "brotlijs@file:./packages/brotlijs#./packages/brotlijs::hash=ced05b&locator=bundlephobia%40workspace%3A."
   dependencies:
     base64-js: ^1.1.2
+  checksum: 5b2d25b8019372bb1e1b71a031c7d66abbee599cf98a3c29cf8ac121d09e93a0d33afe93acfbaedbb7d5bcb8654b28e87ddab61c982b4cb924ebff9ee96240bb
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "browserslist@npm:^4.14.5":
   version: 4.21.4
@@ -1213,12 +1215,12 @@ __metadata:
     "@types/webpack": ^5.28.0
     "@vercel/og": ^0.0.20
     "@vkontakte/icons": ^1.201.0
-    "@vkontakte/vk-bridge": "portal:./packages/bridge"
+    "@vkontakte/vk-bridge": "file:./packages/bridge"
     "@vkontakte/vkjs": ^0.27.0
     "@vkontakte/vkui-tokens": ^4.21.0
     ahks: ^0.3.1
     brotli: ^1.3.3
-    brotlijs: "portal:./packages/brotlijs"
+    brotlijs: "file:./packages/brotlijs"
     builtin-modules: ^3.3.0
     clsx: ^1.2.1
     copy-to-clipboard: ^3.3.2
@@ -1228,7 +1230,7 @@ __metadata:
     fflate: ^0.7.4
     markdown-wasm: ^1.2.0
     memoize-one: ^6.0.0
-    mitt: "portal:./packages/mitt"
+    mitt: "file:./packages/mitt"
     next: ^13.0.1
     next-seo: ^5.13.0
     node-fetch: ^3.2.10
@@ -3327,11 +3329,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mitt@portal:./packages/mitt::locator=bundlephobia%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "mitt@portal:./packages/mitt::locator=bundlephobia%40workspace%3A."
+"mitt@file:./packages/mitt::locator=bundlephobia%40workspace%3A.":
+  version: 0.0.0
+  resolution: "mitt@file:./packages/mitt#./packages/mitt::hash=679134&locator=bundlephobia%40workspace%3A."
+  checksum: 0413a6990d8c7378fbcf94c3781a3b2d28f4e65b473c1da09519423bdfdf1cf4d750e90ae19c9f03f1ac5554875ff193e71542e67c81aea3bd43b80d63bedc80
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "mixin-deep@npm:^1.2.0":
   version: 1.3.2

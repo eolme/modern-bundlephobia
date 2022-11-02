@@ -23,12 +23,12 @@
     "@popperjs/core": "^2.11.6",
     "@vercel/og": "^0.0.20",
     "@vkontakte/icons": "^1.201.0",
-    "@vkontakte/vk-bridge": "portal:./packages/bridge",
+    "@vkontakte/vk-bridge": "file:./packages/bridge",
     "@vkontakte/vkjs": "^0.27.0",
     "@vkontakte/vkui-tokens": "^4.21.0",
     "ahks": "^0.3.1",
     "brotli": "^1.3.3",
-    "brotlijs": "portal:./packages/brotlijs",
+    "brotlijs": "file:./packages/brotlijs",
     "builtin-modules": "^3.3.0",
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.2",
@@ -36,7 +36,7 @@
     "fflate": "^0.7.4",
     "markdown-wasm": "^1.2.0",
     "memoize-one": "^6.0.0",
-    "mitt": "portal:./packages/mitt",
+    "mitt": "file:./packages/mitt",
     "next": "^13.0.1",
     "next-seo": "^5.13.0",
     "node-fetch": "^3.2.10",
@@ -67,7 +67,7 @@
     "typescript": "4.8.4"
   },
   "resolutions": {
-    "@vkontakte/vk-bridge": "portal:./packages/bridge",
-    "mitt": "portal:./packages/mitt"
+    "@vkontakte/vk-bridge": "file:./packages/bridge",
+    "mitt": "file:./packages/mitt"
   }
 }
