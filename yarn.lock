@@ -160,9 +160,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mntm/vkui@npm:^5.0.0-beta.3-20221001-c6e26ee7":
-  version: 5.0.0-beta.3-20221001-c6e26ee7
-  resolution: "@mntm/vkui@npm:5.0.0-beta.3-20221001-c6e26ee7"
+"@mntm/vkui@npm:^5.0.0-beta.3-20221002-cf159765":
+  version: 5.0.0-beta.3-20221002-cf159765
+  resolution: "@mntm/vkui@npm:5.0.0-beta.3-20221002-cf159765"
   peerDependencies:
     "@popperjs/core": ^2.11.6
     "@vkontakte/icons": ^1.201.0
@@ -195,7 +195,7 @@ __metadata:
       optional: false
     react-popper:
       optional: false
-  checksum: c886ad39ab42ebbf3074bbc715931d23c4be73c35438836188993701fa0e91e0e292191f92ff9a95762f3522f7bd2a3fa26a74b592af89f3db3aa3a3ac56dac2
+  checksum: e7111c7e195870bd4e6d0963c89c515ef432367e24b367949d0820916145427e97c69ae99f2b6f1e765cd68fad805dca8357040940618edc3873a3245ce9e8d3
   languageName: node
   linkType: hard
 
@@ -1160,10 +1160,10 @@ __metadata:
 
 "brotlijs@file:./packages/brotlijs::locator=bundlephobia%40workspace%3A.":
   version: 1.3.3
-  resolution: "brotlijs@file:./packages/brotlijs#./packages/brotlijs::hash=ced05b&locator=bundlephobia%40workspace%3A."
+  resolution: "brotlijs@file:./packages/brotlijs#./packages/brotlijs::hash=19d96d&locator=bundlephobia%40workspace%3A."
   dependencies:
     base64-js: ^1.1.2
-  checksum: 5b2d25b8019372bb1e1b71a031c7d66abbee599cf98a3c29cf8ac121d09e93a0d33afe93acfbaedbb7d5bcb8654b28e87ddab61c982b4cb924ebff9ee96240bb
+  checksum: 676b39f3a69d5c69e7744591a7eeaeeb9f608b4795df38171fb861cf04ff6082c7047e134c42a9bfc28fc67c8c2445464ce3666289f32527a150b26d546512b4
   languageName: node
   linkType: hard
 
@@ -1200,7 +1200,7 @@ __metadata:
   resolution: "bundlephobia@workspace:."
   dependencies:
     "@mntm/eslint-config": ^1.3.1
-    "@mntm/vkui": ^5.0.0-beta.3-20221001-c6e26ee7
+    "@mntm/vkui": ^5.0.0-beta.3-20221002-cf159765
     "@next/bundle-analyzer": ^13.0.1
     "@next/swc-darwin-x64": ^13.0.1
     "@next/swc-linux-x64-gnu": ^13.0.1
