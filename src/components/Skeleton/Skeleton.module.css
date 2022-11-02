@@ -1,5 +1,5 @@
 .skeleton {
-  background-image: linear-gradient(to right, var(--skeleton-start) 20%, var(--skeleton-start), var(--skeleton-stop) 80%);
+  background-image: linear-gradient(to right, var(--vkui--color_background_content--hover) 20%, var(--vkui--color_background_content--hover), var(--vkui--color_background_content--active) 80%);
   background-position: 0 0;
   background-size: 200% 100%;
   border-radius: 4px;

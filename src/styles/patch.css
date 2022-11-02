@@ -1,23 +1,33 @@
 pre,
 code {
-  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-family: ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, Liberation Mono, monospace;
 }
 
-html,
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Google Sans', 'Product Sans', 'Noto Sans', Roboto, 'Segoe Pro', 'Segoe UI', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", emoji;
+html.vkui {
+  --font: -apple-system, BlinkMacSystemFont, 'Google Sans', 'Product Sans', 'Noto Sans', Roboto, 'Segoe Pro', 'Segoe UI', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", emoji;
 }
 
-.vkui .vkui__root,
-.vkui .vkui__portal-root {
-  --palette-vk-font: -apple-system, BlinkMacSystemFont, 'Google Sans', 'Product Sans', 'Noto Sans', Roboto, 'Segoe Pro', 'Segoe UI', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", emoji;
-
-  --font-common: var(--palette-vk-font);
-  --font-display: var(--palette-vk-font);
-  --font-tt: var(--palette-vk-font);
-
-  --skeleton-start: var(--vkui--color_background_content--hover);
-  --skeleton-stop: var(--vkui--color_background_content--active);
+body.vkui--vkBase--light,
+body.vkui--vkBase--dark {
+  --vkui--font_family_accent: var(--font);
+  --vkui--font_family_base: var(--font);
+  --vkui--font_title1--font_family--regular: var(--font);
+  --vkui--font_title2--font_family--regular: var(--font);
+  --vkui--font_title3--font_family--regular: var(--font);
+  --vkui--font_headline1--font_family--regular: var(--font);
+  --vkui--font_headline2--font_family--regular: var(--font);
+  --vkui--font_text--font_family--regular: var(--font);
+  --vkui--font_paragraph--font_family--regular: var(--font);
+  --vkui--font_subhead--font_family--regular: var(--font);
+  --vkui--font_footnote--font_family--regular: var(--font);
+  --vkui--font_footnote_caps--font_family--regular: var(--font);
+  --vkui--font_caption1--font_family--regular: var(--font);
+  --vkui--font_caption1_caps--font_family--regular: var(--font);
+  --vkui--font_caption2--font_family--regular: var(--font);
+  --vkui--font_caption2_caps--font_family--regular: var(--font);
+  --vkui--font_caption3--font_family--regular: var(--font);
+  --vkui--font_caption3_caps--font_family--regular: var(--font);
+  --vkui--font_headline--font_family--regular: var(--font);
 }
 
 .vkuiAppRoot {
