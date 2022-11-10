@@ -8,8 +8,10 @@ import {
 } from 'next-seo';
 
 import {
+
+  // @ts-expect-error modern resolution
   Analytics
-} from '@vercel/analytics/react';
+} from '@vercel/analytics/dist/react/index';
 
 import {
   SWRConfig
