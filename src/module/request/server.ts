@@ -3,13 +3,29 @@ import {
   ModuleErrorType
 } from 'src/module/error';
 
-const contentfulOptions = {
+import {
+  ContentType,
+  INTERNAL
+} from 'src/utils/const';
+
+const contentfulOptions: RequestInit = {
   method: 'GET',
   referrerPolicy: 'no-referrer',
   headers: {
-    Accept: 'application/javascript'
+    'accept': ContentType.JSON,
+    'user-agent': 'Mozilla/5.0 (Linux; Android 5.0; SM-G920A) AppleWebKit (KHTML, like Gecko) Chrome Mobile Safari (compatible; Modern BundlePhobia)'
   }
-} as const;
+};
+
+const internalOptions: RequestInit = {
+  method: 'POST',
+  keepalive: true,
+  headers: {
+    'internal': INTERNAL,
+    'accept': ContentType.INTERNAL,
+    'content-type': ContentType.TEXT
+  }
+};
 
 export const requestContent = async (url: string) => {
   const response = await fetch(url, contentfulOptions);
@@ -44,11 +60,21 @@ export const requestBuffer = async (url: string) => {
 };
 
 export const requestPackage = async <T>(url: string) => {
-  const response = await fetch(url);
+  const response = await fetch(url, contentfulOptions);
 
   if (!response.ok) {
     throw new ModuleError(ModuleErrorType.CONNECTION, url, 503);
   }
 
   return response.json() as Promise<T>;
+};
+
+export const requestInternal = async (url: string, body: ArrayBuffer) => {
+  const response = await fetch(url, Object.assign({ body }, internalOptions));
+
+  if (!response.ok) {
+    throw new ModuleError(ModuleErrorType.CONNECTION, url, 503);
+  }
+
+  return response.text();
 };

@@ -8,6 +8,12 @@ import {
 } from 'next-seo';
 
 import {
+
+  // @ts-expect-error modern resolution
+  Analytics
+} from '@vercel/analytics/dist/react/index';
+
+import {
   SWRConfig
 } from 'swr';
 
@@ -30,11 +36,12 @@ import {
 
 import {
   searchNPM
-} from 'src/api/npm';
+} from 'src/module/api/npm';
 
 const App: FC<AppProps> = ({ Component, router, pageProps }) => {
   return (
     <>
+      <Analytics />
       <DefaultSeo {...SEO} />
       <SWRConfig
         value={{

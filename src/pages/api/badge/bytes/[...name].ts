@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server';
 
 import { ModuleError, ModuleErrorType, getErrorStatus } from 'src/module/error';
 
-import { calcSizeBytes } from 'src/api/calc';
+import { calcSizeBytes } from 'src/module/api/calc';
 import { createBadge, createErrorBadge } from 'src/generate/badge';
 import { SizeType } from 'src/utils/const';
 

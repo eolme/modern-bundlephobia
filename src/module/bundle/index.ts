@@ -8,7 +8,10 @@ export {
   linkToVersion,
   paramsToQuery,
   pathToName,
-  queryToFullQuery
+  pathToFullQuery,
+  queryToPackagePath,
+  queryToFullQuery,
+  partsToFullQuery
 } from './module';
 
 export {

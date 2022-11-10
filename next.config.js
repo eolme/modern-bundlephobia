@@ -38,7 +38,9 @@ const next = {
     NEXT_PUBLIC_HOST:
       process.env.NEXT_PUBLIC_VERCEL_URL ?
         `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` :
-        'http://localhost:3000'
+        'http://localhost:3000',
+    NEXT_PUBLIC_INTERNAL:
+      process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA || '1'
   },
   webpack(config, options) {
     // Force new

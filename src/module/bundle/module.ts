@@ -1,4 +1,4 @@
-import { formatPagePath } from 'src/utils/format';
+import { formatPath } from 'src/utils/format';
 
 export const fullQueryToName = (query: string) => query.slice(0, query.lastIndexOf('@'));
 
@@ -8,7 +8,17 @@ export const paramsToQuery = (params: string | string[]) => Array.isArray(params
 
 export const queryToFullQuery = (query: string) => query.lastIndexOf('@') <= 0 ? `${query}@latest` : query;
 
-export const pathToName = (path: string) => fullQueryToName(queryToFullQuery(formatPagePath(path)));
+export const pathToFullQuery = (path: string) => queryToFullQuery(formatPath(path));
+
+export const pathToName = (path: string) => fullQueryToName(pathToFullQuery(path));
+
+export const queryToPackagePath = (query: string) => {
+  const last = query.lastIndexOf('@');
+
+  return last <= 0 ? `${query}/latest` : `${query.slice(0, last)}/${query.slice(last + 1)}`;
+};
+
+export const partsToFullQuery = (name: string, version: string) => `${name}@${version}`;
 
 export const linkToVersion = (name: string, link: string) => {
   const indexName = link.indexOf(name);

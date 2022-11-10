@@ -17,6 +17,17 @@ export enum Repository {
   UNKNOWN = 'unknown'
 }
 
+export enum ContentType {
+  JSON = 'application/json',
+  JPEG = 'image/jpeg',
+  SVG = 'image/svg+xml',
+  UNKNOWN = 'application/octet-stream',
+  TEXT = 'text/plain',
+  INTERNAL = 'text/internal'
+}
+
+export const INTERNAL = process.env.NEXT_PUBLIC_INTERNAL!;
+
 export const EMPTY = '';
 
 // eslint-disable-next-line no-void

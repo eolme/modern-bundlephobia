@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server';
 
 import { ModuleError, ModuleErrorType, getErrorStatus } from 'src/module/error';
 
-import { calcSizeGzip } from 'src/api/calc';
+import { calcSizeGzip } from 'src/module/api/calc';
 import { createBadge, createErrorBadge } from 'src/generate/badge';
 import { SizeType } from 'src/utils/const';
 

@@ -1,19 +1,13 @@
-// @ts-expect-error types
-import { gzipSync as gzip } from 'fflate/esm/browser';
+import { SizeType } from 'src/utils/const';
+import { selfURL } from 'src/utils/url';
+import { requestInternal } from 'src/module/request/server';
 
-// @ts-expect-error types
-import { default as brotli } from 'brotlijs/compress';
+const requestSize = async (buffer: ArrayBuffer, type: SizeType) => {
+  return requestInternal(selfURL(`/api/_internal/size/${type}`), buffer).then((size) => {
+    return Number.parseInt(size, 10) || 0;
+  }, () => 0);
+};
 
-type Compress = (arrayBuffer: ArrayBuffer) => number;
+export const gzipSize = async (buffer: ArrayBuffer) => requestSize(buffer, SizeType.GZIP);
 
-const toBuffer = (arrayBuffer: ArrayBuffer) => new Uint8Array(arrayBuffer, 0, arrayBuffer.byteLength) as Buffer;
-
-export const gzipSize: Compress = (arrayBuffer) => gzip(toBuffer(arrayBuffer), {
-  level: 9
-}).buffer.byteLength;
-
-export const brotliSize: Compress = (arrayBuffer) => brotli(toBuffer(arrayBuffer), {
-  mode: 1,
-  lgwin: 12,
-  quality: 10
-}).buffer.byteLength;
+export const brotliSize = async (buffer: ArrayBuffer) => requestSize(buffer, SizeType.BROTLI);

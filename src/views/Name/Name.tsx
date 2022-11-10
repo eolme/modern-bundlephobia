@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import type { NextRouter } from 'next/router';
 import type { AnyFunction } from '@vkontakte/vkjs';
-import type { calcSize } from 'src/api/calc';
-import type { loadInfo } from 'src/api/info';
+import type { calcSize } from 'src/module/api/calc';
+import type { loadInfo } from 'src/module/api/info';
 
 import {
   Badge,
@@ -16,7 +16,7 @@ import { NextSeo } from 'next-seo';
 import { Fragment } from 'react';
 
 import { SizeType } from 'src/utils/const';
-import { formatPagePath } from 'src/utils/format';
+import { formatPath } from 'src/utils/format';
 import { ICON } from 'src/utils/icons';
 import { npmURL, selfURL } from 'src/utils/url';
 import { pathToName } from 'src/module/bundle';
@@ -38,7 +38,7 @@ export const Name: NextPage<NameProps> = ({ router, pkg, size }) => {
     typeof pkg !== 'undefined' &&
     typeof size !== 'undefined';
 
-  const path = router.isFallback ? '' : formatPagePath(router.asPath);
+  const path = router.isFallback ? '' : formatPath(router.asPath);
   const name = router.isFallback ? '' : pathToName(router.asPath);
 
   const image = selfURL(`/api/og/${path}`);

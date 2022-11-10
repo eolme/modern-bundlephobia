@@ -1,10 +1,13 @@
 import type { NextRequest } from 'next/server';
+import { ContentType } from './const';
 
 export const param = (req: NextRequest, name: string) =>
   req.nextUrl.searchParams.get(name);
 
 export const paramAll = (req: NextRequest, name: string) =>
   req.nextUrl.searchParams.getAll(name).join('/');
+
+const ok = (status: number) => status > 199 && status < 300;
 
 const fresh = (headers: HeadersInit) => Object.assign(headers, {
   'Cache-Control': 'no-store',
@@ -16,38 +19,19 @@ const cached = (headers: HeadersInit) => Object.assign(headers, {
   'CDN-Cache-Control': 'max-age=43200, immutable'
 });
 
-export const respondJSON = (status: number, json: any) => {
-  return new Response(JSON.stringify(json), {
+const respond = (status: number, payload: BodyInit | null, type: ContentType) => {
+  return new Response(payload, {
     status,
-    headers: fresh({
-      'Content-Type': 'application/json'
+    headers: (ok(status) ? cached : fresh)({
+      'Content-Type': type
     })
   });
 };
 
-export const respondSVG = (status: number, svg: BodyInit) => {
-  return new Response(svg, {
-    status,
-    headers: cached({
-      'Content-Type': 'image/svg+xml'
-    })
-  });
-};
+export const respondJSON = (status: number, json: Record<string, unknown>) => respond(status, JSON.stringify(json), ContentType.JSON);
 
-export const respondJPEG = (status: number, jpeg: BodyInit) => {
-  return new Response(jpeg, {
-    status,
-    headers: cached({
-      'Content-Type': 'image/jpeg'
-    })
-  });
-};
+export const respondSVG = (status: number, svg: BodyInit) => respond(status, svg, ContentType.SVG);
 
-export const respondNothing = (status: number) => {
-  return new Response(null, {
-    status,
-    headers: fresh({
-      'Content-Type': 'application/octet-stream'
-    })
-  });
-};
+export const respondJPEG = (status: number, jpeg: BodyInit) => respond(status, jpeg, ContentType.JPEG);
+
+export const respondNothing = (status: number) => respond(status, null, ContentType.UNKNOWN);
