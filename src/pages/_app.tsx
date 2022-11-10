@@ -8,6 +8,10 @@ import {
 } from 'next-seo';
 
 import {
+  Analytics
+} from '@vercel/analytics/react';
+
+import {
   SWRConfig
 } from 'swr';
 
@@ -35,6 +39,7 @@ import {
 const App: FC<AppProps> = ({ Component, router, pageProps }) => {
   return (
     <>
+      <Analytics />
       <DefaultSeo {...SEO} />
       <SWRConfig
         value={{
