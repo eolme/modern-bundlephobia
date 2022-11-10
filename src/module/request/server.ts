@@ -6,7 +6,6 @@ import { ContentType, INTERNAL } from 'src/utils/const';
 
 const contentfulOptions: RequestInit = {
   method: 'GET',
-  cache: 'no-store',
   referrerPolicy: 'no-referrer',
   headers: {
     'accept': ContentType.JSON,
@@ -16,7 +15,6 @@ const contentfulOptions: RequestInit = {
 
 const internalOptions: RequestInit = {
   method: 'POST',
-  cache: 'no-store',
   keepalive: true,
   headers: {
     'internal': INTERNAL,
