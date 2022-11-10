@@ -2,7 +2,11 @@ import {
   ModuleError,
   ModuleErrorType
 } from 'src/module/error';
-import { ContentType, INTERNAL } from 'src/utils/const';
+
+import {
+  ContentType,
+  INTERNAL
+} from 'src/utils/const';
 
 const contentfulOptions: RequestInit = {
   method: 'GET',

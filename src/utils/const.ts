@@ -26,7 +26,7 @@ export enum ContentType {
   INTERNAL = 'text/internal'
 }
 
-export const INTERNAL = process.env.NEXT_PUBLIC_INTERNAL;
+export const INTERNAL = process.env.NEXT_PUBLIC_INTERNAL!;
 
 export const EMPTY = '';
 
