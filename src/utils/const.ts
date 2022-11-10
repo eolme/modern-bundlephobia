@@ -26,7 +26,7 @@ export enum ContentType {
   INTERNAL = 'text/internal'
 }
 
-export const INTERNAL = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA || '1';
+export const INTERNAL = process.env.NEXT_PUBLIC_INTERNAL;
 
 export const EMPTY = '';
 
