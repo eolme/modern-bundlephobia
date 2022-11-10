@@ -3,6 +3,8 @@ import {
   ModuleErrorType
 } from 'src/module/error';
 
+import { ContentType } from 'src/utils/const';
+
 const searchOptions: RequestInit = {
   method: 'GET',
   mode: 'cors',
@@ -11,7 +13,7 @@ const searchOptions: RequestInit = {
   keepalive: true,
   referrerPolicy: 'no-referrer',
   headers: {
-    Accept: 'application/json'
+    accept: ContentType.JSON
   }
 };
 

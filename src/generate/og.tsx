@@ -1,5 +1,5 @@
 import type { DetailedHTMLProps, HTMLAttributes, ReactElement } from 'react';
-import type { calcSize } from 'src/api/calc';
+import type { calcSize } from 'src/module/api/calc';
 
 import { formatSize } from 'src/utils/format';
 import { SizeName, SizeType } from 'src/utils/const';

@@ -26,7 +26,7 @@ const MarkdownComponent: FC<MarkdownProps> = ({ html }) => {
         const lang = element.className.slice(9);
 
         idle(() => {
-          highlight(lang, element.textContent!).then((code) => {
+          highlight(lang, element.innerHTML).then((code) => {
             requestAnimationFrame(() => {
               element.innerHTML = code;
             });

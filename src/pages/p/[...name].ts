@@ -1,7 +1,7 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
-import { calcInfo, calcSize } from 'src/api/calc';
-import { loadInfo } from 'src/api/info';
+import { calcInfo, calcSize } from 'src/module/api/calc';
+import { loadInfo } from 'src/module/api/info';
 
 import { ModuleError, ModuleErrorType } from 'src/module/error';
 
@@ -19,16 +19,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
 
     const info = await calcInfo(params.name);
-
-    if (info.version !== info.loaded.version) {
-      return {
-        revalidate: true,
-        redirect: {
-          statusCode: 302,
-          destination: `/p/${info.name}@${info.loaded.version}`
-        }
-      };
-    }
 
     const [size, pkg] = await Promise.all([
       calcSize(info),

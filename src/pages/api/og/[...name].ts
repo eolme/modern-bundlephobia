@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server';
 
 import { ModuleError, ModuleErrorType, getErrorStatus } from 'src/module/error';
 
-import { calcInfo, calcSize } from 'src/api/calc';
+import { calcInfo, calcSize } from 'src/module/api/calc';
 import { generateImageResponse } from 'src/generate/og';
 
 import { paramAll, respondNothing } from 'src/utils/edge';

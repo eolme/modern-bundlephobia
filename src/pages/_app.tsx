@@ -30,7 +30,7 @@ import {
 
 import {
   searchNPM
-} from 'src/api/npm';
+} from 'src/module/api/npm';
 
 const App: FC<AppProps> = ({ Component, router, pageProps }) => {
   return (
