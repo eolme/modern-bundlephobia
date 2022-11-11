@@ -12,17 +12,17 @@ const stripPath = (path: string) => {
     return path.slice(3);
   }
 
-  if (path[6] === 'b') {
+  if (path[5] === 'b') {
     // /api/badge/:path
     return path.slice(11);
   }
 
-  if (path[6] === 'i') {
+  if (path[5] === 'i') {
     // /api/info/:path
     return path.slice(10);
   }
 
-  if (path[6] === 'o') {
+  if (path[5] === 'o') {
     // /api/og/:path
     return path.slice(8);
   }

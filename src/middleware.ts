@@ -16,6 +16,10 @@ const handler = async (req: NextRequest) => {
 
   const query = formatPath(req.nextUrl.pathname);
 
+  if (query.length === 0) {
+    return;
+  }
+
   return requestPackage<NPMSearchPackage>(packageFullURL(queryToPackagePath(query))).then((pkg) => {
     const full = partsToFullQuery(pkg.name, pkg.version);
 

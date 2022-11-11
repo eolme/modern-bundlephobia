@@ -6,6 +6,7 @@ const strip = (url: string) => `https://${url.replace(GIT, '')}`;
 
 export const repo = (link: string) => {
   let type = Repository.UNKNOWN;
+  let pure = '';
 
   try {
     const parsed = new URL(link);
@@ -18,13 +19,14 @@ export const repo = (link: string) => {
       type = Repository.BITBUCKET;
     }
 
-    link = strip(parsed.href);
+    pure = strip(parsed.href);
   } catch (ex: unknown) {
     console.error(ex);
   }
 
   return {
     type,
+    pure,
     link
   };
 };

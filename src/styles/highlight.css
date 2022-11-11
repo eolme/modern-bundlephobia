@@ -1,179 +1,179 @@
-.namespace {
-  opacity: 0.7;
+.hljs-namespace {
+  opacity: 0.hljs-7;
 }
 
-.token.doctype .token.doctype-tag {
+.hljs-doctype .hljs-doctype-tag {
   color: #569CD6;
 }
 
-.token.doctype .token.name {
+.hljs-doctype .hljs-name {
   color: #9cdcfe;
 }
 
-.token.comment,
-.token.prolog {
+.hljs-comment,
+.hljs-prolog {
   color: #6a9955;
 }
 
-.token.punctuation,
-.language-html .language-css .token.punctuation,
-.language-html .language-javascript .token.punctuation {
+.hljs-punctuation,
+.language-html .language-css .hljs-punctuation,
+.language-html .language-javascript .hljs-punctuation {
   color: #d4d4d4;
 }
 
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.constant,
-.token.symbol,
-.token.inserted,
-.token.unit {
+.hljs-property,
+.hljs-tag,
+.hljs-boolean,
+.hljs-number,
+.hljs-constant,
+.hljs-symbol,
+.hljs-inserted,
+.hljs-unit {
   color: #b5cea8;
 }
 
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.deleted {
+.hljs-selector,
+.hljs-attr-name,
+.hljs-string,
+.hljs-char,
+.hljs-builtin,
+.hljs-deleted {
   color: #ce9178;
 }
 
-.language-css .token.string.url {
+.language-css .hljs-string.hljs-url {
   text-decoration: underline;
 }
 
-.token.operator,
-.token.entity {
+.hljs-operator,
+.hljs-entity {
   color: #d4d4d4;
 }
 
-.token.operator.arrow {
+.hljs-operator.hljs-arrow {
   color: #569CD6;
 }
 
-.token.atrule {
+.hljs-atrule {
   color: #ce9178;
 }
 
-.token.atrule .token.rule {
+.hljs-atrule .hljs-rule {
   color: #c586c0;
 }
 
-.token.atrule .token.url {
+.hljs-atrule .hljs-url {
   color: #9cdcfe;
 }
 
-.token.atrule .token.url .token.function {
+.hljs-atrule .hljs-url .hljs-function {
   color: #dcdcaa;
 }
 
-.token.atrule .token.url .token.punctuation {
+.hljs-atrule .hljs-url .hljs-punctuation {
   color: #d4d4d4;
 }
 
-.token.keyword {
+.hljs-keyword {
   color: #569CD6;
 }
 
-.token.keyword.module,
-.token.keyword.control-flow {
+.hljs-keyword.hljs-module,
+.hljs-keyword.hljs-control-flow {
   color: #c586c0;
 }
 
-.token.function,
-.token.function .token.maybe-class-name {
+.hljs-function,
+.hljs-function .hljs-maybe-class-name {
   color: #dcdcaa;
 }
 
-.token.regex {
+.hljs-regex {
   color: #d16969;
 }
 
-.token.important {
+.hljs-important {
   color: #569cd6;
 }
 
-.token.italic {
+.hljs-italic {
   font-style: italic;
 }
 
-.token.constant {
+.hljs-constant {
   color: #9cdcfe;
 }
 
-.token.class-name,
-.token.maybe-class-name {
+.hljs-class-name,
+.hljs-maybe-class-name {
   color: #4ec9b0;
 }
 
-.token.console {
+.hljs-console {
   color: #9cdcfe;
 }
 
-.token.parameter {
+.hljs-parameter {
   color: #9cdcfe;
 }
 
-.token.interpolation {
+.hljs-interpolation {
   color: #9cdcfe;
 }
 
-.token.punctuation.interpolation-punctuation {
+.hljs-punctuation.hljs-interpolation-punctuation {
   color: #569cd6;
 }
 
-.token.boolean {
+.hljs-boolean {
   color: #569cd6;
 }
 
-.token.property,
-.token.variable,
-.token.imports .token.maybe-class-name,
-.token.exports .token.maybe-class-name {
+.hljs-property,
+.hljs-variable,
+.hljs-imports .hljs-maybe-class-name,
+.hljs-exports .hljs-maybe-class-name {
   color: #9cdcfe;
 }
 
-.token.selector {
+.hljs-selector {
   color: #d7ba7d;
 }
 
-.token.escape {
+.hljs-escape {
   color: #d7ba7d;
 }
 
-.token.tag {
+.hljs-tag {
   color: #569cd6;
 }
 
-.token.tag .token.punctuation {
+.hljs-tag .hljs-punctuation {
   color: #808080;
 }
 
-.token.cdata {
+.hljs-cdata {
   color: #808080;
 }
 
-.token.attr-name {
+.hljs-attr-name {
   color: #9cdcfe;
 }
 
-.token.attr-value,
-.token.attr-value .token.punctuation {
+.hljs-attr-value,
+.hljs-attr-value .hljs-punctuation {
   color: #ce9178;
 }
 
-.token.attr-value .token.punctuation.attr-equals {
+.hljs-attr-value .hljs-punctuation.hljs-attr-equals {
   color: #d4d4d4;
 }
 
-.token.entity {
+.hljs-entity {
   color: #569cd6;
 }
 
-.token.namespace {
+.hljs-namespace {
   color: #4ec9b0;
 }
 
@@ -190,15 +190,15 @@ code.language-html {
   color: #d4d4d4;
 }
 
-.language-regex .token.anchor {
+.language-regex .hljs-anchor {
   color: #dcdcaa;
 }
 
-.language-html .token.punctuation {
+.language-html .hljs-punctuation {
   color: #808080;
 }
 
-.line-highlight.line-highlight {
+.hljs-line-highlight.hljs-line-highlight {
   background: #f7ebc6;
   box-shadow: inset 5px 0 0 #f7d87c;
   z-index: 0;

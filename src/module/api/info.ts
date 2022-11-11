@@ -1,6 +1,5 @@
-import type { NPMSPackage } from 'src/types/npms';
 import type { NPMPackage } from 'src/types/npm';
-import type { Repository } from 'src/utils/const';
+import { EMPTY, Repository } from 'src/utils/const';
 
 import {
   markdown
@@ -15,8 +14,7 @@ import {
 } from 'src/module/semver';
 
 import {
-  packageFullURL,
-  packageURL
+  packageFullURL
 } from 'src/utils/url';
 
 import { repo } from 'src/utils/repo';
@@ -28,58 +26,61 @@ type Collected = {
   homepage: string | null;
   repository: {
     type: Repository;
+    pure: string;
     link: string;
   } | null;
 };
 
 export const loadInfo = async (name: string, version: string) => {
-  const info = await requestPackage<NPMSPackage>(packageURL(name));
-  const fullInfoPromise = requestPackage<NPMPackage>(packageFullURL(name));
-
-  let repository = '';
+  const info = await requestPackage<NPMPackage>(packageFullURL(name));
 
   const collected: Collected = {
     description: '',
     readme: '',
     homepage: null,
-    repository: null
+    repository: {
+      type: Repository.UNKNOWN,
+      pure: '',
+      link: ''
+    }
   };
 
-  if (info.collected.metadata.description) {
-    collected.description = info.collected.metadata.description;
-  } else {
-    const fullInfo = await fullInfoPromise;
-
-    if (fullInfo.description) {
-      collected.description = fullInfo.description;
-    }
+  if (info.description) {
+    collected.description = info.description;
   }
 
-  if (info.collected.metadata.readme) {
+  if (info.homepage) {
+    collected.homepage = info.homepage;
+  }
+
+  if (
+    info.repository &&
+    info.repository.url
+  ) {
+    collected.repository = repo(info.repository.url);
+  }
+
+  const semver = semverFind(info.versions, version, (npm) => 'readme' in npm && npm.readme !== '');
+
+  if (semver !== null) {
     try {
-      collected.readme = markdown(info.collected.metadata.readme);
+      collected.readme = await markdown(
+        semver.readme!,
+        collected.repository!.type,
+        collected.repository!.link
+      );
     } catch (ex: unknown) {
       console.error(ex);
     }
-  } else {
-    const fullInfo = await fullInfoPromise;
-
-    if (fullInfo.readme) {
-      try {
-        collected.readme = markdown(fullInfo.readme);
-      } catch (ex: unknown) {
-        console.error(ex);
-      }
-    } else {
-      const semver = semverFind(fullInfo.versions, version, (npm) => 'readme' in npm && npm.readme !== '');
-
-      if (semver !== null) {
-        try {
-          collected.readme = markdown(semver.readme!);
-        } catch (ex: unknown) {
-          console.error(ex);
-        }
-      }
+  } else if (info.readme) {
+    try {
+      collected.readme = await markdown(
+        info.readme,
+        collected.repository!.type,
+        collected.repository!.link
+      );
+    } catch (ex: unknown) {
+      console.error(ex);
     }
   }
 
@@ -87,29 +88,8 @@ export const loadInfo = async (name: string, version: string) => {
     collected.readme = collected.description;
   }
 
-  if (info.collected.metadata.links) {
-    if (info.collected.metadata.links.repository) {
-      repository = info.collected.metadata.links.repository;
-    }
-
-    if (info.collected.metadata.links.homepage) {
-      collected.homepage = info.collected.metadata.links.homepage;
-    }
-  }
-
-  if (!collected.repository) {
-    const fullInfo = await fullInfoPromise;
-
-    if (
-      fullInfo.repository &&
-      fullInfo.repository.url
-    ) {
-      repository = fullInfo.repository.url;
-    }
-  }
-
-  if (repository) {
-    collected.repository = repo(repository);
+  if (collected.repository!.pure === EMPTY) {
+    collected.repository = null;
   }
 
   return collected;

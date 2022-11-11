@@ -1,15 +1,58 @@
-import * as wasm from 'markdown-wasm';
+import { remark } from 'remark';
+import { default as parse } from 'remark-parse';
+import { default as github } from 'remark-github';
 
-// eslint-disable-next-line multiline-comment-style
-/// TODO
-// import { default as emoji } from 'src/assets/emoji/github.json';
-// export const markdownEmoji = (content: string) => content.replace(/:(\w+):/g, ($0: string, $1: string) => {
-//   if ($1 in emoji) {
-//     return `<img src="${emoji[$1 as keyof typeof emoji]}" width="1em" height="1em" alt="${$0}" />`;
-//   }
-//   return $0;
-// });
+// @ts-expect-error missing typesx
+import { default as gitlab } from 'remark-gitlab';
+import { default as gfm } from 'remark-gfm';
+import { default as rehype } from 'remark-rehype';
+import { default as emoji } from 'remark-emoji';
 
-export const markdown = (content: string) => {
-  return wasm.parse(content);
+// @ts-expect-error missing typesx
+import { default as ally } from '@fec/remark-a11y-emoji';
+import { default as highlight } from 'rehype-highlight';
+import { default as stringify } from 'rehype-stringify';
+
+import { Repository } from 'src/utils/const';
+import { alias } from 'src/module/markdown/highlight';
+
+export const markdown = async (content: string, type: Repository, repo: string) => {
+  return new Promise<string>((resolve, reject) => {
+    let marked = remark().use(parse);
+
+    switch (type) {
+      case Repository.GITHUB:
+        marked = marked.use(github, {
+          repository: repo
+        });
+        break;
+      case Repository.GITLAB:
+        marked = marked.use(gitlab, {
+          repository: repo
+        });
+        break;
+      default:
+
+        // Not implemented
+    }
+
+    marked
+      .use(gfm)
+      .use(emoji)
+      .use(ally)
+      .use(rehype)
+      .use(highlight, {
+        aliases: alias
+      })
+      .use(stringify)
+      .process(content, (error, file) => {
+        if (error || !file) {
+          reject(error);
+
+          return;
+        }
+
+        resolve(file.value.toString('utf8'));
+      });
+  });
 };

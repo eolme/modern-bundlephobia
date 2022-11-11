@@ -30,7 +30,7 @@ export const semverFind = (
   const matched = findable
     .map((ver) => ({
       version: ver,
-      semver: toSemver(version)
+      semver: toSemver(ver)
     }))
     .filter((constraint) => constraint.semver[0] <= match[0])
     .sort((left, right) => {
@@ -53,10 +53,12 @@ export const semverFind = (
       }
 
       return major;
-    })[0];
+    });
 
-  if (matched) {
-    return versions[matched.version];
+  const result = matched[0];
+
+  if (result && result.semver[0] === match[0]) {
+    return versions[result.version];
   }
 
   return null;

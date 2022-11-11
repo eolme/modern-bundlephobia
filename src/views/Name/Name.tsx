@@ -119,7 +119,7 @@ export const Name: NextPage<NameProps> = ({ router, pkg, size }) => {
                     (
                       <a
                         className={styles.link}
-                        href={pkg.repository.link}
+                        href={pkg.repository.pure}
                         target="_blank"
                         rel="noopener noreferrer"
                         dangerouslySetInnerHTML={{ __html: ICON[pkg.repository.type] }}
