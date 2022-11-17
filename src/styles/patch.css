@@ -1,0 +1,115 @@
+pre,
+code {
+  font-family: ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, Liberation Mono, monospace;
+}
+
+html.vkui {
+  --font: -apple-system, BlinkMacSystemFont, 'Google Sans', 'Product Sans', 'Noto Sans', Roboto, 'Segoe Pro', 'Segoe UI', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", emoji;
+}
+
+body.vkui--vkBase--light {
+  --vkui--font_family_accent: var(--font);
+  --vkui--font_family_base: var(--font);
+  --vkui--font_title1--font_family--regular: var(--font);
+  --vkui--font_title2--font_family--regular: var(--font);
+  --vkui--font_title3--font_family--regular: var(--font);
+  --vkui--font_headline1--font_family--regular: var(--font);
+  --vkui--font_headline2--font_family--regular: var(--font);
+  --vkui--font_text--font_family--regular: var(--font);
+  --vkui--font_paragraph--font_family--regular: var(--font);
+  --vkui--font_subhead--font_family--regular: var(--font);
+  --vkui--font_footnote--font_family--regular: var(--font);
+  --vkui--font_footnote_caps--font_family--regular: var(--font);
+  --vkui--font_caption1--font_family--regular: var(--font);
+  --vkui--font_caption1_caps--font_family--regular: var(--font);
+  --vkui--font_caption2--font_family--regular: var(--font);
+  --vkui--font_caption2_caps--font_family--regular: var(--font);
+  --vkui--font_caption3--font_family--regular: var(--font);
+  --vkui--font_caption3_caps--font_family--regular: var(--font);
+  --vkui--font_headline--font_family--regular: var(--font);
+}
+
+body {
+  overflow-y: scroll;
+  overflow-y: overlay;
+
+  scrollbar-width: thin;
+
+  app-region: no-drag;
+  user-drag: none;
+}
+
+body::-webkit-scrollbar,
+body::-webkit-scrollbar-track,
+code::-webkit-scrollbar,
+code::-webkit-scrollbar-track {
+  width: 8px;
+  height: 8px;
+
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb,
+code::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+
+.vkui--vkBase--light,
+.vkui--vkBase--light code {
+  scrollbar-color: #d3d9de transparent;
+}
+
+.vkui--vkBase--dark,
+.vkui--vkBase--dark code {
+  scrollbar-color: #828282 transparent;
+}
+
+.vkui--vkBase--light::-webkit-scrollbar-thumb,
+.vkui--vkBase--light code::-webkit-scrollbar-thumb {
+  border: 1px solid transparent;
+  background: #d3d9de;
+  background-clip: content-box;
+}
+
+.vkui--vkBase--dark::-webkit-scrollbar-thumb,
+.vkui--vkBase--dark code::-webkit-scrollbar-thumb {
+  border: 1px solid transparent;
+  background: #828282;
+  background-clip: content-box;
+}
+
+html,
+body {
+  background-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background-color: #19191a;
+  }
+}
+
+.vkuiFormField {
+  border-radius: 4px;
+}
+
+.vkuiSnackbar {
+  left: 0;
+}
+
+.vkuiSnackbar--desktop {
+  max-width: none;
+  min-width: 0;
+  width: auto;
+}
+
+.vkui__root {
+  width: 100%;
+  max-width: 924px;
+
+  margin: 0 auto auto auto;
+  padding: calc(var(--vh, 1vh) * 50 - 88px) 12px 12px 12px;
+
+  box-sizing: border-box;
+}

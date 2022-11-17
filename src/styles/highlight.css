@@ -1,0 +1,205 @@
+.hljs-namespace {
+  opacity: 0.hljs-7;
+}
+
+.hljs-doctype .hljs-doctype-tag {
+  color: #569CD6;
+}
+
+.hljs-doctype .hljs-name {
+  color: #9cdcfe;
+}
+
+.hljs-comment,
+.hljs-prolog {
+  color: #6a9955;
+}
+
+.hljs-punctuation,
+.language-html .language-css .hljs-punctuation,
+.language-html .language-javascript .hljs-punctuation {
+  color: #d4d4d4;
+}
+
+.hljs-property,
+.hljs-tag,
+.hljs-boolean,
+.hljs-number,
+.hljs-constant,
+.hljs-symbol,
+.hljs-inserted,
+.hljs-unit {
+  color: #b5cea8;
+}
+
+.hljs-selector,
+.hljs-attr-name,
+.hljs-string,
+.hljs-char,
+.hljs-builtin,
+.hljs-deleted {
+  color: #ce9178;
+}
+
+.language-css .hljs-string.hljs-url {
+  text-decoration: underline;
+}
+
+.hljs-operator,
+.hljs-entity {
+  color: #d4d4d4;
+}
+
+.hljs-operator.hljs-arrow {
+  color: #569CD6;
+}
+
+.hljs-atrule {
+  color: #ce9178;
+}
+
+.hljs-atrule .hljs-rule {
+  color: #c586c0;
+}
+
+.hljs-atrule .hljs-url {
+  color: #9cdcfe;
+}
+
+.hljs-atrule .hljs-url .hljs-function {
+  color: #dcdcaa;
+}
+
+.hljs-atrule .hljs-url .hljs-punctuation {
+  color: #d4d4d4;
+}
+
+.hljs-keyword {
+  color: #569CD6;
+}
+
+.hljs-keyword.hljs-module,
+.hljs-keyword.hljs-control-flow {
+  color: #c586c0;
+}
+
+.hljs-function,
+.hljs-function .hljs-maybe-class-name {
+  color: #dcdcaa;
+}
+
+.hljs-regex {
+  color: #d16969;
+}
+
+.hljs-important {
+  color: #569cd6;
+}
+
+.hljs-italic {
+  font-style: italic;
+}
+
+.hljs-constant {
+  color: #9cdcfe;
+}
+
+.hljs-class-name,
+.hljs-maybe-class-name {
+  color: #4ec9b0;
+}
+
+.hljs-console {
+  color: #9cdcfe;
+}
+
+.hljs-parameter {
+  color: #9cdcfe;
+}
+
+.hljs-interpolation {
+  color: #9cdcfe;
+}
+
+.hljs-punctuation.hljs-interpolation-punctuation {
+  color: #569cd6;
+}
+
+.hljs-boolean {
+  color: #569cd6;
+}
+
+.hljs-property,
+.hljs-variable,
+.hljs-imports .hljs-maybe-class-name,
+.hljs-exports .hljs-maybe-class-name {
+  color: #9cdcfe;
+}
+
+.hljs-selector {
+  color: #d7ba7d;
+}
+
+.hljs-escape {
+  color: #d7ba7d;
+}
+
+.hljs-tag {
+  color: #569cd6;
+}
+
+.hljs-tag .hljs-punctuation {
+  color: #808080;
+}
+
+.hljs-cdata {
+  color: #808080;
+}
+
+.hljs-attr-name {
+  color: #9cdcfe;
+}
+
+.hljs-attr-value,
+.hljs-attr-value .hljs-punctuation {
+  color: #ce9178;
+}
+
+.hljs-attr-value .hljs-punctuation.hljs-attr-equals {
+  color: #d4d4d4;
+}
+
+.hljs-entity {
+  color: #569cd6;
+}
+
+.hljs-namespace {
+  color: #4ec9b0;
+}
+
+code.language-jsx,
+code.language-tsx {
+  color: #9cdcfe;
+}
+
+code.language-css {
+  color: #ce9178;
+}
+
+code.language-html {
+  color: #d4d4d4;
+}
+
+.language-regex .hljs-anchor {
+  color: #dcdcaa;
+}
+
+.language-html .hljs-punctuation {
+  color: #808080;
+}
+
+.hljs-line-highlight.hljs-line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}

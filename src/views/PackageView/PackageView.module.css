@@ -1,0 +1,34 @@
+.badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  margin-top: 12px;
+}
+
+.block {
+  margin: 32px 0 8px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  margin-top: 16px;
+}
+
+.link {
+  padding: 8px;
+
+  color: var(--vkui--color_text_primary);
+}
+
+.link svg {
+  display: block;
+}

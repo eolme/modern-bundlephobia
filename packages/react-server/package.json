@@ -1,0 +1,6 @@
+{
+  "name": "react-server",
+  "type": "commonjs",
+  "version": "18.3.0",
+  "main": "./index.js"
+}

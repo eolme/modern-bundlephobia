@@ -1,0 +1,7 @@
+node_modules/
+src/assets/fonts/
+bin/
+old/
+public/
+packages/
+.next/
