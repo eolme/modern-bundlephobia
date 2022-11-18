@@ -113,7 +113,7 @@ body {
   max-height: none;
 
   margin: 0 auto auto auto;
-  padding: calc(var(--vh, 1%) * 50 - 88px) 12px 12px 12px;
+  padding: calc(50vh - 88px) 12px 12px 12px;
 
   box-sizing: border-box;
 }

@@ -39,8 +39,6 @@ const mediaAppereanceApply = () => document.body.classList[mediaAppereanceCurren
 const mediaMouse = once(() => window.matchMedia('(pointer: fine)'));
 const mediaMouseCurrent = () => mediaMouse().matches;
 
-const deviceSizeApply = () => document.body.style.setProperty('--vh', `${0.01 * window.innerHeight}px`);
-
 type ClientConfigProps = {
   root: string;
   portal: string;
@@ -61,8 +59,6 @@ export const ClientConfig: FC<ClientConfigProps> = ({ root, portal, children }) 
   useRenderEffect(() => {
     mediaMouse().onchange = () => setMouse(mediaMouseCurrent);
   });
-
-  useInsertionEffect(deviceSizeApply, constDeps);
 
   const ConfigProviderValue = useMemo<ConfigProviderContextInterface>(() => ({
     appearance,

@@ -1,22 +1,72 @@
-import type { FC } from 'react';
-
 import { badge } from '#/utils/path';
 import { SizeType } from '#/utils/size';
 
+import { info } from './_internal/info';
+
+import * as Icons from '#/assets/icons';
+
 import styles from './PackageView.module.css';
 
-type PackageViewProps = {
-  name: string;
-};
+export const PackageView = async (query: string) => {
+  const collected = await info(query);
 
-export const PackageView: FC<PackageViewProps> = ({ name }) => {
   return (
     <div>
       <section className={styles.badges}>
-        <img src={badge(SizeType.INSTALL, name)} />
-        <img src={badge(SizeType.BROTLI, name)} />
-        <img src={badge(SizeType.GZIP, name)} />
+        <img
+          loading="eager"
+          src={badge(SizeType.INSTALL, query)}
+        />
+        <img
+          loading="eager"
+          src={badge(SizeType.BROTLI, query)}
+        />
+        <img
+          loading="eager"
+          src={badge(SizeType.GZIP, query)}
+        />
       </section>
+      <div className={styles.links}>
+        <a
+          className={styles.link}
+          href={`https://npm.im/${collected.name}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          dangerouslySetInnerHTML={{ __html: Icons.npm }}
+        />
+        {
+          collected.repository !== null ?
+            (
+              <a
+                className={styles.link}
+                href={collected.repository.pure}
+                target="_blank"
+                rel="noopener noreferrer"
+                dangerouslySetInnerHTML={{ __html: Icons[collected.repository.type] }}
+              />
+            ) :
+            null
+        }
+        {
+          collected.homepage !== null ?
+            (
+              <a
+                className={styles.link}
+                href={collected.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                dangerouslySetInnerHTML={{ __html: Icons.browser }}
+              />
+            ) :
+            null
+        }
+      </div>
+      <div className={styles.block}>
+        <article
+          className={styles.markdown}
+          dangerouslySetInnerHTML={{ __html: collected.readme }}
+        />
+      </div>
     </div>
   );
 };

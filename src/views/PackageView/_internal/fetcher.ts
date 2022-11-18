@@ -5,7 +5,7 @@ import { ContentType } from '#/utils/headers';
 const url = (name: string) => `https://registry.npmjs.org/${name}`;
 const init: RequestInit = {
   headers: {
-    accept: ContentType.NPM
+    accept: ContentType.JSON
   }
 };
 

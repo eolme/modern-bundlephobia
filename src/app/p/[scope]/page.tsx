@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { AsyncFC } from '#/types/react';
 
 import { PackageView } from '#/views';
 
@@ -8,9 +8,9 @@ type ScopePageProps = {
   };
 };
 
-const ScopePage: FC<ScopePageProps> = ({ params: { scope }}) => {
+const ScopePage: AsyncFC<ScopePageProps> = async ({ params: { scope }}) => {
   return (
-    <PackageView name={scope} />
+    PackageView(scope)
   );
 };
 

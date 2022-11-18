@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { AsyncFC } from '#/types/react';
 
 import { PackageView } from '#/views';
 import { merge } from '#/utils/path';
@@ -10,9 +10,9 @@ type NamePageProps = {
   };
 };
 
-const NamePage: FC<NamePageProps> = ({ params: { scope, name }}) => {
+const NamePage: AsyncFC<NamePageProps> = async ({ params: { scope, name }}) => {
   return (
-    <PackageView name={merge(scope, name)} />
+    PackageView(merge(scope, name))
   );
 };
 

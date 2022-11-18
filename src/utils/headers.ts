@@ -9,6 +9,7 @@ export enum InternalHeader {
 
 export enum ContentType {
   JSON = 'application/json',
+  NPM = 'application/vnd.npm.install-v1+json',
   JS = 'application/javascript',
   JPEG = 'image/jpeg',
   SVG = 'image/svg+xml',
