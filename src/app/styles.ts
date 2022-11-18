@@ -23,7 +23,9 @@ import '@mntm/vkui/dist/components/Typography/Paragraph/Paragraph.css';
 import '@mntm/vkui/dist/components/Button/Button.css';
 import '@mntm/vkui/dist/components/Snackbar/Snackbar.css';
 
+/* Highlight */
+import 'highlight.js/styles/github-dark.css';
+
 /* App */
 import '#/styles/patch.css';
-import '#/styles/highlight.css';
 import '#/styles/progress.css';
