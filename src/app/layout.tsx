@@ -106,6 +106,10 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
             />
           </ClientConfig>
         </ServerConfig>
+        <script
+          defer={true}
+          src={process.env.NEXT_PUBLIC_ANALYTICS}
+        />
       </body>
     </html>
   );
