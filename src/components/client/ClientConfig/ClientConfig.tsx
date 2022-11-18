@@ -60,6 +60,14 @@ export const ClientConfig: FC<ClientConfigProps> = ({ root, portal, children }) 
     mediaMouse().onchange = () => setMouse(mediaMouseCurrent);
   });
 
+  useRenderEffect(() => {
+    document.ondragstart = (event) => {
+      event.preventDefault();
+
+      return false;
+    };
+  });
+
   const ConfigProviderValue = useMemo<ConfigProviderContextInterface>(() => ({
     appearance,
     hasNewTokens: true,
