@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 
-import { title } from '#/utils/title';
 import { images } from '#/utils/images';
+import { title } from '#/utils/title';
 
 type ScopeHeadProps = {
   params: {

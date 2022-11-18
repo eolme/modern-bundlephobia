@@ -1,5 +1,3 @@
-export const merge = (...parts: string[]) => parts.join('/');
-
 export const strip = (path: string) => {
   if (path[1] === 'p') {
     // /p/:path
@@ -30,7 +28,11 @@ export const name = (path: string) => {
   return strip(last <= 0 ? path : path.slice(0, last));
 };
 
-export const format = (path: string) => decodeURIComponent(unescape(strip(path)));
+export const decode = (path: string) => decodeURIComponent(unescape(path));
+
+export const format = (path: string) => strip(decode(path));
+
+export const merge = (...parts: string[]) => decode(parts.join('/'));
 
 export const og = (...parts: string[]) => `${process.env.NEXT_PUBLIC_HOST}/api/og/${merge(...parts)}`;
 

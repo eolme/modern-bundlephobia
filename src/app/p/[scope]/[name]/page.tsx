@@ -1,7 +1,8 @@
 import type { AsyncFC } from '#/types/react';
 
-import { PackageView } from '#/views';
 import { merge } from '#/utils/path';
+
+import { PackageView } from '#/views';
 
 type NamePageProps = {
   params: {

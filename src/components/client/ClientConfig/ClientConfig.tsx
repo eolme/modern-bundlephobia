@@ -24,6 +24,7 @@ import {
 
 import { useInsertionEffect, useMemo, useState } from 'react';
 import { useRenderEffect } from 'ahks';
+import { constDeps } from 'ahks/utils';
 
 import { once } from '#/utils/fn';
 import { document, window } from '#/utils/dom';
@@ -98,7 +99,7 @@ export const ClientConfig: FC<ClientConfigProps> = ({ root, portal, children }) 
     keyboardInput: false,
     mode: 'full',
     embedded: false
-  }), []);
+  }), constDeps);
 
   return (
     <ConfigProviderContext.Provider value={ConfigProviderValue}>

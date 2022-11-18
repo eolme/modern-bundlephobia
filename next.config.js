@@ -21,8 +21,6 @@ const next = {
     runtime: 'experimental-edge',
     appDir: true,
     enableUndici: true,
-    middlewarePrefetch: 'flexible',
-    allowMiddlewareResponseBody: true,
 
     esmExternals: 'loose',
     fullySpecified: false,
@@ -103,5 +101,5 @@ const next = {
 };
 
 module.exports = analyze({
-  enabled: false
+  enabled: process.env.ANALYZE === '1'
 })(next);

@@ -11,7 +11,6 @@ import { fetcher } from './_internal/fetcher';
 export const middlewareNPM = async (req: NextRequest): Promise<NextResponse> => {
   try {
     const path = format(req.nextUrl.pathname);
-
     const record = parts(path);
 
     const pkg = await fetcher(record.name);

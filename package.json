@@ -24,7 +24,7 @@
     "@vkontakte/vk-bridge": "file:./packages/bridge",
     "@vkontakte/vkjs": "^0.28.0",
     "@vkontakte/vkui-tokens": "^4.24.0",
-    "ahks": "^0.3.1",
+    "ahks": "^0.4.1",
     "brotli-compress-wasm": "^0.2.0",
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.3",

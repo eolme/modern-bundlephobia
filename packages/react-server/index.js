@@ -1,4 +1,4 @@
-const React = require('react');
+const React = require('next/dist/compiled/react');
 
 const currentIndex = 0;
 const createNameIndexed = () => `_${++currentIndex}`;

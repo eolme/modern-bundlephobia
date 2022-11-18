@@ -941,25 +941,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ahks@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "ahks@npm:0.3.1"
+"ahks@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "ahks@npm:0.4.1"
   dependencies:
     use-callback-ref: ^1.3.0
     use-composed-ref: ^1.3.0
-    use-debounce: ^8.0.1
+    use-debounce: ^8.0.4
     use-deep-compare-effect: ^1.8.1
     use-is-mounted-ref: ^1.5.0
     use-isomorphic-layout-effect: ^1.1.2
     use-latest: ^1.2.1
-    use-memo-one: ^1.1.2
-    use-sync-external-store: ^1.1.0
+    use-memo-one: ^1.1.3
+    use-sync-external-store: ^1.2.0
   peerDependencies:
     react: ">=17"
   peerDependenciesMeta:
     react:
       optional: false
-  checksum: 4093bd19f5bd4e32c006b9335caf6299c62993310b6a07f3601d3fe4f58a90d28bb1a5ec0896be57054b15765d5b55239d21d1a68f17fd09b5b364ce2dbbfa34
+  checksum: 779c71feb924386dcc6e28d78972e106b12184f5bf467d953199da0637796d1d1b56204e20ac5a0241d6242ca8a5eab31da0ff941aa6fcdae15799d872ff534f
   languageName: node
   linkType: hard
 
@@ -1264,7 +1264,7 @@ __metadata:
     "@vkontakte/vk-bridge": "file:./packages/bridge"
     "@vkontakte/vkjs": ^0.28.0
     "@vkontakte/vkui-tokens": ^4.24.0
-    ahks: ^0.3.1
+    ahks: ^0.4.1
     brotli-compress-wasm: ^0.2.0
     clsx: ^1.2.1
     copy-to-clipboard: ^3.3.3
@@ -4835,8 +4835,8 @@ __metadata:
 
 "react-server@file:./packages/react-server::locator=bundlephobia%40workspace%3A.":
   version: 18.3.0
-  resolution: "react-server@file:./packages/react-server#./packages/react-server::hash=8e329b&locator=bundlephobia%40workspace%3A."
-  checksum: aa0e813bb390582a0554491027448f61e5c3659a2f7530e5119aa8a80da5c22cc1d98ed43d9b3d7ca1a246027a3c5527cf0fa5fcc5a23f157e3208a0fec6709e
+  resolution: "react-server@file:./packages/react-server#./packages/react-server::hash=51f0bd&locator=bundlephobia%40workspace%3A."
+  checksum: 95dfe6d8d8b75083ce813c0cbd8da18559e52fe01e59d47bbbdb77f7c1acc3aada5e00f14df1cb26c168f2d34631a218b95b5ceb47f3dfeafc6d0158b865558c
   languageName: node
   linkType: hard
 
@@ -6196,7 +6196,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-debounce@npm:^8.0.1":
+"use-debounce@npm:^8.0.4":
   version: 8.0.4
   resolution: "use-debounce@npm:8.0.4"
   peerDependencies:
@@ -6252,7 +6252,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-memo-one@npm:^1.1.2":
+"use-memo-one@npm:^1.1.3":
   version: 1.1.3
   resolution: "use-memo-one@npm:1.1.3"
   peerDependencies:
@@ -6261,7 +6261,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:1.2.0, use-sync-external-store@npm:^1.1.0, use-sync-external-store@npm:^1.2.0":
+"use-sync-external-store@npm:1.2.0, use-sync-external-store@npm:^1.2.0":
   version: 1.2.0
   resolution: "use-sync-external-store@npm:1.2.0"
   peerDependencies:
