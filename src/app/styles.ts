@@ -28,4 +28,3 @@ import 'highlight.js/styles/github-dark.css';
 
 /* App */
 import '#/styles/patch.css';
-import '#/styles/progress.css';

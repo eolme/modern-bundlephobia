@@ -1,23 +1,15 @@
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
 const analyze = require('@next/bundle-analyzer');
 
 const mainFields = [
   'modern',
-  'esmodule',
-  'esm',
   'esnext',
   'jsnext:main',
   'jsnext',
-  'es2015',
-  'esm2015',
-  'fesm2015',
   'module',
-  'esm5',
-  'fesm5',
   'main',
   'browser'
 ];
-
-const empty = [];
 
 /**
  * @type {import('next').NextConfig}
@@ -29,6 +21,8 @@ const next = {
     runtime: 'experimental-edge',
     appDir: true,
     enableUndici: true,
+    middlewarePrefetch: 'flexible',
+    allowMiddlewareResponseBody: true,
 
     esmExternals: 'loose',
     fullySpecified: false,
@@ -72,11 +66,6 @@ const next = {
     // Force esm
     config.resolve.mainFields = mainFields;
     config.resolve.aliasFields = mainFields;
-
-    // Disable condition resolve
-    config.resolve.importsFields = empty;
-    config.resolve.exportsFields = empty;
-    config.resolve.conditionNames = empty;
 
     // Hack resolution
     config.resolve.extensions =
