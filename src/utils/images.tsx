@@ -16,12 +16,12 @@ export const images = (...parts: string[]) => {
       />
       <link
         rel="image_src"
-        type="image/jpeg"
+        type="image/png"
         href={image}
       />
       <meta
         property="og:image:type"
-        content="image/jpeg"
+        content="image/png"
       />
       <meta
         property="og:image:width"
