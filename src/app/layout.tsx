@@ -9,6 +9,7 @@ import {
 } from '#/components/server';
 
 import {
+  ClientAnalytics,
   ClientConfig,
   ClientSearch
 } from '#/components/client';
@@ -107,15 +108,17 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
             root={rootId}
             portal={portalId}
           >
-            <main id={rootId} className="vkui__root">
-              <Header />
-              <ClientSearch />
-              {children}
-            </main>
-            <span
-              id={portalId}
-              className="vkui__portal-root"
-            />
+            <ClientAnalytics>
+              <main id={rootId} className="vkui__root">
+                <Header />
+                <ClientSearch />
+                {children}
+              </main>
+              <span
+                id={portalId}
+                className="vkui__portal-root"
+              />
+            </ClientAnalytics>
           </ClientConfig>
         </ServerConfig>
         <script
