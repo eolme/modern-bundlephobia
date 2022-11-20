@@ -34,7 +34,19 @@ const next = {
   },
   async headers() {
     return [{
-      source: '/:path*',
+      source: '/',
+      headers: [{
+        key: 'Accept-CH',
+        value: 'Sec-CH-Prefers-Color-Scheme'
+      }, {
+        key: 'Vary',
+        value: 'Sec-CH-Prefers-Color-Scheme'
+      }, {
+        key: 'Critical-CH',
+        value: 'Sec-CH-Prefers-Color-Scheme'
+      }]
+    }, {
+      source: '/p/:path*',
       headers: [{
         key: 'Accept-CH',
         value: 'Sec-CH-Prefers-Color-Scheme'

@@ -85,6 +85,18 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
           media="(prefers-color-scheme: light)"
           content="#fff"
         />
+        <meta
+          name="robots"
+          content="index,follow"
+        />
+        <meta
+          name="google-site-verification"
+          content="itqdo-vvKJY1uI42uVTu3hD4Zdgs2f2yJc19gsK2nv8"
+        />
+        <meta
+          name="yandex-verification"
+          content="ad5c40447db2df86"
+        />
       </head>
       <body
         className={clsx('vkui--vkBase--light', theme() === 'dark' && 'vkui--vkBase--dark')}

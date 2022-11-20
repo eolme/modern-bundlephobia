@@ -2,6 +2,11 @@
   "name": "bundlephobia",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eolme/modern-bundlephobia.git"
+  },
   "engines": {
     "node": "16",
     "yarn": "3"
@@ -12,7 +17,8 @@
     "start": "next start",
     "lint": "next lint",
     "generate": "run-p \"generate:*\"",
-    "generate:fonts": "yarn node bin/fonts.js"
+    "generate:fonts": "yarn node bin/fonts.js",
+    "generate:licenses": "yarn node bin/licenses.js"
   },
   "dependencies": {
     "@fec/remark-a11y-emoji": "^3.1.0",
@@ -60,13 +66,10 @@
     "@next/swc-darwin-x64": "^13.0.4",
     "@next/swc-linux-x64-gnu": "^13.0.4",
     "@types/node": "^18.11.9",
-    "@types/node-fetch": "^2.6.2",
-    "@types/nprogress": "^0.2.0",
-    "@types/prismjs": "^1.26.0",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "@types/webpack": "^5.28.0",
-    "eslint": "^8.27.0",
+    "eslint": "^8.28.0",
     "fast-glob": "^3.2.12",
     "npm-run-all": "^4.1.5",
     "typescript": "4.9.3"

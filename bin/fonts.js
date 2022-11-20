@@ -1,5 +1,5 @@
 const fs = require('node:fs/promises');
-const { resolve } = require('path');
+const { resolve } = require('node:path');
 
 const folder = resolve(process.cwd(), 'src/assets/fonts');
 

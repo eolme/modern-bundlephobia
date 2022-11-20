@@ -62,9 +62,9 @@ export const badge = (type: SizeType, size: string) => {
   });
 };
 
-export const error = (status: number) => {
+export const error = (type: SizeType, status: number) => {
   return generateBadge({
-    label: 'fail',
+    label: SizeName[type],
     message: status.toString(),
     color: 'critical'
   });

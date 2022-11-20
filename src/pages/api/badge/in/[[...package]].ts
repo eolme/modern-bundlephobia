@@ -15,7 +15,7 @@ const handler = async (req: NextRequest) => {
   } catch (ex: unknown) {
     console.error(ex);
 
-    return respondSVG(200, error(getErrorStatus(ex)));
+    return respondSVG(200, error(SizeType.INSTALL, getErrorStatus(ex)));
   }
 };
 
