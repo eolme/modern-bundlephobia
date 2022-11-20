@@ -25,7 +25,7 @@
     "@vkontakte/vkjs": "^0.28.0",
     "@vkontakte/vkui-tokens": "^4.24.0",
     "ahks": "^0.4.1",
-    "brotli-compress-wasm": "^0.2.0",
+    "brotli-compress-wasm": "^0.3.0",
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.3",
     "country-json": "^1.1.2",

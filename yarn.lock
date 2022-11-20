@@ -1206,10 +1206,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"brotli-compress-wasm@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "brotli-compress-wasm@npm:0.2.0"
-  checksum: b8db9aecfba09a682e274950dc7f2f4238c1357f12fcbf2f4015f5017bf278a2773b68da79383d9bce57112cf052acd6a11065022830d369dc2f005a7a5badcd
+"brotli-compress-wasm@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "brotli-compress-wasm@npm:0.3.0"
+  checksum: 2853f6e8e3ae133a3f86f11ee5b85317342c472169251c3c39115c21cef04ea9aaabe080e48f319175273365cfd8785af137e89677b4a3e0b9b4d6457f86c602
   languageName: node
   linkType: hard
 
@@ -1265,7 +1265,7 @@ __metadata:
     "@vkontakte/vkjs": ^0.28.0
     "@vkontakte/vkui-tokens": ^4.24.0
     ahks: ^0.4.1
-    brotli-compress-wasm: ^0.2.0
+    brotli-compress-wasm: ^0.3.0
     clsx: ^1.2.1
     copy-to-clipboard: ^3.3.3
     country-json: ^1.1.2
