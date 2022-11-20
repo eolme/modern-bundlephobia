@@ -3,10 +3,16 @@
 import type { FC, ReactNode } from 'react';
 import type { Provider } from '@mntm/stats';
 
-import { useCreation } from 'ahks';
+import { useCreation, useRenderEffect } from 'ahks';
 
 import { createContext } from 'react';
-import { createProviderGA, createProviderYM } from '@mntm/stats';
+import {
+  createProviderGA,
+  createProviderYM,
+  launchParams
+} from '@mntm/stats';
+
+import { user } from './_internal/user';
 
 const NoopProvider: Provider = {
   send: async () => true
@@ -20,6 +26,10 @@ type ClientAnalyticsProps = {
 };
 
 export const ClientAnalytics: FC<ClientAnalyticsProps> = ({ children }) => {
+  useRenderEffect(() => {
+    launchParams.vk_user_id = user();
+  });
+
   const google = useCreation(() => createProviderGA('G-H9YV7M87YG'));
   const yandex = useCreation(() => createProviderYM(91289383, { trackLinks: true }));
 
