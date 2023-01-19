@@ -1,8 +1,8 @@
-import type { NPMSSearch } from '#/types/npms';
+import type { Search, SearchObject } from '#/types/npm';
 
 import { ContentType } from '#/utils/headers';
 
-const url = (query: string) => `https://api.npms.io/v2/search/suggestions?size=6&q=${encodeURIComponent(query)}`;
+const url = (query: string) => `https://registry.npmjs.org/-/v1/search?size=6&popularity=1.0&text=${encodeURIComponent(query)}`;
 const init: RequestInit = {
   cache: 'force-cache',
   keepalive: true,
@@ -12,6 +12,6 @@ const init: RequestInit = {
   }
 };
 
-export const fetcher = async (query: string): Promise<NPMSSearch[]> => {
-  return (await fetch(url(query), init)).json();
+export const fetcher = async (query: string): Promise<SearchObject[]> => {
+  return (await fetch(url(query), init)).json().then((search: Search) => search.objects);
 };

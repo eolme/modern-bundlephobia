@@ -2,12 +2,13 @@
 
 import type { ChangeEvent, FC, MouseEvent, ReactNode, TouchEvent } from 'react';
 import type { Placement } from '@popperjs/core';
+import type { SearchObject } from '#/types/npm';
 
 import {
   Headline,
   Input,
   PanelSpinner,
-  Popper,
+  unstable_Popper as Popper,
   SimpleCell
 } from '@mntm/vkui';
 
@@ -23,6 +24,7 @@ import { default as useSWR } from 'swr';
 
 import { name } from '#/utils/path';
 import { title } from '#/utils/title';
+import { safeDocument } from '#/utils/dom';
 
 import { fetcher } from './_internal/fetcher';
 
@@ -88,7 +90,7 @@ export const ClientSearch: FC = () => {
     fetcher
   });
 
-  const data = typeof current === 'undefined' ? [] : current;
+  const data: SearchObject[] = typeof current === 'undefined' ? [] : current;
 
   const [focus, setFocus] = useState(false);
   const open = focus && search.length > 0;
@@ -109,7 +111,7 @@ export const ClientSearch: FC = () => {
     const query = `${select.package.name}@${select.package.version}`;
 
     // TODO: remove when fixed
-    document.title = title(query);
+    safeDocument.title = title(query);
     router.replace(`/p/${query}`);
   });
 

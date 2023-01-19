@@ -11,10 +11,6 @@ import {
 } from '@mntm/vkui/dist/components/ConfigProvider/ConfigProviderContext';
 
 import {
-  AppearanceProviderContext
-} from '@mntm/vkui/dist/components/AppearanceProvider/AppearanceProviderContext';
-
-import {
   AdaptivityContext
 } from '@mntm/vkui/dist/components/AdaptivityProvider/AdaptivityContext';
 
@@ -27,16 +23,16 @@ import { useRenderEffect } from 'ahks';
 import { constDeps } from 'ahks/utils';
 
 import { once } from '#/utils/fn';
-import { document, window } from '#/utils/dom';
+import { safeDocument, safeWindow } from '#/utils/dom';
 
 const AppearanceLight = 'light';
 const AppearanceDark = 'dark';
 
-const mediaAppereance = once(() => window.matchMedia('(prefers-color-scheme: dark)'));
+const mediaAppereance = once(() => safeWindow.matchMedia('(prefers-color-scheme: dark)'));
 const mediaAppereanceCurrent = () => mediaAppereance().matches ? AppearanceDark : AppearanceLight;
-const mediaAppereanceApply = () => document.body.classList[mediaAppereanceCurrent() === AppearanceDark ? 'add' : 'remove']('vkui--vkBase--dark');
+const mediaAppereanceApply = () => safeDocument.body.classList[mediaAppereanceCurrent() === AppearanceDark ? 'add' : 'remove']('vkui--vkBase--dark');
 
-const mediaMouse = once(() => window.matchMedia('(pointer: fine)'));
+const mediaMouse = once(() => safeWindow.matchMedia('(pointer: fine)'));
 const mediaMouseCurrent = () => mediaMouse().matches;
 
 type ClientConfigProps = {
@@ -61,7 +57,7 @@ export const ClientConfig: FC<ClientConfigProps> = ({ root, portal, children }) 
   });
 
   useRenderEffect(() => {
-    document.ondragstart = (event) => {
+    safeDocument.ondragstart = (event) => {
       event.preventDefault();
 
       return false;
@@ -69,8 +65,8 @@ export const ClientConfig: FC<ClientConfigProps> = ({ root, portal, children }) 
   });
 
   const ConfigProviderValue = useMemo<ConfigProviderContextInterface>(() => ({
+    locale: 'en',
     appearance,
-    hasNewTokens: true,
     platform: 'android',
     isWebView: false,
     webviewType: 'internal' as WebviewType,
@@ -89,11 +85,11 @@ export const ClientConfig: FC<ClientConfigProps> = ({ root, portal, children }) 
   const AppRootValue = useMemo<AppRootContextInterface>(() => ({
     appRoot: {
       get current() {
-        return document.getElementById(root) as HTMLDivElement;
+        return safeDocument.getElementById(root) as HTMLDivElement;
       }
     },
     get portalRoot() {
-      return document.getElementById(portal);
+      return safeDocument.getElementById(portal);
     },
     disablePortal: false,
     keyboardInput: false,
@@ -103,13 +99,11 @@ export const ClientConfig: FC<ClientConfigProps> = ({ root, portal, children }) 
 
   return (
     <ConfigProviderContext.Provider value={ConfigProviderValue}>
-      <AppearanceProviderContext.Provider value={appearance}>
-        <AdaptivityContext.Provider value={AdaptivityProviderValue}>
-          <AppRootContext.Provider value={AppRootValue}>
-            {children}
-          </AppRootContext.Provider>
-        </AdaptivityContext.Provider>
-      </AppearanceProviderContext.Provider>
+      <AdaptivityContext.Provider value={AdaptivityProviderValue}>
+        <AppRootContext.Provider value={AppRootValue}>
+          {children}
+        </AppRootContext.Provider>
+      </AdaptivityContext.Provider>
     </ConfigProviderContext.Provider>
   );
 };

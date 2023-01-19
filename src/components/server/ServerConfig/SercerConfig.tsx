@@ -17,8 +17,8 @@ import {
 } from '@mntm/vkui/dist/components/AppRoot/AppRootContext';
 
 const ConfigProviderValue: ConfigProviderContextInterface = {
+  locale: 'en',
   appearance: 'light',
-  hasNewTokens: true,
   platform: 'android',
   isWebView: false,
   webviewType: 'internal' as WebviewType,
@@ -26,8 +26,8 @@ const ConfigProviderValue: ConfigProviderContextInterface = {
 };
 
 const AdaptivityProviderValue: AdaptivityProps = {
-  deviceHasHover: true,
-  hasMouse: true,
+  hasPointer: true,
+  hasHover: true,
   sizeX: 'compact' as SizeType,
   sizeY: 'regular' as SizeType,
   viewWidth: 5 as ViewWidth,

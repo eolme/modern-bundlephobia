@@ -12,5 +12,5 @@ extend(ssrDocument.body, {
   }
 });
 
-export const document = getDocument();
-export const window = getWindow();
+export const safeDocument = getDocument();
+export const safeWindow = getWindow();

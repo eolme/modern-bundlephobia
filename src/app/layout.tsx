@@ -67,7 +67,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
         <link
           rel="preconnect"
           crossOrigin="anonymous"
-          href="https://api.npms.io/"
+          href="https://registry.npmjs.org/"
         />
         <meta
           key="theme-color"

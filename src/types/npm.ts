@@ -56,3 +56,22 @@ export type Package = {
   _attachments: unknown;
   readme: string;
 };
+
+export type SearchObject = {
+  package: Version;
+  score: {
+    final: number;
+    detail: {
+      quality: number;
+      popularity: number;
+      maintenance: number;
+    };
+  };
+  searchScore: number;
+};
+
+export type Search = {
+  objects: SearchObject[];
+  total: number;
+  time: number;
+};

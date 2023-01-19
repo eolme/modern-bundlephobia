@@ -1,9 +1,6 @@
 import { remark } from 'remark';
 import { default as parse } from 'remark-parse';
 import { default as github } from 'remark-github';
-
-// @ts-expect-error missing types
-import { default as gitlab } from 'remark-gitlab';
 import { default as gfm } from 'remark-gfm';
 import { default as rehype } from 'remark-rehype';
 import { default as emoji } from 'remark-emoji';
@@ -24,11 +21,6 @@ export const markdown = async (content: string, type: Repository, repo: string) 
     switch (type) {
       case Repository.GITHUB:
         marked = marked.use(github, {
-          repository: repo
-        });
-        break;
-      case Repository.GITLAB:
-        marked = marked.use(gitlab, {
           repository: repo
         });
         break;
