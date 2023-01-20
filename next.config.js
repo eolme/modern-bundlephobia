@@ -18,9 +18,8 @@ const next = {
   reactStrictMode: false,
   swcMinify: true,
   experimental: {
-    runtime: 'experimental-edge',
+    runtime: 'edge',
     appDir: true,
-    enableUndici: true,
 
     esmExternals: 'loose',
     fullySpecified: false,

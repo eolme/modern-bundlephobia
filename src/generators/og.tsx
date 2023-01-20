@@ -1,10 +1,7 @@
 import type { DetailedHTMLProps, HTMLAttributes, ReactElement } from 'react';
 
-import { default as NotoSansRegular } from '#/assets/fonts/noto-sans-regular';
-import { default as NotoSansSemiBold } from '#/assets/fonts/noto-sans-semibold';
-
-import { ImageResponse } from '@vercel/og';
 import { SizeName, SizeType, formatBytes } from '#/utils/size';
+import { once } from '#/utils/fn';
 
 const px = (value: number) => `${value}px`;
 
@@ -20,12 +17,37 @@ const jsx = (type: string, props: DetailedHTMLProps<HTMLAttributes<HTMLElement>,
   })
 }) as ReactElement<any, any>;
 
+const loader = once(async () => import(
+  /* webpackMode: "lazy-once" */
+  '@vercel/og'
+));
+
+const fontRegular = once(async () => import(
+  /* webpackMode: "lazy-once" */
+  '#/assets/fonts/noto-sans-regular'
+));
+
+const fontSemibold = once(async () => import(
+  /* webpackMode: "lazy-once" */
+  '#/assets/fonts/noto-sans-semibold'
+));
+
 export const og = async (
   name: string,
   install: string,
   gzip: string,
   brotli: string
 ) => {
+  const [
+    { ImageResponse },
+    { default: NotoSansRegular },
+    { default: NotoSansSemiBold }
+  ] = await Promise.all([
+    loader(),
+    fontRegular(),
+    fontSemibold()
+  ]);
+
   const long = name.length > 15;
 
   return new ImageResponse(

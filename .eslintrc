@@ -6,6 +6,7 @@
     "tsconfigRootDir": "."
   },
   "rules": {
+    "capitalized-comments": 0,
     "sonarjs/no-duplicate-string": 0
   }
 }
