@@ -3,7 +3,7 @@ import { default as bytes } from 'pretty-bytes';
 export const formatBytes = (value: string) => bytes(Number(value), {
   locale: 'en',
   maximumFractionDigits: 2,
-  minimumFractionDigits: 2
+  minimumFractionDigits: 0
 });
 
 export enum SizeType {
