@@ -1,5 +1,15 @@
 import type { NextRequest, NextResponse } from 'next/server';
 
+Object.defineProperty(Request.prototype, 'integrity', {
+  ...Object.getOwnPropertyDescriptor(Request.prototype, 'integrity'),
+  get() {
+    return this._patchedIntegrity || '';
+  },
+  set(value) {
+    this._patchedIntegrity = String(value);
+  }
+});
+
 import {
   middlewareNPM
 } from '#/middlewares';
