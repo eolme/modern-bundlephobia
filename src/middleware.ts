@@ -1,5 +1,16 @@
 import type { NextRequest, NextResponse } from 'next/server';
 
+// Fix not implemented integrity
+Object.defineProperty(Request.prototype, 'integrity', {
+  ...Object.getOwnPropertyDescriptor(Request.prototype, 'integrity'),
+  get() {
+    return this._integrity || '';
+  },
+  set(value) {
+    this._integrity = String(value);
+  }
+});
+
 import {
   middlewareNPM
 } from '#/middlewares';
