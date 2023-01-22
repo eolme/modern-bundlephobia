@@ -24,8 +24,8 @@ const fresh = (headers: HeadersInit) => Object.assign(headers, {
 });
 
 const cached = (headers: HeadersInit) => Object.assign(headers, {
-  'Cache-Control': 'max-age=43200, immutable',
-  'CDN-Cache-Control': 'max-age=43200, immutable'
+  'Cache-Control': 'max-age=604800, immutable',
+  'CDN-Cache-Control': 'max-age=604800, immutable'
 });
 
 const respond = (status: number, payload: BodyInit | null, type: ContentType) => {
