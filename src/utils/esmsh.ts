@@ -1,7 +1,7 @@
 import { ModuleErrorType, fail } from '#/utils/errors';
 import { ContentType } from '#/utils/headers';
 
-const entryURL = (query: string) => `https://esm.sh/${query}?pin=v104&target=node&bundle&no-dts&ignore-annotations`;
+const entryURL = (query: string) => `https://esm.sh/stable/${query}?target=node&bundle`;
 
 const regexScriptLink = /from\s*"(.+?)"/;
 

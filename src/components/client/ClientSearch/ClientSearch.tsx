@@ -180,6 +180,10 @@ export const ClientSearch: FC = () => {
         name="search"
         type="search"
         inputMode="search"
+        enterKeyHint="search"
+        accessKey="f"
+        role="combobox"
+        aria-label="Search"
         aria-haspopup={open ? 'listbox' : 'false'}
         aria-controls={open ? 'listbox' : 'search'}
       />

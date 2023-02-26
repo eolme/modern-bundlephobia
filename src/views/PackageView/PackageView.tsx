@@ -1,5 +1,6 @@
 import { badge } from '#/utils/path';
 import { SizeType } from '#/utils/size';
+import { alt } from '#/utils/a11y';
 
 import { info } from './_internal/info';
 
@@ -15,15 +16,24 @@ export const PackageView = async (query: string) => {
       <section className={styles.badges}>
         <img
           loading="eager"
+          crossOrigin="anonymous"
+          height={20}
           src={badge(SizeType.INSTALL, query)}
+          alt={alt(collected.name, SizeType.INSTALL)}
         />
         <img
           loading="eager"
+          crossOrigin="anonymous"
+          height={20}
           src={badge(SizeType.BROTLI, query)}
+          alt={alt(collected.name, SizeType.BROTLI)}
         />
         <img
           loading="eager"
+          crossOrigin="anonymous"
+          height={20}
           src={badge(SizeType.GZIP, query)}
+          alt={alt(collected.name, SizeType.GZIP)}
         />
       </section>
       <div className={styles.links}>

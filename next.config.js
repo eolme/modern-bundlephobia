@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
 const analyze = require('@next/bundle-analyzer');
 
-const mainFields = [
+const classicFields = [
   'modern',
   'esnext',
   'jsnext:main',
@@ -72,12 +72,13 @@ const next = {
     // Force new
     config = Object.assign({}, config);
 
-    // Force esm
-    config.resolve.mainFields = mainFields;
-    config.resolve.aliasFields = mainFields;
+    if (!options.isServer) {
+      // Force esm
+      config.resolve.mainFields = classicFields;
+      config.resolve.aliasFields = classicFields;
 
-    // Hack resolution
-    config.resolve.extensions =
+      // Hack resolution
+      config.resolve.extensions =
       config.resolve.extensions.flatMap((ext) =>
         /\.m?(t|j)sx?/.test(ext) ?
           [
@@ -87,6 +88,7 @@ const next = {
             ext
           ] :
           ext);
+    }
 
     // Load svg as string
     config.module.rules.unshift({
@@ -105,6 +107,7 @@ const next = {
       config.resolve.alias = Object.assign({}, config.resolve.alias);
 
       config.resolve.alias.react = require.resolve('react-server');
+      config.resolve.alias['react-server'] = require.resolve('react-sever');
     }
 
     return config;

@@ -118,3 +118,7 @@ main.vkui__root {
 
   box-sizing: border-box;
 }
+
+a {
+  color: inherit;
+}

@@ -1,12 +1,17 @@
 {
   "root": true,
-  "extends": "@mntm",
+  "extends": [
+    "@mntm",
+    "next"
+  ],
   "parserOptions": {
     "project": "./tsconfig.json",
     "tsconfigRootDir": "."
   },
   "rules": {
     "capitalized-comments": 0,
-    "sonarjs/no-duplicate-string": 0
+    "sonarjs/no-duplicate-string": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "@next/next/no-img-element": 0
   }
 }

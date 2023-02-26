@@ -32,22 +32,24 @@ export const images = (...parts: string[]) => {
         content="480"
       />
       <link
-        rel="preload"
-        as="image"
+        rel="prefetch"
         href={image}
       />
       <link
         rel="preload"
+        crossOrigin="anonymous"
         as="image"
         href={badge(SizeType.INSTALL, ...parts)}
       />
       <link
         rel="preload"
+        crossOrigin="anonymous"
         as="image"
         href={badge(SizeType.BROTLI, ...parts)}
       />
       <link
         rel="preload"
+        crossOrigin="anonymous"
         as="image"
         href={badge(SizeType.GZIP, ...parts)}
       />
