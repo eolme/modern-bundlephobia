@@ -107,7 +107,7 @@ const next = {
       config.resolve.alias = Object.assign({}, config.resolve.alias);
 
       config.resolve.alias.react = require.resolve('react-server');
-      config.resolve.alias['react-server'] = require.resolve('react-sever');
+      config.resolve.alias['react-server'] = require.resolve('react-server');
     }
 
     return config;
