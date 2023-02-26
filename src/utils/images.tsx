@@ -37,19 +37,16 @@ export const images = (...parts: string[]) => {
       />
       <link
         rel="preload"
-        crossOrigin="anonymous"
         as="image"
         href={badge(SizeType.INSTALL, ...parts)}
       />
       <link
         rel="preload"
-        crossOrigin="anonymous"
         as="image"
         href={badge(SizeType.BROTLI, ...parts)}
       />
       <link
         rel="preload"
-        crossOrigin="anonymous"
         as="image"
         href={badge(SizeType.GZIP, ...parts)}
       />

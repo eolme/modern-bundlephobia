@@ -16,21 +16,18 @@ export const PackageView = async (query: string) => {
       <section className={styles.badges}>
         <img
           loading="eager"
-          crossOrigin="anonymous"
           height={20}
           src={badge(SizeType.INSTALL, query)}
           alt={alt(collected.name, SizeType.INSTALL)}
         />
         <img
           loading="eager"
-          crossOrigin="anonymous"
           height={20}
           src={badge(SizeType.BROTLI, query)}
           alt={alt(collected.name, SizeType.BROTLI)}
         />
         <img
           loading="eager"
-          crossOrigin="anonymous"
           height={20}
           src={badge(SizeType.GZIP, query)}
           alt={alt(collected.name, SizeType.GZIP)}
