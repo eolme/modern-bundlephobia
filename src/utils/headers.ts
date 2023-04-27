@@ -12,6 +12,7 @@ export enum ContentType {
   NPM = 'application/vnd.npm.install-v1+json',
   JS = 'application/javascript',
   JPEG = 'image/jpeg',
+  PNG = 'image/png',
   SVG = 'image/svg+xml',
   UNKNOWN = 'application/octet-stream',
   TEXT = 'text/plain',

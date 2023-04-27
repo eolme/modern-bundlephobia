@@ -15,11 +15,13 @@ const classicFields = [
  * @type {import('next').NextConfig}
  */
 const next = {
-  reactStrictMode: false,
+  reactStrictMode: process.env.NODE_ENV === 'production',
   swcMinify: true,
+
   experimental: {
-    runtime: 'edge',
     appDir: true,
+    appDocumentPreloading: true,
+    typedRoutes: true,
 
     esmExternals: 'loose',
     fullySpecified: false,
@@ -71,6 +73,8 @@ const next = {
   webpack(config, options) {
     // Force new
     config = Object.assign({}, config);
+    config.resolve = Object.assign({}, config.resolve);
+    config.resolve.alias = Object.assign({}, config.resolve.alias);
 
     if (!options.isServer) {
       // Force esm
@@ -101,14 +105,6 @@ const next = {
         not: ['url']
       }
     });
-
-    if (options.isServer) {
-      config.resolve = Object.assign({}, config.resolve);
-      config.resolve.alias = Object.assign({}, config.resolve.alias);
-
-      config.resolve.alias.react = require.resolve('react-server');
-      config.resolve.alias['react-server'] = require.resolve('react-server');
-    }
 
     return config;
   }

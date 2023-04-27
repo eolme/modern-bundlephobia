@@ -1,5 +1,7 @@
 import type { DetailedHTMLProps, HTMLAttributes, ReactElement } from 'react';
 
+import { ImageResponse } from 'next/server';
+
 import { SizeName, SizeType, formatBytes } from '#/utils/size';
 import { once } from '#/utils/fn';
 
@@ -16,11 +18,6 @@ const jsx = (type: string, props: DetailedHTMLProps<HTMLAttributes<HTMLElement>,
     }, props.style)
   })
 }) as ReactElement<any, any>;
-
-const loader = once(async () => import(
-  /* webpackMode: "lazy-once" */
-  '@vercel/og'
-));
 
 const fontRegular = once(async () => import(
   /* webpackMode: "lazy-once" */
@@ -39,11 +36,9 @@ export const og = async (
   brotli: string
 ) => {
   const [
-    { ImageResponse },
     { default: NotoSansRegular },
     { default: NotoSansSemiBold }
   ] = await Promise.all([
-    loader(),
     fontRegular(),
     fontSemibold()
   ]);

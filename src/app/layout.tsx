@@ -1,12 +1,9 @@
-import type { FC, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import type { NextPage } from '#/types/next';
 
 import {
   Header
 } from '#/components/shared';
-
-import {
-  ServerConfig
-} from '#/components/server';
 
 import {
   ClientAnalytics,
@@ -19,13 +16,13 @@ import { useId } from 'react';
 import { theme } from '#/edge/theme';
 
 import clsx from 'clsx';
-import './styles.ts';
+import './styles';
 
 type RootLayoutProps = {
   children: ReactNode;
 };
 
-const RootLayout: FC<RootLayoutProps> = ({ children }) => {
+const RootLayout: NextPage<RootLayoutProps> = ({ children }) => {
   const rootId = useId();
   const portalId = useId();
 
@@ -38,7 +35,6 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
       className="vkui"
     >
       <head>
-        <meta charSet="utf-8" />
         <meta
           name="viewport"
           content="initial-scale=1,width=device-width,height=device-height,viewport-fit=cover,shrink-to-fit=no"
@@ -103,24 +99,22 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
         className={clsx('vkui--vkBase--light', theme() === 'dark' && 'vkui--vkBase--dark')}
         draggable={false}
       >
-        <ServerConfig>
-          <ClientConfig
-            root={rootId}
-            portal={portalId}
-          >
-            <ClientAnalytics>
-              <main id={rootId} className="vkui__root">
-                <Header />
-                <ClientSearch />
-                {children}
-              </main>
-              <span
-                id={portalId}
-                className="vkui__portal-root"
-              />
-            </ClientAnalytics>
-          </ClientConfig>
-        </ServerConfig>
+        <ClientConfig
+          root={rootId}
+          portal={portalId}
+        >
+          <ClientAnalytics>
+            <main id={rootId} className="vkui__root">
+              <Header />
+              <ClientSearch />
+              {children}
+            </main>
+            <span
+              id={portalId}
+              className="vkui__portal-root"
+            />
+          </ClientAnalytics>
+        </ClientConfig>
         <script
           defer={true}
           src={process.env.NEXT_PUBLIC_ANALYTICS}
@@ -129,5 +123,9 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
     </html>
   );
 };
+
+export const runtime = 'edge';
+export const dynamic = 'force-static';
+export const dynamicParams = false;
 
 export { RootLayout as default };

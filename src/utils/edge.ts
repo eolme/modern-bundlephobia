@@ -1,4 +1,5 @@
 import type { NextRequest } from 'next/server';
+import type { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
 
 import { ContentType, InternalHeader } from '#/utils/headers';
 
@@ -8,7 +9,7 @@ export const param = (req: NextRequest, name: string) =>
 export const paramAll = (req: NextRequest, name: string) =>
   req.nextUrl.searchParams.getAll(name).join('/');
 
-export const header = (headers: Headers, name: string, fallback: string) => {
+export const header = (headers: Headers | ReadonlyHeaders, name: string, fallback: string) => {
   const value = headers.get(name);
 
   return value === null ? fallback : value;
