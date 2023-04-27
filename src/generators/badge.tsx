@@ -51,7 +51,7 @@ const generateBadge = (format: Format) => {
     c: color[format.color]
   };
 
-  return (BadgeTemplate as string).trim().replace(/{(\w+)}/g, (_, $1: string) => templates[$1]);
+  return (BadgeTemplate as string).trim().replaceAll(/{(\w+)}/g, (_, $1: string) => templates[$1]);
 };
 
 export const badge = (type: SizeType, size: string) => {

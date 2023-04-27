@@ -1,7 +1,7 @@
 'use client';
 
 import type { ChangeEvent, FC, MouseEvent, ReactNode, TouchEvent } from 'react';
-import type { Placement } from '@popperjs/core';
+import type { Placement } from '@floating-ui/react-dom';
 import type { SearchObject } from '#/types/npm';
 
 import {

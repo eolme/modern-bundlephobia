@@ -7,7 +7,7 @@ export enum Repository {
 
 const GIT = /^\S+(@|\/\/)|\.git$/g;
 
-const strip = (url: string) => `https://${url.replace(GIT, '')}`;
+const strip = (url: string) => `https://${url.replaceAll(GIT, '')}`;
 
 export const repo = (link: string) => {
   let type = Repository.UNKNOWN;

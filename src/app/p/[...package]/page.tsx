@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
-import type { NextPage, NextRouteParams } from '#/types/next';
+import type { NextRouteParams } from '#/types/next';
 
 import { merge } from '#/utils/path';
 import { mergeMetadata, metaImage, metaTitle } from '#/utils/meta';
 
 import { PackageView } from '#/views';
 
-const PackagePage: NextPage<NextRouteParams> = async ({ params }) => {
+export const runtime = 'edge';
+
+export default async function PackagePage({ params }: NextRouteParams) {
   return (
     PackageView(merge(...params.package))
   );
-};
-
-export const runtime = 'edge';
+}
 
 // eslint-disable-next-line func-style
 export async function generateMetadata({ params }: NextRouteParams): Promise<Metadata> {
@@ -21,5 +21,3 @@ export async function generateMetadata({ params }: NextRouteParams): Promise<Met
     metaImage(params.package)
   );
 }
-
-export { PackagePage as default };

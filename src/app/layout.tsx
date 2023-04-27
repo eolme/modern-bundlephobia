@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import type { NextPage } from '#/types/next';
 
 import {
   Header
@@ -22,7 +21,7 @@ type RootLayoutProps = {
   children: ReactNode;
 };
 
-const RootLayout: NextPage<RootLayoutProps> = ({ children }) => {
+export default function RootLayout({ children }: RootLayoutProps) {
   const rootId = useId();
   const portalId = useId();
 
@@ -122,10 +121,4 @@ const RootLayout: NextPage<RootLayoutProps> = ({ children }) => {
       </body>
     </html>
   );
-};
-
-export const runtime = 'edge';
-export const dynamic = 'force-static';
-export const dynamicParams = false;
-
-export { RootLayout as default };
+}

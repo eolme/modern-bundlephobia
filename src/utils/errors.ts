@@ -9,7 +9,7 @@ export enum ModuleErrorType {
 // eslint-disable-next-line no-new-object, unicorn/new-for-builtins
 export const getErrorStatus = (ex: unknown) => Object(ex).status || 500;
 
-// eslint-disable-next-line functional/no-class
+// eslint-disable-next-line functional/no-classes
 class ModuleError extends Error {
   declare description: string;
 

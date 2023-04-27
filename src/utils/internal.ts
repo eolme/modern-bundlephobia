@@ -13,7 +13,7 @@ export const fetchInternalSize = async (type: SizeType, query: string) => {
       accept: ContentType.INTERNAL,
       [InternalHeader.FLAG]: 'size'
     }
-  }).then((response) => {
+  }).then(async (response) => {
     if (response.ok) {
       return response.text();
     }
