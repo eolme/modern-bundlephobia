@@ -17,11 +17,15 @@ const classicFields = [
 const next = {
   reactStrictMode: process.env.NODE_ENV === 'production',
   swcMinify: true,
+  
+  productionBrowserSourceMaps: true,
 
   experimental: {
     appDir: true,
     appDocumentPreloading: true,
     typedRoutes: true,
+    
+    optimisticClientCache: true,
 
     esmExternals: 'loose',
     fullySpecified: false,
