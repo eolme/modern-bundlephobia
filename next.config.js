@@ -1,16 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
 const analyze = require('@next/bundle-analyzer');
 
-const classicFields = [
-  'modern',
-  'esnext',
-  'jsnext:main',
-  'jsnext',
-  'module',
-  'main',
-  'browser'
-];
-
 /**
  * @type {import('next').NextConfig}
  */
@@ -24,6 +14,7 @@ const next = {
     appDir: true,
     appDocumentPreloading: true,
     typedRoutes: true,
+    serverActions: true,
     
     optimisticClientCache: true,
 
@@ -74,30 +65,7 @@ const next = {
         '/_vercel/insights/script.js' :
         'https://cdn.vercel-insights.com/v1/script.debug.js'
   },
-  webpack(config, options) {
-    // Force new
-    config = Object.assign({}, config);
-    config.resolve = Object.assign({}, config.resolve);
-    config.resolve.alias = Object.assign({}, config.resolve.alias);
-
-    if (!options.isServer) {
-      // Force esm
-      config.resolve.mainFields = classicFields;
-      config.resolve.aliasFields = classicFields;
-
-      // Hack resolution
-      config.resolve.extensions =
-      config.resolve.extensions.flatMap((ext) =>
-        /\.m?(t|j)sx?/.test(ext) ?
-          [
-            `.modern${ext}`,
-            `.esm${ext}`,
-            `.module${ext}`,
-            ext
-          ] :
-          ext);
-    }
-
+  webpack(config) {
     // Load svg as string
     config.module.rules.unshift({
       test: /\.svg$/,

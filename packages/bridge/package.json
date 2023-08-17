@@ -1,6 +1,6 @@
 {
   "name": "@vkontakte/vk-bridge",
-  "type": "commonjs",
-  "version": "2.7.1",
-  "main": "./index.js"
+  "type": "module",
+  "version": "0.0.0",
+  "main": "./index.mjs"
 }

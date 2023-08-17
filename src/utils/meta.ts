@@ -10,6 +10,7 @@ export const metaTitle = (params: string[] = []): Metadata => {
   const _title = title(...params);
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_HOST!),
     title: _title,
     twitter: {
       title: _title
@@ -24,6 +25,7 @@ export const metaImage = (params: string[] = []): Metadata => {
   const _image = og(...params);
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_HOST!),
     twitter: {
       card: 'summary_large_image',
       images: {

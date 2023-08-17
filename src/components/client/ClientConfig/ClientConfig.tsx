@@ -1,22 +1,22 @@
 'use client';
 
 import type { FC, ReactNode } from 'react';
-import type { ConfigProviderContextInterface, WebviewType } from '@mntm/vkui/dist/components/ConfigProvider/ConfigProviderContext';
-import type { AdaptivityProps } from '@mntm/vkui/dist/components/AdaptivityProvider/AdaptivityContext';
-import type { SizeType, ViewHeight, ViewWidth } from '@mntm/vkui/dist/lib/adaptivity';
-import type { AppRootContextInterface } from '@mntm/vkui/dist/components/AppRoot/AppRootContext';
+import type { ConfigProviderContextInterface, WebviewType } from '@vkontakte/vkui/dist/components/ConfigProvider/ConfigProviderContext';
+import type { AdaptivityProps } from '@vkontakte/vkui/dist/components/AdaptivityProvider/AdaptivityContext';
+import type { SizeType, ViewHeight, ViewWidth } from '@vkontakte/vkui/dist/lib/adaptivity';
+import type { AppRootContextInterface } from '@vkontakte/vkui/dist/components/AppRoot/AppRootContext';
 
 import {
   ConfigProviderContext
-} from '@mntm/vkui/dist/components/ConfigProvider/ConfigProviderContext';
+} from '@vkontakte/vkui/dist/components/ConfigProvider/ConfigProviderContext';
 
 import {
   AdaptivityContext
-} from '@mntm/vkui/dist/components/AdaptivityProvider/AdaptivityContext';
+} from '@vkontakte/vkui/dist/components/AdaptivityProvider/AdaptivityContext';
 
 import {
   AppRootContext
-} from '@mntm/vkui/dist/components/AppRoot/AppRootContext';
+} from '@vkontakte/vkui/dist/components/AppRoot/AppRootContext';
 
 import { useInsertionEffect, useMemo, useState } from 'react';
 import { useRenderEffect } from 'ahks';

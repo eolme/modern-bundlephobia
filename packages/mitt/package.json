@@ -1,6 +1,6 @@
 {
   "name": "mitt",
-  "type": "commonjs",
-  "version": "3.0.0",
-  "main": "./index.js"
+  "type": "module",
+  "version": "0.0.0",
+  "main": "./index.mjs"
 }
