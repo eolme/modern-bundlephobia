@@ -51,6 +51,7 @@ export type Package = {
   homepage: string;
   _attachments: unknown;
   readme: string;
+  readmeFilename: string;
 };
 
 export type Collected = {

@@ -11,7 +11,6 @@ export const alias = {
   haskell: ['haskell', 'hs'],
   ini: ['ini', 'toml'],
   java: ['java', 'jsp'],
-  javascript: ['javascript', 'js', 'jsx', 'mjs', 'cjs'],
   json: ['json'],
   kotlin: ['kotlin', 'kt', 'kts'],
   lisp: ['lisp'],
@@ -30,7 +29,7 @@ export const alias = {
   sql: ['sql'],
   swift: ['swift'],
   twig: ['twig', 'craftcms'],
-  typescript: ['typescript', 'ts', 'tsx'],
+  typescript: ['typescript', 'ts', 'tsx', 'mts', 'cts', 'javascript', 'js', 'jsx', 'mjs', 'cjs'],
   xml: ['xml', 'html', 'xhtml', 'rss', 'atom', 'xjb', 'xsd', 'xsl', 'plist', 'wsf', 'svg'],
   yaml: ['yaml', 'yml']
 };

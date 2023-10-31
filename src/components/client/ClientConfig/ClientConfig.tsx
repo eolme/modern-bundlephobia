@@ -1,22 +1,23 @@
 'use client';
 
 import type { FC, ReactNode } from 'react';
-import type { ConfigProviderContextInterface, WebviewType } from '@vkontakte/vkui/dist/components/ConfigProvider/ConfigProviderContext';
-import type { AdaptivityProps } from '@vkontakte/vkui/dist/components/AdaptivityProvider/AdaptivityContext';
-import type { SizeType, ViewHeight, ViewWidth } from '@vkontakte/vkui/dist/lib/adaptivity';
-import type { AppRootContextInterface } from '@vkontakte/vkui/dist/components/AppRoot/AppRootContext';
+import type { ConfigProviderContextInterface, WebviewType } from '@vkontakte/vkui/dist/cssm/components/ConfigProvider/ConfigProviderContext';
+import type { AdaptivityProps } from '@vkontakte/vkui/dist/cssm/components/AdaptivityProvider/AdaptivityContext';
+import type { AppRootContextInterface } from '@vkontakte/vkui/dist/cssm/components/AppRoot/AppRootContext';
+import type { SizeType, ViewHeight, ViewWidth } from '@vkontakte/vkui/dist/cssm/lib/adaptivity';
+import type { AppearanceType } from '@vkontakte/vkui/dist/cssm/lib/appearance';
 
 import {
   ConfigProviderContext
-} from '@vkontakte/vkui/dist/components/ConfigProvider/ConfigProviderContext';
+} from '@vkontakte/vkui/dist/cssm/components/ConfigProvider/ConfigProviderContext';
 
 import {
   AdaptivityContext
-} from '@vkontakte/vkui/dist/components/AdaptivityProvider/AdaptivityContext';
+} from '@vkontakte/vkui/dist/cssm/components/AdaptivityProvider/AdaptivityContext';
 
 import {
   AppRootContext
-} from '@vkontakte/vkui/dist/components/AppRoot/AppRootContext';
+} from '@vkontakte/vkui/dist/cssm/components/AppRoot/AppRootContext';
 
 import { useInsertionEffect, useMemo, useState } from 'react';
 import { useRenderEffect } from 'ahks';
@@ -66,17 +67,19 @@ export const ClientConfig: FC<ClientConfigProps> = ({ root, portal, children }) 
 
   const ConfigProviderValue = useMemo<ConfigProviderContextInterface>(() => ({
     locale: 'en',
-    appearance,
+    appearance: appearance as AppearanceType,
     platform: 'android',
     isWebView: false,
     webviewType: 'internal' as WebviewType,
-    transitionMotionEnabled: false
+    transitionMotionEnabled: false,
+    hasCustomPanelHeaderAfter: false,
+    customPanelHeaderAfterMinWidth: 0
   }), [appearance]);
 
   const AdaptivityProviderValue = useMemo<AdaptivityProps>(() => ({
     deviceHasHover: mouse,
     hasMouse: mouse,
-    sizeX: 'compact' as SizeType,
+    sizeX: 'regular' as SizeType,
     sizeY: 'regular' as SizeType,
     viewWidth: 5 as ViewWidth,
     viewHeight: 3 as ViewHeight

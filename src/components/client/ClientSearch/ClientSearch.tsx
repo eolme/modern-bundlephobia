@@ -4,17 +4,17 @@ import type { ChangeEvent, FC, MouseEvent, ReactNode, TouchEvent } from 'react';
 import type { Placement } from '@floating-ui/react-dom';
 import type { SearchObject } from '#/types/npm';
 
-import { Headline } from '@vkontakte/vkui/dist/components/Typography/Headline/Headline';
-import { Input } from '@vkontakte/vkui/dist/components/Input/Input';
-import { PanelSpinner } from '@vkontakte/vkui/dist/components/PanelSpinner/PanelSpinner';
-import { Popper } from '@vkontakte/vkui/dist/components/Popper/Popper';
-import { SimpleCell } from '@vkontakte/vkui/dist/components/SimpleCell/SimpleCell';
+import { Headline } from '@vkontakte/vkui/dist/cssm/components/Typography/Headline/Headline';
+import { Input } from '@vkontakte/vkui/dist/cssm/components/Input/Input';
+import { PanelSpinner } from '@vkontakte/vkui/dist/cssm/components/PanelSpinner/PanelSpinner';
+import { Popper } from '@vkontakte/vkui/dist/cssm/components/Popper/Popper';
+import { SimpleCell } from '@vkontakte/vkui/dist/cssm/components/SimpleCell/SimpleCell';
 
 // @ts-expect-error missing types
-import { Icon16Done } from '@vkontakte/icons/dist/16/done_16';
+import { Icon16Done } from '@vkontakte/icons/dist/es6/16/done_16';
 
 // @ts-expect-error missing types
-import { Icon28SearchStarsOutline } from '@vkontakte/icons/dist/28/search_stars_outline_28';
+import { Icon28SearchStarsOutline } from '@vkontakte/icons/dist/es6/28/search_stars_outline_28';
 
 import { usePathname, useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';

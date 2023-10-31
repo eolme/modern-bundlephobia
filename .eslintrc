@@ -1,8 +1,7 @@
 {
   "root": true,
   "extends": [
-    "@mntm",
-    "next"
+    "@mntm"
   ],
   "parserOptions": {
     "project": "./tsconfig.json",
@@ -12,6 +11,7 @@
     "capitalized-comments": 0,
     "sonarjs/no-duplicate-string": 0,
     "react-hooks/exhaustive-deps": 0,
-    "@next/next/no-img-element": 0
+    "unicorn/prefer-string-starts-ends-with": 0,
+    "@typescript-eslint/prefer-string-starts-ends-with": 0
   }
 }

@@ -1,6 +1,6 @@
 import type { DetailedHTMLProps, HTMLAttributes, ReactElement } from 'react';
 
-import { ImageResponse } from 'next/server';
+import { ImageResponse } from 'next/og';
 
 import { SizeName, SizeType, formatBytes } from '#/utils/size';
 import { once } from '#/utils/fn';

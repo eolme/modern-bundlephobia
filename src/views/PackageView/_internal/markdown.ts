@@ -1,6 +1,7 @@
+import type { Repository } from './repo';
+
 import { remark } from 'remark';
 import { default as parse } from 'remark-parse';
-import { default as github } from 'remark-github';
 import { default as gfm } from 'remark-gfm';
 import { default as rehype } from 'remark-rehype';
 import { default as emoji } from 'remark-emoji';
@@ -10,27 +11,18 @@ import { default as ally } from '@fec/remark-a11y-emoji';
 import { default as highlight } from 'rehype-highlight';
 import { default as stringify } from 'rehype-stringify';
 
-import { Repository } from './repo';
-
 import { alias } from './highlight';
+import { links } from './links';
 
-export const markdown = async (content: string, type: Repository, repo: string) => {
+export const markdown = async (content: string, type: Repository, pure: string) => {
   return new Promise<string>((resolve, reject) => {
-    let marked = remark().use(parse);
-
-    switch (type) {
-      case Repository.GITHUB:
-        marked = marked.use(github, {
-          repository: repo
-        });
-        break;
-      default:
-
-        // Not implemented
-    }
-
-    marked
+    remark()
+      .use(parse)
       .use(gfm)
+      .use(links, {
+        type,
+        pure
+      })
       .use(emoji)
       .use(ally)
       .use(rehype)
@@ -45,7 +37,11 @@ export const markdown = async (content: string, type: Repository, repo: string) 
           return;
         }
 
-        resolve(file.value.toString('utf8'));
+        resolve(
+          typeof file.value === 'string' ?
+            file.value :
+            Buffer.from(file.value).toString('utf8')
+        );
       });
   });
 };

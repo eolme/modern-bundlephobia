@@ -7,25 +7,35 @@ const analyze = require('@next/bundle-analyzer');
 const next = {
   reactStrictMode: process.env.NODE_ENV === 'production',
   swcMinify: true,
-  
+
   productionBrowserSourceMaps: true,
 
+  transpilePackages: [
+    '@vkontakte/vkui'
+  ],
+  modularizeImports: {
+    '@vkontakte/vkui': {
+      transform: '@vkontakte/vkui/dist/cssm',
+      skipDefaultConversion: true
+    }
+  },
+
   experimental: {
-    appDir: true,
     appDocumentPreloading: true,
     typedRoutes: true,
-    serverActions: true,
-    
+
     optimisticClientCache: true,
 
     esmExternals: 'loose',
     fullySpecified: false,
 
-    legacyBrowsers: false,
     disablePostcssPresetEnv: true,
 
+    optimizeServerReact: true,
+    serverMinification: true,
+
     serverComponentsExternalPackages: [
-      '@mntm/vkui'
+      '@vkontakte/icons'
     ]
   },
   async headers() {
@@ -56,14 +66,16 @@ const next = {
     }];
   },
   env: {
-    NEXT_PUBLIC_HOST:
+    NEXT_PUBLIC_HOST: process.env.NEXT_PUBLIC_HOST || (
       process.env.NEXT_PUBLIC_VERCEL_URL ?
         `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` :
-        'http://localhost:3000',
-    NEXT_PUBLIC_ANALYTICS:
+        'http://localhost:3000'
+    ),
+    NEXT_PUBLIC_ANALYTICS: process.env.NEXT_PUBLIC_ANALYTICS || (
       process.env.NODE_ENV === 'production' ?
         '/_vercel/insights/script.js' :
         'https://cdn.vercel-insights.com/v1/script.debug.js'
+    )
   },
   webpack(config) {
     // Load svg as string
