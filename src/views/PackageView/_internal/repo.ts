@@ -1,38 +1,40 @@
 export enum Repository {
-  GITHUB = 'github',
-  GITLAB = 'gitlab',
-  BITBUCKET = 'bitbucket',
-  UNKNOWN = 'unknown'
+	GITHUB = "github",
+	GITLAB = "gitlab",
+	BITBUCKET = "bitbucket",
+	UNKNOWN = "unknown",
 }
 
 const GIT = /^\S+(@|\/\/)|\.git$/g;
 
-const strip = (url: string) => `https://${url.replaceAll(GIT, '')}`;
+const strip = (url: string) => `https://${url.replaceAll(GIT, "")}`;
 
 export const repo = (link: string) => {
-  let type = Repository.UNKNOWN;
-  let pure = '';
+	let type = Repository.UNKNOWN;
+	let pure = "";
 
-  try {
-    const parsed = new URL(link);
+	try {
+		const parsed = new URL(link);
 
-    if (parsed.hostname.includes('github')) {
-      type = Repository.GITHUB;
-    } else if (parsed.hostname.includes('gitlab')) {
-      type = Repository.GITLAB;
-    } else if (parsed.hostname.includes('bitbucket') || parsed.hostname.includes('atlassian')) {
-      type = Repository.BITBUCKET;
-    }
+		if (parsed.hostname.includes("github")) {
+			type = Repository.GITHUB;
+		} else if (parsed.hostname.includes("gitlab")) {
+			type = Repository.GITLAB;
+		} else if (
+			parsed.hostname.includes("bitbucket") ||
+			parsed.hostname.includes("atlassian")
+		) {
+			type = Repository.BITBUCKET;
+		}
 
-    pure = strip(parsed.href);
-  } catch (ex: unknown) {
-    console.error(ex);
-  }
+		pure = strip(parsed.href);
+	} catch (ex: unknown) {
+		console.error(ex);
+	}
 
-  return {
-    type,
-    pure,
-    link
-  };
+	return {
+		type,
+		pure,
+		link,
+	};
 };
-

@@ -1,1 +1,1 @@
-export { middlewareNPM } from './npm';
+export { middlewareNPM } from "./npm";

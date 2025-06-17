@@ -1,65 +1,65 @@
 .name {
-  color: var(--vkui--color_text_primary);
-  font-weight: 500;
+	color: var(--vkui--color_text_primary);
+	font-weight: 500;
 }
 
 .version {
-  color: var(--vkui--color_text_secondary);
-  font-size: 0.8em;
+	color: var(--vkui--color_text_secondary);
+	font-size: 0.8em;
 
-  margin-left: 4px;
+	margin-left: 4px;
 }
 
 .option {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 12px;
-  cursor: pointer;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 12px;
+	cursor: pointer;
 }
 
 .option[disabled] {
-  cursor: default;
+	cursor: default;
 }
 
 .input input::-webkit-search-cancel-button {
-  display: none;
+	display: none;
 }
 
 .input input::-ms-clear {
-  display: none;
+	display: none;
 }
 
 .input:global(.bottom),
 .input:global(.bottom) span[class^="FormField"] {
-  border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
 }
 
 .input:global(.top),
 .input:global(.top) span[class^="FormField"] {
-  border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
 }
 
 .list {
-  width: 100%;
-  box-sizing: border-box;
+	width: 100%;
+	box-sizing: border-box;
 
-  border: var(--vkui--size_border--regular) solid var(--vkui--color_field_border_alpha);
+	border: 0.5px solid var(--vkui--color_field_border_alpha);
 
-  background-color: var(--vkui--color_background_modal);
+	background-color: var(--vkui--color_background_modal);
 }
 
 .label {
-  display: block;
-  margin: 0 auto;
-  max-width: 550px;
+	display: block;
+	margin: 0 auto;
+	max-width: 550px;
 }
 
 .list:global(.top) {
-  border-bottom: 0;
-  border-radius: 4px 4px 0 0;
+	border-bottom-width: 0;
+	border-radius: 4px 4px 0 0;
 }
 
 .list:global(.bottom) {
-  border-top: 0;
-  border-radius: 0 0 4px 4px;
+	border-top-width: 0;
+	border-radius: 0 0 4px 4px;
 }

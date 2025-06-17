@@ -1,43 +1,52 @@
-import type { NextRequest } from 'next/server';
+import type { NextRequest } from "next/server";
+import { badge, error } from "#/generators/badge";
+import { respondNothing, respondSVG } from "#/utils/edge";
+import { getErrorStatus } from "#/utils/errors";
+import { InternalHeader } from "#/utils/headers";
+import { fetchInternalSize } from "#/utils/internal";
+import { SizeName, SizeType, validSize } from "#/utils/size";
 
-import { SizeName, SizeType } from '#/utils/size';
-import { InternalHeader } from '#/utils/headers';
-import { fetchInternalSize } from '#/utils/internal';
-import { getErrorStatus } from '#/utils/errors';
-import { respondNothing, respondSVG } from '#/utils/edge';
-
-import { badge, error } from '#/generators/badge';
-
-export const runtime = 'edge';
+export const runtime = "edge";
 
 type NextRouteParams = {
-  params: {
-    type: string;
-    package: string[];
-  };
+	params: Promise<{
+		type: string;
+		package: string[];
+	}>;
 };
 
 // eslint-disable-next-line func-style
-export async function GET(req: NextRequest, { params }: NextRouteParams) {
-  if (params.type in SizeName) {
-    const type = params.type as SizeType;
+export async function GET(
+	req: NextRequest,
+	{ params: _params }: NextRouteParams,
+) {
+	const params = await _params;
 
-    try {
-      let size: string;
+	if (params.type in SizeName) {
+		const type = params.type as SizeType;
 
-      if (type === SizeType.INSTALL) {
-        size = req.headers.get(InternalHeader.SIZE)!;
-      } else {
-        size = await fetchInternalSize(type, req.headers.get(InternalHeader.QUERY)!);
-      }
+		try {
+			let size: string;
 
-      return respondSVG(200, badge(type, size));
-    } catch (ex: unknown) {
-      console.error(ex);
+			if (type === SizeType.INSTALL) {
+				size = req.headers.get(InternalHeader.SIZE)!;
+			} else {
+				size = await fetchInternalSize(
+					type,
+					req.headers.get(InternalHeader.QUERY)!,
+				);
+			}
 
-      return respondSVG(200, error(type, getErrorStatus(ex)));
-    }
-  }
+			return respondSVG(
+				200,
+				validSize(size) ? badge(type, size) : error(type, 424),
+			);
+		} catch (ex: unknown) {
+			console.error(ex);
 
-  return respondNothing(404);
+			return respondSVG(200, error(type, getErrorStatus(ex)));
+		}
+	}
+
+	return respondNothing(404);
 }

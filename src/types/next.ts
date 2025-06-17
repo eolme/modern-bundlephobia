@@ -1,10 +1,13 @@
-import type { FC } from 'react';
-import type { AnyFunction } from 'ahks/lib/types';
+import type { AnyFunction } from "ahks/lib/types";
+import type { FC } from "react";
 
 export type NextRouteParams = {
-  params: {
-    package: string[];
-  };
+	params: Promise<{
+		package: string[];
+	}>;
 };
 
-export type NextPage<T = Record<string, unknown>, C extends AnyFunction = FC<T>> = (...params: Parameters<C>) => ReturnType<C> | Promise<ReturnType<C>>;
+export type NextPage<
+	T = Record<string, unknown>,
+	C extends AnyFunction = FC<T>,
+> = (...params: Parameters<C>) => ReturnType<C> | Promise<ReturnType<C>>;

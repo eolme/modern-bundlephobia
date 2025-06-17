@@ -1,4 +1,4 @@
-import precompiledMitt from 'next/dist/shared/lib/mitt';
+import precompiledMitt from "next/dist/esm/shared/lib/mitt.js";
 
 const importedMitt = precompiledMitt.default || precompiledMitt;
 

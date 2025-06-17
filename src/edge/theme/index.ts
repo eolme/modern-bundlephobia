@@ -1,25 +1,23 @@
-import { headers } from 'next/headers';
+import { headers } from "next/headers";
+import { header } from "#/utils/edge";
+import { SecHeader, VercelHeader } from "#/utils/headers";
+import { night } from "./_internal/night";
+import { timezone } from "./_internal/timezone";
 
-import { night } from './_internal/night';
-import { timezone } from './_internal/timezone';
+export const theme = async () => {
+	const requested = await headers();
 
-import { SecHeader, VercelHeader } from '#/utils/headers';
-import { header } from '#/utils/edge';
+	const scheme = header(requested, SecHeader.SCHEME, "no-preference");
 
-export const theme = () => {
-  const requested = headers();
+	if (scheme !== "no-preference") {
+		return scheme;
+	}
 
-  const scheme = header(requested, SecHeader.SCHEME, 'no-preference');
+	const possible = header(requested, VercelHeader.TIMEZONE, "");
+	const city = header(requested, VercelHeader.CITY, "");
+	const country = header(requested, VercelHeader.COUNTRY, "");
 
-  if (scheme !== 'no-preference') {
-    return scheme;
-  }
+	const dark = night(timezone(possible, city, country));
 
-  const possible = header(requested, VercelHeader.TIMEZONE, '');
-  const city = header(requested, VercelHeader.CITY, '');
-  const country = header(requested, VercelHeader.COUNTRY, '');
-
-  const dark = night(timezone(possible, city, country));
-
-  return dark ? 'dark' : 'light';
+	return dark ? "dark" : "light";
 };

@@ -1,55 +1,59 @@
-import { ModuleErrorType, fail } from '#/utils/errors';
-import { ContentType } from '#/utils/headers';
+import { fail, ModuleErrorType } from "#/utils/errors";
+import { ContentType } from "#/utils/headers";
 
-const baseURL = 'https://esm.sh/';
-const entryURL = (query: string) => `${baseURL}stable/${query}?target=node&bundle`;
+const baseURL = "https://esm.sh/";
+const entryURL = (query: string) =>
+	`${baseURL}stable/${query}?target=browser&bundle`;
 
-const regexScriptLink = /export\s*(?:\*|{\s*default\s*})\s*from\s*["'](.+?)["']/;
+const regexScriptLink =
+	/export\s*(?:\*|{\s*default\s*})\s*from\s*["'](.+?)["']/;
 
 const contentURL = (script: string) => {
-  const exec = regexScriptLink.exec(script);
+	const exec = regexScriptLink.exec(script);
 
-  const execMatch = exec === null ? '/' : exec[1] || '/';
+	const execMatch = exec === null ? "/" : exec[1] || "/";
 
-  const execURL = new URL(execMatch, baseURL);
+	const execURL = new URL(execMatch, baseURL);
 
-  return execURL.href;
+	return execURL.href;
 };
 
 const fetchEntryScript = async (url: string) => {
-  const response = await fetch(url, {
-    keepalive: true,
-    headers: {
-      accept: ContentType.JS
-    }
-  });
+	const response = await fetch(url, {
+		keepalive: true,
+		headers: {
+			accept: ContentType.JS,
+		},
+	});
 
-  if (!response.ok) {
-    fail(ModuleErrorType.CONNECTION, url, response.status);
-  }
+	if (!response.ok) {
+		return fail(ModuleErrorType.CONNECTION, url, response.status);
+	}
 
-  return response.text();
+	return response.text();
 };
 
 const fetchContentScript = async (url: string) => {
-  if (url.length === 0 || url === baseURL) {
-    fail(ModuleErrorType.EMPTY, url, 412);
-  }
+	if (url.length === 0 || url === baseURL) {
+		return fail(ModuleErrorType.EMPTY, url, 412);
+	}
 
-  const response = await fetch(url, {
-    keepalive: true,
-    headers: {
-      accept: ContentType.JS
-    }
-  });
+	const response = await fetch(url, {
+		keepalive: true,
+		headers: {
+			accept: ContentType.JS,
+		},
+	});
 
-  if (!response.ok) {
-    fail(ModuleErrorType.CONNECTION, url, response.status);
-  }
+	if (!response.ok) {
+		return fail(ModuleErrorType.CONNECTION, url, response.status);
+	}
 
-  return response.arrayBuffer();
+	return response.arrayBuffer();
 };
 
 export const fetchScript = async (query: string) => {
-  return fetchContentScript(contentURL(await fetchEntryScript(entryURL(query))));
+	return fetchContentScript(
+		contentURL(await fetchEntryScript(entryURL(query))),
+	);
 };

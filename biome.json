@@ -1,0 +1,71 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"includes": ["./src/**/*", "./packages/**/*"],
+		"ignoreUnknown": false
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab"
+	},
+	"linter": {
+		"enabled": true,
+		"domains": {
+			"project": "recommended",
+			"react": "recommended",
+			"next": "recommended",
+			"test": "none",
+			"solid": "none",
+			"vue": "none"
+		},
+		"rules": {
+			"recommended": true,
+			"a11y": "off",
+			"suspicious": {
+				"noDuplicateProperties": "off",
+				"noExplicitAny": "off",
+				"noSelfCompare": "off"
+			},
+			"complexity": {
+				"noArguments": "off"
+			},
+			"correctness": {
+				"noUnknownProperty": "off",
+				"useExhaustiveDependencies": "off"
+			},
+			"performance": {
+				"noImgElement": "off",
+				"noDynamicNamespaceImportAccess": "off"
+			},
+			"style": {
+				"noNonNullAssertion": "off"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "off"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double"
+		}
+	},
+	"css": {
+		"parser": {
+			"cssModules": true
+		}
+	},
+	"assist": {
+		"enabled": true,
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	}
+}

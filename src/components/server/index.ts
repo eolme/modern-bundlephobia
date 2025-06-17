@@ -1,1 +1,1 @@
-export { ServerConfig } from './ServerConfig/ServerConfig';
+export { ServerConfig } from "./ServerConfig/ServerConfig";

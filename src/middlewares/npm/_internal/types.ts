@@ -1,12 +1,12 @@
 export type VersionPart = {
-  dist: {
-    unpackedSize: number;
-  };
+	dist: {
+		unpackedSize: number;
+	};
 };
 
 export type Package = {
-  'dist-tags': Record<string, string>;
-  modified: string;
-  name: string;
-  versions: Record<string, VersionPart>;
+	"dist-tags": Record<string, string>;
+	modified: string;
+	name: string;
+	versions: Record<string, VersionPart>;
 };

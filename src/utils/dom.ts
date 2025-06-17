@@ -1,15 +1,15 @@
-import { extend, getDocument, getWindow, ssrDocument } from 'ssr-window';
+import { extend, getDocument, getWindow, ssrDocument } from "ssr-window";
 
-import { noop } from '#/utils/fn';
+import { noop } from "#/utils/fn";
 
 extend(ssrDocument.body, {
-  classList: {
-    add: noop,
-    remove: noop
-  },
-  style: {
-    setProperty: noop
-  }
+	classList: {
+		add: noop,
+		remove: noop,
+	},
+	style: {
+		setProperty: noop,
+	},
 });
 
 export const safeDocument = getDocument();

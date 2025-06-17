@@ -1,135 +1,196 @@
-import type { Collected } from './types';
+import { RedirectType, redirect } from "next/navigation";
+import { merge, parts } from "#/utils/query";
+import { fetcher } from "./fetcher";
+import { markdown } from "./markdown";
+import { fetchReadmeEsmsh, fetchReadmeNpms } from "./readme-fallback";
+import { Repository, repo } from "./repo";
+import { semverFind } from "./semver";
+import type { Collected } from "./types";
 
-import { RedirectType, redirect } from 'next/navigation';
-
-import { merge, parts } from '#/utils/query';
-
-import { Repository, repo } from './repo';
-import { fetcher } from './fetcher';
-import { markdown } from './markdown';
-import { semverFind } from './semver';
-import { fetchFallbackReadme } from './npms';
+const validReadme = (readme: string | undefined): readme is string =>
+	typeof readme === "string" &&
+	readme.length > 0 &&
+	!readme.startsWith("ERROR");
 
 export const info = async (query: string) => {
-  const record = parts(query);
-  const pkg = await fetcher(record.name);
+	const record = parts(query);
+	const pkg = await fetcher(record.name);
 
-  if (record.version in pkg['dist-tags']) {
-    record.version = pkg['dist-tags'][record.version];
+	if (record.version in pkg["dist-tags"]) {
+		record.version = pkg["dist-tags"][record.version];
 
-    return redirect(`/p/${merge(record.name, record.version)}`, RedirectType.replace);
-  }
+		return redirect(
+			`/p/${merge(record.name, record.version)}`,
+			RedirectType.replace,
+		);
+	}
 
-  if (!(record.version in pkg.versions)) {
-    const like = semverFind(pkg.versions, record.version, () => true);
+	if (!(record.version in pkg.versions)) {
+		const like = semverFind(pkg.versions, record.version, () => true);
 
-    if (like !== null) {
-      return redirect(`/p/${merge(record.name, like.version)}`, RedirectType.replace);
-    }
+		if (like !== null) {
+			return redirect(
+				`/p/${merge(record.name, like.version)}`,
+				RedirectType.replace,
+			);
+		}
 
-    return redirect('/', RedirectType.replace);
-  }
+		return redirect("/", RedirectType.replace);
+	}
 
-  const collected: Collected = {
-    name: record.name,
-    version: record.version,
-    description: '',
-    readme: '',
-    homepage: null,
-    repository: null
-  };
+	const collected: Collected = {
+		name: record.name,
+		version: record.version,
+		description: "",
+		readme: "",
+		homepage: null,
+		repository: null,
+	};
 
-  if (pkg.description) {
-    collected.description = pkg.description;
-  }
+	if (pkg.description) {
+		collected.description = pkg.description;
+	}
 
-  if (pkg.homepage) {
-    collected.homepage = pkg.homepage;
-  }
+	if (pkg.homepage) {
+		collected.homepage = pkg.homepage;
+	}
 
-  let repositoryType = Repository.UNKNOWN;
-  let repositoryPure = '';
+	let repositoryType = Repository.UNKNOWN;
+	let repositoryPure = "";
 
-  if (typeof pkg.repository === 'string') {
-    collected.repository = repo(pkg.repository);
+	if (typeof pkg.repository === "string") {
+		collected.repository = repo(pkg.repository);
 
-    repositoryType = collected.repository.type;
-    repositoryPure = collected.repository.pure;
-  } else if (
-    pkg.repository &&
-    pkg.repository.url
-  ) {
-    collected.repository = repo(pkg.repository.url);
+		repositoryType = collected.repository.type;
+		repositoryPure = collected.repository.pure;
+	} else if (pkg.repository?.url) {
+		collected.repository = repo(pkg.repository.url);
 
-    repositoryType = collected.repository.type;
-    repositoryPure = collected.repository.pure;
-  } else {
-    collected.repository = null;
-  }
+		repositoryType = collected.repository.type;
+		repositoryPure = collected.repository.pure;
+	} else {
+		collected.repository = null;
+	}
 
-  const semver = semverFind(pkg.versions, record.version, (npm) => 'readme' in npm && npm.readme !== '');
+	if (collected.homepage === collected.repository?.pure) {
+		collected.homepage = null;
+	}
 
-  let invalid = true;
+	const semver = semverFind(
+		pkg.versions,
+		record.version,
+		(npm) => "readme" in npm && validReadme(npm.readme),
+	);
 
-  if (
-    invalid &&
-    semver !== null &&
-    semver.readme &&
-    semver.readme !== semver.description
-  ) {
-    try {
-      collected.readme = await markdown(
-        semver.readme,
-        repositoryType,
-        repositoryPure
-      );
+	let invalid = true;
 
-      invalid = false;
-    } catch (ex: unknown) {
-      invalid = true;
-      console.error(ex);
-    }
-  }
+	if (
+		invalid &&
+		semver !== null &&
+		semver.readme &&
+		semver.readme !== semver.description
+	) {
+		try {
+			collected.readme = await markdown(
+				semver.readme,
+				repositoryType,
+				repositoryPure,
+			);
 
-  if (
-    invalid &&
-    pkg.readme &&
-    pkg.readme !== pkg.description
-  ) {
-    try {
-      collected.readme = await markdown(
-        pkg.readme,
-        repositoryType,
-        repositoryPure
-      );
+			invalid = false;
+		} catch (ex: unknown) {
+			invalid = true;
+			console.error(ex);
+		}
+	}
 
-      invalid = false;
-    } catch (ex: unknown) {
-      invalid = true;
-      console.error(ex);
-    }
-  }
+	if (
+		invalid &&
+		pkg.readme &&
+		pkg.readme !== pkg.description &&
+		validReadme(pkg.readme)
+	) {
+		try {
+			collected.readme = await markdown(
+				pkg.readme,
+				repositoryType,
+				repositoryPure,
+			);
 
-  if (invalid) {
-    try {
-      const readme = await fetchFallbackReadme(pkg.name);
+			invalid = false;
+		} catch (ex: unknown) {
+			invalid = true;
+			console.error(ex);
+		}
+	}
 
-      collected.readme = await markdown(
-        readme,
-        repositoryType,
-        repositoryPure
-      );
+	if (invalid && pkg.readmeFilename) {
+		try {
+			const readme = await fetchReadmeEsmsh(
+				pkg.name,
+				record.version,
+				pkg.readmeFilename,
+			);
 
-      invalid = false;
-    } catch (ex: unknown) {
-      invalid = true;
-      console.error(ex);
-    }
-  }
+			if (validReadme(readme)) {
+				collected.readme = await markdown(
+					readme,
+					repositoryType,
+					repositoryPure,
+				);
+				invalid = false;
+			} else {
+				invalid = true;
+			}
+		} catch (ex: unknown) {
+			invalid = true;
+			console.error(ex);
+		}
+	}
 
-  if (invalid || !collected.readme) {
-    collected.readme = collected.description;
-  }
+	if (invalid) {
+		try {
+			const readme = await fetchReadmeNpms(pkg.name);
 
-  return collected;
+			if (validReadme(readme)) {
+				collected.readme = await markdown(
+					readme,
+					repositoryType,
+					repositoryPure,
+				);
+				invalid = false;
+			} else {
+				invalid = true;
+			}
+		} catch (ex: unknown) {
+			invalid = true;
+			console.error(ex);
+		}
+	}
+
+	if (invalid) {
+		try {
+			const readme = collected.description;
+
+			if (validReadme(readme)) {
+				collected.readme = await markdown(
+					readme,
+					repositoryType,
+					repositoryPure,
+				);
+				invalid = false;
+			} else {
+				invalid = true;
+			}
+		} catch (ex: unknown) {
+			invalid = true;
+			console.error(ex);
+		}
+	}
+
+	if (invalid || !collected.readme) {
+		collected.readme = collected.description;
+	}
+
+	return collected;
 };
