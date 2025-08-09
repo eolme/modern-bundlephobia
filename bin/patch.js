@@ -15,6 +15,7 @@ const patchExports = async (mod, patch) => {
 (async () => {
 	console.log("patching...");
 
+	console.log("patching exports...");
 	await Promise.all([
 		patchExports(
 			"@vkontakte/vkui",
@@ -26,6 +27,7 @@ const patchExports = async (mod, patch) => {
 		),
 	]);
 
+	console.log("patching dts...");
 	const dts = await glob("node_modules/@vkontakte/vkui/dist/**/*.d.ts", {
 		ignore: ["**/cssm/**"],
 	});

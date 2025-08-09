@@ -5,13 +5,11 @@ import { fetchScript } from "#/utils/esmsh";
 import { InternalHeader } from "#/utils/headers";
 import { normalizeSize } from "#/utils/size";
 
-export const runtime = "edge";
-
 // eslint-disable-next-line func-style
 export async function GET(req: NextRequest) {
 	const buffer = await fetchScript(req.headers.get(InternalHeader.QUERY)!);
 	const content = new Uint8Array(buffer);
-	const size = gzip(content);
+	const size = await gzip(content);
 
 	return respondInternal(200, String(normalizeSize(size)));
 }

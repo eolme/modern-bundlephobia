@@ -6,8 +6,6 @@ import { InternalHeader } from "#/utils/headers";
 import { fetchInternalSize } from "#/utils/internal";
 import { SizeType } from "#/utils/size";
 
-export const runtime = "edge";
-
 // eslint-disable-next-line func-style
 export async function GET(req: NextRequest) {
 	try {

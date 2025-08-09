@@ -7,6 +7,8 @@ settings:
 overrides:
   react: link:./node_modules/next/dist/compiled/react-experimental
   react-dom: link:./node_modules/next/dist/compiled/react-dom-experimental
+  react-server-dom-webpack: link:./node_modules/next/dist/compiled/react-server-dom-webpack-experimental
+  scheduler: link:./node_modules/next/dist/compiled/scheduler-experimental
   '@vkontakte/vk-bridge': link:./packages/bridge
   mitt: link:./packages/mitt
 
@@ -24,8 +26,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@vkontakte/icons':
-        specifier: ^3.13.0
-        version: 3.13.0(react@node_modules+next+dist+compiled+react-experimental)
+        specifier: ^3.14.0
+        version: 3.14.0(react@node_modules+next+dist+compiled+react-experimental)
       '@vkontakte/icons-sprite':
         specifier: ^3.1.0
         version: 3.1.0(react@node_modules+next+dist+compiled+react-experimental)
@@ -36,29 +38,20 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1
       '@vkontakte/vkui':
-        specifier: ^7.5.1
-        version: 7.5.1(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental)
+        specifier: ^7.5.3
+        version: 7.5.3(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental)
       '@vkontakte/vkui-tokens':
-        specifier: ^4.68.0
-        version: 4.68.0
+        specifier: ^4.69.0
+        version: 4.69.0
       ahks:
         specifier: ^0.4.1
-        version: 0.4.1(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental)
-      brotli-compress-wasm:
-        specifier: ^0.5.0
-        version: 0.5.0
+        version: 0.4.1(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      copy-to-clipboard:
-        specifier: ^3.3.3
-        version: 3.3.3
       country-json:
         specifier: ^2.3.0
         version: 2.3.0
-      fflate:
-        specifier: ^0.8.2
-        version: 0.8.2
       highlight.js:
         specifier: ^11.11.1
         version: 11.11.1
@@ -72,8 +65,8 @@ importers:
         specifier: ^5.1.5
         version: 5.1.5
       next:
-        specifier: 15.4.2
-        version: 15.4.2(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental)
+        specifier: canary
+        version: 15.4.2-canary.34(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental)
       pretty-bytes:
         specifier: ^7.0.0
         version: 7.0.0
@@ -86,6 +79,9 @@ importers:
       react-dom:
         specifier: link:node_modules/next/dist/compiled/react-dom-experimental
         version: link:node_modules/next/dist/compiled/react-dom-experimental
+      react-server-dom-webpack:
+        specifier: link:node_modules/next/dist/compiled/react-server-dom-webpack-experimental
+        version: link:node_modules/next/dist/compiled/react-server-dom-webpack-experimental
       rehype-highlight:
         specifier: ^7.0.2
         version: 7.0.2
@@ -116,6 +112,9 @@ importers:
       remark-rehype:
         specifier: ^11.1.2
         version: 11.1.2
+      scheduler:
+        specifier: link:node_modules/next/dist/compiled/scheduler-experimental
+        version: link:node_modules/next/dist/compiled/scheduler-experimental
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -123,8 +122,8 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1
       swr:
-        specifier: ^2.3.4
-        version: 2.3.4(react@node_modules+next+dist+compiled+react-experimental)
+        specifier: ^2.3.5
+        version: 2.3.5(react@node_modules+next+dist+compiled+react-experimental)
       timezones.json:
         specifier: ^1.7.2
         version: 1.7.2
@@ -136,26 +135,26 @@ importers:
         version: 5.0.0
     devDependencies:
       '@biomejs/biome':
-        specifier: 2.1.2
-        version: 2.1.2
+        specifier: 2.1.4
+        version: 2.1.4
       '@next/bundle-analyzer':
-        specifier: ^15.4.2
-        version: 15.4.2
+        specifier: canary
+        version: 15.4.2-canary.34
       '@rspack/core':
-        specifier: ^1.4.8
-        version: 1.4.8(@swc/helpers@0.5.17)
+        specifier: ^1.4.11
+        version: 1.4.11(@swc/helpers@0.5.17)
       '@types/mdast':
         specifier: ^4.0.4
         version: 4.0.4
       '@types/node':
-        specifier: ^24.0.14
-        version: 24.0.14
+        specifier: ^24.2.1
+        version: 24.2.1
       '@types/react':
-        specifier: ^19.1.8
-        version: 19.1.8
+        specifier: ^19.1.9
+        version: 19.1.9
       '@types/react-dom':
-        specifier: ^19.1.6
-        version: 19.1.6(@types/react@19.1.8)
+        specifier: ^19.1.7
+        version: 19.1.7(@types/react@19.1.9)
       '@types/unist':
         specifier: ^3.0.3
         version: 3.0.3
@@ -169,8 +168,8 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1
       next-rspack:
-        specifier: ^15.4.2
-        version: 15.4.2(@swc/helpers@0.5.17)
+        specifier: canary
+        version: 15.4.2-canary.34(@swc/helpers@0.5.17)
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -178,8 +177,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2(webpack@5.100.2)
       typescript:
-        specifier: 5.8.3
-        version: 5.8.3
+        specifier: 5.9.2
+        version: 5.9.2
 
 packages:
 
@@ -187,55 +186,55 @@ packages:
     resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==, tarball: https://registry.npmjs.org/@babel/runtime/-/runtime-7.27.6.tgz}
     engines: {node: '>=6.9.0'}
 
-  '@biomejs/biome@2.1.2':
-    resolution: {integrity: sha512-yq8ZZuKuBVDgAS76LWCfFKHSYIAgqkxVB3mGVVpOe2vSkUTs7xG46zXZeNPRNVjiJuw0SZ3+J2rXiYx0RUpfGg==, tarball: https://registry.npmjs.org/@biomejs/biome/-/biome-2.1.2.tgz}
+  '@biomejs/biome@2.1.4':
+    resolution: {integrity: sha512-QWlrqyxsU0FCebuMnkvBIkxvPqH89afiJzjMl+z67ybutse590jgeaFdDurE9XYtzpjRGTI1tlUZPGWmbKsElA==, tarball: https://registry.npmjs.org/@biomejs/biome/-/biome-2.1.4.tgz}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@2.1.2':
-    resolution: {integrity: sha512-leFAks64PEIjc7MY/cLjE8u5OcfBKkcDB0szxsWUB4aDfemBep1WVKt0qrEyqZBOW8LPHzrFMyDl3FhuuA0E7g==, tarball: https://registry.npmjs.org/@biomejs/cli-darwin-arm64/-/cli-darwin-arm64-2.1.2.tgz}
+  '@biomejs/cli-darwin-arm64@2.1.4':
+    resolution: {integrity: sha512-sCrNENE74I9MV090Wq/9Dg7EhPudx3+5OiSoQOkIe3DLPzFARuL1dOwCWhKCpA3I5RHmbrsbNSRfZwCabwd8Qg==, tarball: https://registry.npmjs.org/@biomejs/cli-darwin-arm64/-/cli-darwin-arm64-2.1.4.tgz}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@2.1.2':
-    resolution: {integrity: sha512-Nmmv7wRX5Nj7lGmz0FjnWdflJg4zii8Ivruas6PBKzw5SJX/q+Zh2RfnO+bBnuKLXpj8kiI2x2X12otpH6a32A==, tarball: https://registry.npmjs.org/@biomejs/cli-darwin-x64/-/cli-darwin-x64-2.1.2.tgz}
+  '@biomejs/cli-darwin-x64@2.1.4':
+    resolution: {integrity: sha512-gOEICJbTCy6iruBywBDcG4X5rHMbqCPs3clh3UQ+hRKlgvJTk4NHWQAyHOXvaLe+AxD1/TNX1jbZeffBJzcrOw==, tarball: https://registry.npmjs.org/@biomejs/cli-darwin-x64/-/cli-darwin-x64-2.1.4.tgz}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@2.1.2':
-    resolution: {integrity: sha512-qgHvafhjH7Oca114FdOScmIKf1DlXT1LqbOrrbR30kQDLFPEOpBG0uzx6MhmsrmhGiCFCr2obDamu+czk+X0HQ==, tarball: https://registry.npmjs.org/@biomejs/cli-linux-arm64-musl/-/cli-linux-arm64-musl-2.1.2.tgz}
+  '@biomejs/cli-linux-arm64-musl@2.1.4':
+    resolution: {integrity: sha512-nYr7H0CyAJPaLupFE2cH16KZmRC5Z9PEftiA2vWxk+CsFkPZQ6dBRdcC6RuS+zJlPc/JOd8xw3uCCt9Pv41WvQ==, tarball: https://registry.npmjs.org/@biomejs/cli-linux-arm64-musl/-/cli-linux-arm64-musl-2.1.4.tgz}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-arm64@2.1.2':
-    resolution: {integrity: sha512-NWNy2Diocav61HZiv2enTQykbPP/KrA/baS7JsLSojC7Xxh2nl9IczuvE5UID7+ksRy2e7yH7klm/WkA72G1dw==, tarball: https://registry.npmjs.org/@biomejs/cli-linux-arm64/-/cli-linux-arm64-2.1.2.tgz}
+  '@biomejs/cli-linux-arm64@2.1.4':
+    resolution: {integrity: sha512-juhEkdkKR4nbUi5k/KRp1ocGPNWLgFRD4NrHZSveYrD6i98pyvuzmS9yFYgOZa5JhaVqo0HPnci0+YuzSwT2fw==, tarball: https://registry.npmjs.org/@biomejs/cli-linux-arm64/-/cli-linux-arm64-2.1.4.tgz}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64-musl@2.1.2':
-    resolution: {integrity: sha512-xlB3mU14ZUa3wzLtXfmk2IMOGL+S0aHFhSix/nssWS/2XlD27q+S6f0dlQ8WOCbYoXcuz8BCM7rCn2lxdTrlQA==, tarball: https://registry.npmjs.org/@biomejs/cli-linux-x64-musl/-/cli-linux-x64-musl-2.1.2.tgz}
+  '@biomejs/cli-linux-x64-musl@2.1.4':
+    resolution: {integrity: sha512-lvwvb2SQQHctHUKvBKptR6PLFCM7JfRjpCCrDaTmvB7EeZ5/dQJPhTYBf36BE/B4CRWR2ZiBLRYhK7hhXBCZAg==, tarball: https://registry.npmjs.org/@biomejs/cli-linux-x64-musl/-/cli-linux-x64-musl-2.1.4.tgz}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64@2.1.2':
-    resolution: {integrity: sha512-Km/UYeVowygTjpX6sGBzlizjakLoMQkxWbruVZSNE6osuSI63i4uCeIL+6q2AJlD3dxoiBJX70dn1enjQnQqwA==, tarball: https://registry.npmjs.org/@biomejs/cli-linux-x64/-/cli-linux-x64-2.1.2.tgz}
+  '@biomejs/cli-linux-x64@2.1.4':
+    resolution: {integrity: sha512-Eoy9ycbhpJVYuR+LskV9s3uyaIkp89+qqgqhGQsWnp/I02Uqg2fXFblHJOpGZR8AxdB9ADy87oFVxn9MpFKUrw==, tarball: https://registry.npmjs.org/@biomejs/cli-linux-x64/-/cli-linux-x64-2.1.4.tgz}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-win32-arm64@2.1.2':
-    resolution: {integrity: sha512-G8KWZli5ASOXA3yUQgx+M4pZRv3ND16h77UsdunUL17uYpcL/UC7RkWTdkfvMQvogVsAuz5JUcBDjgZHXxlKoA==, tarball: https://registry.npmjs.org/@biomejs/cli-win32-arm64/-/cli-win32-arm64-2.1.2.tgz}
+  '@biomejs/cli-win32-arm64@2.1.4':
+    resolution: {integrity: sha512-3WRYte7orvyi6TRfIZkDN9Jzoogbv+gSvR+b9VOXUg1We1XrjBg6WljADeVEaKTvOcpVdH0a90TwyOQ6ue4fGw==, tarball: https://registry.npmjs.org/@biomejs/cli-win32-arm64/-/cli-win32-arm64-2.1.4.tgz}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@2.1.2':
-    resolution: {integrity: sha512-9zajnk59PMpjBkty3bK2IrjUsUHvqe9HWwyAWQBjGLE7MIBjbX2vwv1XPEhmO2RRuGoTkVx3WCanHrjAytICLA==, tarball: https://registry.npmjs.org/@biomejs/cli-win32-x64/-/cli-win32-x64-2.1.2.tgz}
+  '@biomejs/cli-win32-x64@2.1.4':
+    resolution: {integrity: sha512-tBc+W7anBPSFXGAoQW+f/+svkpt8/uXfRwDzN1DvnatkRMt16KIYpEi/iw8u9GahJlFv98kgHcIrSsZHZTR0sw==, tarball: https://registry.npmjs.org/@biomejs/cli-win32-x64/-/cli-win32-x64-2.1.4.tgz}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
@@ -247,8 +246,8 @@ packages:
   '@emnapi/core@1.4.5':
     resolution: {integrity: sha512-XsLw1dEOpkSX/WucdqUhPWP7hDxSvZiY+fsUC14h+FtQ2Ifni4znbBt8punRX+Uj2JG/uDb8nEHVKvrVlvdZ5Q==, tarball: https://registry.npmjs.org/@emnapi/core/-/core-1.4.5.tgz}
 
-  '@emnapi/runtime@1.4.4':
-    resolution: {integrity: sha512-hHyapA4A3gPaDCNfiqyZUStTMqIkKRshqPIuDOXv1hcBnD4U3l8cP0T1HMCfGRxQ6V64TGCcoswChANyOAwbQg==, tarball: https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.4.4.tgz}
+  '@emnapi/runtime@1.4.5':
+    resolution: {integrity: sha512-++LApOtY0pEEz1zrd9vy1/zXVaVJJ/EbAF3u0fXIzPJEDtnITsBGbbK0EkM72amhl/R5b+5xx0Y/QhcVOpuulg==, tarball: https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.4.5.tgz}
 
   '@emnapi/wasi-threads@1.0.4':
     resolution: {integrity: sha512-PJR+bOmMOPH8AtcTGAyYNiuJ3/Fcoj2XN/gBEWzDIKh254XO+mM9XoXHk5GNEhodxeMznbg7BlRojVbKN+gC6g==, tarball: https://registry.npmjs.org/@emnapi/wasi-threads/-/wasi-threads-1.0.4.tgz}
@@ -419,92 +418,95 @@ packages:
   '@module-federation/error-codes@0.15.0':
     resolution: {integrity: sha512-CFJSF+XKwTcy0PFZ2l/fSUpR4z247+Uwzp1sXVkdIfJ/ATsnqf0Q01f51qqSEA6MYdQi6FKos9FIcu3dCpQNdg==, tarball: https://registry.npmjs.org/@module-federation/error-codes/-/error-codes-0.15.0.tgz}
 
-  '@module-federation/error-codes@0.16.0':
-    resolution: {integrity: sha512-TfmA45b8vvISniGudMg8jjIy1q3tLPon0QN/JdFp5f8AJ8/peICN5b+dkEQnWsAVg2fEusYhk9dO7z3nUeJM8A==, tarball: https://registry.npmjs.org/@module-federation/error-codes/-/error-codes-0.16.0.tgz}
+  '@module-federation/error-codes@0.17.1':
+    resolution: {integrity: sha512-n6Elm4qKSjwAPxLUGtwnl7qt4y1dxB8OpSgVvXBIzqI9p27a3ZXshLPLnumlpPg1Qudaj8sLnSnFtt9yGpt5yQ==, tarball: https://registry.npmjs.org/@module-federation/error-codes/-/error-codes-0.17.1.tgz}
 
   '@module-federation/runtime-core@0.15.0':
     resolution: {integrity: sha512-RYzI61fRDrhyhaEOXH3AgIGlHiot0wPFXu7F43cr+ZnTi+VlSYWLdlZ4NBuT9uV6JSmH54/c+tEZm5SXgKR2sQ==, tarball: https://registry.npmjs.org/@module-federation/runtime-core/-/runtime-core-0.15.0.tgz}
 
-  '@module-federation/runtime-core@0.16.0':
-    resolution: {integrity: sha512-5SECQowG4hlUVBRk/y6bnYLfxbsl5NcMmqn043WPe7NDOhGQWbTuYibJ3Bk+ZBv5U4uYLEmXipBGDc1FKsHklQ==, tarball: https://registry.npmjs.org/@module-federation/runtime-core/-/runtime-core-0.16.0.tgz}
+  '@module-federation/runtime-core@0.17.1':
+    resolution: {integrity: sha512-LCtIFuKgWPQ3E+13OyrVpuTPOWBMI/Ggwsq1Q874YeT8Px28b8tJRCj09DjyRFyhpSPyV/uG80T6iXPAUoLIfQ==, tarball: https://registry.npmjs.org/@module-federation/runtime-core/-/runtime-core-0.17.1.tgz}
 
   '@module-federation/runtime-tools@0.15.0':
     resolution: {integrity: sha512-kzFn3ObUeBp5vaEtN1WMxhTYBuYEErxugu1RzFUERD21X3BZ+b4cWwdFJuBDlsmVjctIg/QSOoZoPXRKAO0foA==, tarball: https://registry.npmjs.org/@module-federation/runtime-tools/-/runtime-tools-0.15.0.tgz}
 
-  '@module-federation/runtime-tools@0.16.0':
-    resolution: {integrity: sha512-OzmXNluXBQ2E6znzX4m9CJt1MFHVGmbN8c8MSKcYIDcLzLSKBQAiaz9ZUMhkyWx2YrPgD134glyPEqJrc+fY8A==, tarball: https://registry.npmjs.org/@module-federation/runtime-tools/-/runtime-tools-0.16.0.tgz}
+  '@module-federation/runtime-tools@0.17.1':
+    resolution: {integrity: sha512-4kr6zTFFwGywJx6whBtxsc84V+COAuuBpEdEbPZN//YLXhNB0iz2IGsy9r9wDl+06h84bD+3dQ05l9euRLgXzQ==, tarball: https://registry.npmjs.org/@module-federation/runtime-tools/-/runtime-tools-0.17.1.tgz}
 
   '@module-federation/runtime@0.15.0':
     resolution: {integrity: sha512-dTPsCNum9Bhu3yPOcrPYq0YnM9eCMMMNB1wuiqf1+sFbQlNApF0vfZxooqz3ln0/MpgE0jerVvFsLVGfqvC9Ug==, tarball: https://registry.npmjs.org/@module-federation/runtime/-/runtime-0.15.0.tgz}
 
-  '@module-federation/runtime@0.16.0':
-    resolution: {integrity: sha512-6o84WI8Qhc9O3HwPLx89kTvOSkyUOHQr73R/zr0I04sYhlMJgw5xTwXeGE7bQAmNgbJclzW9Kh7JTP7+3o3CHg==, tarball: https://registry.npmjs.org/@module-federation/runtime/-/runtime-0.16.0.tgz}
+  '@module-federation/runtime@0.17.1':
+    resolution: {integrity: sha512-vKEN32MvUbpeuB/s6UXfkHDZ9N5jFyDDJnj83UTJ8n4N1jHIJu9VZ6Yi4/Ac8cfdvU8UIK9bIbfVXWbUYZUDsw==, tarball: https://registry.npmjs.org/@module-federation/runtime/-/runtime-0.17.1.tgz}
 
   '@module-federation/sdk@0.15.0':
     resolution: {integrity: sha512-PWiYbGcJrKUD6JZiEPihrXhV3bgXdll4bV7rU+opV7tHaun+Z0CdcawjZ82Xnpb8MCPGmqHwa1MPFeUs66zksw==, tarball: https://registry.npmjs.org/@module-federation/sdk/-/sdk-0.15.0.tgz}
 
-  '@module-federation/sdk@0.16.0':
-    resolution: {integrity: sha512-UXJW1WWuDoDmScX0tpISjl4xIRPzAiN62vg9etuBdAEUM+ja9rz/zwNZaByiUPFS2aqlj2RHenCRvIapE8mYEg==, tarball: https://registry.npmjs.org/@module-federation/sdk/-/sdk-0.16.0.tgz}
+  '@module-federation/sdk@0.17.1':
+    resolution: {integrity: sha512-nlUcN6UTEi+3HWF+k8wPy7gH0yUOmCT+xNatihkIVR9REAnr7BUvHFGlPJmx7WEbLPL46+zJUbtQHvLzXwFhng==, tarball: https://registry.npmjs.org/@module-federation/sdk/-/sdk-0.17.1.tgz}
 
   '@module-federation/webpack-bundler-runtime@0.15.0':
     resolution: {integrity: sha512-i+3wu2Ljh2TmuUpsnjwZVupOVqV50jP0ndA8PSP4gwMKlgdGeaZ4VH5KkHAXGr2eiYUxYLMrJXz1+eILJqeGDg==, tarball: https://registry.npmjs.org/@module-federation/webpack-bundler-runtime/-/webpack-bundler-runtime-0.15.0.tgz}
 
-  '@module-federation/webpack-bundler-runtime@0.16.0':
-    resolution: {integrity: sha512-yqIDQTelJZP0Rxml0OXv4Er8Kbdxy7NFh6PCzPwDFWI1SkiokJ3uXQJBvtlxZ3lOnCDYOzdHstqa8sJG4JP02Q==, tarball: https://registry.npmjs.org/@module-federation/webpack-bundler-runtime/-/webpack-bundler-runtime-0.16.0.tgz}
+  '@module-federation/webpack-bundler-runtime@0.17.1':
+    resolution: {integrity: sha512-Swspdgf4PzcbvS9SNKFlBzfq8h/Qxwqjq/xRSqw1pqAZWondZQzwTTqPXhgrg0bFlz7qWjBS/6a8KuH/gRvGaQ==, tarball: https://registry.npmjs.org/@module-federation/webpack-bundler-runtime/-/webpack-bundler-runtime-0.17.1.tgz}
 
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==, tarball: https://registry.npmjs.org/@napi-rs/wasm-runtime/-/wasm-runtime-0.2.12.tgz}
 
-  '@next/bundle-analyzer@15.4.2':
-    resolution: {integrity: sha512-kgjecwKDgJ50DZXjVllawD6MuTyxaREB5EUBKbG9NLBHjYu10O/OPL5JqKrBrYdQ9BNVxjGEQoDGcHB76ZjViQ==, tarball: https://registry.npmjs.org/@next/bundle-analyzer/-/bundle-analyzer-15.4.2.tgz}
+  '@napi-rs/wasm-runtime@1.0.3':
+    resolution: {integrity: sha512-rZxtMsLwjdXkMUGC3WwsPwLNVqVqnTJT6MNIB6e+5fhMcSCPP0AOsNWuMQ5mdCq6HNjs/ZeWAEchpqeprqBD2Q==, tarball: https://registry.npmjs.org/@napi-rs/wasm-runtime/-/wasm-runtime-1.0.3.tgz}
 
-  '@next/env@15.4.2':
-    resolution: {integrity: sha512-kd7MvW3pAP7tmk1NaiX4yG15xb2l4gNhteKQxt3f+NGR22qwPymn9RBuv26QKfIKmfo6z2NpgU8W2RT0s0jlvg==, tarball: https://registry.npmjs.org/@next/env/-/env-15.4.2.tgz}
+  '@next/bundle-analyzer@15.4.2-canary.34':
+    resolution: {integrity: sha512-OHkKj6OK1DYUIEXReTs41Wyo3XBJGvREyPEiRk7p+LCXp2rBK0U4KFZS72DRrdem9Et5DrlNtPfPXMkqZU599A==, tarball: https://registry.npmjs.org/@next/bundle-analyzer/-/bundle-analyzer-15.4.2-canary.34.tgz}
 
-  '@next/swc-darwin-arm64@15.4.2':
-    resolution: {integrity: sha512-ovqjR8NjCBdBf1U+R/Gvn0RazTtXS9n6wqs84iFaCS1NHbw9ksVE4dfmsYcLoyUVd9BWE0bjkphOWrrz8uz/uw==, tarball: https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-15.4.2.tgz}
+  '@next/env@15.4.2-canary.34':
+    resolution: {integrity: sha512-niZW67lp48YXy2ksyN7YYCRRya6uxdaTtE0tiYzYqCeDTjM5oFEMWhufCya5yf2fPqcT8L+mVe13rgIponEC0w==, tarball: https://registry.npmjs.org/@next/env/-/env-15.4.2-canary.34.tgz}
+
+  '@next/swc-darwin-arm64@15.4.2-canary.34':
+    resolution: {integrity: sha512-4kva+4Q5jpBApigFk6KgAC7cWA0MI8Nd3a4UoeVbLGfZrct5JGFmCPz9EMPd09a1qU1jRD6LB0T0l90EHoic3A==, tarball: https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-15.4.2-canary.34.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@15.4.2':
-    resolution: {integrity: sha512-I8d4W7tPqbdbHRI4z1iBfaoJIBrEG4fnWKIe+Rj1vIucNZ5cEinfwkBt3RcDF00bFRZRDpvKuDjgMFD3OyRBnw==, tarball: https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-15.4.2.tgz}
+  '@next/swc-darwin-x64@15.4.2-canary.34':
+    resolution: {integrity: sha512-YxRkJvB28IB12IaHAD/Eq1544gzWfgUmnCP9sHGNGuG0Kjhwh4XkPdsB+cZR1+ZeeCdGnhjVGY/vOCQwaA4BFw==, tarball: https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-15.4.2-canary.34.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@15.4.2':
-    resolution: {integrity: sha512-lvhz02dU3Ec5thzfQ2RCUeOFADjNkS/px1W7MBt7HMhf0/amMfT8Z/aXOwEA+cVWN7HSDRSUc8hHILoHmvajsg==, tarball: https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-15.4.2.tgz}
+  '@next/swc-linux-arm64-gnu@15.4.2-canary.34':
+    resolution: {integrity: sha512-yXGr05Iy4YjwCZM0vqxU8+7cC5SZOwnhxJzK2OmhdLoT5uegA6mXg5zwHv906pqvvSSl+29ngbZjpNFbWTnM1g==, tarball: https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-15.4.2-canary.34.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@15.4.2':
-    resolution: {integrity: sha512-v+5PPfL8UP+KKHS3Mox7QMoeFdMlaV0zeNMIF7eLC4qTiVSO0RPNnK0nkBZSD5BEkkf//c+vI9s/iHxddCZchA==, tarball: https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-15.4.2.tgz}
+  '@next/swc-linux-arm64-musl@15.4.2-canary.34':
+    resolution: {integrity: sha512-8CPMPZ+ekglYM1d3mHW4ewiVfOwueT2Stg82i4SxCghlPcnh+TjZUaoOzKg9cYCbj2aDjBURhOJYtMcMKu8VsQ==, tarball: https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-15.4.2-canary.34.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@15.4.2':
-    resolution: {integrity: sha512-PHLYOC9W2cu6I/JEKo77+LW4uPNvyEQiSkVRUQPsOIsf01PRr8PtPhwtz3XNnC9At8CrzPkzqQ9/kYDg4R4Inw==, tarball: https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-15.4.2.tgz}
+  '@next/swc-linux-x64-gnu@15.4.2-canary.34':
+    resolution: {integrity: sha512-0kIuaFTL2tOVGJV6+DS3rckKSxMHSISdU68mbcFqZna7DiIEcZmuDWkEXB0/gM6SWQYJpScjgZRwh8ckO/QlAA==, tarball: https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-15.4.2-canary.34.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@15.4.2':
-    resolution: {integrity: sha512-lpmUF9FfLFns4JbTu+5aJGA8aR9dXaA12eoNe9CJbVkGib0FDiPa4kBGTwy0xDxKNGlv3bLDViyx1U+qafmuJQ==, tarball: https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-15.4.2.tgz}
+  '@next/swc-linux-x64-musl@15.4.2-canary.34':
+    resolution: {integrity: sha512-NIQIN333bNvVTZCRQm3rzWLT8Zp2XB1sW9RtmO2h4fsi7raz6y1zsxIklMxPwMHpDU/Iwb+z3OjSwCiE8hPs3g==, tarball: https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-15.4.2-canary.34.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-win32-arm64-msvc@15.4.2':
-    resolution: {integrity: sha512-aMjogoGnRepas0LQ/PBPsvvUzj+IoXw2IoDSEShEtrsu2toBiaxEWzOQuPZ8nie8+1iF7TA63S7rlp3YWAjNEg==, tarball: https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-15.4.2.tgz}
+  '@next/swc-win32-arm64-msvc@15.4.2-canary.34':
+    resolution: {integrity: sha512-rf9INIcDRiZEQPVzFEbOn3ThKlrjPuG/jU3oxNQU+04R2S5KRjU0tdZ8XobQ8toldq/I+FL0PesBg+gBjvUgcw==, tarball: https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-15.4.2-canary.34.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@15.4.2':
-    resolution: {integrity: sha512-FxwauyexSFu78wEqR/+NB9MnqXVj6SxJKwcVs2CRjeSX/jBagDCgtR2W36PZUYm0WPgY1pQ3C1+nn7zSnwROuw==, tarball: https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.4.2.tgz}
+  '@next/swc-win32-x64-msvc@15.4.2-canary.34':
+    resolution: {integrity: sha512-Dy6+GtXY9C6U4KvIlWn5B56ldylLJcSQy6cSxH9AsvpLPOXjYmwQ5uRvvy3YZeyzq0ABQURuOCRYtHT9Go1l1Q==, tarball: https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.4.2-canary.34.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -524,14 +526,19 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==, tarball: https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.29.tgz}
 
+  '@rspack/binding-darwin-arm64@1.4.11':
+    resolution: {integrity: sha512-PrmBVhR8MC269jo6uQ+BMy1uwIDx0HAJYLQRQur8gXiehWabUBCRg/d4U9KR7rLzdaSScRyc5JWXR52T7/4MfA==, tarball: https://registry.npmjs.org/@rspack/binding-darwin-arm64/-/binding-darwin-arm64-1.4.11.tgz}
+    cpu: [arm64]
+    os: [darwin]
+
   '@rspack/binding-darwin-arm64@1.4.5':
     resolution: {integrity: sha512-rK8mJ+85cXrGSTZvr5vqI17TDimAUWYjl0T+JEg5MTqRNbpyovbGHbrrsQyIicwaFOS1wWkaLrBolC/+/FLUeg==, tarball: https://registry.npmjs.org/@rspack/binding-darwin-arm64/-/binding-darwin-arm64-1.4.5.tgz}
     cpu: [arm64]
     os: [darwin]
 
-  '@rspack/binding-darwin-arm64@1.4.8':
-    resolution: {integrity: sha512-PQRNjC3Fc0avpx8Gk+sT5P+HAXxTSzmBA8lU7QLlmbW5GGXO2taVhNstbZ4oxyIX5uDVZpQ2yQ2E0zXirK6/UQ==, tarball: https://registry.npmjs.org/@rspack/binding-darwin-arm64/-/binding-darwin-arm64-1.4.8.tgz}
-    cpu: [arm64]
+  '@rspack/binding-darwin-x64@1.4.11':
+    resolution: {integrity: sha512-YIV8Wzy+JY0SoSsVtN4wxFXOjzxxVPnVXNswrrfqVUTPr9jqGOFYUWCGpbt8lcCgfuBFm6zN8HpOsKm1xUNsVA==, tarball: https://registry.npmjs.org/@rspack/binding-darwin-x64/-/binding-darwin-x64-1.4.11.tgz}
+    cpu: [x64]
     os: [darwin]
 
   '@rspack/binding-darwin-x64@1.4.5':
@@ -539,18 +546,18 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@rspack/binding-darwin-x64@1.4.8':
-    resolution: {integrity: sha512-ZnPZbo1dhhbfevxSS99y8w02xuEbxyiV1HaUie/S8jzy9DPmk+4Br+DddufnibPNU85e3BZKjp+HDFMYkdn6cg==, tarball: https://registry.npmjs.org/@rspack/binding-darwin-x64/-/binding-darwin-x64-1.4.8.tgz}
-    cpu: [x64]
-    os: [darwin]
+  '@rspack/binding-linux-arm64-gnu@1.4.11':
+    resolution: {integrity: sha512-ms6uwECUIcu+6e82C5HJhRMHnfsI+l33v7XQezntzRPN0+sG3EpikEoT7SGbgt4vDwaWLR7wS20suN4qd5r3GA==, tarball: https://registry.npmjs.org/@rspack/binding-linux-arm64-gnu/-/binding-linux-arm64-gnu-1.4.11.tgz}
+    cpu: [arm64]
+    os: [linux]
 
   '@rspack/binding-linux-arm64-gnu@1.4.5':
     resolution: {integrity: sha512-vnz5OItcPREgz+hVqx14HRf0aJQ7yI/2ZEbeTC+Y1JSCbeYAcu6NXYVXDwTOgCNOp1AdMR+rmItHWiJ7goI//Q==, tarball: https://registry.npmjs.org/@rspack/binding-linux-arm64-gnu/-/binding-linux-arm64-gnu-1.4.5.tgz}
     cpu: [arm64]
     os: [linux]
 
-  '@rspack/binding-linux-arm64-gnu@1.4.8':
-    resolution: {integrity: sha512-mJK9diM4Gd8RIGO90AZnl27WwUuAOoRplPQv9G+Vxu2baCt1xE1ccf8PntIJ70/rMgsUdnmkR5qQBaGxhAMJvA==, tarball: https://registry.npmjs.org/@rspack/binding-linux-arm64-gnu/-/binding-linux-arm64-gnu-1.4.8.tgz}
+  '@rspack/binding-linux-arm64-musl@1.4.11':
+    resolution: {integrity: sha512-9evq0DOdxMN/H8VM8ZmyY9NSuBgILNVV6ydBfVPMHPx4r1E7JZGpWeKDegZcS5Erw3sS9kVSIxyX78L5PDzzKw==, tarball: https://registry.npmjs.org/@rspack/binding-linux-arm64-musl/-/binding-linux-arm64-musl-1.4.11.tgz}
     cpu: [arm64]
     os: [linux]
 
@@ -559,9 +566,9 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@rspack/binding-linux-arm64-musl@1.4.8':
-    resolution: {integrity: sha512-+n9QxeDDZKwVB4D6cwpNRJzsCeuwNqd/fwwbMQVTctJ+GhIHlUPsE8y5tXN7euU7kDci81wMBBFlt6LtXNcssA==, tarball: https://registry.npmjs.org/@rspack/binding-linux-arm64-musl/-/binding-linux-arm64-musl-1.4.8.tgz}
-    cpu: [arm64]
+  '@rspack/binding-linux-x64-gnu@1.4.11':
+    resolution: {integrity: sha512-bHYFLxPPYBOSaHdQbEoCYGMQ1gOrEWj7Mro/DLfSHZi1a0okcQ2Q1y0i1DczReim3ZhLGNrK7k1IpFXCRbAobQ==, tarball: https://registry.npmjs.org/@rspack/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.4.11.tgz}
+    cpu: [x64]
     os: [linux]
 
   '@rspack/binding-linux-x64-gnu@1.4.5':
@@ -569,8 +576,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@rspack/binding-linux-x64-gnu@1.4.8':
-    resolution: {integrity: sha512-rEypDlbIfv9B/DcZ2vYVWs56wo5VWE5oj/TvM9JT+xuqwvVWsN/A2TPMiU6QBgOKGXat3EM/MEgx8NhNZUpkXg==, tarball: https://registry.npmjs.org/@rspack/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.4.8.tgz}
+  '@rspack/binding-linux-x64-musl@1.4.11':
+    resolution: {integrity: sha512-wrm4E7q2k4+cwT6Uhp6hIQ3eUe/YoaUttj6j5TqHYZX6YeLrNPtD9+ne6lQQ17BV8wmm6NZsmoFIJ5xIptpRhQ==, tarball: https://registry.npmjs.org/@rspack/binding-linux-x64-musl/-/binding-linux-x64-musl-1.4.11.tgz}
     cpu: [x64]
     os: [linux]
 
@@ -579,27 +586,27 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@rspack/binding-linux-x64-musl@1.4.8':
-    resolution: {integrity: sha512-o9OsvJ7olH0JPU9exyIaYTNQ+aaR5CNAiinkxr+LkV2i3DMIi/+pDVveDiodYjVhzZjWfsP/z8QPO4c6Z06bEw==, tarball: https://registry.npmjs.org/@rspack/binding-linux-x64-musl/-/binding-linux-x64-musl-1.4.8.tgz}
-    cpu: [x64]
-    os: [linux]
+  '@rspack/binding-wasm32-wasi@1.4.11':
+    resolution: {integrity: sha512-hiYxHZjaZ17wQtXyLCK0IdtOvMWreGVTiGsaHCxyeT+SldDG+r16bXNjmlqfZsjlfl1mkAqKz1dg+mMX28OTqw==, tarball: https://registry.npmjs.org/@rspack/binding-wasm32-wasi/-/binding-wasm32-wasi-1.4.11.tgz}
+    cpu: [wasm32]
 
   '@rspack/binding-wasm32-wasi@1.4.5':
     resolution: {integrity: sha512-LRyln0jg2FblwFQg+0lPVc/bvDeo3A3EVWQtsTtOwjb4cjAG/Zqo5Q0VobaJTKgBOF9eAHTo9IL92SSj433+Eg==, tarball: https://registry.npmjs.org/@rspack/binding-wasm32-wasi/-/binding-wasm32-wasi-1.4.5.tgz}
     cpu: [wasm32]
 
-  '@rspack/binding-wasm32-wasi@1.4.8':
-    resolution: {integrity: sha512-hF5gqT0aQ66VUclM2A9MSB6zVdEJqzp++TAXaShBK/eVBI0R4vWrMfJ2TOdzEsSbg4gXgeG4swURpHva3PKbcA==, tarball: https://registry.npmjs.org/@rspack/binding-wasm32-wasi/-/binding-wasm32-wasi-1.4.8.tgz}
-    cpu: [wasm32]
+  '@rspack/binding-win32-arm64-msvc@1.4.11':
+    resolution: {integrity: sha512-+HF/mnjmTr8PC1dccRt1bkrD2tPDGeqvXC1BBLYd/Klq1VbtIcnrhfmvQM6KaXbiLcY9VWKzcZPOTmnyZ8TaHQ==, tarball: https://registry.npmjs.org/@rspack/binding-win32-arm64-msvc/-/binding-win32-arm64-msvc-1.4.11.tgz}
+    cpu: [arm64]
+    os: [win32]
 
   '@rspack/binding-win32-arm64-msvc@1.4.5':
     resolution: {integrity: sha512-JWc15Mof/aC41UQSZLwa6oEsPYaYCApW0152Abhnt27qir2pfqYcT5qWt26OJvFDJoe+KzpIG1H91yJviChYYw==, tarball: https://registry.npmjs.org/@rspack/binding-win32-arm64-msvc/-/binding-win32-arm64-msvc-1.4.5.tgz}
     cpu: [arm64]
     os: [win32]
 
-  '@rspack/binding-win32-arm64-msvc@1.4.8':
-    resolution: {integrity: sha512-umD0XzesJq4nnStv9/2/VOmzNUWHfLMIjeHmiHYHpc7iVC0SkXgIdc6Ac7c+g2q7/V3/MFxL66Y60oy7lQE3fg==, tarball: https://registry.npmjs.org/@rspack/binding-win32-arm64-msvc/-/binding-win32-arm64-msvc-1.4.8.tgz}
-    cpu: [arm64]
+  '@rspack/binding-win32-ia32-msvc@1.4.11':
+    resolution: {integrity: sha512-EU2fQGwrRfwFd/tcOInlD0jy6gNQE4Q3Ayj0Is+cX77sbhPPyyOz0kZDEaQ4qaN2VU8w4Hu/rrD7c0GAKLFvCw==, tarball: https://registry.npmjs.org/@rspack/binding-win32-ia32-msvc/-/binding-win32-ia32-msvc-1.4.11.tgz}
+    cpu: [ia32]
     os: [win32]
 
   '@rspack/binding-win32-ia32-msvc@1.4.5':
@@ -607,9 +614,9 @@ packages:
     cpu: [ia32]
     os: [win32]
 
-  '@rspack/binding-win32-ia32-msvc@1.4.8':
-    resolution: {integrity: sha512-Uu+F/sxz7GgIMbuCCZVOD1HPjoHQdyrFHi/TE2EmuZzs9Ji9a9mtNJNrKc8+h9YFpaLeade7cbMDjRu4MHxiVA==, tarball: https://registry.npmjs.org/@rspack/binding-win32-ia32-msvc/-/binding-win32-ia32-msvc-1.4.8.tgz}
-    cpu: [ia32]
+  '@rspack/binding-win32-x64-msvc@1.4.11':
+    resolution: {integrity: sha512-1Nc5ZzWqfvE+iJc47qtHFzYYnHsC3awavXrCo74GdGip1vxtksM3G30BlvAQHHVtEmULotWqPbjZpflw/Xk9Ag==, tarball: https://registry.npmjs.org/@rspack/binding-win32-x64-msvc/-/binding-win32-x64-msvc-1.4.11.tgz}
+    cpu: [x64]
     os: [win32]
 
   '@rspack/binding-win32-x64-msvc@1.4.5':
@@ -617,19 +624,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@rspack/binding-win32-x64-msvc@1.4.8':
-    resolution: {integrity: sha512-BVkOfJDZnexHNpGgc/sWENyGrsle1jUQTeUEdSyNYsu4Elsgk/T9gnGK8xyLRd2c6k20M5FN38t0TumCp4DscQ==, tarball: https://registry.npmjs.org/@rspack/binding-win32-x64-msvc/-/binding-win32-x64-msvc-1.4.8.tgz}
-    cpu: [x64]
-    os: [win32]
+  '@rspack/binding@1.4.11':
+    resolution: {integrity: sha512-maGl/zRwnl0QVwkBCkgjn5PH20L9HdlRIdkYhEsfTepy5x2QZ0ti/0T49djjTJQrqb+S1i6wWQymMMMMMsxx6Q==, tarball: https://registry.npmjs.org/@rspack/binding/-/binding-1.4.11.tgz}
 
   '@rspack/binding@1.4.5':
     resolution: {integrity: sha512-hO7DrZMMOyzwK7EEYfHMJmWhsNjeYLr39pEnXOWeuCCcwus6e/QNSSf2m/2mSFf0JeINwQqHkA1JvJEZ5JSj6g==, tarball: https://registry.npmjs.org/@rspack/binding/-/binding-1.4.5.tgz}
 
-  '@rspack/binding@1.4.8':
-    resolution: {integrity: sha512-VKE+2InUdudBUOn3xMZfK9a6KlOwmSifA0Nupjsh7N9/brcBfJtJGSDCnfrIKCq54FF+QAUCgcNAS0DB4/tZmw==, tarball: https://registry.npmjs.org/@rspack/binding/-/binding-1.4.8.tgz}
-
-  '@rspack/core@1.4.5':
-    resolution: {integrity: sha512-4OlxGQ4yPbAOYbVStMotaYrydm8r5VbLByrmQ34LNBYIDSmwaBmHQVMYGIesuGW681pr139XwInKvsoAoW6VTA==, tarball: https://registry.npmjs.org/@rspack/core/-/core-1.4.5.tgz}
+  '@rspack/core@1.4.11':
+    resolution: {integrity: sha512-JtKnL6p7Kc/YgWQJF3Woo4OccbgKGyT/4187W4dyex8BMkdQcbqCNIdi6dFk02hwQzxpOOxRSBI4hlGRbz7oYQ==, tarball: https://registry.npmjs.org/@rspack/core/-/core-1.4.11.tgz}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@swc/helpers': '>=0.5.1'
@@ -637,8 +639,8 @@ packages:
       '@swc/helpers':
         optional: true
 
-  '@rspack/core@1.4.8':
-    resolution: {integrity: sha512-ARHuZ+gx3P//RIUKSjk/riQUn/D5tCwCWbfgeM5pk/Ti2JsgVnqiP9Sksge8JovVPf7b6Zgw73Cq5FpX4aOXeQ==, tarball: https://registry.npmjs.org/@rspack/core/-/core-1.4.8.tgz}
+  '@rspack/core@1.4.5':
+    resolution: {integrity: sha512-4OlxGQ4yPbAOYbVStMotaYrydm8r5VbLByrmQ34LNBYIDSmwaBmHQVMYGIesuGW681pr139XwInKvsoAoW6VTA==, tarball: https://registry.npmjs.org/@rspack/core/-/core-1.4.5.tgz}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@swc/helpers': '>=0.5.1'
@@ -696,16 +698,16 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==, tarball: https://registry.npmjs.org/@types/ms/-/ms-2.1.0.tgz}
 
-  '@types/node@24.0.14':
-    resolution: {integrity: sha512-4zXMWD91vBLGRtHK3YbIoFMia+1nqEz72coM42C5ETjnNCa/heoj7NT1G67iAfOqMmcfhuCZ4uNpyz8EjlAejw==, tarball: https://registry.npmjs.org/@types/node/-/node-24.0.14.tgz}
+  '@types/node@24.2.1':
+    resolution: {integrity: sha512-DRh5K+ka5eJic8CjH7td8QpYEV6Zo10gfRkjHCO3weqZHWDtAaSTFtl4+VMqOJ4N5jcuhZ9/l+yy8rVgw7BQeQ==, tarball: https://registry.npmjs.org/@types/node/-/node-24.2.1.tgz}
 
-  '@types/react-dom@19.1.6':
-    resolution: {integrity: sha512-4hOiT/dwO8Ko0gV1m/TJZYk3y0KBnY9vzDh7W+DH17b2HFSOGgdj33dhihPeuy3l0q23+4e+hoXHV6hCC4dCXw==, tarball: https://registry.npmjs.org/@types/react-dom/-/react-dom-19.1.6.tgz}
+  '@types/react-dom@19.1.7':
+    resolution: {integrity: sha512-i5ZzwYpqjmrKenzkoLM2Ibzt6mAsM7pxB6BCIouEVVmgiqaMj1TjaK7hnA36hbW5aZv20kx7Lw6hWzPWg0Rurw==, tarball: https://registry.npmjs.org/@types/react-dom/-/react-dom-19.1.7.tgz}
     peerDependencies:
       '@types/react': ^19.0.0
 
-  '@types/react@19.1.8':
-    resolution: {integrity: sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g==, tarball: https://registry.npmjs.org/@types/react/-/react-19.1.8.tgz}
+  '@types/react@19.1.9':
+    resolution: {integrity: sha512-WmdoynAX8Stew/36uTSVMcLJJ1KRh6L3IZRx1PZ7qJtBqT3dYTgyDTx8H1qoRghErydW7xw9mSJ3wS//tCRpFA==, tarball: https://registry.npmjs.org/@types/react/-/react-19.1.9.tgz}
 
   '@types/unist@2.0.11':
     resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==, tarball: https://registry.npmjs.org/@types/unist/-/unist-2.0.11.tgz}
@@ -724,8 +726,8 @@ packages:
     peerDependencies:
       react: link:/Users/deepinto/Repos/phobia/node_modules/next/dist/compiled/react-experimental
 
-  '@vkontakte/icons@3.13.0':
-    resolution: {integrity: sha512-+C76A0QduX33NOocitXSyJwMaRwKKX32mvKqn8nqsPH6YkvReFqjGrtLC5FfRQRBQL0X70zt5DZBWA/Ar1jwQA==, tarball: https://registry.npmjs.org/@vkontakte/icons/-/icons-3.13.0.tgz}
+  '@vkontakte/icons@3.14.0':
+    resolution: {integrity: sha512-kq+B/sk9rUTc5QVoVY8k5sjpb3yIBF4rLMzPlwC052daqL8hLZJ0itWFuIUwXyy/HkT16KzzqSBFZXvL6KHWKQ==, tarball: https://registry.npmjs.org/@vkontakte/icons/-/icons-3.14.0.tgz}
     peerDependencies:
       react: link:/Users/deepinto/Repos/phobia/node_modules/next/dist/compiled/react-experimental
 
@@ -741,12 +743,12 @@ packages:
       react: link:/Users/deepinto/Repos/phobia/node_modules/next/dist/compiled/react-experimental
       react-dom: link:/Users/deepinto/Repos/phobia/node_modules/next/dist/compiled/react-dom-experimental
 
-  '@vkontakte/vkui-tokens@4.68.0':
-    resolution: {integrity: sha512-hh1ZmgcbNV5LUn6xIC7LmSAyhWlWm0ptZT0N6XgeIHvNw8b27QZi0RpeAbkWCnYDIa3IXcdDjGFVWcgJgOo55A==, tarball: https://registry.npmjs.org/@vkontakte/vkui-tokens/-/vkui-tokens-4.68.0.tgz}
+  '@vkontakte/vkui-tokens@4.69.0':
+    resolution: {integrity: sha512-nhlqBq5NiO7F92oCJtejTdCwvqoO5gmE22DbHcZOloiYoeyPftqM8Rwsno/RXw9CcQIPsjkHD3y94xGDDRfByA==, tarball: https://registry.npmjs.org/@vkontakte/vkui-tokens/-/vkui-tokens-4.69.0.tgz}
     engines: {npm: '>=9.3.1', yarn: '>=1.21.1 <2'}
 
-  '@vkontakte/vkui@7.5.1':
-    resolution: {integrity: sha512-0GVq8dG+x/5YXPC2qGw/Nh8GaA4BIeXPu730Xh0yLIUx2MgfMgOSUUWMq61RkZrBzImm4JxUsD/vr/wquDCj+A==, tarball: https://registry.npmjs.org/@vkontakte/vkui/-/vkui-7.5.1.tgz}
+  '@vkontakte/vkui@7.5.3':
+    resolution: {integrity: sha512-1L/2xfZU3hHV5DTs1JfKGhFBrcV5YhlhJKOv5YyU5bj6+gZtPNkADh0sKr4D2qpvLbn+H55/o5ZfFYzO79678w==, tarball: https://registry.npmjs.org/@vkontakte/vkui/-/vkui-7.5.3.tgz}
     peerDependencies:
       react: link:/Users/deepinto/Repos/phobia/node_modules/next/dist/compiled/react-experimental
       react-dom: link:/Users/deepinto/Repos/phobia/node_modules/next/dist/compiled/react-dom-experimental
@@ -882,9 +884,6 @@ packages:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==, tarball: https://registry.npmjs.org/braces/-/braces-3.0.3.tgz}
     engines: {node: '>=8'}
 
-  brotli-compress-wasm@0.5.0:
-    resolution: {integrity: sha512-tjilGYm4AofvcdosBX+97EdLUY9y2lMdEeF5142jVDCoVFR6Mqkum1FjwXiVEIN3NVvP3NY6i9YfL6bBvNnhVQ==, tarball: https://registry.npmjs.org/brotli-compress-wasm/-/brotli-compress-wasm-0.5.0.tgz}
-
   browserslist@4.25.1:
     resolution: {integrity: sha512-KGj0KoOMXLpSNkkEI6Z6mShmQy0bc1I+T7K9N81k4WWMrfz+6fQ6es80B/YLAeRoKvjYE1YSHHOW1qe9xIVzHw==, tarball: https://registry.npmjs.org/browserslist/-/browserslist-4.25.1.tgz}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
@@ -971,9 +970,6 @@ packages:
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==, tarball: https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz}
-
-  copy-to-clipboard@3.3.3:
-    resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==, tarball: https://registry.npmjs.org/copy-to-clipboard/-/copy-to-clipboard-3.3.3.tgz}
 
   country-json@2.3.0:
     resolution: {integrity: sha512-T8QN3dVN6oQJRx+GapaQayNzVx4yh46R9Ka0bsOS8JclpdciciOB4MqbrneE6xYGuEz9zFT8csQYTJwohGNeIw==, tarball: https://registry.npmjs.org/country-json/-/country-json-2.3.0.tgz}
@@ -1152,9 +1148,6 @@ packages:
 
   fastq@1.19.1:
     resolution: {integrity: sha512-GwLTyxkCXjXbxqIhTsMI2Nui8huMPtnxg7krajPJAjnEG/iiOS7i+zCtWGZR9G0NBKbXKh6X9m9UIsYX/N6vvQ==, tarball: https://registry.npmjs.org/fastq/-/fastq-1.19.1.tgz}
-
-  fflate@0.8.2:
-    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==, tarball: https://registry.npmjs.org/fflate/-/fflate-0.8.2.tgz}
 
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==, tarball: https://registry.npmjs.org/fill-range/-/fill-range-7.1.1.tgz}
@@ -1649,11 +1642,11 @@ packages:
   next-compose-plugins@2.2.1:
     resolution: {integrity: sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==, tarball: https://registry.npmjs.org/next-compose-plugins/-/next-compose-plugins-2.2.1.tgz}
 
-  next-rspack@15.4.2:
-    resolution: {integrity: sha512-fdIijnSm0nDxAsqQYlO5JVn8h6DKFB9omH00x3xArURxvoBfcF1aO/I9oFiTRq3NRCyE4ZcuNr+nsv8q8OJXcw==, tarball: https://registry.npmjs.org/next-rspack/-/next-rspack-15.4.2.tgz}
+  next-rspack@15.4.2-canary.34:
+    resolution: {integrity: sha512-AOBXBehazNJsp1HMNVF7d0fLoADx6L+57emrGEdQgs8M6FaE9gwWqrL1duQYvXuRm47M68Nc2cfc4HeDnN3AjA==, tarball: https://registry.npmjs.org/next-rspack/-/next-rspack-15.4.2-canary.34.tgz}
 
-  next@15.4.2:
-    resolution: {integrity: sha512-oH1rmFso+84NIkocfuxaGKcXIjMUTmnzV2x0m8qsYtB4gD6iflLMESXt5XJ8cFgWMBei4v88rNr/j+peNg72XA==, tarball: https://registry.npmjs.org/next/-/next-15.4.2.tgz}
+  next@15.4.2-canary.34:
+    resolution: {integrity: sha512-vnKgR7MJFcjrd8Xk5AxyDdk5KM79fpw8TYLBgII9pFTC/CZYYbMPgYwSbubimBdO9idV5ElmdE79zQuupEJ/kg==, tarball: https://registry.npmjs.org/next/-/next-15.4.2-canary.34.tgz}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
     hasBin: true
     peerDependencies:
@@ -2030,8 +2023,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==, tarball: https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz}
     engines: {node: '>= 0.4'}
 
-  swr@2.3.4:
-    resolution: {integrity: sha512-bYd2lrhc+VarcpkgWclcUi92wYCpOgMws9Sd1hG1ntAu0NEy+14CbotuFjshBU2kt9rYj9TSmDcybpxpeTU1fg==, tarball: https://registry.npmjs.org/swr/-/swr-2.3.4.tgz}
+  swr@2.3.5:
+    resolution: {integrity: sha512-4e7pjTVulZTIL+b/S0RYFsgDcTcXPLUOvBPqyh9YdD+PkHeEMoaPwDmF9Kv6I1nnPg1OFKhiiEYpsYaaE2W2jA==, tarball: https://registry.npmjs.org/swr/-/swr-2.3.5.tgz}
     peerDependencies:
       react: link:/Users/deepinto/Repos/phobia/node_modules/next/dist/compiled/react-experimental
 
@@ -2070,9 +2063,6 @@ packages:
   to-vfile@8.0.0:
     resolution: {integrity: sha512-IcmH1xB5576MJc9qcfEC/m/nQCFt3fzMHz45sSlgJyTWjRbKW1HAkJpuf3DgE57YzIlZcwcBZA5ENQbBo4aLkg==, tarball: https://registry.npmjs.org/to-vfile/-/to-vfile-8.0.0.tgz}
 
-  toggle-selection@1.0.6:
-    resolution: {integrity: sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==, tarball: https://registry.npmjs.org/toggle-selection/-/toggle-selection-1.0.6.tgz}
-
   totalist@3.0.1:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==, tarball: https://registry.npmjs.org/totalist/-/totalist-3.0.1.tgz}
     engines: {node: '>=6'}
@@ -2108,8 +2098,8 @@ packages:
     resolution: {integrity: sha512-3KS2b+kL7fsuk/eJZ7EQdnEmQoaho/r6KUef7hxvltNA5DR8NAUM+8wJMbJyZ4G9/7i3v5zPBIMN5aybAh2/Jg==, tarball: https://registry.npmjs.org/typed-array-length/-/typed-array-length-1.0.7.tgz}
     engines: {node: '>= 0.4'}
 
-  typescript@5.8.3:
-    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==, tarball: https://registry.npmjs.org/typescript/-/typescript-5.8.3.tgz}
+  typescript@5.9.2:
+    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==, tarball: https://registry.npmjs.org/typescript/-/typescript-5.9.2.tgz}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -2117,8 +2107,8 @@ packages:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==, tarball: https://registry.npmjs.org/unbox-primitive/-/unbox-primitive-1.1.0.tgz}
     engines: {node: '>= 0.4'}
 
-  undici-types@7.8.0:
-    resolution: {integrity: sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw==, tarball: https://registry.npmjs.org/undici-types/-/undici-types-7.8.0.tgz}
+  undici-types@7.10.0:
+    resolution: {integrity: sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag==, tarball: https://registry.npmjs.org/undici-types/-/undici-types-7.10.0.tgz}
 
   unicode-emoji-modifier-base@1.0.0:
     resolution: {integrity: sha512-yLSH4py7oFH3oG/9K+XWrz1pSi3dfUrWEnInbxMfArOfc1+33BlGPQtLsOYwvdMy11AwUBetYuaRxSPqgkq+8g==, tarball: https://registry.npmjs.org/unicode-emoji-modifier-base/-/unicode-emoji-modifier-base-1.0.0.tgz}
@@ -2308,39 +2298,39 @@ snapshots:
 
   '@babel/runtime@7.27.6': {}
 
-  '@biomejs/biome@2.1.2':
+  '@biomejs/biome@2.1.4':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 2.1.2
-      '@biomejs/cli-darwin-x64': 2.1.2
-      '@biomejs/cli-linux-arm64': 2.1.2
-      '@biomejs/cli-linux-arm64-musl': 2.1.2
-      '@biomejs/cli-linux-x64': 2.1.2
-      '@biomejs/cli-linux-x64-musl': 2.1.2
-      '@biomejs/cli-win32-arm64': 2.1.2
-      '@biomejs/cli-win32-x64': 2.1.2
+      '@biomejs/cli-darwin-arm64': 2.1.4
+      '@biomejs/cli-darwin-x64': 2.1.4
+      '@biomejs/cli-linux-arm64': 2.1.4
+      '@biomejs/cli-linux-arm64-musl': 2.1.4
+      '@biomejs/cli-linux-x64': 2.1.4
+      '@biomejs/cli-linux-x64-musl': 2.1.4
+      '@biomejs/cli-win32-arm64': 2.1.4
+      '@biomejs/cli-win32-x64': 2.1.4
 
-  '@biomejs/cli-darwin-arm64@2.1.2':
+  '@biomejs/cli-darwin-arm64@2.1.4':
     optional: true
 
-  '@biomejs/cli-darwin-x64@2.1.2':
+  '@biomejs/cli-darwin-x64@2.1.4':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@2.1.2':
+  '@biomejs/cli-linux-arm64-musl@2.1.4':
     optional: true
 
-  '@biomejs/cli-linux-arm64@2.1.2':
+  '@biomejs/cli-linux-arm64@2.1.4':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@2.1.2':
+  '@biomejs/cli-linux-x64-musl@2.1.4':
     optional: true
 
-  '@biomejs/cli-linux-x64@2.1.2':
+  '@biomejs/cli-linux-x64@2.1.4':
     optional: true
 
-  '@biomejs/cli-win32-arm64@2.1.2':
+  '@biomejs/cli-win32-arm64@2.1.4':
     optional: true
 
-  '@biomejs/cli-win32-x64@2.1.2':
+  '@biomejs/cli-win32-x64@2.1.4':
     optional: true
 
   '@discoveryjs/json-ext@0.5.7': {}
@@ -2351,7 +2341,7 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@emnapi/runtime@1.4.4':
+  '@emnapi/runtime@1.4.5':
     dependencies:
       tslib: 2.8.1
     optional: true
@@ -2461,7 +2451,7 @@ snapshots:
 
   '@img/sharp-wasm32@0.34.3':
     dependencies:
-      '@emnapi/runtime': 1.4.4
+      '@emnapi/runtime': 1.4.5
     optional: true
 
   '@img/sharp-win32-arm64@0.34.3':
@@ -2498,27 +2488,27 @@ snapshots:
 
   '@module-federation/error-codes@0.15.0': {}
 
-  '@module-federation/error-codes@0.16.0': {}
+  '@module-federation/error-codes@0.17.1': {}
 
   '@module-federation/runtime-core@0.15.0':
     dependencies:
       '@module-federation/error-codes': 0.15.0
       '@module-federation/sdk': 0.15.0
 
-  '@module-federation/runtime-core@0.16.0':
+  '@module-federation/runtime-core@0.17.1':
     dependencies:
-      '@module-federation/error-codes': 0.16.0
-      '@module-federation/sdk': 0.16.0
+      '@module-federation/error-codes': 0.17.1
+      '@module-federation/sdk': 0.17.1
 
   '@module-federation/runtime-tools@0.15.0':
     dependencies:
       '@module-federation/runtime': 0.15.0
       '@module-federation/webpack-bundler-runtime': 0.15.0
 
-  '@module-federation/runtime-tools@0.16.0':
+  '@module-federation/runtime-tools@0.17.1':
     dependencies:
-      '@module-federation/runtime': 0.16.0
-      '@module-federation/webpack-bundler-runtime': 0.16.0
+      '@module-federation/runtime': 0.17.1
+      '@module-federation/webpack-bundler-runtime': 0.17.1
 
   '@module-federation/runtime@0.15.0':
     dependencies:
@@ -2526,64 +2516,71 @@ snapshots:
       '@module-federation/runtime-core': 0.15.0
       '@module-federation/sdk': 0.15.0
 
-  '@module-federation/runtime@0.16.0':
+  '@module-federation/runtime@0.17.1':
     dependencies:
-      '@module-federation/error-codes': 0.16.0
-      '@module-federation/runtime-core': 0.16.0
-      '@module-federation/sdk': 0.16.0
+      '@module-federation/error-codes': 0.17.1
+      '@module-federation/runtime-core': 0.17.1
+      '@module-federation/sdk': 0.17.1
 
   '@module-federation/sdk@0.15.0': {}
 
-  '@module-federation/sdk@0.16.0': {}
+  '@module-federation/sdk@0.17.1': {}
 
   '@module-federation/webpack-bundler-runtime@0.15.0':
     dependencies:
       '@module-federation/runtime': 0.15.0
       '@module-federation/sdk': 0.15.0
 
-  '@module-federation/webpack-bundler-runtime@0.16.0':
+  '@module-federation/webpack-bundler-runtime@0.17.1':
     dependencies:
-      '@module-federation/runtime': 0.16.0
-      '@module-federation/sdk': 0.16.0
+      '@module-federation/runtime': 0.17.1
+      '@module-federation/sdk': 0.17.1
 
   '@napi-rs/wasm-runtime@0.2.12':
     dependencies:
       '@emnapi/core': 1.4.5
-      '@emnapi/runtime': 1.4.4
+      '@emnapi/runtime': 1.4.5
       '@tybys/wasm-util': 0.10.0
     optional: true
 
-  '@next/bundle-analyzer@15.4.2':
+  '@napi-rs/wasm-runtime@1.0.3':
+    dependencies:
+      '@emnapi/core': 1.4.5
+      '@emnapi/runtime': 1.4.5
+      '@tybys/wasm-util': 0.10.0
+    optional: true
+
+  '@next/bundle-analyzer@15.4.2-canary.34':
     dependencies:
       webpack-bundle-analyzer: 4.10.1
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@next/env@15.4.2': {}
+  '@next/env@15.4.2-canary.34': {}
 
-  '@next/swc-darwin-arm64@15.4.2':
+  '@next/swc-darwin-arm64@15.4.2-canary.34':
     optional: true
 
-  '@next/swc-darwin-x64@15.4.2':
+  '@next/swc-darwin-x64@15.4.2-canary.34':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@15.4.2':
+  '@next/swc-linux-arm64-gnu@15.4.2-canary.34':
     optional: true
 
-  '@next/swc-linux-arm64-musl@15.4.2':
+  '@next/swc-linux-arm64-musl@15.4.2-canary.34':
     optional: true
 
-  '@next/swc-linux-x64-gnu@15.4.2':
+  '@next/swc-linux-x64-gnu@15.4.2-canary.34':
     optional: true
 
-  '@next/swc-linux-x64-musl@15.4.2':
+  '@next/swc-linux-x64-musl@15.4.2-canary.34':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@15.4.2':
+  '@next/swc-win32-arm64-msvc@15.4.2-canary.34':
     optional: true
 
-  '@next/swc-win32-x64-msvc@15.4.2':
+  '@next/swc-win32-x64-msvc@15.4.2-canary.34':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -2600,40 +2597,45 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
+  '@rspack/binding-darwin-arm64@1.4.11':
+    optional: true
+
   '@rspack/binding-darwin-arm64@1.4.5':
     optional: true
 
-  '@rspack/binding-darwin-arm64@1.4.8':
+  '@rspack/binding-darwin-x64@1.4.11':
     optional: true
 
   '@rspack/binding-darwin-x64@1.4.5':
     optional: true
 
-  '@rspack/binding-darwin-x64@1.4.8':
+  '@rspack/binding-linux-arm64-gnu@1.4.11':
     optional: true
 
   '@rspack/binding-linux-arm64-gnu@1.4.5':
     optional: true
 
-  '@rspack/binding-linux-arm64-gnu@1.4.8':
+  '@rspack/binding-linux-arm64-musl@1.4.11':
     optional: true
 
   '@rspack/binding-linux-arm64-musl@1.4.5':
     optional: true
 
-  '@rspack/binding-linux-arm64-musl@1.4.8':
+  '@rspack/binding-linux-x64-gnu@1.4.11':
     optional: true
 
   '@rspack/binding-linux-x64-gnu@1.4.5':
     optional: true
 
-  '@rspack/binding-linux-x64-gnu@1.4.8':
+  '@rspack/binding-linux-x64-musl@1.4.11':
     optional: true
 
   '@rspack/binding-linux-x64-musl@1.4.5':
     optional: true
 
-  '@rspack/binding-linux-x64-musl@1.4.8':
+  '@rspack/binding-wasm32-wasi@1.4.11':
+    dependencies:
+      '@napi-rs/wasm-runtime': 1.0.3
     optional: true
 
   '@rspack/binding-wasm32-wasi@1.4.5':
@@ -2641,28 +2643,36 @@ snapshots:
       '@napi-rs/wasm-runtime': 0.2.12
     optional: true
 
-  '@rspack/binding-wasm32-wasi@1.4.8':
-    dependencies:
-      '@napi-rs/wasm-runtime': 0.2.12
+  '@rspack/binding-win32-arm64-msvc@1.4.11':
     optional: true
 
   '@rspack/binding-win32-arm64-msvc@1.4.5':
     optional: true
 
-  '@rspack/binding-win32-arm64-msvc@1.4.8':
+  '@rspack/binding-win32-ia32-msvc@1.4.11':
     optional: true
 
   '@rspack/binding-win32-ia32-msvc@1.4.5':
     optional: true
 
-  '@rspack/binding-win32-ia32-msvc@1.4.8':
+  '@rspack/binding-win32-x64-msvc@1.4.11':
     optional: true
 
   '@rspack/binding-win32-x64-msvc@1.4.5':
     optional: true
 
-  '@rspack/binding-win32-x64-msvc@1.4.8':
-    optional: true
+  '@rspack/binding@1.4.11':
+    optionalDependencies:
+      '@rspack/binding-darwin-arm64': 1.4.11
+      '@rspack/binding-darwin-x64': 1.4.11
+      '@rspack/binding-linux-arm64-gnu': 1.4.11
+      '@rspack/binding-linux-arm64-musl': 1.4.11
+      '@rspack/binding-linux-x64-gnu': 1.4.11
+      '@rspack/binding-linux-x64-musl': 1.4.11
+      '@rspack/binding-wasm32-wasi': 1.4.11
+      '@rspack/binding-win32-arm64-msvc': 1.4.11
+      '@rspack/binding-win32-ia32-msvc': 1.4.11
+      '@rspack/binding-win32-x64-msvc': 1.4.11
 
   '@rspack/binding@1.4.5':
     optionalDependencies:
@@ -2677,31 +2687,18 @@ snapshots:
       '@rspack/binding-win32-ia32-msvc': 1.4.5
       '@rspack/binding-win32-x64-msvc': 1.4.5
 
-  '@rspack/binding@1.4.8':
+  '@rspack/core@1.4.11(@swc/helpers@0.5.17)':
+    dependencies:
+      '@module-federation/runtime-tools': 0.17.1
+      '@rspack/binding': 1.4.11
+      '@rspack/lite-tapable': 1.0.1
     optionalDependencies:
-      '@rspack/binding-darwin-arm64': 1.4.8
-      '@rspack/binding-darwin-x64': 1.4.8
-      '@rspack/binding-linux-arm64-gnu': 1.4.8
-      '@rspack/binding-linux-arm64-musl': 1.4.8
-      '@rspack/binding-linux-x64-gnu': 1.4.8
-      '@rspack/binding-linux-x64-musl': 1.4.8
-      '@rspack/binding-wasm32-wasi': 1.4.8
-      '@rspack/binding-win32-arm64-msvc': 1.4.8
-      '@rspack/binding-win32-ia32-msvc': 1.4.8
-      '@rspack/binding-win32-x64-msvc': 1.4.8
+      '@swc/helpers': 0.5.17
 
   '@rspack/core@1.4.5(@swc/helpers@0.5.17)':
     dependencies:
       '@module-federation/runtime-tools': 0.15.0
       '@rspack/binding': 1.4.5
-      '@rspack/lite-tapable': 1.0.1
-    optionalDependencies:
-      '@swc/helpers': 0.5.17
-
-  '@rspack/core@1.4.8(@swc/helpers@0.5.17)':
-    dependencies:
-      '@module-federation/runtime-tools': 0.16.0
-      '@rspack/binding': 1.4.8
       '@rspack/lite-tapable': 1.0.1
     optionalDependencies:
       '@swc/helpers': 0.5.17
@@ -2757,15 +2754,15 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@24.0.14':
+  '@types/node@24.2.1':
     dependencies:
-      undici-types: 7.8.0
+      undici-types: 7.10.0
 
-  '@types/react-dom@19.1.6(@types/react@19.1.8)':
+  '@types/react-dom@19.1.7(@types/react@19.1.9)':
     dependencies:
-      '@types/react': 19.1.8
+      '@types/react': 19.1.9
 
-  '@types/react@19.1.8':
+  '@types/react@19.1.9':
     dependencies:
       csstype: 3.1.3
 
@@ -2775,7 +2772,7 @@ snapshots:
 
   '@types/webpack@5.28.5':
     dependencies:
-      '@types/node': 24.0.14
+      '@types/node': 24.2.1
       tapable: 2.2.2
       webpack: 5.100.2
     transitivePeerDependencies:
@@ -2791,7 +2788,7 @@ snapshots:
       '@swc/helpers': 0.5.17
       react: link:node_modules/next/dist/compiled/react-experimental
 
-  '@vkontakte/icons@3.13.0(react@node_modules+next+dist+compiled+react-experimental)':
+  '@vkontakte/icons@3.14.0(react@node_modules+next+dist+compiled+react-experimental)':
     dependencies:
       '@swc/helpers': 0.5.17
       '@vkontakte/icons-sprite': 3.1.0(react@node_modules+next+dist+compiled+react-experimental)
@@ -2811,14 +2808,14 @@ snapshots:
       react: link:node_modules/next/dist/compiled/react-experimental
       react-dom: link:node_modules/next/dist/compiled/react-dom-experimental
 
-  '@vkontakte/vkui-tokens@4.68.0':
+  '@vkontakte/vkui-tokens@4.69.0':
     dependencies:
       csstype: 3.1.3
 
-  '@vkontakte/vkui@7.5.1(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental)':
+  '@vkontakte/vkui@7.5.3(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental)':
     dependencies:
       '@swc/helpers': 0.5.17
-      '@vkontakte/icons': 3.13.0(react@node_modules+next+dist+compiled+react-experimental)
+      '@vkontakte/icons': 3.14.0(react@node_modules+next+dist+compiled+react-experimental)
       '@vkontakte/vkjs': 2.0.1
       '@vkontakte/vkui-date-fns-tz': 0.0.4
       '@vkontakte/vkui-floating-ui': 0.2.5(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental)
@@ -2916,16 +2913,16 @@ snapshots:
 
   acorn@8.15.0: {}
 
-  ahks@0.4.1(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental):
+  ahks@0.4.1(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental):
     dependencies:
       react: link:node_modules/next/dist/compiled/react-experimental
-      use-callback-ref: 1.3.3(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental)
-      use-composed-ref: 1.4.0(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental)
+      use-callback-ref: 1.3.3(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental)
+      use-composed-ref: 1.4.0(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental)
       use-debounce: 8.0.4(react@node_modules+next+dist+compiled+react-experimental)
       use-deep-compare-effect: 1.8.1(react@node_modules+next+dist+compiled+react-experimental)
       use-is-mounted-ref: 1.5.0(react@node_modules+next+dist+compiled+react-experimental)
-      use-isomorphic-layout-effect: 1.2.1(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental)
-      use-latest: 1.3.0(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental)
+      use-isomorphic-layout-effect: 1.2.1(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental)
+      use-latest: 1.3.0(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental)
       use-memo-one: 1.1.3(react@node_modules+next+dist+compiled+react-experimental)
       use-sync-external-store: 1.5.0(react@node_modules+next+dist+compiled+react-experimental)
     transitivePeerDependencies:
@@ -2997,8 +2994,6 @@ snapshots:
   braces@3.0.3:
     dependencies:
       fill-range: 7.1.1
-
-  brotli-compress-wasm@0.5.0: {}
 
   browserslist@4.25.1:
     dependencies:
@@ -3083,10 +3078,6 @@ snapshots:
   commander@7.2.0: {}
 
   concat-map@0.0.1: {}
-
-  copy-to-clipboard@3.3.3:
-    dependencies:
-      toggle-selection: 1.0.6
 
   country-json@2.3.0: {}
 
@@ -3306,8 +3297,6 @@ snapshots:
   fastq@1.19.1:
     dependencies:
       reusify: 1.1.0
-
-  fflate@0.8.2: {}
 
   fill-range@7.1.1:
     dependencies:
@@ -3631,7 +3620,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.0.14
+      '@types/node': 24.2.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -4028,7 +4017,7 @@ snapshots:
 
   next-compose-plugins@2.2.1: {}
 
-  next-rspack@15.4.2(@swc/helpers@0.5.17):
+  next-rspack@15.4.2-canary.34(@swc/helpers@0.5.17):
     dependencies:
       '@rspack/core': 1.4.5(@swc/helpers@0.5.17)
       '@rspack/plugin-react-refresh': 1.2.0(react-refresh@0.12.0)
@@ -4037,9 +4026,9 @@ snapshots:
       - '@swc/helpers'
       - webpack-hot-middleware
 
-  next@15.4.2(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental):
+  next@15.4.2-canary.34(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental):
     dependencies:
-      '@next/env': 15.4.2
+      '@next/env': 15.4.2-canary.34
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001727
       postcss: 8.4.31
@@ -4047,14 +4036,14 @@ snapshots:
       react-dom: link:node_modules/next/dist/compiled/react-dom-experimental
       styled-jsx: 5.1.6(react@node_modules+next+dist+compiled+react-experimental)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 15.4.2
-      '@next/swc-darwin-x64': 15.4.2
-      '@next/swc-linux-arm64-gnu': 15.4.2
-      '@next/swc-linux-arm64-musl': 15.4.2
-      '@next/swc-linux-x64-gnu': 15.4.2
-      '@next/swc-linux-x64-musl': 15.4.2
-      '@next/swc-win32-arm64-msvc': 15.4.2
-      '@next/swc-win32-x64-msvc': 15.4.2
+      '@next/swc-darwin-arm64': 15.4.2-canary.34
+      '@next/swc-darwin-x64': 15.4.2-canary.34
+      '@next/swc-linux-arm64-gnu': 15.4.2-canary.34
+      '@next/swc-linux-arm64-musl': 15.4.2-canary.34
+      '@next/swc-linux-x64-gnu': 15.4.2-canary.34
+      '@next/swc-linux-x64-musl': 15.4.2-canary.34
+      '@next/swc-win32-arm64-msvc': 15.4.2-canary.34
+      '@next/swc-win32-x64-msvc': 15.4.2-canary.34
       sharp: 0.34.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -4532,7 +4521,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swr@2.3.4(react@node_modules+next+dist+compiled+react-experimental):
+  swr@2.3.5(react@node_modules+next+dist+compiled+react-experimental):
     dependencies:
       dequal: 2.0.3
       react: link:node_modules/next/dist/compiled/react-experimental
@@ -4565,8 +4554,6 @@ snapshots:
   to-vfile@8.0.0:
     dependencies:
       vfile: 6.0.3
-
-  toggle-selection@1.0.6: {}
 
   totalist@3.0.1: {}
 
@@ -4618,7 +4605,7 @@ snapshots:
       possible-typed-array-names: 1.1.0
       reflect.getprototypeof: 1.0.10
 
-  typescript@5.8.3: {}
+  typescript@5.9.2: {}
 
   unbox-primitive@1.1.0:
     dependencies:
@@ -4627,7 +4614,7 @@ snapshots:
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
 
-  undici-types@7.8.0: {}
+  undici-types@7.10.0: {}
 
   unicode-emoji-modifier-base@1.0.0: {}
 
@@ -4694,18 +4681,18 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  use-callback-ref@1.3.3(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental):
+  use-callback-ref@1.3.3(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental):
     dependencies:
       react: link:node_modules/next/dist/compiled/react-experimental
       tslib: 2.8.1
     optionalDependencies:
-      '@types/react': 19.1.8
+      '@types/react': 19.1.9
 
-  use-composed-ref@1.4.0(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental):
+  use-composed-ref@1.4.0(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental):
     dependencies:
       react: link:node_modules/next/dist/compiled/react-experimental
     optionalDependencies:
-      '@types/react': 19.1.8
+      '@types/react': 19.1.9
 
   use-debounce@8.0.4(react@node_modules+next+dist+compiled+react-experimental):
     dependencies:
@@ -4721,18 +4708,18 @@ snapshots:
     dependencies:
       react: link:node_modules/next/dist/compiled/react-experimental
 
-  use-isomorphic-layout-effect@1.2.1(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental):
+  use-isomorphic-layout-effect@1.2.1(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental):
     dependencies:
       react: link:node_modules/next/dist/compiled/react-experimental
     optionalDependencies:
-      '@types/react': 19.1.8
+      '@types/react': 19.1.9
 
-  use-latest@1.3.0(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental):
+  use-latest@1.3.0(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental):
     dependencies:
       react: link:node_modules/next/dist/compiled/react-experimental
-      use-isomorphic-layout-effect: 1.2.1(@types/react@19.1.8)(react@node_modules+next+dist+compiled+react-experimental)
+      use-isomorphic-layout-effect: 1.2.1(@types/react@19.1.9)(react@node_modules+next+dist+compiled+react-experimental)
     optionalDependencies:
-      '@types/react': 19.1.8
+      '@types/react': 19.1.9
 
   use-memo-one@1.1.3(react@node_modules+next+dist+compiled+react-experimental):
     dependencies:

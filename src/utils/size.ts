@@ -24,7 +24,9 @@ export const validSize = (size: string | number) => {
 		typeof size === "string" &&
 		size.length > 0 &&
 		size !== "0" &&
-		size !== "NaN"
+		size !== "NaN" &&
+		size !== "null" &&
+		size !== "undefined"
 	) {
 		return true;
 	}

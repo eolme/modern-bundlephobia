@@ -25,6 +25,9 @@ const middleware = async (req: NextRequest): Promise<NextResponse> => {
 
 export { middleware, middleware as default };
 
+export const runtime = "nodejs";
+
 export const config = {
 	matcher: "/api/:path*",
+	runtime: "nodejs",
 };

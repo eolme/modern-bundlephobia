@@ -6,8 +6,6 @@ import { InternalHeader } from "#/utils/headers";
 import { fetchInternalSize } from "#/utils/internal";
 import { SizeName, SizeType, validSize } from "#/utils/size";
 
-export const runtime = "edge";
-
 type NextRouteParams = {
 	params: Promise<{
 		type: string;

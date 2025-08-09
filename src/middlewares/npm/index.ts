@@ -37,7 +37,7 @@ export const middlewareNPM = async (
 				[InternalHeader.NAME]: pkg.name,
 				[InternalHeader.VERSION]: record.version,
 				[InternalHeader.QUERY]: merge(pkg.name, record.version),
-				[InternalHeader.SIZE]: String(version.dist.unpackedSize),
+				[InternalHeader.SIZE]: String(version.dist.unpackedSize || 0),
 			});
 
 			return NextResponse.next({

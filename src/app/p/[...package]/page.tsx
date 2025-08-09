@@ -5,7 +5,7 @@ import { merge } from "#/utils/path";
 
 import { PackageView } from "#/views";
 
-export const runtime = "edge";
+export const experimental_ppr = true;
 
 export default async function PackagePage({
 	params: _params,

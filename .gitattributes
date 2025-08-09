@@ -1,5 +1,4 @@
 *                                  text=auto eol=lf
-/.yarn/**                          binary linguist-vendored
 /public/licenses.html              binary linguist-vendored
 /src/assets/fonts/**               binary linguist-vendored
 /src/assets/template/verdana.json  binary linguist-vendored

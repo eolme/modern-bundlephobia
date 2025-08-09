@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { metaTitle } from "#/utils/meta";
 
-export const runtime = "edge";
+export const experimental_ppr = true;
 
 // eslint-disable-next-line func-style
 export default function RootPage() {

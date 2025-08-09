@@ -1,6 +1,10 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
-import { useId } from "react";
+import {
+	Suspense,
+	useId,
+	unstable_ViewTransition as ViewTransition,
+} from "react";
 import {
 	ClientAnalytics,
 	ClientConfig,
@@ -9,6 +13,8 @@ import {
 import { Header } from "#/components/shared";
 import { theme } from "#/edge/theme";
 import "./styles";
+
+export const experimental_ppr = true;
 
 type RootLayoutProps = {
 	children: ReactNode;
@@ -80,7 +86,11 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 						<main id={rootId} className="vkui__root">
 							<Header />
 							<ClientSearch />
-							{children}
+							<ViewTransition>
+								<Suspense fallback={<div className="vkui__loader" />}>
+									{children}
+								</Suspense>
+							</ViewTransition>
 						</main>
 						<span id={portalId} className="vkui__portal-root" />
 					</ClientAnalytics>
