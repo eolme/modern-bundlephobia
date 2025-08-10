@@ -1,5 +1,3 @@
-import { default as github } from "remark-github";
-import type { Root, VFile } from "remark-github/lib";
 import type { Node } from "unist";
 import { visit } from "unist-util-visit";
 
@@ -11,57 +9,82 @@ type Options = {
 };
 
 type LinkNode = Node & {
-	url?: string;
+	type: "link";
+	url: string;
 };
 
-const resolve = (url: string, base: string) => {
-	const length = url.length;
-
-	if (length === 0 || url[0] === "#") {
-		return url;
-	}
-
-	if (url[0] === ".") {
-		if (length < 3) {
-			return base;
-		}
-
-		if (url[2] === "#") {
-			return url.slice(2);
-		}
-
-		const blob = `${base}${base[base.length - 1] === "/" ? "./" : "/"}blob/HEAD/`;
-
-		return new URL(url, blob).href;
-	}
-
-	return new URL(url, base).href;
+type ImageNode = Node & {
+	type: "image";
+	url: string;
 };
 
-export const links = (options: Options) => (tree: Node, file: VFile) => {
-	if (options.pure.length === 0) {
+const normalizeLink = (
+	type: Repository,
+	pure: string,
+	node: LinkNode | ImageNode,
+) => {
+	if (node.url.length > 0 && node.url[0] === "#") {
+		return node.url;
+	}
+
+	if (node.url.length > 1 && node.url[0] === "/" && node.url[1] === "#") {
+		return node.url.slice(1);
+	}
+
+	if (
+		node.url.length > 2 &&
+		node.url[0] === "." &&
+		node.url[1] === "/" &&
+		node.url[2] === "#"
+	) {
+		return node.url.slice(2);
+	}
+
+	const pureURL = new URL(pure);
+	const ownerRepo = pureURL.pathname.split("/").slice(1, 3).join("/");
+	const cleanURL = node.url[0] === "/" ? node.url.slice(1) : node.url;
+
+	if (type === Repository.GITHUB) {
+		const base =
+			node.type === "link"
+				? `${pureURL.origin}/${ownerRepo}/blob/HEAD/`
+				: `https://cdn.jsdelivr.net/gh/${ownerRepo}@HEAD/`;
+		return new URL(cleanURL, base).href;
+	}
+
+	if (type === Repository.GITLAB) {
+		const base = `${pureURL.origin}/${ownerRepo}/-/${node.type === "link" ? "blob" : "raw"}/HEAD/`;
+		return new URL(cleanURL, base).href;
+	}
+
+	if (type === Repository.BITBUCKET) {
+		const base = `${pureURL.origin}/${ownerRepo}/${node.type === "link" ? "src" : "raw"}/HEAD/`;
+		return new URL(cleanURL, base).href;
+	}
+
+	return node.url;
+};
+
+export const links = (options: Options) => (tree: Node) => {
+	if (options.type === Repository.UNKNOWN || options.pure.length === 0) {
 		return;
 	}
 
-	if (options.type === Repository.GITHUB) {
-		const plugin = github({
-			repository: options.pure,
-		});
-
-		plugin(tree as Root, file);
-	}
-
-	visit(tree, { type: "link" }, (node) => {
-		const linkNode = node as LinkNode;
-
-		if (typeof linkNode.url === "string") {
+	visit(tree, (node) => {
+		if (
+			(node.type === "image" || node.type === "link") &&
+			"url" in node &&
+			typeof node.url === "string"
+		) {
 			try {
-				linkNode.url = resolve(linkNode.url, options.pure);
+				node.url = normalizeLink(
+					options.type,
+					options.pure,
+					node as LinkNode | ImageNode,
+				);
 			} catch {
 				// Ignore
 			}
-		} else {
-			linkNode.url = "#";
 		}
 	});
 };

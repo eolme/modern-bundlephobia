@@ -5,12 +5,14 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@rspack/binding': ^1.4.11
+  '@rspack/core': ^1.4.11
+  '@vkontakte/vk-bridge': link:./packages/bridge
+  mitt: link:./packages/mitt
   react: link:./node_modules/next/dist/compiled/react-experimental
   react-dom: link:./node_modules/next/dist/compiled/react-dom-experimental
   react-server-dom-webpack: link:./node_modules/next/dist/compiled/react-server-dom-webpack-experimental
   scheduler: link:./node_modules/next/dist/compiled/scheduler-experimental
-  '@vkontakte/vk-bridge': link:./packages/bridge
-  mitt: link:./packages/mitt
 
 importers:
 
@@ -66,7 +68,7 @@ importers:
         version: 5.1.5
       next:
         specifier: canary
-        version: 15.4.2-canary.34(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental)
+        version: 15.4.2-canary.35(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental)
       pretty-bytes:
         specifier: ^7.0.0
         version: 7.0.0
@@ -103,9 +105,6 @@ importers:
       remark-gfm:
         specifier: ^4.0.1
         version: 4.0.1
-      remark-github:
-        specifier: ^12.0.0
-        version: 12.0.0
       remark-parse:
         specifier: ^11.0.0
         version: 11.0.0
@@ -139,7 +138,10 @@ importers:
         version: 2.1.4
       '@next/bundle-analyzer':
         specifier: canary
-        version: 15.4.2-canary.34
+        version: 15.4.2-canary.35
+      '@rspack/binding':
+        specifier: ^1.4.11
+        version: 1.4.11
       '@rspack/core':
         specifier: ^1.4.11
         version: 1.4.11(@swc/helpers@0.5.17)
@@ -169,7 +171,7 @@ importers:
         version: 2.2.1
       next-rspack:
         specifier: canary
-        version: 15.4.2-canary.34(@swc/helpers@0.5.17)
+        version: 15.4.2-canary.35(@swc/helpers@0.5.17)
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -415,98 +417,77 @@ packages:
   '@mntm/stats@1.0.1':
     resolution: {integrity: sha512-QS8RorDlY7glonSABvBp8nMvPu+f6lZuSjO9gw764UHdpray4CvQvVL5u+2eMxJr7Zdggw5vSMNRm/WBeOQ9Rg==, tarball: https://registry.npmjs.org/@mntm/stats/-/stats-1.0.1.tgz}
 
-  '@module-federation/error-codes@0.15.0':
-    resolution: {integrity: sha512-CFJSF+XKwTcy0PFZ2l/fSUpR4z247+Uwzp1sXVkdIfJ/ATsnqf0Q01f51qqSEA6MYdQi6FKos9FIcu3dCpQNdg==, tarball: https://registry.npmjs.org/@module-federation/error-codes/-/error-codes-0.15.0.tgz}
-
   '@module-federation/error-codes@0.17.1':
     resolution: {integrity: sha512-n6Elm4qKSjwAPxLUGtwnl7qt4y1dxB8OpSgVvXBIzqI9p27a3ZXshLPLnumlpPg1Qudaj8sLnSnFtt9yGpt5yQ==, tarball: https://registry.npmjs.org/@module-federation/error-codes/-/error-codes-0.17.1.tgz}
-
-  '@module-federation/runtime-core@0.15.0':
-    resolution: {integrity: sha512-RYzI61fRDrhyhaEOXH3AgIGlHiot0wPFXu7F43cr+ZnTi+VlSYWLdlZ4NBuT9uV6JSmH54/c+tEZm5SXgKR2sQ==, tarball: https://registry.npmjs.org/@module-federation/runtime-core/-/runtime-core-0.15.0.tgz}
 
   '@module-federation/runtime-core@0.17.1':
     resolution: {integrity: sha512-LCtIFuKgWPQ3E+13OyrVpuTPOWBMI/Ggwsq1Q874YeT8Px28b8tJRCj09DjyRFyhpSPyV/uG80T6iXPAUoLIfQ==, tarball: https://registry.npmjs.org/@module-federation/runtime-core/-/runtime-core-0.17.1.tgz}
 
-  '@module-federation/runtime-tools@0.15.0':
-    resolution: {integrity: sha512-kzFn3ObUeBp5vaEtN1WMxhTYBuYEErxugu1RzFUERD21X3BZ+b4cWwdFJuBDlsmVjctIg/QSOoZoPXRKAO0foA==, tarball: https://registry.npmjs.org/@module-federation/runtime-tools/-/runtime-tools-0.15.0.tgz}
-
   '@module-federation/runtime-tools@0.17.1':
     resolution: {integrity: sha512-4kr6zTFFwGywJx6whBtxsc84V+COAuuBpEdEbPZN//YLXhNB0iz2IGsy9r9wDl+06h84bD+3dQ05l9euRLgXzQ==, tarball: https://registry.npmjs.org/@module-federation/runtime-tools/-/runtime-tools-0.17.1.tgz}
-
-  '@module-federation/runtime@0.15.0':
-    resolution: {integrity: sha512-dTPsCNum9Bhu3yPOcrPYq0YnM9eCMMMNB1wuiqf1+sFbQlNApF0vfZxooqz3ln0/MpgE0jerVvFsLVGfqvC9Ug==, tarball: https://registry.npmjs.org/@module-federation/runtime/-/runtime-0.15.0.tgz}
 
   '@module-federation/runtime@0.17.1':
     resolution: {integrity: sha512-vKEN32MvUbpeuB/s6UXfkHDZ9N5jFyDDJnj83UTJ8n4N1jHIJu9VZ6Yi4/Ac8cfdvU8UIK9bIbfVXWbUYZUDsw==, tarball: https://registry.npmjs.org/@module-federation/runtime/-/runtime-0.17.1.tgz}
 
-  '@module-federation/sdk@0.15.0':
-    resolution: {integrity: sha512-PWiYbGcJrKUD6JZiEPihrXhV3bgXdll4bV7rU+opV7tHaun+Z0CdcawjZ82Xnpb8MCPGmqHwa1MPFeUs66zksw==, tarball: https://registry.npmjs.org/@module-federation/sdk/-/sdk-0.15.0.tgz}
-
   '@module-federation/sdk@0.17.1':
     resolution: {integrity: sha512-nlUcN6UTEi+3HWF+k8wPy7gH0yUOmCT+xNatihkIVR9REAnr7BUvHFGlPJmx7WEbLPL46+zJUbtQHvLzXwFhng==, tarball: https://registry.npmjs.org/@module-federation/sdk/-/sdk-0.17.1.tgz}
-
-  '@module-federation/webpack-bundler-runtime@0.15.0':
-    resolution: {integrity: sha512-i+3wu2Ljh2TmuUpsnjwZVupOVqV50jP0ndA8PSP4gwMKlgdGeaZ4VH5KkHAXGr2eiYUxYLMrJXz1+eILJqeGDg==, tarball: https://registry.npmjs.org/@module-federation/webpack-bundler-runtime/-/webpack-bundler-runtime-0.15.0.tgz}
 
   '@module-federation/webpack-bundler-runtime@0.17.1':
     resolution: {integrity: sha512-Swspdgf4PzcbvS9SNKFlBzfq8h/Qxwqjq/xRSqw1pqAZWondZQzwTTqPXhgrg0bFlz7qWjBS/6a8KuH/gRvGaQ==, tarball: https://registry.npmjs.org/@module-federation/webpack-bundler-runtime/-/webpack-bundler-runtime-0.17.1.tgz}
 
-  '@napi-rs/wasm-runtime@0.2.12':
-    resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==, tarball: https://registry.npmjs.org/@napi-rs/wasm-runtime/-/wasm-runtime-0.2.12.tgz}
-
   '@napi-rs/wasm-runtime@1.0.3':
     resolution: {integrity: sha512-rZxtMsLwjdXkMUGC3WwsPwLNVqVqnTJT6MNIB6e+5fhMcSCPP0AOsNWuMQ5mdCq6HNjs/ZeWAEchpqeprqBD2Q==, tarball: https://registry.npmjs.org/@napi-rs/wasm-runtime/-/wasm-runtime-1.0.3.tgz}
 
-  '@next/bundle-analyzer@15.4.2-canary.34':
-    resolution: {integrity: sha512-OHkKj6OK1DYUIEXReTs41Wyo3XBJGvREyPEiRk7p+LCXp2rBK0U4KFZS72DRrdem9Et5DrlNtPfPXMkqZU599A==, tarball: https://registry.npmjs.org/@next/bundle-analyzer/-/bundle-analyzer-15.4.2-canary.34.tgz}
+  '@next/bundle-analyzer@15.4.2-canary.35':
+    resolution: {integrity: sha512-sVdkklRnMNuvjnoEttEBuM2IEn+bkSlVTjZsAJIpZUjVfTS7iSLS5eCtvLhY0LWV7Chr/Z+aJdRYdwPvKMFLXA==, tarball: https://registry.npmjs.org/@next/bundle-analyzer/-/bundle-analyzer-15.4.2-canary.35.tgz}
 
-  '@next/env@15.4.2-canary.34':
-    resolution: {integrity: sha512-niZW67lp48YXy2ksyN7YYCRRya6uxdaTtE0tiYzYqCeDTjM5oFEMWhufCya5yf2fPqcT8L+mVe13rgIponEC0w==, tarball: https://registry.npmjs.org/@next/env/-/env-15.4.2-canary.34.tgz}
+  '@next/env@15.4.2-canary.35':
+    resolution: {integrity: sha512-sUXtCTz1gnE/2/VFvHuwKsfOpHsLdUwfMuAySZFSiTIZmyqr7kedSpx7/MoKJNVg4TQY4ACqqxKP8/MSrvjbMQ==, tarball: https://registry.npmjs.org/@next/env/-/env-15.4.2-canary.35.tgz}
 
-  '@next/swc-darwin-arm64@15.4.2-canary.34':
-    resolution: {integrity: sha512-4kva+4Q5jpBApigFk6KgAC7cWA0MI8Nd3a4UoeVbLGfZrct5JGFmCPz9EMPd09a1qU1jRD6LB0T0l90EHoic3A==, tarball: https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-15.4.2-canary.34.tgz}
+  '@next/swc-darwin-arm64@15.4.2-canary.35':
+    resolution: {integrity: sha512-mQCYXTxr1JHJEOmyMdvq5u5DCcWB+BR3JBXYFA69xyM51lcuP6UAR1SW5hHBzHDyhqNVmMif/zBtUZ0E5AMtDg==, tarball: https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-15.4.2-canary.35.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@15.4.2-canary.34':
-    resolution: {integrity: sha512-YxRkJvB28IB12IaHAD/Eq1544gzWfgUmnCP9sHGNGuG0Kjhwh4XkPdsB+cZR1+ZeeCdGnhjVGY/vOCQwaA4BFw==, tarball: https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-15.4.2-canary.34.tgz}
+  '@next/swc-darwin-x64@15.4.2-canary.35':
+    resolution: {integrity: sha512-XkZz0QzCh3kEmvAEMapwBk7m2+IweOaW3uj4+m0EUCHaYTdCjS0zSLvk7q1xi6PVEzRb898YHL1BmwalpSD9JA==, tarball: https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-15.4.2-canary.35.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@15.4.2-canary.34':
-    resolution: {integrity: sha512-yXGr05Iy4YjwCZM0vqxU8+7cC5SZOwnhxJzK2OmhdLoT5uegA6mXg5zwHv906pqvvSSl+29ngbZjpNFbWTnM1g==, tarball: https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-15.4.2-canary.34.tgz}
+  '@next/swc-linux-arm64-gnu@15.4.2-canary.35':
+    resolution: {integrity: sha512-PJsvjIHsxygdTbx9a7SCo9wuKqypcPfAWpIxxe0SZim+VVktPo5a0hR0ILUP+UPuvQIYvSa+g43/WYw56UqaAA==, tarball: https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-15.4.2-canary.35.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@15.4.2-canary.34':
-    resolution: {integrity: sha512-8CPMPZ+ekglYM1d3mHW4ewiVfOwueT2Stg82i4SxCghlPcnh+TjZUaoOzKg9cYCbj2aDjBURhOJYtMcMKu8VsQ==, tarball: https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-15.4.2-canary.34.tgz}
+  '@next/swc-linux-arm64-musl@15.4.2-canary.35':
+    resolution: {integrity: sha512-jEVINadLGdH61wNgY4JePO4dUncBkw9UMWcBCg//Xk1+/ELSX1se8q7tspDAHptLp1RudUGoPzVhu183jgp0ww==, tarball: https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-15.4.2-canary.35.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@15.4.2-canary.34':
-    resolution: {integrity: sha512-0kIuaFTL2tOVGJV6+DS3rckKSxMHSISdU68mbcFqZna7DiIEcZmuDWkEXB0/gM6SWQYJpScjgZRwh8ckO/QlAA==, tarball: https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-15.4.2-canary.34.tgz}
+  '@next/swc-linux-x64-gnu@15.4.2-canary.35':
+    resolution: {integrity: sha512-7oHa+kge/2UXoI2Qg6CKJMOpURXxJ684Brz5UBks75bM1u2NJv7P4rqR0g0UaAalOktJMzogm9kRCiHuwoCvmA==, tarball: https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-15.4.2-canary.35.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@15.4.2-canary.34':
-    resolution: {integrity: sha512-NIQIN333bNvVTZCRQm3rzWLT8Zp2XB1sW9RtmO2h4fsi7raz6y1zsxIklMxPwMHpDU/Iwb+z3OjSwCiE8hPs3g==, tarball: https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-15.4.2-canary.34.tgz}
+  '@next/swc-linux-x64-musl@15.4.2-canary.35':
+    resolution: {integrity: sha512-RaWGdbcEXS9Weq3kq7052Pxw3TN5+/uLXH9zxZZAXoJhcYychu5rJirid5+yGPGJxpgmtvsHyJu9Z7KY7INsyw==, tarball: https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-15.4.2-canary.35.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-win32-arm64-msvc@15.4.2-canary.34':
-    resolution: {integrity: sha512-rf9INIcDRiZEQPVzFEbOn3ThKlrjPuG/jU3oxNQU+04R2S5KRjU0tdZ8XobQ8toldq/I+FL0PesBg+gBjvUgcw==, tarball: https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-15.4.2-canary.34.tgz}
+  '@next/swc-win32-arm64-msvc@15.4.2-canary.35':
+    resolution: {integrity: sha512-WZL9bVp/jTS3MQkOgdI9jhI3MAvf6rUqMENKh9xqmyepmbt1sX6Wgj7EwkIlyO4il+hSHgzQKC9TTUuLv8nRlQ==, tarball: https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-15.4.2-canary.35.tgz}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@15.4.2-canary.34':
-    resolution: {integrity: sha512-Dy6+GtXY9C6U4KvIlWn5B56ldylLJcSQy6cSxH9AsvpLPOXjYmwQ5uRvvy3YZeyzq0ABQURuOCRYtHT9Go1l1Q==, tarball: https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.4.2-canary.34.tgz}
+  '@next/swc-win32-x64-msvc@15.4.2-canary.35':
+    resolution: {integrity: sha512-rAjtZw4VoqAn/qpt80np2CsGKgnhfS/9DIxV4s3doDe1MRZPFwkkeY1MTnZ5Yc4X8RdmgWI96hGOyTyEAkErCQ==, tarball: https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.4.2-canary.35.tgz}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -531,18 +512,8 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
-  '@rspack/binding-darwin-arm64@1.4.5':
-    resolution: {integrity: sha512-rK8mJ+85cXrGSTZvr5vqI17TDimAUWYjl0T+JEg5MTqRNbpyovbGHbrrsQyIicwaFOS1wWkaLrBolC/+/FLUeg==, tarball: https://registry.npmjs.org/@rspack/binding-darwin-arm64/-/binding-darwin-arm64-1.4.5.tgz}
-    cpu: [arm64]
-    os: [darwin]
-
   '@rspack/binding-darwin-x64@1.4.11':
     resolution: {integrity: sha512-YIV8Wzy+JY0SoSsVtN4wxFXOjzxxVPnVXNswrrfqVUTPr9jqGOFYUWCGpbt8lcCgfuBFm6zN8HpOsKm1xUNsVA==, tarball: https://registry.npmjs.org/@rspack/binding-darwin-x64/-/binding-darwin-x64-1.4.11.tgz}
-    cpu: [x64]
-    os: [darwin]
-
-  '@rspack/binding-darwin-x64@1.4.5':
-    resolution: {integrity: sha512-6eOhh18VD8x5+SJrs/K6XiDw+FYffzDMsI3Sz78mQW5xvHYzN3HJxIw7oG7UYXqF5I2yORmqvdxV1aAnv8Fc4g==, tarball: https://registry.npmjs.org/@rspack/binding-darwin-x64/-/binding-darwin-x64-1.4.5.tgz}
     cpu: [x64]
     os: [darwin]
 
@@ -551,18 +522,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@rspack/binding-linux-arm64-gnu@1.4.5':
-    resolution: {integrity: sha512-vnz5OItcPREgz+hVqx14HRf0aJQ7yI/2ZEbeTC+Y1JSCbeYAcu6NXYVXDwTOgCNOp1AdMR+rmItHWiJ7goI//Q==, tarball: https://registry.npmjs.org/@rspack/binding-linux-arm64-gnu/-/binding-linux-arm64-gnu-1.4.5.tgz}
-    cpu: [arm64]
-    os: [linux]
-
   '@rspack/binding-linux-arm64-musl@1.4.11':
     resolution: {integrity: sha512-9evq0DOdxMN/H8VM8ZmyY9NSuBgILNVV6ydBfVPMHPx4r1E7JZGpWeKDegZcS5Erw3sS9kVSIxyX78L5PDzzKw==, tarball: https://registry.npmjs.org/@rspack/binding-linux-arm64-musl/-/binding-linux-arm64-musl-1.4.11.tgz}
-    cpu: [arm64]
-    os: [linux]
-
-  '@rspack/binding-linux-arm64-musl@1.4.5':
-    resolution: {integrity: sha512-E4dUEDpAsQ5jTvt8AXs0VY3vxTzSf07CM5zi797VaFzZzbcZqAoBmlAxYTSyl7/BgAxHSg8AYJS5c8l03vXM4w==, tarball: https://registry.npmjs.org/@rspack/binding-linux-arm64-musl/-/binding-linux-arm64-musl-1.4.5.tgz}
     cpu: [arm64]
     os: [linux]
 
@@ -571,18 +532,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@rspack/binding-linux-x64-gnu@1.4.5':
-    resolution: {integrity: sha512-XQxibZY+joqRfoJQwT1sfN68pRExOvJniWBUJfov6ShG/DFSVbMJ2UTwv5pbruIXA/lLnk7KblPdF8pO0WWQvw==, tarball: https://registry.npmjs.org/@rspack/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.4.5.tgz}
-    cpu: [x64]
-    os: [linux]
-
   '@rspack/binding-linux-x64-musl@1.4.11':
     resolution: {integrity: sha512-wrm4E7q2k4+cwT6Uhp6hIQ3eUe/YoaUttj6j5TqHYZX6YeLrNPtD9+ne6lQQ17BV8wmm6NZsmoFIJ5xIptpRhQ==, tarball: https://registry.npmjs.org/@rspack/binding-linux-x64-musl/-/binding-linux-x64-musl-1.4.11.tgz}
-    cpu: [x64]
-    os: [linux]
-
-  '@rspack/binding-linux-x64-musl@1.4.5':
-    resolution: {integrity: sha512-bOZmkCZamOz/+D3AA3uHII3rLIx4WtPk+KbDe3nfIVHhgxUK1nmv0vHtKzDA5iplucJ4ha/Rx9TEFyRwnBJH0A==, tarball: https://registry.npmjs.org/@rspack/binding-linux-x64-musl/-/binding-linux-x64-musl-1.4.5.tgz}
     cpu: [x64]
     os: [linux]
 
@@ -590,17 +541,8 @@ packages:
     resolution: {integrity: sha512-hiYxHZjaZ17wQtXyLCK0IdtOvMWreGVTiGsaHCxyeT+SldDG+r16bXNjmlqfZsjlfl1mkAqKz1dg+mMX28OTqw==, tarball: https://registry.npmjs.org/@rspack/binding-wasm32-wasi/-/binding-wasm32-wasi-1.4.11.tgz}
     cpu: [wasm32]
 
-  '@rspack/binding-wasm32-wasi@1.4.5':
-    resolution: {integrity: sha512-LRyln0jg2FblwFQg+0lPVc/bvDeo3A3EVWQtsTtOwjb4cjAG/Zqo5Q0VobaJTKgBOF9eAHTo9IL92SSj433+Eg==, tarball: https://registry.npmjs.org/@rspack/binding-wasm32-wasi/-/binding-wasm32-wasi-1.4.5.tgz}
-    cpu: [wasm32]
-
   '@rspack/binding-win32-arm64-msvc@1.4.11':
     resolution: {integrity: sha512-+HF/mnjmTr8PC1dccRt1bkrD2tPDGeqvXC1BBLYd/Klq1VbtIcnrhfmvQM6KaXbiLcY9VWKzcZPOTmnyZ8TaHQ==, tarball: https://registry.npmjs.org/@rspack/binding-win32-arm64-msvc/-/binding-win32-arm64-msvc-1.4.11.tgz}
-    cpu: [arm64]
-    os: [win32]
-
-  '@rspack/binding-win32-arm64-msvc@1.4.5':
-    resolution: {integrity: sha512-JWc15Mof/aC41UQSZLwa6oEsPYaYCApW0152Abhnt27qir2pfqYcT5qWt26OJvFDJoe+KzpIG1H91yJviChYYw==, tarball: https://registry.npmjs.org/@rspack/binding-win32-arm64-msvc/-/binding-win32-arm64-msvc-1.4.5.tgz}
     cpu: [arm64]
     os: [win32]
 
@@ -609,38 +551,16 @@ packages:
     cpu: [ia32]
     os: [win32]
 
-  '@rspack/binding-win32-ia32-msvc@1.4.5':
-    resolution: {integrity: sha512-PpyNunP8zC5AQtF3Pww7F41bwoJwmGzdJuv2lk/3l74UhjhT4Ac4/dmEaKiYeOr69PPlCtn7Des9VEFufYAZAQ==, tarball: https://registry.npmjs.org/@rspack/binding-win32-ia32-msvc/-/binding-win32-ia32-msvc-1.4.5.tgz}
-    cpu: [ia32]
-    os: [win32]
-
   '@rspack/binding-win32-x64-msvc@1.4.11':
     resolution: {integrity: sha512-1Nc5ZzWqfvE+iJc47qtHFzYYnHsC3awavXrCo74GdGip1vxtksM3G30BlvAQHHVtEmULotWqPbjZpflw/Xk9Ag==, tarball: https://registry.npmjs.org/@rspack/binding-win32-x64-msvc/-/binding-win32-x64-msvc-1.4.11.tgz}
-    cpu: [x64]
-    os: [win32]
-
-  '@rspack/binding-win32-x64-msvc@1.4.5':
-    resolution: {integrity: sha512-elzpVGJW0W9DTkfJ7JyvMyi2Rbot5Q6rVBBKSh0lRWhZE/LnDJ/1WkS/9yER8XPGjO7umP1hD72ML1SoBddXmA==, tarball: https://registry.npmjs.org/@rspack/binding-win32-x64-msvc/-/binding-win32-x64-msvc-1.4.5.tgz}
     cpu: [x64]
     os: [win32]
 
   '@rspack/binding@1.4.11':
     resolution: {integrity: sha512-maGl/zRwnl0QVwkBCkgjn5PH20L9HdlRIdkYhEsfTepy5x2QZ0ti/0T49djjTJQrqb+S1i6wWQymMMMMMsxx6Q==, tarball: https://registry.npmjs.org/@rspack/binding/-/binding-1.4.11.tgz}
 
-  '@rspack/binding@1.4.5':
-    resolution: {integrity: sha512-hO7DrZMMOyzwK7EEYfHMJmWhsNjeYLr39pEnXOWeuCCcwus6e/QNSSf2m/2mSFf0JeINwQqHkA1JvJEZ5JSj6g==, tarball: https://registry.npmjs.org/@rspack/binding/-/binding-1.4.5.tgz}
-
   '@rspack/core@1.4.11':
     resolution: {integrity: sha512-JtKnL6p7Kc/YgWQJF3Woo4OccbgKGyT/4187W4dyex8BMkdQcbqCNIdi6dFk02hwQzxpOOxRSBI4hlGRbz7oYQ==, tarball: https://registry.npmjs.org/@rspack/core/-/core-1.4.11.tgz}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@swc/helpers': '>=0.5.1'
-    peerDependenciesMeta:
-      '@swc/helpers':
-        optional: true
-
-  '@rspack/core@1.4.5':
-    resolution: {integrity: sha512-4OlxGQ4yPbAOYbVStMotaYrydm8r5VbLByrmQ34LNBYIDSmwaBmHQVMYGIesuGW681pr139XwInKvsoAoW6VTA==, tarball: https://registry.npmjs.org/@rspack/core/-/core-1.4.5.tgz}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@swc/helpers': '>=0.5.1'
@@ -1642,11 +1562,11 @@ packages:
   next-compose-plugins@2.2.1:
     resolution: {integrity: sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==, tarball: https://registry.npmjs.org/next-compose-plugins/-/next-compose-plugins-2.2.1.tgz}
 
-  next-rspack@15.4.2-canary.34:
-    resolution: {integrity: sha512-AOBXBehazNJsp1HMNVF7d0fLoADx6L+57emrGEdQgs8M6FaE9gwWqrL1duQYvXuRm47M68Nc2cfc4HeDnN3AjA==, tarball: https://registry.npmjs.org/next-rspack/-/next-rspack-15.4.2-canary.34.tgz}
+  next-rspack@15.4.2-canary.35:
+    resolution: {integrity: sha512-iatDM6J0yhgDHZ7UmSytzI9tSiGdQSoeqTjxFAqwz0D6sf7y19S2cai4cAazwsdOWZ78hfSa3nBc3RkRByj5yQ==, tarball: https://registry.npmjs.org/next-rspack/-/next-rspack-15.4.2-canary.35.tgz}
 
-  next@15.4.2-canary.34:
-    resolution: {integrity: sha512-vnKgR7MJFcjrd8Xk5AxyDdk5KM79fpw8TYLBgII9pFTC/CZYYbMPgYwSbubimBdO9idV5ElmdE79zQuupEJ/kg==, tarball: https://registry.npmjs.org/next/-/next-15.4.2-canary.34.tgz}
+  next@15.4.2-canary.35:
+    resolution: {integrity: sha512-HSEb8jSsaa2MZg6J9M7zX07yQz82K8NC70J1aWSZ7Dxh16yjjK5peC+ZPhrs2nRTLm2U7PETPzoFK0Jfbu4FAA==, tarball: https://registry.npmjs.org/next/-/next-15.4.2-canary.35.tgz}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
     hasBin: true
     peerDependencies:
@@ -1811,9 +1731,6 @@ packages:
 
   remark-gfm@4.0.1:
     resolution: {integrity: sha512-1quofZ2RQ9EWdeN34S79+KExV1764+wCUGop5CPL1WGdD0ocPpu91lzPGbwWMECpEpd42kJGQwzRfyov9j4yNg==, tarball: https://registry.npmjs.org/remark-gfm/-/remark-gfm-4.0.1.tgz}
-
-  remark-github@12.0.0:
-    resolution: {integrity: sha512-ByefQKFN184LeiGRCabfl7zUJsdlMYWEhiLX1gpmQ11yFg6xSuOTW7LVCv0oc1x+YvUMJW23NU36sJX2RWGgvg==, tarball: https://registry.npmjs.org/remark-github/-/remark-github-12.0.0.tgz}
 
   remark-parse@11.0.0:
     resolution: {integrity: sha512-FCxlKLNGknS5ba/1lmpYijMUzX2esxW5xQqjWxw2eHFfS2MSdaHVINFmhjo+qN1WhZhNimq0dZATN9pH0IDrpA==, tarball: https://registry.npmjs.org/remark-parse/-/remark-parse-11.0.0.tgz}
@@ -2059,9 +1976,6 @@ packages:
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==, tarball: https://registry.npmjs.org/to-regex-range/-/to-regex-range-5.0.1.tgz}
     engines: {node: '>=8.0'}
-
-  to-vfile@8.0.0:
-    resolution: {integrity: sha512-IcmH1xB5576MJc9qcfEC/m/nQCFt3fzMHz45sSlgJyTWjRbKW1HAkJpuf3DgE57YzIlZcwcBZA5ENQbBo4aLkg==, tarball: https://registry.npmjs.org/to-vfile/-/to-vfile-8.0.0.tgz}
 
   totalist@3.0.1:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==, tarball: https://registry.npmjs.org/totalist/-/totalist-3.0.1.tgz}
@@ -2486,35 +2400,17 @@ snapshots:
     dependencies:
       ssr-window: 4.0.2
 
-  '@module-federation/error-codes@0.15.0': {}
-
   '@module-federation/error-codes@0.17.1': {}
-
-  '@module-federation/runtime-core@0.15.0':
-    dependencies:
-      '@module-federation/error-codes': 0.15.0
-      '@module-federation/sdk': 0.15.0
 
   '@module-federation/runtime-core@0.17.1':
     dependencies:
       '@module-federation/error-codes': 0.17.1
       '@module-federation/sdk': 0.17.1
 
-  '@module-federation/runtime-tools@0.15.0':
-    dependencies:
-      '@module-federation/runtime': 0.15.0
-      '@module-federation/webpack-bundler-runtime': 0.15.0
-
   '@module-federation/runtime-tools@0.17.1':
     dependencies:
       '@module-federation/runtime': 0.17.1
       '@module-federation/webpack-bundler-runtime': 0.17.1
-
-  '@module-federation/runtime@0.15.0':
-    dependencies:
-      '@module-federation/error-codes': 0.15.0
-      '@module-federation/runtime-core': 0.15.0
-      '@module-federation/sdk': 0.15.0
 
   '@module-federation/runtime@0.17.1':
     dependencies:
@@ -2522,26 +2418,12 @@ snapshots:
       '@module-federation/runtime-core': 0.17.1
       '@module-federation/sdk': 0.17.1
 
-  '@module-federation/sdk@0.15.0': {}
-
   '@module-federation/sdk@0.17.1': {}
-
-  '@module-federation/webpack-bundler-runtime@0.15.0':
-    dependencies:
-      '@module-federation/runtime': 0.15.0
-      '@module-federation/sdk': 0.15.0
 
   '@module-federation/webpack-bundler-runtime@0.17.1':
     dependencies:
       '@module-federation/runtime': 0.17.1
       '@module-federation/sdk': 0.17.1
-
-  '@napi-rs/wasm-runtime@0.2.12':
-    dependencies:
-      '@emnapi/core': 1.4.5
-      '@emnapi/runtime': 1.4.5
-      '@tybys/wasm-util': 0.10.0
-    optional: true
 
   '@napi-rs/wasm-runtime@1.0.3':
     dependencies:
@@ -2550,37 +2432,37 @@ snapshots:
       '@tybys/wasm-util': 0.10.0
     optional: true
 
-  '@next/bundle-analyzer@15.4.2-canary.34':
+  '@next/bundle-analyzer@15.4.2-canary.35':
     dependencies:
       webpack-bundle-analyzer: 4.10.1
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@next/env@15.4.2-canary.34': {}
+  '@next/env@15.4.2-canary.35': {}
 
-  '@next/swc-darwin-arm64@15.4.2-canary.34':
+  '@next/swc-darwin-arm64@15.4.2-canary.35':
     optional: true
 
-  '@next/swc-darwin-x64@15.4.2-canary.34':
+  '@next/swc-darwin-x64@15.4.2-canary.35':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@15.4.2-canary.34':
+  '@next/swc-linux-arm64-gnu@15.4.2-canary.35':
     optional: true
 
-  '@next/swc-linux-arm64-musl@15.4.2-canary.34':
+  '@next/swc-linux-arm64-musl@15.4.2-canary.35':
     optional: true
 
-  '@next/swc-linux-x64-gnu@15.4.2-canary.34':
+  '@next/swc-linux-x64-gnu@15.4.2-canary.35':
     optional: true
 
-  '@next/swc-linux-x64-musl@15.4.2-canary.34':
+  '@next/swc-linux-x64-musl@15.4.2-canary.35':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@15.4.2-canary.34':
+  '@next/swc-win32-arm64-msvc@15.4.2-canary.35':
     optional: true
 
-  '@next/swc-win32-x64-msvc@15.4.2-canary.34':
+  '@next/swc-win32-x64-msvc@15.4.2-canary.35':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -2600,37 +2482,19 @@ snapshots:
   '@rspack/binding-darwin-arm64@1.4.11':
     optional: true
 
-  '@rspack/binding-darwin-arm64@1.4.5':
-    optional: true
-
   '@rspack/binding-darwin-x64@1.4.11':
-    optional: true
-
-  '@rspack/binding-darwin-x64@1.4.5':
     optional: true
 
   '@rspack/binding-linux-arm64-gnu@1.4.11':
     optional: true
 
-  '@rspack/binding-linux-arm64-gnu@1.4.5':
-    optional: true
-
   '@rspack/binding-linux-arm64-musl@1.4.11':
-    optional: true
-
-  '@rspack/binding-linux-arm64-musl@1.4.5':
     optional: true
 
   '@rspack/binding-linux-x64-gnu@1.4.11':
     optional: true
 
-  '@rspack/binding-linux-x64-gnu@1.4.5':
-    optional: true
-
   '@rspack/binding-linux-x64-musl@1.4.11':
-    optional: true
-
-  '@rspack/binding-linux-x64-musl@1.4.5':
     optional: true
 
   '@rspack/binding-wasm32-wasi@1.4.11':
@@ -2638,27 +2502,13 @@ snapshots:
       '@napi-rs/wasm-runtime': 1.0.3
     optional: true
 
-  '@rspack/binding-wasm32-wasi@1.4.5':
-    dependencies:
-      '@napi-rs/wasm-runtime': 0.2.12
-    optional: true
-
   '@rspack/binding-win32-arm64-msvc@1.4.11':
-    optional: true
-
-  '@rspack/binding-win32-arm64-msvc@1.4.5':
     optional: true
 
   '@rspack/binding-win32-ia32-msvc@1.4.11':
     optional: true
 
-  '@rspack/binding-win32-ia32-msvc@1.4.5':
-    optional: true
-
   '@rspack/binding-win32-x64-msvc@1.4.11':
-    optional: true
-
-  '@rspack/binding-win32-x64-msvc@1.4.5':
     optional: true
 
   '@rspack/binding@1.4.11':
@@ -2674,31 +2524,10 @@ snapshots:
       '@rspack/binding-win32-ia32-msvc': 1.4.11
       '@rspack/binding-win32-x64-msvc': 1.4.11
 
-  '@rspack/binding@1.4.5':
-    optionalDependencies:
-      '@rspack/binding-darwin-arm64': 1.4.5
-      '@rspack/binding-darwin-x64': 1.4.5
-      '@rspack/binding-linux-arm64-gnu': 1.4.5
-      '@rspack/binding-linux-arm64-musl': 1.4.5
-      '@rspack/binding-linux-x64-gnu': 1.4.5
-      '@rspack/binding-linux-x64-musl': 1.4.5
-      '@rspack/binding-wasm32-wasi': 1.4.5
-      '@rspack/binding-win32-arm64-msvc': 1.4.5
-      '@rspack/binding-win32-ia32-msvc': 1.4.5
-      '@rspack/binding-win32-x64-msvc': 1.4.5
-
   '@rspack/core@1.4.11(@swc/helpers@0.5.17)':
     dependencies:
       '@module-federation/runtime-tools': 0.17.1
       '@rspack/binding': 1.4.11
-      '@rspack/lite-tapable': 1.0.1
-    optionalDependencies:
-      '@swc/helpers': 0.5.17
-
-  '@rspack/core@1.4.5(@swc/helpers@0.5.17)':
-    dependencies:
-      '@module-federation/runtime-tools': 0.15.0
-      '@rspack/binding': 1.4.5
       '@rspack/lite-tapable': 1.0.1
     optionalDependencies:
       '@swc/helpers': 0.5.17
@@ -4017,18 +3846,18 @@ snapshots:
 
   next-compose-plugins@2.2.1: {}
 
-  next-rspack@15.4.2-canary.34(@swc/helpers@0.5.17):
+  next-rspack@15.4.2-canary.35(@swc/helpers@0.5.17):
     dependencies:
-      '@rspack/core': 1.4.5(@swc/helpers@0.5.17)
+      '@rspack/core': 1.4.11(@swc/helpers@0.5.17)
       '@rspack/plugin-react-refresh': 1.2.0(react-refresh@0.12.0)
       react-refresh: 0.12.0
     transitivePeerDependencies:
       - '@swc/helpers'
       - webpack-hot-middleware
 
-  next@15.4.2-canary.34(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental):
+  next@15.4.2-canary.35(react-dom@node_modules+next+dist+compiled+react-dom-experimental)(react@node_modules+next+dist+compiled+react-experimental):
     dependencies:
-      '@next/env': 15.4.2-canary.34
+      '@next/env': 15.4.2-canary.35
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001727
       postcss: 8.4.31
@@ -4036,14 +3865,14 @@ snapshots:
       react-dom: link:node_modules/next/dist/compiled/react-dom-experimental
       styled-jsx: 5.1.6(react@node_modules+next+dist+compiled+react-experimental)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 15.4.2-canary.34
-      '@next/swc-darwin-x64': 15.4.2-canary.34
-      '@next/swc-linux-arm64-gnu': 15.4.2-canary.34
-      '@next/swc-linux-arm64-musl': 15.4.2-canary.34
-      '@next/swc-linux-x64-gnu': 15.4.2-canary.34
-      '@next/swc-linux-x64-musl': 15.4.2-canary.34
-      '@next/swc-win32-arm64-msvc': 15.4.2-canary.34
-      '@next/swc-win32-x64-msvc': 15.4.2-canary.34
+      '@next/swc-darwin-arm64': 15.4.2-canary.35
+      '@next/swc-darwin-x64': 15.4.2-canary.35
+      '@next/swc-linux-arm64-gnu': 15.4.2-canary.35
+      '@next/swc-linux-arm64-musl': 15.4.2-canary.35
+      '@next/swc-linux-x64-gnu': 15.4.2-canary.35
+      '@next/swc-linux-x64-musl': 15.4.2-canary.35
+      '@next/swc-win32-arm64-msvc': 15.4.2-canary.35
+      '@next/swc-win32-x64-msvc': 15.4.2-canary.35
       sharp: 0.34.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -4229,15 +4058,6 @@ snapshots:
       unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
-
-  remark-github@12.0.0:
-    dependencies:
-      '@types/mdast': 4.0.4
-      mdast-util-find-and-replace: 3.0.2
-      mdast-util-to-string: 4.0.0
-      to-vfile: 8.0.0
-      unist-util-visit: 5.0.0
-      vfile: 6.0.3
 
   remark-parse@11.0.0:
     dependencies:
@@ -4550,10 +4370,6 @@ snapshots:
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
-
-  to-vfile@8.0.0:
-    dependencies:
-      vfile: 6.0.3
 
   totalist@3.0.1: {}
 

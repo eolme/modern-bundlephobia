@@ -2,6 +2,7 @@
 import { default as ally } from "@fec/remark-a11y-emoji";
 import { default as highlight } from "rehype-highlight";
 import { default as inline } from "rehype-raw";
+import { default as slug } from "rehype-slug";
 import { default as stringify } from "rehype-stringify";
 import { remark } from "remark";
 import { default as emoji } from "remark-emoji";
@@ -29,6 +30,7 @@ export const markdown = async (
 			.use(ally)
 			.use(rehype, { allowDangerousHtml: true })
 			.use(inline)
+			.use(slug)
 			.use(highlight, {
 				aliases: alias,
 			})

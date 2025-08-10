@@ -1,27 +1,4 @@
 {
-	"name": "bundlephobia",
-	"version": "0.1.0",
-	"private": true,
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/eolme/modern-bundlephobia.git"
-	},
-	"packageManager": "pnpm@9.15.9",
-	"engines": {
-		"node": ">=22",
-		"pnpm": "9.15.9"
-	},
-	"scripts": {
-		"postinstall": "pnpm node bin/patch.js",
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"generate": "run-p \"generate:*\"",
-		"generate:fonts": "pnpm node bin/fonts.js",
-		"generate:licenses": "pnpm node bin/licenses.js",
-		"biome": "biome check --write --unsafe"
-	},
 	"dependencies": {
 		"@fastify/deepmerge": "^3.1.0",
 		"@fec/remark-a11y-emoji": "^4.0.2",
@@ -45,7 +22,6 @@
 		"react": "link:./node_modules/next/dist/compiled/react-experimental",
 		"react-dom": "link:./node_modules/next/dist/compiled/react-dom-experimental",
 		"react-server-dom-webpack": "link:./node_modules/next/dist/compiled/react-server-dom-webpack-experimental",
-		"scheduler": "link:./node_modules/next/dist/compiled/scheduler-experimental",
 		"rehype-highlight": "^7.0.2",
 		"rehype-raw": "^7.0.0",
 		"rehype-slug": "^6.0.0",
@@ -53,9 +29,9 @@
 		"remark": "^15.0.1",
 		"remark-emoji": "^5.0.1",
 		"remark-gfm": "^4.0.1",
-		"remark-github": "^12.0.0",
 		"remark-parse": "^11.0.0",
 		"remark-rehype": "^11.1.2",
+		"scheduler": "link:./node_modules/next/dist/compiled/scheduler-experimental",
 		"server-only": "^0.0.1",
 		"ssr-window": "^5.0.1",
 		"swr": "^2.3.5",
@@ -66,6 +42,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.1.4",
 		"@next/bundle-analyzer": "canary",
+		"@rspack/binding": "^1.4.11",
 		"@rspack/core": "^1.4.11",
 		"@types/mdast": "^4.0.4",
 		"@types/node": "^24.2.1",
@@ -80,18 +57,43 @@
 		"raw-loader": "^4.0.2",
 		"typescript": "5.9.2"
 	},
+	"engines": {
+		"node": ">=22",
+		"pnpm": "9.15.9"
+	},
+	"license": "MIT",
+	"name": "bundlephobia",
+	"packageManager": "pnpm@9.15.9",
 	"pnpm": {
-		"overrides": {
-			"react": "$react",
-			"react-dom": "$react-dom",
-			"react-server-dom-webpack": "$react-server-dom-webpack",
-			"scheduler": "$scheduler",
-			"@vkontakte/vk-bridge": "$@vkontakte/vk-bridge",
-			"mitt": "$mitt"
-		},
 		"onlyBuiltDependencies": [
 			"sharp",
 			"unrs-resolver"
-		]
-	}
+		],
+		"overrides": {
+			"@rspack/binding": "$@rspack/binding",
+			"@rspack/core": "$@rspack/core",
+			"@vkontakte/vk-bridge": "$@vkontakte/vk-bridge",
+			"mitt": "$mitt",
+			"react": "$react",
+			"react-dom": "$react-dom",
+			"react-server-dom-webpack": "$react-server-dom-webpack",
+			"scheduler": "$scheduler"
+		}
+	},
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/eolme/modern-bundlephobia.git"
+	},
+	"scripts": {
+		"biome": "biome check --write --unsafe",
+		"build": "next build",
+		"dev": "next dev",
+		"generate": "run-p \"generate:*\"",
+		"generate:fonts": "pnpm node bin/fonts.js",
+		"generate:licenses": "pnpm node bin/licenses.js",
+		"postinstall": "pnpm node bin/patch.js",
+		"start": "next start"
+	},
+	"version": "0.1.0"
 }
